@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt_br" >
+  <head>
+    <title>Garantia Aluguel</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='assets/fontes/fonte.css'>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+        .alert{
+          padding: 10px !important;
+          margin-bottom: 0px !important;
+        }
+    </style>
+
+  </head>
+
+<body ng-app="app" ng-controller="MainController" ng-cloak>
+
+<div class="container">    
+<div layout="row" layout-padding>
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" ng-class="{'active': passo == 1}">
+      <a href="#"><span class="badge">1 </span> <label hide-xs>{{getLabelEtapa('1')}}</label></a>
+    </li>
+
+    <li role="presentation" ng-class="{'active': passo == 2}">
+      <a href="#"><span class="badge">2 </span> <label hide-xs>{{getLabelEtapa('2')}}</label> </a></li>
+
+    <li role="presentation" ng-class="{'active': passo == 3}">
+      <a href="#"><span class="badge">3 </span> <label hide-xs>{{getLabelEtapa('3')}} </label> </a></li>
+
+      <li role="presentation" ng-class="{'active': passo == 4}">
+      <a href="#"><span class="badge">4 </span> <label hide-xs>{{getLabelEtapa('4')}} </label> </a></li>
+
+      <li role="presentation" ng-class="{'active': passo == 5}">
+      <a href="#"><span class="badge">5 </span> <label hide-xs>{{getLabelEtapa('5')}} </label> </a></li>
+  </ul>
+</div>
+
+  <h4><label class="label label-default"> passo {{passo}} / 5 :: {{getLabelEtapa(passo)}}</label></h4>
+
+  <!-- Array erros de validação -->
+  <span id="listErrors">
+  
+    <div class="alert alert-warning" role="alert" ng-if="errors.length > 0">
+      <div ng-repeat="erro in errors">
+        <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
+      </div>
+  </div>
+
+<div class="borda-formulario">
+
+  	<!-- DADOS DO PRTENDENTE -->
+  	<div ng-if="passo == 1" class="animate-if" data-ng-include="'./src/view/formulario/dadosPretendente.html'"></div>  
+
+    <!-- DADOS Residenciais -->
+    <div ng-if="passo == 2" class="animate-if" data-ng-include="'./src/view/formulario/dadosResidenciais.html'"></div>  
+   
+    <!-- DADOS PROFISIONAIS -->
+    <div ng-if="passo == 3" class="animate-if" data-ng-include="'./src/view/formulario/dadosProfissionais.html'"></div>
+
+    <!-- DADOS IMOVEL -->
+    <div ng-if="passo == 4" class="animate-if" data-ng-include="'./src/view/formulario/dadosImovel.html'"></div>
+
+    <!-- DADOS PESSOAIS -->
+    <div ng-if="passo == 5" class="animate-if" data-ng-include="'./src/view/formulario/dadosPessoais.html'"></div>
+    
+
+    <!-- 
+     <input type="file" nv-file-select="" uploader="uploader" />
+     -->
+     
+  </div>
+</div>
+
+    <!-- Bibliotecas Angular-Material -->
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-locale-pt-br/angular-locale_pt-br.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="../node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script type="text/javascript" src="../node_modules/angular-material/angular-material.min.js"></script>
+
+    <!-- Bibliotecas Jquery + Boostrap -->
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery.maskedinput/src/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+
+    <script src="./src/app.js"></script>
+    <script src="./src/diretiva/diretiva.js"></script>
+    <script src="./src/service/ServiceUtil.js"></script>
+    <script src="./src/service/ValidaService.js"></script>
+    <script src="./src/main/MainController.js"></script>
+    <script type="text/javascript">
+
+          angular
+              .module('starterApp', ['ngMaterial', 'users'])
+              .config(function($mdThemingProvider){                                    
+                      $mdThemingProvider.theme('default')
+                          .primaryPalette('brown')
+                          .accentPalette('red');
+
+              });  
+
+    </script> 
+
+  </body>
+</html>

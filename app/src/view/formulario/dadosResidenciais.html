@@ -1,0 +1,155 @@
+<form name="formDadosResidenciais" class="fundo-formulario">
+<div layout="column" layout-padding layout-gt-sm="row">
+  <div class="md-block" flex-gt-sm="25">
+        <label for="tempoResidencia">Tempo de Residencia</label>
+        <input type="text" id="tempoResidencia" name="tempoResidencia" focus
+        class="form-control" ng-model="cadastro.residencia.tempoResidencia" 
+       ng-tabindex="2">
+  </div>
+
+  <div class="md-block" flex-gt-sm="50">
+        <label for="condicaoImovel">Condições do Imóvel</label>
+        <input type="text" id="condicaoImovel" name="condicaoImovel" 
+        class="form-control" ng-model="cadastro.residencia.condicaoImovel" 
+       ng-tabindex="2">
+  </div>
+
+  <div class="md-block" flex-gt-sm="25">
+        <label>Residência</label>
+        <select class="form-control" ng-model="cadastro.residencia.tipo">
+          <option value="alugada">Alugada</option>
+          <option value="financiada">Financiada</option>
+          <option value="propria">Própria</option>
+        </select>
+  </div>
+
+</div>
+
+<div layout="column" layout-padding layout-gt-sm="row">
+  <div class="md-block" flex-gt-sm="80">
+        <label for="emNome">Em nome de</label>
+        <input type="text" id="emNome" name="emNome" 
+        class="form-control" ng-model="cadastro.residencia.emNome" 
+       ng-tabindex="2">
+  </div>
+
+  <div class="md-block" flex-gt-sm="20">
+        <label>Arca com aluguel</label>
+        <select class="form-control" ng-model="cadastro.residencia.arcaAluguel">
+          <option value="sim">SIM</option>
+          <option value="nao">NÃO</option>
+        </select>
+  </div>
+
+</div>
+
+<div layout="column" layout-padding layout-gt-sm="row">
+  <div class="md-block" flex-gt-sm="15">
+      <label for="aluguel">Aluguel(atual)</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mascara-monetaria mobile="number" id="aluguel" name="aluguel" 
+      class="form-control" ng-model="cadastro.residencia.aluguel" ng-tabindex="2">
+    </div>
+  </div>
+
+    <div class="md-block" flex-gt-sm="15">
+      <label for="agua">Água(atual)</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mascara-monetaria mobile="number" id="agua" name="agua" 
+      class="form-control" ng-model="cadastro.residencia.agua" ng-tabindex="2">
+    </div>
+    </div>
+
+    <div class="md-block" flex-gt-sm="15">
+      <label for="gas">Gás(atual)</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mascara-monetaria mobile="number" id="gas" name="gas" 
+      class="form-control" ng-model="cadastro.residencia.gas" ng-tabindex="2">
+    </div>
+    </div>
+
+     <div class="md-block" flex-gt-sm="15">
+      <label for="luz">Luz(atual)</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mascara-monetaria mobile="number" id="luz" name="luz" 
+      class="form-control" ng-model="cadastro.residencia.luz" ng-tabindex="2">
+    </div>
+    </div>
+
+    <div class="md-block" flex-gt-sm="40">
+      <label>Possui outros imóveis alugados</label>
+      <select class="form-control" ng-model="cadastro.residencia.outrosImoveisAlugados">
+        <option value="sim">SIM</option>
+        <option value="nao">NÃO</option>
+      </select>
+    </div>
+
+</div>
+
+
+
+<div flex-gt-sm="40"><label> <h4> Endereço residencial anterior(se menor de 1 ano)</h4></label></div>
+
+<div layout="column" layout-padding layout-gt-sm="row">
+  <div class="md-block" flex-gt-sm="15">
+      <label for="cepAnterior">CEP</label>
+      <input mobile="number" mascara="99.999-999" id="cepAnterior" name="cepAnterior" 
+      class="form-control" ng-model="cadastro.residencia.anterior.cep" 
+      ng-blur="pesquisarCep(cadastro.residencia.anterior)" ng-tabindex="2">
+    </div>
+
+    <div class="md-block" flex-gt-sm="15">
+      <label for="estadoAnterior">Estado</label>
+      <input type="text" id="estadoAnterior" upper name="estadoAnterior" 
+      class="form-control" ng-model="cadastro.residencia.anterior.estado"  ng-tabindex="2">
+    </div>
+
+    <div class="md-block" flex-gt-sm="25">
+      <label for="cidadeAnterior">Cidade</label>
+      <input type="text" id="cidadeAnterior" upper name="cidadeAnterior" 
+      class="form-control" ng-model="cadastro.residencia.anterior.cidade"  ng-tabindex="2">
+    </div>
+
+    <div class="md-block" flex-gt-sm="45">
+      <label for="enderecoAnterior">Endereço</label>
+      <input type="text" id="enderecoAnterior" upper name="enderecoAnterior" 
+      class="form-control" ng-model="cadastro.residencia.anterior.endereco"  ng-tabindex="2">
+    </div>
+
+  </div>
+
+<div layout="column" layout-padding layout-gt-sm="row">
+    <div class="md-block" flex-gt-sm="35">
+      <label for="bairroAnterior">Bairro</label>
+      <input type="text" id="bairroAnterior" upper name="bairroAnterior" 
+      class="form-control" ng-model="cadastro.residencia.anterior.bairro"  ng-tabindex="2">
+    </div>
+
+     <div class="md-block" flex-gt-sm="15">
+      <label for="numeroAnterior">Numero</label>
+      <input type="number" id="numeroAnterior" name="numeroAnterior" 
+      class="form-control" ng-model="cadastro.residencia.anterior.numero" ng-tabindex="2">
+    </div>
+</div>
+</form>
+
+<div layout="row" layout-align="center center">
+    <div ng-if="passo != 1">
+      <md-button class="md-raised" ng-click="passoAnterior()">
+        <span aria-hidden="true">&larr;</span> Anterior
+      </md-button>
+    </div>
+
+    <div>
+      <md-button class="md-raised md-primary" ng-click="proximoPasso()">Seguinte <span aria-hidden="true">&rarr;</span>
+      </md-button>
+    </div>
+  </div>   

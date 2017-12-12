@@ -1,0 +1,188 @@
+<form name="formDadosPretendente" class="fundo-formulario">
+   <div layout="column" layout-gt-sm="row" layout-padding>
+     <div class="md-block" flex-gt-sm="50">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" upper name="nome" focus requerido 
+        class="form-control" ng-model="cadastro.pretendente.nome" ng-tabindex="1">
+      </div>
+  
+
+    <div class="md-block" flex-gt-sm="25">
+      <label for="cpf">CPF</label>
+      <input mobile="number"  mascara="999.999.999-99"  id="cpf" name="cpf"
+      class="form-control" ng-model="cadastro.pretendente.cpf" ng-tabindex="2">
+    </div>
+
+    <div flex-gt-sm="25">
+      <label for="dataNascimento">Data Nascimento</label>
+      <input id="dataNascimento" name="dataNascimento" class="form-control" 
+      datepicker mascara="99/99/9999"
+      ng-model="cadastro.pretendente.dataNascimento" ng-tabindex="3">
+    </div>
+
+  </div>
+
+<div layout="column" layout-gt-sm="row" layout-padding>
+    <div class="md-block" flex-gt-sm="40">
+      <label for="numDoc">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
+      <input type="number" id="numDoc" name="numDoc" class="form-control" ng-model="cadastro.pretendente.numDoc" 
+      ng-tabindex="4">
+    </div>
+
+    <div class="md-block" flex-gt-sm="20">
+      <label for="orgaoExpedidor">Orgão Expedidor</label>
+      <input type="text" id="orgaoExpedidor" name="orgaoExpedidor" 
+      class="form-control" ng-model="cadastro.pretendente.orgaoExpedidor" ng-tabindex="5">
+    </div>
+
+    <div flex-gt-sm="20">
+      <label for="dataEmissao">Data Emissão</label>
+      <input id="dataEmissao" name="dataEmissao" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pretendente.dataEmissao" ng-tabindex="6">
+    </div>
+
+    <div flex-gt-sm="20">
+      <label for="dataValidade">Data Validade</label>
+      <input id="dataValidade" name="dataValidade" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pretendente.dataValidade" ng-tabindex="7">
+    </div>
+
+  </div>
+
+<div layout="column" layout-gt-sm="row" layout-padding>
+    <div class="md-block" flex-gt-sm="25">
+      <label>Sexo</label>
+      <select class="form-control" ng-model="cadastro.pretendente.sexo" ng-tabindex="8">
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+    </div>
+
+    <div class="md-block" flex-gt-sm="25">
+      <label>Estado Civil</label>
+      <select class="form-control" ng-model="cadastro.pretendente.estadoCivil" ng-tabindex="9">
+        <option value="solteiro">Solteiro(a)</option>
+        <option value="casado">Casado(a)</option>
+        <option value="separado">Separado(a)</option>
+        <option value="viuvo">Viuvo(a)</option>
+        <option value="divorciado">Divorciado(a)</option>
+      </select>
+    </div>
+
+    <div class="md-block" flex-gt-sm="25">
+      <label for="cpfConjuge">CPF Cônjuge</label>
+      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge" name="cpfConjuge" 
+      class="form-control" ng-model="cadastro.pretendente.cpfConjuge" 
+      ng-tabindex="10">
+    </div>
+
+    <div class="md-block" flex-gt-sm="25">
+      <label for="numeroDependente">Nº Dependentes</label>
+      <input type="number" id="numeroDependente" name="numeroDependente" 
+      class="form-control" ng-model="cadastro.pretendente.numeroDependente" ng-tabindex="11">
+    </div>
+
+  </div>
+
+    
+<div layout="column" layout-gt-sm="row" layout-padding>
+     <div class="md-block" flex-gt-sm="50">
+      <label for="nomeMae">Nome Mãe</label>
+      <input type="text" id="nomeMae" upper name="nomeMae" 
+      class="form-control" ng-model="cadastro.pretendente.nomeMae" ng-tabindex="12">
+    </div>
+
+    <div class="md-block" flex-gt-sm="50">
+      <label for="nomePai">Nome Pai</label>
+      <input type="text" id="nomePai" upper name="nomePai" 
+      class="form-control" ng-model="cadastro.pretendente.nomePai" ng-tabindex="13">
+    </div>
+</div>
+   
+  <div layout="column" layout-gt-sm="row" layout-padding> 
+    <div class="md-block" flex-gt-sm="55">
+      <label for="nacionalidade">Nacionalidade</label>
+      <input type="text" id="nacionalidade" name="nacionalidade" 
+      class="form-control" ng-model="cadastro.pretendente.nacionalidade" ng-tabindex="17">
+    </div>
+
+    <div class="md-block" flex-gt-sm="20">
+      <label for="paisOrigem">País de Origem</label>
+      <input type="text" id="paisOrigem" name="paisOrigem" 
+      class="form-control" ng-model="cadastro.pretendente.paisOrigem" ng-tabindex="18">
+    </div>
+
+     <div class="md-block" flex-gt-sm="25">
+      <label for="tempoPais">Tempo no País</label>
+      <input type="text" id="tempoPais" name="tempoPais" 
+      class="form-control" ng-model="cadastro.pretendente.tempoPais" ng-tabindex="19">
+    </div>
+
+  </div>
+
+   
+ <div layout="column" layout-gt-sm="row" layout-padding> 
+
+    <div class="md-block" flex-gt-sm="50">
+      <label for="respLocacao">Responsavel pela locação</label>
+      <input type="text" id="respLocacao" name="responsavelLocacao" 
+      class="form-control" ng-model="cadastro.pretendente.responsavelLocacao" ng-tabindex="21">
+    </div>
+
+    <div class="md-block" flex-gt-sm="25">
+      <label>Pretendente irá residir no imóvel</label>
+      <select class="form-control" flex-gt-sm="40"
+      ng-model="cadastro.pretendente.iraResidirImovel" ng-tabindex="22">
+        <option value="sim">SIM</option>
+        <option value="nao">NÃO</option>
+      </select>
+    </div>
+
+    <div class="md-block" flex-gt-sm="30">
+      <label>Possui renda para arcar com a locação</label>
+      <select class="form-control" flex-gt-sm="35"
+      ng-model="cadastro.pretendente.possuiRendaArcarLocacao" ng-tabindex="23">
+        <option value="sim">SIM</option>
+        <option value="nao">NÃO</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div layout="column" layout-gt-sm="row" layout-padding> 
+    <div class="md-block" flex-gt-sm="15">
+      <label for="telefone">Telefone</label>
+      <input mobile="tel" mascara="(99) 9999-9999?9" id="telefone" name="telefone" 
+      class="form-control" ng-model="cadastro.pretendente.telefone" ng-tabindex="14">
+    </div>
+
+    <div class="md-block" flex-gt-sm="15">
+      <label for="celular">Celular</label>
+      <input mobile="tel" mascara="(99) 9999-9999?9" id="celular" name="celular" 
+      class="form-control" ng-model="cadastro.pretendente.celular" ng-tabindex="15">
+    </div>
+
+    <div class="md-block" flex-gt-sm="15">
+      <label for="telefoneComercial">Telefone Comercial</label>
+      <input mobile="tel" mascara="(99) 9999-9999?9" id="telefoneComercial" name="telefoneComercial" 
+      class="form-control" ng-model="cadastro.pretendente.telefoneComercial" ng-tabindex="16">
+    </div>
+
+    <div class="md-block" flex-gt-sm="55">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email"
+      class="form-control" ng-model="cadastro.pretendente.email" ng-tabindex="20">
+    </div>
+  </div>
+</form>
+
+<div layout="row" layout-align="center center">
+    <div>
+      <md-button class="md-raised md-primary" 
+      ng-click="validarDadosPretendente('formDadosPretendente')">Seguinte 
+        <span aria-hidden="true">&rarr;</span>
+      </md-button>
+    </div>
+  </div> 
