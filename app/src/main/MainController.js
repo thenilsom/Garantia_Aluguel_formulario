@@ -76,7 +76,7 @@
 
 
           $scope.getTotal = function(obj){
-            if(service.isNullOrEmpty(obj)) return 0;
+            if(service.isNull(obj)) return 0;
             return service.valorOuZeroSeNull(obj.aluguel) +
                    service.valorOuZeroSeNull(obj.iptu) +
                    service.valorOuZeroSeNull(obj.condominio) +

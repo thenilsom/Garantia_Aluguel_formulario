@@ -39,9 +39,11 @@ angular.module('app')
 		}
 
 		service.isNullOrEmpty = function(obj){
-			return obj === undefined 
-				|| obj === null 
-				|| obj.trim().length === 0;
+			return service.isNull(obj) || obj.trim().length === 0;
+		}
+
+		service.isNull = function(obj){
+			return obj === undefined || obj === null;
 		}
 
 		service.convertToFloat = function(str){
