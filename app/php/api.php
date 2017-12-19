@@ -4,10 +4,10 @@ $app = new \Slim\App;
 $app->get('/hello', function(){
 	return 'Hello World!';
 });
-$app->post('/testePost', 'testarPost');
+$app->post('/salvarFormulario', 'testarPost');
 function testarPost($request, $response){
-	$pesquisa = json_decode($request->getBody());
-	echo json_encode($pesquisa->pretendente->nome);
+	$cadastro = json_decode($request->getBody());
+	echo json_encode($cadastro->pretendente->nome);
 }
 
 //retorna status 500-> erro interno do servidor

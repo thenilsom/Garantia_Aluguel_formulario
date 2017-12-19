@@ -55,7 +55,7 @@ diretiva.directive('mascara', function(serviceUtil) {
 
 	function link(scope, el, attrs, ctrl) {
 		if(!serviceUtil.isMobile()){
-			$(el).mask(attrs.mascara);
+			$(el).mask(attrs.mascara, {placeholder: ""});
 			$(el).attr('type', 'text');
       		el.on('keyup', function () {
 				scope.$apply(function(){
@@ -117,7 +117,7 @@ diretiva.directive('datepicker', function() {
 	return {
 		restrict : 'A',
 		require : 'ngModel',
-		link : function(scope, element, attrs, ngModelCtrl) {
+		link : function(scope, element, attrs, ctrl) {
 
 			$(function() {
 
@@ -131,6 +131,12 @@ diretiva.directive('datepicker', function() {
 					clearBtn : true
 				});
 			});
+
+			$(element).on('change', function () {
+				scope.$apply(function(){
+				ctrl.$setViewValue(element.val());
+			});
+      	});
 
 		}
 	}

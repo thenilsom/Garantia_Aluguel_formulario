@@ -40,7 +40,7 @@
 
           /** Teste Requisicao ao PHP
           var testarReqPhp = function(){
-            $http.post('/app/php/api.php/testePost', $scope.cadastro).then(function(data){
+            $http.post('/app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
               console.log(data.data);
             }, function(erro){
               console.log(erro.statusText);
