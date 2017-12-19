@@ -53,16 +53,18 @@
 
 <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="25">
-      <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pretendente.sexo" ng-tabindex="8">
+      <label for="sexo">Sexo</label>
+      <select class="form-control" id="sexo" 
+        ng-model="cadastro.pretendente.sexo" ng-tabindex="8">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
     </div>
 
     <div class="md-block" flex-gt-sm="25">
-      <label>Estado Civil</label>
-      <select class="form-control" ng-model="cadastro.pretendente.estadoCivil" ng-tabindex="9">
+      <label for="estadoCivil">Estado Civil</label>
+      <select class="form-control" id="estadoCivil" 
+        ng-model="cadastro.pretendente.estadoCivil" ng-tabindex="9">
         <option value="solteiro">Solteiro(a)</option>
         <option value="casado">Casado(a)</option>
         <option value="separado">Separado(a)</option>
@@ -132,8 +134,8 @@
     </div>
 
     <div class="md-block" flex-gt-sm="25">
-      <label>Pretendente irá residir no imóvel</label>
-      <select class="form-control" flex-gt-sm="40"
+      <label for="iraResidirImovel">Pretendente irá residir no imóvel</label>
+      <select class="form-control" id="iraResidirImovel" flex-gt-sm="40"
       ng-model="cadastro.pretendente.iraResidirImovel" ng-tabindex="22">
         <option value="sim">SIM</option>
         <option value="nao">NÃO</option>
@@ -141,8 +143,8 @@
     </div>
 
     <div class="md-block" flex-gt-sm="30">
-      <label>Possui renda para arcar com a locação</label>
-      <select class="form-control" flex-gt-sm="35"
+      <label for="possuiRendaArcarLocacao">Possui renda para arcar com a locação</label>
+      <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35"
       ng-model="cadastro.pretendente.possuiRendaArcarLocacao" ng-tabindex="23">
         <option value="sim">SIM</option>
         <option value="nao">NÃO</option>
@@ -155,25 +157,25 @@
     <div class="md-block" flex-gt-sm="15">
       <label for="telefone">Telefone</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="telefone" name="telefone" 
-      class="form-control" ng-model="cadastro.pretendente.telefone" ng-tabindex="14">
+      class="form-control" ng-model="cadastro.pretendente.telefone" ng-tabindex="24">
     </div>
 
     <div class="md-block" flex-gt-sm="15">
       <label for="celular">Celular</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="celular" name="celular" 
-      class="form-control" ng-model="cadastro.pretendente.celular" ng-tabindex="15">
+      class="form-control" ng-model="cadastro.pretendente.celular" ng-tabindex="25">
     </div>
 
     <div class="md-block" flex-gt-sm="15">
       <label for="telefoneComercial">Telefone Comercial</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="telefoneComercial" name="telefoneComercial" 
-      class="form-control" ng-model="cadastro.pretendente.telefoneComercial" ng-tabindex="16">
+      class="form-control" ng-model="cadastro.pretendente.telefoneComercial" ng-tabindex="26">
     </div>
 
     <div class="md-block" flex-gt-sm="55">
       <label for="email">Email</label>
       <input type="text" id="email" name="email"
-      class="form-control" ng-model="cadastro.pretendente.email" ng-tabindex="20">
+      class="form-control" ng-model="cadastro.pretendente.email" ng-tabindex="27">
     </div>
   </div>
 </form>

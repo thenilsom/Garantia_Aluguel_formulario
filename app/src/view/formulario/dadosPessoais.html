@@ -9,13 +9,13 @@
     <div class="md-block" flex-gt-sm="20">
       <label for="telefone">Telefone</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="telefone" name="telefone" 
-      class="form-control" ng-model="cadastro.pessoal.telefone" ng-tabindex="14">
+      class="form-control" ng-model="cadastro.pessoal.telefone" ng-tabindex="2">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="celular">Celular</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="celular" name="celular" 
-      class="form-control" ng-model="cadastro.pessoal.celular" ng-tabindex="15">
+      class="form-control" ng-model="cadastro.pessoal.celular" ng-tabindex="3">
     </div>
   </div>
 
@@ -23,13 +23,13 @@
     <div class="md-block" flex-gt-sm="50">
       <label for="grauParentesco">Grau de Parentesco</label>
       <input type="text" id="grauParentesco" upper name="nome" 
-      class="form-control" ng-model="cadastro.pessoal.grauParentesco" ng-tabindex="1">
+      class="form-control" ng-model="cadastro.pessoal.grauParentesco" ng-tabindex="4">
     </div>
 
     <div class="md-block" flex-gt-sm="25">
       <label>Nº Ocupantes maiores de 18 anos</label>
       <select class="form-control" flex-gt-sm="30"
-      ng-model="cadastro.pessoal.numOcupantes" ng-tabindex="8">
+      ng-model="cadastro.pessoal.numOcupantes" ng-tabindex="5">
         <option value=0>0</option>
         <option value=1>1</option>
         <option value=2>2</option>
@@ -45,7 +45,7 @@
     <div class="md-block" flex-gt-sm="60">
         <label for="nome1">Nome</label>
         <input type="text" id="nome1" upper name="nome1" focus 
-        class="form-control" ng-model="cadastro.pessoal.ocupante1.nome" ng-tabindex="1">
+        class="form-control" ng-model="cadastro.pessoal.ocupante1.nome" ng-tabindex="6">
     </div>
 
 
@@ -53,20 +53,20 @@
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf1">CPF</label>
       <input mobile="number"  mascara="999.999.999-99"  id="cpf1" name="cpf1"
-      class="form-control" ng-model="cadastro.pessoal.ocupante1.cpf" ng-tabindex="2">
+      class="form-control" ng-model="cadastro.pessoal.ocupante1.cpf" ng-tabindex="7">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="telefone1">Telefone</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="telefone1" name="telefone" 
-      class="form-control" ng-model="cadastro.pessoal.ocupante1.telefone" ng-tabindex="14">
+      class="form-control" ng-model="cadastro.pessoal.ocupante1.telefone" ng-tabindex="8">
     </div>  
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="20">
       <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pessoal.ocupante1.sexo" ng-tabindex="8">
+      <select class="form-control" ng-model="cadastro.pessoal.ocupante1.sexo" ng-tabindex="9">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
@@ -76,21 +76,21 @@
       <label for="numDoc1">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="number" id="numDoc1" name="numDoc1" class="form-control" 
       ng-model="cadastro.pessoal.ocupante1.numDoc" 
-      ng-tabindex="4">
+      ng-tabindex="10">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="orgaoExpedidor1">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor1" name="orgaoExpedidor1" 
       class="form-control" 
-      ng-model="cadastro.pessoal.ocupante1.orgaoExpedidor" ng-tabindex="5">
+      ng-model="cadastro.pessoal.ocupante1.orgaoExpedidor" ng-tabindex="11">
     </div>
 
     <div flex-gt-sm="20">
       <label for="dataEmissao1">Data Emissão</label>
       <input id="dataEmissao1" name="dataEmissao1" 
       class="form-control" datepicker mascara="99/99/9999"
-      ng-model="cadastro.pessoal.ocupante1.dataEmissao" ng-tabindex="6">
+      ng-model="cadastro.pessoal.ocupante1.dataEmissao" ng-tabindex="12">
     </div>
   </div>
 </fieldset>
@@ -100,8 +100,8 @@
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="60">
         <label for="nome2">Nome</label>
-        <input type="text" id="nome2" upper name="nome2" focus 
-        class="form-control" ng-model="cadastro.pessoal.ocupante2.nome" ng-tabindex="1">
+        <input type="text" id="nome2" upper name="nome2" 
+        class="form-control" ng-model="cadastro.pessoal.ocupante2.nome" ng-tabindex="13">
     </div>
 
 
@@ -109,20 +109,20 @@
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf2">CPF</label>
       <input mobile="number"  mascara="999.999.999-99"  id="cpf2" name="cpf2"
-      class="form-control" ng-model="cadastro.pessoal.ocupante2.cpf" ng-tabindex="2">
+      class="form-control" ng-model="cadastro.pessoal.ocupante2.cpf" ng-tabindex="14">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="telefone2">Telefone</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="telefone2" name="telefone2" 
-      class="form-control" ng-model="cadastro.pessoal.ocupante2.telefone" ng-tabindex="14">
+      class="form-control" ng-model="cadastro.pessoal.ocupante2.telefone" ng-tabindex="15">
     </div>  
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="20">
       <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pessoal.ocupante2.sexo" ng-tabindex="8">
+      <select class="form-control" ng-model="cadastro.pessoal.ocupante2.sexo" ng-tabindex="16">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
@@ -132,21 +132,21 @@
       <label for="numDoc2">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="number" id="numDoc2" name="numDoc2" class="form-control" 
       ng-model="cadastro.pessoal.ocupante2.numDoc" 
-      ng-tabindex="4">
+      ng-tabindex="17">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="orgaoExpedidor2">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor2" name="orgaoExpedidor2" 
       class="form-control" 
-      ng-model="cadastro.pessoal.ocupante2.orgaoExpedidor" ng-tabindex="5">
+      ng-model="cadastro.pessoal.ocupante2.orgaoExpedidor" ng-tabindex="18">
     </div>
 
     <div flex-gt-sm="20">
       <label for="dataEmissao2">Data Emissão</label>
       <input id="dataEmissao2" name="dataEmissao2" 
       class="form-control" datepicker mascara="99/99/9999"
-      ng-model="cadastro.pessoal.ocupante2.dataEmissao" ng-tabindex="6">
+      ng-model="cadastro.pessoal.ocupante2.dataEmissao" ng-tabindex="19">
     </div>
   </div>
 </fieldset>
@@ -156,8 +156,8 @@
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="60">
         <label for="nome3">Nome</label>
-        <input type="text" id="nome3" upper name="nome3" focus 
-        class="form-control" ng-model="cadastro.pessoal.ocupante3.nome" ng-tabindex="1">
+        <input type="text" id="nome3" upper name="nome3" 
+        class="form-control" ng-model="cadastro.pessoal.ocupante3.nome" ng-tabindex="20">
     </div>
 
 
@@ -165,20 +165,20 @@
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf3">CPF</label>
       <input mobile="number"  mascara="999.999.999-99"  id="cpf3" name="cpf3"
-      class="form-control" ng-model="cadastro.pessoal.ocupante3.cpf" ng-tabindex="2">
+      class="form-control" ng-model="cadastro.pessoal.ocupante3.cpf" ng-tabindex="21">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="telefone3">Telefone</label>
       <input mobile="tel" mascara="(99) 9999-9999?9" id="telefone3" name="telefone3" 
-      class="form-control" ng-model="cadastro.pessoal.ocupante3.telefone" ng-tabindex="14">
+      class="form-control" ng-model="cadastro.pessoal.ocupante3.telefone" ng-tabindex="22">
     </div>  
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="20">
       <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pessoal.ocupante3.sexo" ng-tabindex="8">
+      <select class="form-control" ng-model="cadastro.pessoal.ocupante3.sexo" ng-tabindex="23">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
@@ -188,21 +188,21 @@
       <label for="numDoc3">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="number" id="numDoc3" name="numDoc3" class="form-control" 
       ng-model="cadastro.pessoal.ocupante3.numDoc" 
-      ng-tabindex="4">
+      ng-tabindex="24">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="orgaoExpedidor3">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor3" name="orgaoExpedidor3" 
       class="form-control" 
-      ng-model="cadastro.pessoal.ocupante3.orgaoExpedidor" ng-tabindex="5">
+      ng-model="cadastro.pessoal.ocupante3.orgaoExpedidor" ng-tabindex="25">
     </div>
 
     <div flex-gt-sm="20">
       <label for="dataEmissao3">Data Emissão</label>
       <input id="dataEmissao3" name="dataEmissao3" 
       class="form-control" datepicker mascara="99/99/9999"
-      ng-model="cadastro.pessoal.ocupante3.dataEmissao" ng-tabindex="6">
+      ng-model="cadastro.pessoal.ocupante3.dataEmissao" ng-tabindex="26">
     </div>
   </div>
 </fieldset>

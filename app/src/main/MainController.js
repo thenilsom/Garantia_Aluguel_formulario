@@ -30,9 +30,12 @@
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
 
           $scope.passo = '1';
+
+          /*configuração do Upload*/
           $scope.uploader = new FileUploader({
             url : 'upload.php'
           });
+
           $scope.cadastro = {};
 
 
