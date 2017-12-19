@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('MainController', ['$scope', 'serviceUtil', 'validaService', 'FileUploader', 
-        function($scope, service, validador, FileUploader){
+       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'validaService', 'FileUploader', 
+        function($scope, $http, service, validador, FileUploader){
 
                
           //controla o hide/show do botão ir para topo quando chegar no fim da pagina
@@ -33,13 +33,22 @@
 
           /*configuração do Upload*/
           $scope.uploader = new FileUploader({
-            url : 'upload.php'
+            url : '/app/php/upload.php'
           });
 
           $scope.cadastro = {};
 
+          /** Teste Requisicao ao PHP
+          var testarReqPhp = function(){
+            $http.post('/app/php/api.php/testePost', $scope.cadastro).then(function(data){
+              console.log(data.data);
+            }, function(erro){
+              console.log(erro.statusText);
+            });
+          }
+        */
 
-          $scope.proximoPasso = function(){    
+          $scope.proximoPasso = function(){  
             $scope.passo = service.obterProximoPasso($scope.passo);
           }
 
