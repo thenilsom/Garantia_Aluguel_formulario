@@ -38,17 +38,17 @@
 
           $scope.cadastro = {};
 
-          /** Teste Requisicao ao PHP
-          var testarReqPhp = function(){
+          /** Submete o formulario ao PHP*/
+          var salvar = function(){
             $http.post('/app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
               console.log(data.data);
             }, function(erro){
               console.log(erro.statusText);
             });
           }
-        */
+        
 
-          $scope.proximoPasso = function(){  
+          $scope.proximoPasso = function(){
             $scope.passo = service.obterProximoPasso($scope.passo);
           }
 

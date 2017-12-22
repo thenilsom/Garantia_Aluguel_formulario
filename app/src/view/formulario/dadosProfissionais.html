@@ -20,11 +20,21 @@
 
   </div>
 
+
 <div layout="column" layout-padding layout-gt-sm="row">
     <div class="md-block" flex-gt-sm="50">
       <label for="profissao">Profissão</label>
-      <input type="tel" id="profissao" upper name="profissao" ng-tabindex="4"
-      class="form-control" ng-model="cadastro.profissional.profissao">
+      <select class="form-control" id="profissao" 
+          ng-model="cadastro.profissional.profissao" ng-tabindex="4">
+          <option value="aposentado/pensionista">Aposentado / Pensionista</option>
+          <option value="autonomo">Autônomo</option>
+          <option value="empresario">Empresário</option>
+          <option value="estudante">Estudante</option>
+          <option value="funcionario público">Funcionário Público</option>
+          <option value="funcionário com registro CLT">Funcionário com Registro CLT</option>
+          <option value="profissional liberal">Profissional Liberal</option>
+          <option value="renda proveniente de aluguéis">Renda Proveniente de Aluguéis</option>
+        </select>
     </div>
 
     <div class="md-block" flex-gt-sm="30">
