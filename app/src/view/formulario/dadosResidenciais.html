@@ -1,20 +1,13 @@
 <form name="formDadosResidenciais" class="fundo-formulario">
 <div layout="column" layout-padding layout-gt-sm="row">
-  <div class="md-block" flex-gt-sm="25">
+  <div class="md-block" flex-gt-sm="15">
         <label for="tempoResidencia">Tempo de Residencia</label>
         <input type="text" id="tempoResidencia" name="tempoResidencia" focus
         class="form-control" ng-model="cadastro.residencia.tempoResidencia" 
        ng-tabindex="1">
   </div>
 
-  <div class="md-block" flex-gt-sm="50">
-        <label for="condicaoImovel">Condições do Imóvel</label>
-        <input type="text" id="condicaoImovel" name="condicaoImovel" 
-        class="form-control" ng-model="cadastro.residencia.condicaoImovel" 
-       ng-tabindex="2">
-  </div>
-
-  <div class="md-block" flex-gt-sm="25">
+  <div class="md-block" flex-gt-sm="15">
         <label for="tipoResidencia">Residência</label>
         <select class="form-control" id="tipoResidencia" 
         ng-model="cadastro.residencia.tipo" ng-tabindex="3">
@@ -24,17 +17,14 @@
         </select>
   </div>
 
-</div>
-
-<div layout="column" layout-padding layout-gt-sm="row">
-  <div class="md-block" flex-gt-sm="80">
+  <div class="md-block" flex-gt-sm="55">
         <label for="emNome">Em nome de</label>
         <input type="text" id="emNome" upper name="emNome" 
         class="form-control" ng-model="cadastro.residencia.emNome" 
        ng-tabindex="4">
   </div>
 
-  <div class="md-block" flex-gt-sm="20">
+  <div class="md-block" flex-gt-sm="15">
         <label for="arcaAluguel">Arca com aluguel</label>
         <select class="form-control" id="arcaAluguel" ng-tabindex="5" 
         ng-model="cadastro.residencia.arcaAluguel">
@@ -44,6 +34,7 @@
   </div>
 
 </div>
+
 
 <div layout="column" layout-padding layout-gt-sm="row">
   <div class="md-block" flex-gt-sm="15">
