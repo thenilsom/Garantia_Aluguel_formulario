@@ -9,7 +9,6 @@ html, body {
 }
 
 header {
-  background-image: url(img/banner_principal.png);
   background-size: cover;
   background-position: top center;
   height: 100%;
@@ -91,44 +90,6 @@ input[type="text"][upper] {
   padding-right: 16px;
 }
 
-#imgFiadorNunca{
-    max-width: 100%;
-  }
-
- #img_din{
-    max-width: 100%;
-  }
-
-#tituloCaptalizacao{
-  background: #F58634; /* For browsers that do not support gradients */
-}
-
-#seguroFianca{
-  background: #0a80bb; /* For browsers that do not support gradients */
- 
-}
-
-#alugueEm3Passos{
-  background: #f7f7f7; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(to right, #d6d5d5 , #f7f7f7, #d6d5d5); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(to right, #d6d5d5 , #f7f7f7, #d6d5d5); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(to right, #d6d5d5 , #f7f7f7, #d6d5d5); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #d6d5d5 , #f7f7f7, #d6d5d5);/* Standard syntax */
-}
-
-.img-locacao{
-  max-width: 90%
-}
-
-.icon10 {
-  width: 150px;
-  height: 150px;
-}
-
-.icon5 {
-  width: 90px;
-  height: 90px;
-}
 
 .text-white{
   color: #ffffff !important;
@@ -148,10 +109,7 @@ input[type="text"][upper] {
 
 /*para dispositivos com resolução até 1280px*/
 @media(max-width: 1280px) {
-  header {
-  background-image: url(img/banner_principal_responsivo.png);
-  }
-
+ 
   h1 strong{
     font-size: 40px;
     font-weight: 500;
@@ -175,14 +133,7 @@ input[type="text"][upper] {
 
 /*para dispositivos com resolução até 500px*/
 @media(max-width: 500px) {
-  #imgFiadorNunca{
-    max-width: 50%;
-  }
-
-  .img-locacao{
-    max-width: 100%;
-  }
-
+  
   #btnEnviar{
     max-width: 50%;
   }
