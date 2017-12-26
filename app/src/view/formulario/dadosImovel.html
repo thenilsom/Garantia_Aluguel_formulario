@@ -2,7 +2,7 @@
 <div layout="column" layout-padding layout-gt-sm="row">
   <div class="md-block" flex-gt-sm="50">
         <label for="finalidade">Finalidade Imóvel</label>
-        <input type="text" id="finalidade" name="finalidade" focus
+        <input type="text" id="finalidade" name="finalidade" focus requerido
         class="form-control" ng-model="cadastro.imovel.finalidade" 
        ng-tabindex="1">
   </div>
@@ -10,7 +10,7 @@
   <div class="md-block" flex-gt-sm="20">
         <label for="tipoImovel">Tipo de Imóvel</label>
         <select class="form-control" id="tipoImovel" ng-tabindex="2" 
-        ng-model="cadastro.imovel.tipo">
+        ng-model="cadastro.imovel.tipo" requerido>
           <option value="apartamento">Apartamento</option>
           <option value="casa">Casa</option>
           <option value="condominio">Condomínio Fechado</option>
@@ -20,7 +20,7 @@
       <div class="md-block" flex-gt-sm="30">
         <label for="motivoLocacao">Motivo da Locação</label>
         <select class="form-control" id="motivoLocacao" ng-tabindex="3"
-        ng-model="cadastro.imovel.motivoLocacao">
+        ng-model="cadastro.imovel.motivoLocacao" requerido>
           <option value="Casamento">Casamento</option>
           <option value="Para Terceiros">Para Terceiros</option>
           <option value="Renovação com Aumento de Valores">Renovação com Aumento de Valores</option>
@@ -48,19 +48,19 @@
     <div class="md-block" flex-gt-sm="15">
       <label for="cepImovel">CEP</label>
       <input mobile="number" mascara="99.999-999" id="cepImovel" name="cepImovel" 
-      class="form-control" ng-model="cadastro.imovel.cep" 
+      class="form-control" ng-model="cadastro.imovel.cep" requerido
       ng-blur="pesquisarCep(cadastro.imovel)" ng-tabindex="4">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="estadoImovel">Estado</label>
-      <input type="text" id="estadoImovel" upper name="estadoImovel" 
+      <input type="text" id="estadoImovel" upper name="estadoImovel" requerido
       class="form-control" ng-model="cadastro.imovel.estado"  ng-tabindex="5">
     </div>
 
     <div class="md-block" flex-gt-sm="65">
       <label for="cidadeImovel">Cidade</label>
-      <input type="text" id="cidadeImovel" upper name="cidadeImovel" 
+      <input type="text" id="cidadeImovel" upper name="cidadeImovel" requerido
       class="form-control" ng-model="cadastro.imovel.cidade"  ng-tabindex="6">
     </div>
 </div>
@@ -68,19 +68,19 @@
 <div layout="column" layout-padding layout-gt-sm="row">
      <div class="md-block" flex-gt-sm="40">
       <label for="enderecoImovel">Endereço</label>
-      <input type="text" id="enderecoImovel" upper name="enderecoImovel" 
+      <input type="text" id="enderecoImovel" upper name="enderecoImovel" requerido
       class="form-control" ng-model="cadastro.imovel.endereco"  ng-tabindex="7">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="bairroImovel">Bairro</label>
-      <input type="text" id="bairroImovel" upper name="bairroImovel" 
+      <input type="text" id="bairroImovel" upper name="bairroImovel" requerido
       class="form-control" ng-model="cadastro.imovel.bairro"  ng-tabindex="8">
     </div>
 
      <div class="md-block" flex-gt-sm="10">
       <label for="numeroImovel">Numero</label>
-      <input type="number" id="numeroImovel" name="numeroImovel" 
+      <input type="number" id="numeroImovel" name="numeroImovel" requerido
       class="form-control" ng-model="cadastro.imovel.numero" ng-tabindex="9">
     </div>
 
@@ -97,7 +97,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="number" mascara-monetaria id="aluguel" name="aluguel" 
+      <input mobile="number" mascara-monetaria id="aluguel" name="aluguel" requerido
       class="form-control" ng-model="cadastro.imovel.aluguel" ng-tabindex="11">
     </div>
     </div>

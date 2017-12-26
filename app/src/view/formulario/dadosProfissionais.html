@@ -24,7 +24,7 @@
 <div layout="column" layout-padding layout-gt-sm="row">
     <div class="md-block" flex-gt-sm="50">
       <label for="profissao">Profissão</label>
-      <select class="form-control" id="profissao" 
+      <select class="form-control" id="profissao" requerido
           ng-model="cadastro.profissional.profissao" ng-tabindex="4">
           <option value="aposentado/pensionista">Aposentado / Pensionista</option>
           <option value="autonomo">Autônomo</option>
@@ -39,13 +39,13 @@
 
     <div class="md-block" flex-gt-sm="30">
       <label for="naturezaRenda">Natureza da renda / Vínculo empregatício</label>
-      <input type="tel" id="naturezaRenda" name="naturezaRenda" ng-tabindex="5"
+      <input type="tel" id="naturezaRenda" name="naturezaRenda" ng-tabindex="5" requerido
       class="form-control" ng-model="cadastro.profissional.naturezaRenda">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="dataAdmissao">Data Admissão</label>
-      <input id="dataAdmissao" name="dataAdmissao" 
+      <input id="dataAdmissao" name="dataAdmissao" requerido
       datepicker mascara="99/99/9999" ng-tabindex="6"
       class="form-control" ng-model="cadastro.profissional.dataAdmissao">
     </div>
@@ -58,7 +58,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="number" mascara-monetaria id="salario" ng-tabindex="7"
+      <input mobile="number" mascara-monetaria id="salario" ng-tabindex="7" requerido
       name="salario" class="form-control" ng-model="cadastro.profissional.salario">
     </div>
     </div>

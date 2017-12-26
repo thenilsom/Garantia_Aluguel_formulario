@@ -2,14 +2,13 @@
 <div layout="column" layout-padding layout-gt-sm="row">
   <div class="md-block" flex-gt-sm="15">
         <label for="tempoResidencia">Tempo de Residencia</label>
-        <input type="text" id="tempoResidencia" name="tempoResidencia" focus
-        class="form-control" ng-model="cadastro.residencia.tempoResidencia" 
-       ng-tabindex="1">
+        <input type="text" id="tempoResidencia" name="tempoResidencia" focus requerido
+        class="form-control" ng-model="cadastro.residencia.tempoResidencia" ng-tabindex="1">
   </div>
 
   <div class="md-block" flex-gt-sm="15">
         <label for="tipoResidencia">Residência</label>
-        <select class="form-control" id="tipoResidencia" 
+        <select class="form-control" id="tipoResidencia" requerido
         ng-model="cadastro.residencia.tipo" ng-tabindex="3">
           <option value="alugada">Alugada</option>
           <option value="financiada">Financiada</option>

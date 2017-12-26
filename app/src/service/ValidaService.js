@@ -4,8 +4,8 @@ angular.module('app')
 		var service = {};
 
 		service.validarCamposObrigatorios = function(formName, errors){
-			$("form[name = '"+formName+"'] input[requerido]").each(function(){
-				if($(this).val() == undefined || $(this).val().trim().length == 0 || $(this).val() == '?'){
+			$("form[name = '"+formName+"'] [requerido]").each(function(){
+				if($(this).val() == undefined || $(this).val().trim().length == 0 || $(this).val().startsWith('?')){
 					var label = $("label[for='"+$(this).attr('id')+"']").text().replace('*', '');
 					errors.push(label + " obrigatório.");
 				}
