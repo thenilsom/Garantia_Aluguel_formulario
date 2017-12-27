@@ -49,7 +49,14 @@
         
 
           $scope.proximoPasso = function(){
-            $scope.passo = service.obterProximoPasso($scope.passo);
+            if($scope.errors.length == 0){
+               $scope.passo = service.obterProximoPasso($scope.passo);
+              }else{
+                setTimeout(function(){
+                  $scope.goTo('listErrors');
+                });
+                
+              }
           }
 
           $scope.passoAnterior = function(){
@@ -76,14 +83,14 @@
                 $scope.errors.push("EMAIL inválido");
               }
 
-              if($scope.errors.length == 0){
-                $scope.proximoPasso();
-              }else{
-                setTimeout(function(){
-                  $scope.goTo('listErrors');
-                });
-                
-              }
+              $scope.proximoPasso();
+          }
+
+          /*Valida os dados obrigatorios*/
+          $scope.validarDadosObrigatorios = function(form){
+             $scope.errors = [];
+             validador.validarCamposObrigatorios(form, $scope.errors);
+             $scope.proximoPasso();
           }
 
 

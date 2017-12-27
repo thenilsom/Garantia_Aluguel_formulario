@@ -13,13 +13,13 @@ angular.module('app')
 		}
 
 	service.validarCpf = function(cpf){
+		 // Remove caracteres inválidos do valor
+	    cpf = !util.isNull(cpf) ? cpf.replace(/[^0-9]/g, '') : '';
+	    
 		if(util.isNullOrEmpty(cpf)) return true;
 		// Garante que o valor é uma string
 	    cpf = cpf.toString();
 	    
-	    // Remove caracteres inválidos do valor
-	    cpf = cpf.replace(/[^0-9]/g, '');
-
 	    var numeros, digitos, soma, i, resultado, digitos_iguais;
 	    digitos_iguais = 1;
 	    if (cpf.length < 11)
