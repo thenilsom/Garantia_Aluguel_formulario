@@ -34,14 +34,12 @@ function salvar($request, $response){
 	$celular = json_encode($cadastro->pretendente->celular);
 	$telefoneComercial = json_encode($cadastro->pretendente->telefoneComercial);
 	$email = json_encode($cadastro->pretendente->email);
-
-	return requisicaoSucesso('dados salvo com sucesso');
-
-	return erroInternoServidor('erro ao salvar dados')
-
-	return erroNegocio('cpf invalido')
-
+	
 }
+
+//return requisicaoSucesso('dados salvo com sucesso'); ex: retorno sucesso
+//return erroInternoServidor('erro ao salvar dados'); ex: retorno erro servidor
+//return erroNegocio('cpf invalido'); ex: retorno erro de negocio
 
 //retorna status 500-> erro interno do servidor
 function erroInternoServidor($response, $erro){

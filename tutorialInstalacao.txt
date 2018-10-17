@@ -1,0 +1,12 @@
+**********DEPENDECIAS DO PROJETO ************
+
+*Ao clonar o projeto do gitHub, 
+
+*efetuar o comando npm install para instalar as dependecias contidas no package.json
+
+*efetuar o comando composer install para instalar as dependencias do php em composer.json
+
+*efetuar o comando php -S localhost:8080 para subir o servidor php (se não tiver o php
+instalado ver este post: https://blog.schoolofnet.com/2015/04/como-instalar-o-php-no-windows-do-jeito-certo-e-usar-o-servidor-embutido/)
+
+*acessar a aplicação no endereço: http://localhost:8080/app/index.html

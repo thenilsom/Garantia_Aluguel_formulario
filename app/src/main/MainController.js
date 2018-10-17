@@ -39,7 +39,7 @@
           $scope.cadastro = {};
 
           /** Submete o formulario ao PHP*/
-          var salvar = function(){
+          $scope.salvar = function(){
             $http.post('/app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
               console.log(data.data);
             }, function(erro){
