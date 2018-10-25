@@ -37,6 +37,12 @@
           });
 
           $scope.cadastro = {};
+          $scope.cadastro.pretendente = {};
+          $scope.cadastro.residencia = {};
+          $scope.cadastro.profissional = {};
+          $scope.cadastro.imovel = {};
+          $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
+          
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
