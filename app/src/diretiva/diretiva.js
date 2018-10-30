@@ -77,6 +77,39 @@ diretiva.directive('mascara', function(serviceUtil) {
 	};
 });
 
+/*Diretiva mascara para telefone
+Se o acesso for via mobile a diretiva não é ativada
+*/
+diretiva.directive('mascaraTelefone', function(serviceUtil) {
+
+	function link(scope, el, attrs, ctrl) {
+		if(!serviceUtil.isMobile()){
+			$(el).mask("(99) 9999-9999?9").change(function (event) {  
+	            var target, phone, element;  
+	            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+	            phone = target.value.replace(/\D/g, '');
+	            element = $(target);  
+	            element.unmask();  
+	            if(phone.length > 10) {  
+	                element.mask("(99) 99999-999?9");  
+	            } else {  
+	                element.mask("(99) 9999-9999?9");  
+	            }  
+	        });
+	}else{
+		$(el).attr('type', attrs.mobile)
+	}
+			
+}
+	
+
+	return {
+		restrict : 'A',
+		require : 'ngModel',
+		link : link
+	};
+});
+
 /*Mascara Monetária*/
 diretiva.directive('mascaraMonetaria', function(serviceUtil) {
 
