@@ -57,6 +57,7 @@ angular.module('app')
 				case '2' : return '3';
 				case '3' : return '4';
 				case '4' : return '5';
+				case '5' : return '6'
 				default : return passoAtual;
 			}
 		}
@@ -74,10 +75,11 @@ angular.module('app')
 		service.labelEtapa = function(passoAtual){
 			switch(passoAtual){
 				case '1': return 'Dados Pretendente';
-				case '2' : return 'Dados da Residência Atual';
+				case '2' : return 'Residência Atual';
 				case '3' : return 'Dados Profissionais';
-				case '4' : return 'Dados do Imóvel Pretendido';
+				case '4' : return 'Imóvel Pretendido';
 				case '5' : return 'Dados Pessoais';
+				case '6' : return 'Upload de Arquivos';
 			}
 		}
 

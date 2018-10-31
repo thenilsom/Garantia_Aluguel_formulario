@@ -34,30 +34,34 @@
 <div class="container">    
 <div layout="row" layout-padding>
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" ng-class="{'active': passo == 1}">
+    <li role="presentation" ng-class="{'active': passo == 1}" flex-xs="20">
       <a href="#" style="cursor: auto;">
         <span class="badge">1 </span> <label hide-xs>{{getLabelEtapa('1')}}</label></a>
     </li>
 
-    <li role="presentation" ng-class="{'active': passo == 2}">
+    <li role="presentation" ng-class="{'active': passo == 2}" flex-xs="15">
       <a href="#" style="cursor: auto;">
         <span class="badge">2 </span> <label hide-xs>{{getLabelEtapa('2')}}</label> </a></li>
 
-    <li role="presentation" ng-class="{'active': passo == 3}">
+    <li role="presentation" ng-class="{'active': passo == 3}" flex-xs="15">
       <a href="#" style="cursor: auto;">
         <span class="badge">3 </span> <label hide-xs>{{getLabelEtapa('3')}} </label> </a></li>
 
-      <li role="presentation" ng-class="{'active': passo == 4}">
+      <li role="presentation" ng-class="{'active': passo == 4}" flex-xs="15">
       <a href="#" style="cursor: auto;">
         <span class="badge">4 </span> <label hide-xs>{{getLabelEtapa('4')}} </label> </a></li>
 
-      <li role="presentation" ng-class="{'active': passo == 5}">
+      <li role="presentation" ng-class="{'active': passo == 5}" flex-xs="15">
       <a href="#" style="cursor: auto;">
         <span class="badge">5 </span> <label hide-xs>{{getLabelEtapa('5')}} </label> </a></li>
+        
+        <li role="presentation" ng-class="{'active': passo == 6}" flex-xs="15">
+      <a href="#" style="cursor: auto;">
+        <span class="badge">6 </span> <label hide-xs>{{getLabelEtapa('6')}} </label> </a></li>
   </ul>
 </div>
 
-  <h4><label class="label label-default"> passo {{passo}} / 5 :: {{getLabelEtapa(passo)}}</label></h4>
+  <h4><label class="label label-default"> passo {{passo}} / 6 :: {{getLabelEtapa(passo)}}</label></h4>
 
   <!-- Array erros de validação -->
   <span id="listErrors">
@@ -84,15 +88,10 @@
 
     <!-- DADOS PESSOAIS -->
     <div ng-if="passo == 5" class="animate-if" data-ng-include="'./src/view/formulario/dadosPessoais.html'"></div>
+    
+     <!-- DADOS DO UPLOAD -->
+    <div ng-if="passo == 6" class="animate-if" data-ng-include="'./src/view/formulario/dadosUpload.html'"></div>
        
-     <!-- BOTOES UPLOAD 
-     <input type="file" nv-file-select="" uploader="uploader" multiple />
-
-     <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" 
-        ng-disabled="!uploader.getNotUploadedItems().length">
-      <span class="glyphicon glyphicon-upload"></span> Testar Upload
-      </button>
-    -->
      
   </div>
 </div>

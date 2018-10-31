@@ -10,3 +10,5 @@
 instalado ver este post: https://blog.schoolofnet.com/2015/04/como-instalar-o-php-no-windows-do-jeito-certo-e-usar-o-servidor-embutido/)
 
 *acessar a aplicação no endereço: http://localhost:8080/app/index.html
+
+*exemplo upload angular-js : https://github.com/nervgh/angular-file-upload
