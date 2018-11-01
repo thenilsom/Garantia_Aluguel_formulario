@@ -28,12 +28,12 @@
           }
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
-
-          $scope.passo = '6';
+          $scope.errors = [];
+          $scope.passo = '1';
 
           /*configuração do Upload*/
           $scope.uploader = new FileUploader({
-            url : '/app/php/upload.php'
+            url : '../app/php/upload.php'
           });
 
           $scope.cadastro = {};
@@ -46,8 +46,9 @@
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
-            $http.post('/app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
+            $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
               console.log(data.data);
+              $scope.proximoPasso();
             }, function(erro){
               console.log(erro.statusText);
             });
