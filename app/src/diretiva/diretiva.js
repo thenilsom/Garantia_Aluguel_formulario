@@ -96,6 +96,13 @@ diretiva.directive('mascaraTelefone', function(serviceUtil) {
 	                element.mask("(99) 9999-9999?9");  
 	            }  
 	        });
+
+	        el.on('keyup', function () {
+				scope.$apply(function(){
+				ctrl.$setViewValue(el.val());
+			});
+      	});
+	        
 	}else{
 		$(el).attr('type', attrs.mobile)
 	}

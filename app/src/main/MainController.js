@@ -29,7 +29,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
-          $scope.passo = '1';
+          $scope.passo = '2';
 
           /*configuração do Upload*/
           $scope.uploader = new FileUploader({
