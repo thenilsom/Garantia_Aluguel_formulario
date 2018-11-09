@@ -1,6 +1,6 @@
 <form name="formDadosResidenciais" class="fundo-formulario">
 <div layout="column" layout-padding layout-gt-sm="row">
-  <div class="md-block" flex-gt-sm="20">
+  <div class="md-block" flex-gt-sm="25">
         <label for="tempoResidencia">Tempo de Residencia</label>
           <select class="form-control" id="tempoResidencia" focus requerido
           ng-model="cadastro.residencia.tempoResidencia" ng-tabindex="1">
@@ -12,21 +12,10 @@
         </select>
   </div>
 
-  <div class="md-block" flex-gt-sm="15">
-        <label for="tipoResidencia">Residência</label>
-        <select class="form-control" id="tipoResidencia" requerido
-        ng-model="cadastro.residencia.tipo" ng-tabindex="3">
-          <option value="alugada">Alugada</option>
-          <option value="financiada">Financiada</option>
-          <option value="propria">Própria</option>
-          <option value="outros">Outros</option>
-        </select>
-  </div>
-
   <div class="md-block" flex-gt-sm="20">
         <label for="emNome">Em nome de</label>
          <select class="form-control" id="emNome" requerido
-          ng-model="cadastro.residencia.emNome" ng-tabindex="4">
+          ng-model="cadastro.residencia.emNome" ng-tabindex="2">
           <option value="próprio nome">Próprio Nome</option>
           <option value="amigos">Amigos</option>
           <option value="empresa">Empresa</option>
@@ -37,13 +26,41 @@
 
   <div class="md-block" flex-gt-sm="15">
         <label for="arcaAluguel">Arca com aluguel</label>
-        <select class="form-control" id="arcaAluguel" ng-tabindex="5" 
+        <select class="form-control" id="arcaAluguel" ng-tabindex="3" 
         ng-model="cadastro.residencia.arcaAluguel">
           <option value="sim">SIM</option>
           <option value="nao">NÃO</option>
         </select>
   </div>
 
+  <div class="md-block" flex-gt-sm="15">
+        <label for="tipoResidencia">Tipo Residência</label>
+        <select class="form-control" id="tipoResidencia" requerido
+        ng-model="cadastro.residencia.tipo" ng-tabindex="4">
+          <option value="alugada">Alugada</option>
+          <option value="financiada">Financiada</option>
+          <option value="propria">Própria</option>
+          <option value="outros">Outros</option>
+        </select>
+  </div>
+
+</div>
+
+<div layout="column" layout-padding layout-gt-sm="row" ng-if="cadastro.residencia.tipo == 'alugada'">
+  <div class="md-block" flex-gt-sm="40">
+        <label for="nomeImobiliaria">Nome da Imobiliária/Proprietário</label>
+        <input type="text" id="nomeImobiliaria" upper name="nomeImobiliaria" 
+        requerido 
+        class="form-control" ng-model="cadastro.residencia.nomeImobiliaria" 
+        ng-tabindex="5">
+  </div>
+
+  <div class="md-block" flex-gt-sm="25">
+        <label for="telImobiliaria">Telefone Imobiliária/Proprietário</label>
+        <input type="text" id="telImobiliaria" upper name="telefoneImobiliaria" requerido
+        mobile="tel" mascara-telefone 
+        class="form-control" ng-model="cadastro.residencia.telefoneImobiliaria" ng-tabindex="6">
+  </div>
 </div>
 
 <div flex-gt-sm="40"><label> <h4> Endereço residencial anterior(se menor de 1 ano)</h4></label></div>
@@ -53,25 +70,25 @@
       <label for="cepAnterior">CEP</label>
       <input mobile="number" mascara="99.999-999" id="cepAnterior" name="cepAnterior" 
       class="form-control" ng-model="cadastro.residencia.anterior.cep" requerido
-      ng-blur="pesquisarCep(cadastro.residencia.anterior)" ng-tabindex="11">
+      ng-blur="pesquisarCep(cadastro.residencia.anterior)" ng-tabindex="7">
     </div>
 
     <div class="md-block" flex-gt-sm="15">
       <label for="estadoAnterior">Estado</label>
       <input type="text" id="estadoAnterior" upper name="estadoAnterior" requerido
-      class="form-control" ng-model="cadastro.residencia.anterior.estado"  ng-tabindex="12">
+      class="form-control" ng-model="cadastro.residencia.anterior.estado"  ng-tabindex="8">
     </div>
 
     <div class="md-block" flex-gt-sm="25">
       <label for="cidadeAnterior">Cidade</label>
       <input type="text" id="cidadeAnterior" upper name="cidadeAnterior" requerido
-      class="form-control" ng-model="cadastro.residencia.anterior.cidade"  ng-tabindex="13">
+      class="form-control" ng-model="cadastro.residencia.anterior.cidade"  ng-tabindex="9">
     </div>
 
     <div class="md-block" flex-gt-sm="45">
       <label for="enderecoAnterior">Endereço</label>
       <input type="text" id="enderecoAnterior" upper name="enderecoAnterior" requerido
-      class="form-control" ng-model="cadastro.residencia.anterior.endereco"  ng-tabindex="14">
+      class="form-control" ng-model="cadastro.residencia.anterior.endereco"  ng-tabindex="10">
     </div>
 
   </div>
@@ -80,19 +97,19 @@
   <div class="md-block" flex-gt-sm="35">
       <label for="bairroAnterior">Complemento</label>
       <input type="text" id="complemento" upper name="complemento"
-      class="form-control" ng-model="cadastro.residencia.anterior.complemento"  ng-tabindex="15">
+      class="form-control" ng-model="cadastro.residencia.anterior.complemento"  ng-tabindex="11">
     </div>
 
     <div class="md-block" flex-gt-sm="35">
       <label for="bairroAnterior">Bairro</label>
       <input type="text" id="bairroAnterior" upper name="bairroAnterior" requerido
-      class="form-control" ng-model="cadastro.residencia.anterior.bairro"  ng-tabindex="16">
+      class="form-control" ng-model="cadastro.residencia.anterior.bairro"  ng-tabindex="12">
     </div>
 
      <div class="md-block" flex-gt-sm="15">
       <label for="numeroAnterior">Numero</label>
       <input type="number" id="numeroAnterior" name="numeroAnterior" requerido
-      class="form-control" ng-model="cadastro.residencia.anterior.numero" ng-tabindex="17">
+      class="form-control" ng-model="cadastro.residencia.anterior.numero" ng-tabindex="13">
     </div>
 </div>
 </form>
