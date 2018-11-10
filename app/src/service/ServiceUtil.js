@@ -10,11 +10,21 @@ angular.module('app')
 			  return check;
 		}
 
-		service.alertar = function(){
+		service.alertar = function(msg){
 			$mdDialog.show(
 			    $mdDialog.alert()
-			    .title('This is an alert title')
-			    .textContent('You can specify some description text in here.')
+			    .title('Alerta')
+			    .textContent(msg)
+			    .ok('OK')
+			);
+			
+		}
+
+		service.alertarErro = function(msg){
+			$mdDialog.show(
+			    $mdDialog.alert()
+			    .title('Erro')
+			    .textContent(msg)
 			    .ok('OK')
 			);
 			
@@ -100,6 +110,14 @@ angular.module('app')
 	     }).fail(function(d) {
 	    	 console.log("Servidor Fora do Ar.");
          });   	
+	  }
+
+	  //exibe um alerta do tipo show hide
+	  service.exibirAlertaShowHide = function(){
+	  	 	$('#passwordsNoMatchRegister').fadeIn(1000);
+   			setTimeout(function() { 
+       		$('#passwordsNoMatchRegister').fadeOut(1000); 
+   		}, 8000);
 	  }
 
 		return service;

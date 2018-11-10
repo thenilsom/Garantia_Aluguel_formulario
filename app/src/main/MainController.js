@@ -29,7 +29,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
-          $scope.passo = '2';
+          $scope.passo = '5';
 
           /*configuração do Upload*/
           $scope.uploader = new FileUploader({
@@ -37,7 +37,7 @@
           });
 
           $scope.cadastro = {};
-          $scope.cadastro.pretendente = {};
+          $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
           $scope.cadastro.residencia = {};
           $scope.cadastro.profissional = {};
           $scope.cadastro.imovel = {};
@@ -47,10 +47,10 @@
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-              console.log(data.data);
+              service.alertar(data.data);
               $scope.proximoPasso();
             }, function(erro){
-              console.log(erro.statusText);
+              service.alertarErro(erro.statusText);
             });
           }
         
@@ -126,5 +126,12 @@
                 }
               })
             }
+          }
+
+          $scope.alertaLocatarioSolidario = function(){
+            if(angular.equals($scope.cadastro.pessoal.possuiRendaArcarLocacao, 'nao')){
+              service.alertar('Informe a quantidade de pessoas que comporão renda com o Pretendente.');
+            }
+            
           }
     }]);

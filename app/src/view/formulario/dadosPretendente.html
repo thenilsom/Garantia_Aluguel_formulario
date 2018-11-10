@@ -119,33 +119,20 @@
   <div layout="column" layout-gt-sm="row" layout-padding> 
     <div class="md-block" flex-gt-sm="55">
       <label for="nacionalidade">Nacionalidade</label>
-      <input type="text" id="nacionalidade" upper name="nacionalidade" requerido
+      <input type="text" id="nacionalidade" name="nacionalidade" requerido
       class="form-control" ng-model="cadastro.pretendente.nacionalidade" ng-tabindex="15">
     </div>  
 
      <div class="md-block" flex-gt-sm="25">
-      <label for="tempoPais">Tempo no País</label>
+      <label for="tempoPais">Tempo no País (se for estrangeiro)</label>
       <input type="text" id="tempoPais" name="tempoPais" 
       class="form-control" ng-model="cadastro.pretendente.tempoPais" ng-tabindex="16">
     </div>
 
-  </div>
-
-   
- <div layout="column" layout-gt-sm="row" layout-padding> 
     <div class="md-block" flex-gt-sm="25">
       <label for="iraResidirImovel">Pretendente irá residir no imóvel</label>
       <select class="form-control" id="iraResidirImovel" flex-gt-sm="40" requerido
       ng-model="cadastro.pretendente.iraResidirImovel" ng-tabindex="17">
-        <option value="sim">SIM</option>
-        <option value="nao">NÃO</option>
-      </select>
-    </div>
-
-    <div class="md-block" flex-gt-sm="30">
-      <label for="possuiRendaArcarLocacao">Possui renda suficiente para arcar com a locação</label>
-      <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35" requerido
-      ng-model="cadastro.pretendente.possuiRendaArcarLocacao" ng-tabindex="18">
         <option value="sim">SIM</option>
         <option value="nao">NÃO</option>
       </select>

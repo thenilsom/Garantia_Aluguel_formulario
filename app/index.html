@@ -30,8 +30,13 @@
   </head>
 
 <body ng-app="app" ng-controller="MainController" ng-cloak>
+<div class="container"> 
 
-<div class="container">    
+  <!-- alerta de info do tipo show hide -->
+  <div class="alert alert-info" id="passwordsNoMatchRegister" style="display:none; position: absolute; z-index: 100">
+    <strong>Informação!</strong> {{msgInfo}}
+  </div> 
+
 <div layout="row" layout-padding>
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" ng-class="{'active': passo == 1}" flex-xs="20">
