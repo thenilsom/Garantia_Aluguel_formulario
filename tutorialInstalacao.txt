@@ -12,3 +12,5 @@ instalado ver este post: https://blog.schoolofnet.com/2015/04/como-instalar-o-ph
 *acessar a aplicação no endereço: http://localhost:8080/app/index.html
 
 *exemplo upload angular-js : https://github.com/nervgh/angular-file-upload
+
+*exemplo passar parametro no fileUpload : https://stackoverflow.com/questions/27708559/angular-file-upload-with-parameters

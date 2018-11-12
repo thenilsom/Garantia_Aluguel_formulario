@@ -33,8 +33,19 @@
 
           /*configuração do Upload*/
           $scope.uploader = new FileUploader({
-            url : '../app/php/upload.php'
+            url : '../app/php/upload.php',
+            formData:[{codigo: $scope.cadastro.codigo}]
           });
+
+          /*função chamada no success do upload*/
+          $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+        };
+
+        /*função chamada em caso de erro no upload*/
+         $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
+            console.info('onErrorItem', fileItem, response, status, headers);
+        };
 
           $scope.cadastro = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
@@ -47,7 +58,8 @@
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-              service.alertar(data.data);
+              $scope.cadastro.codigo = parseInt(data.data);
+              service.alertar('Cadastro: ' + $scope.cadastro.codigo + ' Gravado !');
               $scope.proximoPasso();
             }, function(erro){
               service.alertarErro(erro.statusText);

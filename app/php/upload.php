@@ -1,14 +1,7 @@
 <?php
 require_once("php7_mysql_shim.php");
 
-require '../../vendor/autoload.php';
-$app = new \Slim\App;
-$app->post('/salvarFormulario', 'salvar');
-function salvar($request, $response){
-	$cadastro = json_decode($request->getBody());
-	$registro = trim(json_encode($cadastro->registro), '"');
-}
-
+$registro = $_REQUEST ['codigo'];
 $conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 $sql = "select * from fianca where codigo='$registro'";
 $consulta = mysql_db_query("segurosja", $sql);
