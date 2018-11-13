@@ -29,7 +29,14 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
-          $scope.passo = '5';
+          $scope.passo = '1';
+
+          $scope.cadastro = {};
+          $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
+          $scope.cadastro.residencia = {};
+          $scope.cadastro.profissional = {};
+          $scope.cadastro.imovel = {};
+          $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
 
           /*configuração do Upload*/
           $scope.uploader = new FileUploader({
@@ -46,13 +53,6 @@
          $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);
         };
-
-          $scope.cadastro = {};
-          $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
-          $scope.cadastro.residencia = {};
-          $scope.cadastro.profissional = {};
-          $scope.cadastro.imovel = {};
-          $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
           
 
           /** Submete o formulario ao PHP*/
