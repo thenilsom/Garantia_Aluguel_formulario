@@ -45,16 +45,14 @@
               formData:[{codigo: id_codigo}]
             });
 
-            /*função chamada no success do upload*/
-            $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-            service.alertar(response['answer']);
-          };
-
-          /*função chamada em caso de erro no upload*/
+           /*função chamada em caso de erro no upload*/
           $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);
-            service.alertarErro(response['answer']);
+            service.alertarErro(response);
+          };
+
+          $scope.uploader.onCompleteAll = function() {
+            service.alertar('Arquivos enviados com sucesso!');
           };
         }          
 
