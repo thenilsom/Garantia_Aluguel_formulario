@@ -38,28 +38,31 @@
           $scope.cadastro.imovel = {};
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
 
-          /*configuração do Upload*/
-          $scope.uploader = new FileUploader({
-            url : '../app/php/upload.php',
-            formData:[{codigo: $scope.cadastro.codigo}]
-          });
+          /*inicia as configurações de upload*/
+          var iniciarUpload = function(id_codigo){
+            $scope.uploader = new FileUploader({
+              url : '../app/php/upload.php',
+              formData:[{codigo: id_codigo}]
+            });
 
-          /*função chamada no success do upload*/
-          $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            /*função chamada no success do upload*/
+            $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
             console.info('onSuccessItem', fileItem, response, status, headers);
-        };
+            service.alertar(response['answer']);
+          };
 
-        /*função chamada em caso de erro no upload*/
-         $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
+          /*função chamada em caso de erro no upload*/
+          $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);
-        };
-          
+            service.alertarErro(response['answer']);
+          };
+        }          
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-              $scope.cadastro.codigo = parseInt(data.data);
-              service.alertar('Cadastro: ' + $scope.cadastro.codigo + ' Gravado !');
+              service.alertar('Cadastro: ' + data.data + ' Gravado !');
+              iniciarUpload(data.data);
               $scope.proximoPasso();
             }, function(erro){
               service.alertarErro(erro.statusText);

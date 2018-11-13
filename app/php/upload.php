@@ -11,7 +11,10 @@ while($campo = mysql_fetch_assoc($consulta)){
 
 if ( !empty( $_FILES ) ) {
     $tempPath = $_FILES[ 'file' ][ 'tmp_name' ];
-    mkdir("./uploads/" . "$registro" . '_' . "$nome", 0777);
+    $path = "./uploads/" . "$registro" . '_' . "$nome";
+    if(!file_exists ( $path )){
+        mkdir($path, 0777);
+    }
     $uploadPath = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . "$registro" . '_' . "$nome" . DIRECTORY_SEPARATOR . $_FILES[ 'file' ][ 'name' ];
     move_uploaded_file( $tempPath, $uploadPath );
     $answer = array( 'answer' => 'Transferência Concluída' );
