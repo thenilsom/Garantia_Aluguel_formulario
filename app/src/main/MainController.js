@@ -103,6 +103,15 @@
                 $scope.errors.push("EMAIL inválido");
               }
 
+              if(!$scope.cadastro.pretendente.telefone && !$scope.cadastro.pretendente.celular
+                && !$scope.cadastro.pretendente.telefoneComercial){
+                $scope.errors.push("Preencha ao menos um campo de telefone.");
+              }
+
+              //se tiver sido informado telefone comercial seta no tel da empresa
+              if($scope.cadastro.pretendente.telefoneComercial)
+                  $scope.cadastro.profissional.telefone = $scope.cadastro.pretendente.telefoneComercial
+
               $scope.proximoPasso();
           }
 
