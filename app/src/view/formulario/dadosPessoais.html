@@ -40,12 +40,12 @@
       <label for="possuiRendaArcarLocacao">Possui renda suficiente para arcar com a locação</label>
       <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35" requerido
       ng-model="cadastro.pessoal.possuiRendaArcarLocacao" ng-tabindex="18" ng-change="alertaLocatarioSolidario()">
-        <option value="sim">SIM</option>
-        <option value="nao">NÃO</option>
+        <option value="SIM">SIM</option>
+        <option value="NAO">NÃO</option>
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'nao'">
+    <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
       <label>Nº Pessoas compondo renda (Locatários Solidários)</label>
       <select class="form-control" flex-gt-sm="30"
       ng-model="cadastro.pessoal.numSolidarios" ng-tabindex="6">
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-<div ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'nao'">
+<div ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
 <fieldset class="scheduler-border" ng-if="cadastro.pessoal.numSolidarios >=1">
   <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 1</legend>
   <div layout="column" layout-gt-sm="row" layout-padding>

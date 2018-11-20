@@ -4,11 +4,11 @@
         <label for="tempoResidencia">Tempo de Residencia</label>
           <select class="form-control" id="tempoResidencia" focus requerido
           ng-model="cadastro.residencia.tempoResidencia" ng-tabindex="1">
-          <option value="menos de 1 ano">Menos de 1 ano</option>
-          <option value="de 1 a 2 anos">De 1 a 2 anos</option>
-          <option value="de 3 a 4 anos">De 3 a 4 anos</option>
-          <option value="de 5 a 10 anos">De 5 a 10 anos</option>
-          <option value="acima de 10 anos">Acima de 10 anos</option>
+          <option value="MENOS DE 1 ANO">Menos de 1 ano</option>
+          <option value="DE 1 A 2 ANOS">De 1 a 2 anos</option>
+          <option value="DE 3 A 4 ANOS">De 3 a 4 anos</option>
+          <option value="DE 5 A 10 ANOS">De 5 a 10 anos</option>
+          <option value="ACIMA DE 10 ANOS">Acima de 10 anos</option>
         </select>
   </div>
 
@@ -16,11 +16,11 @@
         <label for="emNome">Em nome de</label>
          <select class="form-control" id="emNome" requerido
           ng-model="cadastro.residencia.emNome" ng-tabindex="2">
-          <option value="próprio nome">Próprio Nome</option>
-          <option value="amigos">Amigos</option>
-          <option value="empresa">Empresa</option>
-          <option value="familiares">Familiares</option>
-          <option value="outros">Outros</option>
+          <option value="PRÓPRIO NOME">Próprio Nome</option>
+          <option value="AMIGOS">Amigos</option>
+          <option value="EMPRESA">Empresa</option>
+          <option value="FAMILIARES">Familiares</option>
+          <option value="OUTROS">Outros</option>
         </select>
   </div>
 
@@ -28,8 +28,8 @@
         <label for="arcaAluguel">Arca com aluguel</label>
         <select class="form-control" id="arcaAluguel" ng-tabindex="3" 
         ng-model="cadastro.residencia.arcaAluguel">
-          <option value="sim">SIM</option>
-          <option value="nao">NÃO</option>
+          <option value="SIM">SIM</option>
+          <option value="NAO">NÃO</option>
         </select>
   </div>
 
@@ -37,16 +37,16 @@
         <label for="tipoResidencia">Tipo Residência</label>
         <select class="form-control" id="tipoResidencia" requerido
         ng-model="cadastro.residencia.tipo" ng-tabindex="4">
-          <option value="alugada">Alugada</option>
-          <option value="financiada">Financiada</option>
-          <option value="propria">Própria</option>
-          <option value="outros">Outros</option>
+          <option value="ALUGADA">Alugada</option>
+          <option value="FINANCIADA">Financiada</option>
+          <option value="PROPRIA">Própria</option>
+          <option value="OUTROS">Outros</option>
         </select>
   </div>
 
 </div>
 
-<div layout="column" layout-padding layout-gt-sm="row" ng-if="cadastro.residencia.tipo == 'alugada'">
+<div layout="column" layout-padding layout-gt-sm="row" ng-if="cadastro.residencia.tipo == 'ALUGADA'">
   <div class="md-block" flex-gt-sm="40">
         <label for="nomeImobiliaria">Nome da Imobiliária/Proprietário</label>
         <input type="text" id="nomeImobiliaria" upper name="nomeImobiliaria" 

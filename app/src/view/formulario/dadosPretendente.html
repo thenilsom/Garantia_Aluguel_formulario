@@ -28,11 +28,11 @@
       <label for="tpDoc">Tipo Documento</label>
       <select class="form-control" id="tpDoc" requerido
         ng-model="cadastro.pretendente.tipoDoc" ng-tabindex="4">
-        <option value="rg">RG</option>
-        <option value="cnh">CNH</option>
-        <option value="rne">RNE</option>
-        <option value="ordem">ORDEM</option>
-        <option value="conselho">CONSELHO</option>
+        <option value="RG">RG</option>
+        <option value="CNH">CNH</option>
+        <option value="RNE">RNE</option>
+        <option value="ORDEM">ORDEM</option>
+        <option value="CONSELHO">CONSELHO</option>
       </select>
     </div>
 
@@ -42,7 +42,7 @@
       ng-model="cadastro.pretendente.numDoc" ng-tabindex="5">
     </div>
 
-    <div class="md-block" flex-gt-sm="20" ng-if="cadastro.pretendente.tipoDoc == 'rg'">
+    <div class="md-block" flex-gt-sm="20" ng-if="cadastro.pretendente.tipoDoc == 'RG'">
       <label for="orgaoExpedidor">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor" name="orgaoExpedidor" requerido
       class="form-control" ng-model="cadastro.pretendente.orgaoExpedidor" ng-tabindex="6">
@@ -55,7 +55,7 @@
       ng-model="cadastro.pretendente.dataEmissao" ng-tabindex="7">
     </div>
 
-    <div flex-gt-sm="20" ng-if="cadastro.pretendente.tipoDoc !== 'rg'">
+    <div flex-gt-sm="20" ng-if="cadastro.pretendente.tipoDoc !== 'RG'">
       <label for="dataValidade">Data Validade</label>
       <input id="dataValidade" name="dataValidade" requerido
       class="form-control" datepicker mascara="99/99/9999"
@@ -78,15 +78,15 @@
       <label for="estadoCivil">Estado Civil</label>
       <select class="form-control" id="estadoCivil" requerido
         ng-model="cadastro.pretendente.estadoCivil" ng-tabindex="10">
-        <option value="solteiro">Solteiro(a)</option>
-        <option value="casado">Casado(a)</option>
-        <option value="separado">Separado(a)</option>
-        <option value="viuvo">Viuvo(a)</option>
-        <option value="divorciado">Divorciado(a)</option>
+        <option value="SOLTEIRO">Solteiro(a)</option>
+        <option value="CASADO">Casado(a)</option>
+        <option value="SEPARADO">Separado(a)</option>
+        <option value="VIUVO">Viuvo(a)</option>
+        <option value="DIVORCIADO">Divorciado(a)</option>
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pretendente.estadoCivil == 'casado'">
+    <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pretendente.estadoCivil == 'CASADO'">
       <label for="cpfConjuge">CPF Cônjuge</label>
       <input mobile="number" mascara="999.999.999-99" id="cpfConjuge" name="cpfConjuge" 
       class="form-control" ng-model="cadastro.pretendente.cpfConjuge" requerido
@@ -125,7 +125,7 @@
 
      <div class="md-block" flex-gt-sm="25">
       <label for="tempoPais">Tempo no País (se for estrangeiro)</label>
-      <input type="text" id="tempoPais" name="tempoPais" 
+      <input type="text" id="tempoPais" name="tempoPais" upper
       class="form-control" ng-model="cadastro.pretendente.tempoPais" ng-tabindex="16">
     </div>
 
@@ -133,8 +133,8 @@
       <label for="iraResidirImovel">Pretendente irá residir no imóvel</label>
       <select class="form-control" id="iraResidirImovel" flex-gt-sm="40" requerido
       ng-model="cadastro.pretendente.iraResidirImovel" ng-tabindex="17">
-        <option value="sim">SIM</option>
-        <option value="nao">NÃO</option>
+        <option value="SIM">SIM</option>
+        <option value="NAO">NÃO</option>
       </select>
     </div>
 

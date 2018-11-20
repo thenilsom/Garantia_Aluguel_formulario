@@ -29,7 +29,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
-          $scope.passo = '1';
+          $scope.passo = '5';
 
           $scope.cadastro = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
@@ -113,6 +113,17 @@
                   $scope.cadastro.profissional.telefone = $scope.cadastro.pretendente.telefoneComercial
 
               $scope.proximoPasso();
+          }
+
+          /*valida os dados profissionaiss*/
+          $scope.validarDadosProfissionais = function(form){
+            $scope.errors = [];
+             validador.validarCamposObrigatorios(form, $scope.errors);
+
+            if($scope.cadastro.profissional.outrosRendimentos && !$scope.cadastro.profissional.totalRendimentos)
+              $scope.errors.push("Informe o total dos outros rendimentos.");
+
+            $scope.proximoPasso();
           }
 
           /*Valida os dados obrigatorios*/

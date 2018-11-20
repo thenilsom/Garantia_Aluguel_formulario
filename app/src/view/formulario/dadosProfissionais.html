@@ -1,82 +1,63 @@
 <form name="formDadosProfissionais" class="fundo-formulario">
-<div layout="column" layout-padding layout-gt-sm="row">
-  <div class="md-block" flex-gt-sm="60">
-        <label for="empresa">Empresa</label>
-        <input type="text" id="empresa" upper name="empresa" focus
-        class="form-control" ng-model="cadastro.profissional.empresa" ng-tabindex="1">
-      </div>
-
-  	<div class="md-block" flex-gt-sm="20">
-        <label for="telefone">Telefone</label>
-        <input mobile="tel" mascara-telefone id="telefone" ng-tabindex="2"
-        name="telefone" class="form-control" ng-model="cadastro.profissional.telefone">
-      </div>
-
-      <div class="md-block" flex-gt-sm="20">
-        <label for="ramal">Ramal</label>
-        <input type="tel" id="ramal" name="ramal" class="form-control" ng-tabindex="3"
-        ng-model="cadastro.profissional.ramal">
-      </div>
-
-  </div>
-
 
 <div layout="column" layout-padding layout-gt-sm="row">
-    <div class="md-block" flex-gt-sm="50">
-      <label for="profissao">Profissão</label>
-      <select class="form-control" id="profissao" requerido
-          ng-model="cadastro.profissional.profissao" ng-tabindex="4">
+    <div class="md-block" flex-gt-sm="40">
+      <label for="naturezaRenda">Natureza da renda / Vínculo empregatício</label>
+      <select class="form-control" id="naturezaRenda" requerido focus
+          ng-model="cadastro.profissional.naturezaRenda" ng-tabindex="1">
           <option value="aposentado/pensionista">Aposentado / Pensionista</option>
-          <option value="autonomo">Autônomo</option>
-          <option value="empresario">Empresário</option>
-          <option value="estudante">Estudante</option>
-          <option value="funcionario público">Funcionário Público</option>
-          <option value="funcionário com registro CLT">Funcionário com Registro CLT</option>
-          <option value="profissional liberal">Profissional Liberal</option>
-          <option value="renda proveniente de aluguéis">Renda Proveniente de Aluguéis</option>
+          <option value="AUTONOMO">Autônomo</option>
+          <option value="EMPRESARIO">Empresário</option>
+          <option value="ESTUDANTE">Estudante</option>
+          <option value="FUNCIONARIO PÚBLICO">Funcionário Público</option>
+          <option value="FUNCIONÁRIO COM REGISTRO CLT">Funcionário com Registro CLT</option>
+          <option value="PROFISSIONAL LIBERAL">Profissional Liberal</option>
+          <option value="RENDA PROVENIENTE DE ALUGUÉIS">Renda Proveniente de Aluguéis</option>
         </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="30">
-      <label for="naturezaRenda">Natureza da renda / Vínculo empregatício</label>
-      <input type="tel" id="naturezaRenda" name="naturezaRenda" ng-tabindex="5" requerido
-      class="form-control" ng-model="cadastro.profissional.naturezaRenda">
+    <div class="md-block" flex-gt-sm="40">
+      <label for="profissao">Profissão</label>
+      <input type="text" id="profissao" name="profissional" ng-tabindex="2" upper
+      class="form-control" ng-model="cadastro.profissional.profissao">
     </div>
 
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="20" 
+    ng-if="cadastro.profissional.naturezaRenda == 'FUNCIONARIO PÚBLICO' || 
+    cadastro.profissional.naturezaRenda == 'FUNCIONÁRIO COM REGISTRO CLT'">
       <label for="dataAdmissao">Data Admissão</label>
       <input id="dataAdmissao" name="dataAdmissao" requerido
-      datepicker mascara="99/99/9999" ng-tabindex="6"
+      datepicker mascara="99/99/9999" ng-tabindex="3"
       class="form-control" ng-model="cadastro.profissional.dataAdmissao">
     </div>
 
   </div>
 
 <div layout="column" layout-padding layout-gt-sm="row">
-    <div class="md-block" flex-gt-sm="20">
-      <label for="salario">Salário</label>
+    <div class="md-block" flex-gt-sm="15">
+      <label for="salario">Salário Brutos</label>
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="number" mascara-monetaria id="salario" ng-tabindex="7" requerido
+      <input mobile="number" mascara-monetaria id="salario" ng-tabindex="4" requerido
       name="salario" class="form-control" ng-model="cadastro.profissional.salario">
     </div>
     </div>
 
-    <div class="md-block" flex-gt-sm="60">
-      <label for="outrosRendimentos">Outros rendimentos</label>
-      <input type="text" id="outrosRendimentos" ng-tabindex="8"
-      name="outrosRendimentos" 
+    <div class="md-block" flex-gt-sm="55">
+      <label for="outrosRendimentos">Informar todos os outros rendimentos se houver</label>
+      <input type="text" id="outrosRendimentos" ng-tabindex="5"
+      name="outrosRendimentos" upper
       class="form-control" ng-model="cadastro.profissional.outrosRendimentos">
     </div>
 
-    <div class="md-block" flex-gt-sm="20">
-      <label for="totalRendimentos">Total Rendimentos</label>
+    <div class="md-block" flex-gt-sm="30">
+      <label for="totalRendimentos">Total Mensal de Outros Rendimentos</label>
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
       <input mobile="number" mascara-monetaria id="totalRendimentos" 
-      name="totalRendimentos" ng-tabindex="9"
+      name="totalRendimentos" ng-tabindex="6"
       class="form-control" ng-model="cadastro.profissional.totalRendimentos">
     </div>
     </div>
@@ -84,74 +65,40 @@
 </div>
 
 <div layout="column" layout-padding layout-gt-sm="row">
-    <div class="md-block" flex-gt-sm="15">
-      <label for="cep">CEP</label>
-      <input mobile="number" mascara="99.999-999" id="cep" name="cep" class="form-control" 
-      ng-model="cadastro.profissional.cep" 
-      ng-blur="pesquisarCep(cadastro.profissional)" ng-tabindex="10">
-    </div>
+  <div class="md-block" flex-gt-sm="60">
+        <label for="empresa">Nome da Empresa/Instituição/Órgão em que trabalha</label>
+        <input type="text" id="empresa" upper name="empresa" 
+        class="form-control" ng-model="cadastro.profissional.empresa" ng-tabindex="7">
+      </div>
 
     <div class="md-block" flex-gt-sm="20">
-      <label for="estado">Estado</label>
-      <input type="text" id="estado" upper name="estado" 
-      class="form-control" ng-model="cadastro.profissional.estado"  ng-tabindex="11">
-    </div>
+        <label for="telefone">Telefone</label>
+        <input mobile="tel" mascara-telefone id="telefone" ng-tabindex="8"
+        name="telefone" class="form-control" ng-model="cadastro.profissional.telefone">
+      </div>
 
-    <div class="md-block" flex-gt-sm="65">
-      <label for="cidade">Cidade</label>
-      <input type="text" id="cidade" upper name="cidade" 
-      class="form-control" ng-model="cadastro.profissional.cidade"  ng-tabindex="12">
-    </div>
-
-</div>
-
-<div layout="column" layout-padding layout-gt-sm="row">
-    <div class="md-block" flex-gt-sm="40">
-      <label for="endereco">Endereço</label>
-      <input type="text" id="endereco" upper name="endereco" 
-      class="form-control" ng-model="cadastro.profissional.endereco"  ng-tabindex="13">
-    </div>
-
-    <div class="md-block" flex-gt-sm="20">
-      <label for="bairro">Bairro</label>
-      <input type="text" id="bairro" upper name="bairro" 
-      class="form-control" ng-model="cadastro.profissional.bairro"  ng-tabindex="14">
-    </div>
-
-     
-     <div class="md-block" flex-gt-sm="10">
-      <label for="numero">Numero</label>
-      <input type="number" id="numero" name="numero" 
-      class="form-control" ng-model="cadastro.profissional.numero" ng-tabindex="15">
-    </div>
-
-     <div class="md-block" flex-gt-sm="30">
-      <label for="complemento">Complemento</label>
-      <input type="text" id="complemento" upper name="complemento" 
-      class="form-control" ng-model="cadastro.profissional.complemento" ng-tabindex="16">
-    </div>
+      <div class="md-block" flex-gt-sm="20">
+        <label for="ramal">Ramal</label>
+        <input type="tel" id="ramal" name="ramal" class="form-control" ng-tabindex="9"
+        ng-model="cadastro.profissional.ramal">
+      </div>
 
   </div>
 
 <div layout="column" layout-padding layout-gt-sm="row">
      <div class="md-block" flex-gt-sm="50">
-      <label for="empresaAnterior">Empresa Anterior (se menor de 1 ano)</label>
+      <label for="empresaAnterior">Empresa/Instituição Anterior (se atual menor que 1 ano)</label>
       <input type="text" id="empresaAnterior" upper name="empresaAnterior" 
-      class="form-control" ng-model="cadastro.profissional.empresaAnterior"  ng-tabindex="17">
+      class="form-control" ng-model="cadastro.profissional.empresaAnterior"  ng-tabindex="10">
     </div>
 
-    <div class="md-block" flex-gt-sm="50">
-      <label for="enderecoComercial">Endereço Comercial</label>
-      <input type="text" id="enderecoComercial" upper name="enderecoComercial" 
-      class="form-control" ng-model="cadastro.profissional.enderecoComercial"  ng-tabindex="18">
-    </div>
-
+    
 </div>
 
 <div layout="column" layout-padding layout-gt-sm="row">
      <div class="md-block" flex-gt-sm="40">
       <label for="possuiRefBancaria">Pretendente possui referências Bancárias</label>
-      <select class="form-control" id="possuiRefBancaria" flex-gt-sm="25" ng-tabindex="19"
+      <select class="form-control" id="possuiRefBancaria" flex-gt-sm="25" ng-tabindex="11"
       ng-model="cadastro.profissional.possuiRefBancaria">
         <option value="sim">SIM</option>
         <option value="nao">NÃO</option>
@@ -165,19 +112,21 @@
   <div layout="column" layout-padding layout-gt-sm="row">
       <div class="md-block" flex-gt-sm="50">
         <label for="banco">Banco</label>
-        <input type="text" id="banco" name="banco" class="form-control" ng-model="cadastro.profissional.banco" ng-tabindex="20">
+        <input type="text" id="banco" name="banco" class="form-control" upper
+        ng-model="cadastro.profissional.banco" ng-tabindex="12">
       </div>
 
       <div class="md-block" flex-gt-sm="25">
         <label for="agencia">Agência</label>
-        <input type="text" id="agencia" name="agencia" class="form-control" ng-model="cadastro.profissional.agencia" 
-        ng-tabindex="21">
+        <input type="text" id="agencia" name="agencia" class="form-control" upper 
+        ng-model="cadastro.profissional.agencia" 
+        ng-tabindex="13">
       </div>
 
       <div class="md-block" flex-gt-sm="25">
         <label for="contaCorrente">Conta Corrente</label>
         <input type="text" id="contaCorrente" name="contaCorrente" class="form-control" ng-model="cadastro.profissional.contaCorrente" 
-        ng-tabindex="22">
+        ng-tabindex="14">
       </div>
 
 </div>
@@ -185,14 +134,15 @@
 <div layout="column" layout-padding layout-gt-sm="row">
       <div class="md-block" flex-gt-sm="50">
         <label for="gerente">Gerente</label>
-        <input type="text" id="gerente" name="gerente" class="form-control" ng-model="cadastro.profissional.gerente" 
-       ng-tabindex="23">
+        <input type="text" id="gerente" name="gerente" class="form-control" upper
+        ng-model="cadastro.profissional.gerente" 
+       ng-tabindex="15">
       </div>
 
       <div class="md-block" flex-gt-sm="20">
         <label for="telefone">Telefone</label>
         <input mobile="tel" mascara-telefone id="telefone" name="telefoneGerente" class="form-control" ng-model="cadastro.profissional.telefoneGerente" 
-       ng-tabindex="24">
+       ng-tabindex="16">
       </div>
 
   </div>
@@ -207,7 +157,7 @@
     </div>
 
     <div>
-      <md-button class="md-raised md-primary" ng-click="validarDadosObrigatorios('formDadosProfissionais')">Seguinte <span aria-hidden="true">&rarr;</span>
+      <md-button class="md-raised md-primary" ng-click="validarDadosProfissionais('formDadosProfissionais')">Seguinte <span aria-hidden="true">&rarr;</span>
       </md-button>
     </div>
   </div> 
