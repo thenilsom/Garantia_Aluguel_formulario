@@ -1,44 +1,71 @@
 <form name="formDadosImovel" class="fundo-formulario">
 <div layout="column" layout-padding layout-gt-sm="row">
-  <div class="md-block" flex-gt-sm="50">
+  <div class="md-block" flex-gt-sm="30">
         <label for="finalidade">Finalidade Imóvel</label>
-        <input type="text" id="finalidade" name="finalidade" focus requerido
-        class="form-control" ng-model="cadastro.imovel.finalidade" upper
-       ng-tabindex="1">
+        <select class="form-control" id="finalidade" ng-tabindex="1" name="finalidade" 
+          ng-model="cadastro.imovel.finalidade" requerido focus>
+          <option value="RESIDENCIAL">Residencial</option>
+          <option value="NÃO RESIDENCIAL">NÃO Residencial</option>
+        </select>
   </div>
 
-  <div class="md-block" flex-gt-sm="20">
+  <div class="md-block" flex-gt-sm="30">
         <label for="tipoImovel">Tipo de Imóvel</label>
         <select class="form-control" id="tipoImovel" ng-tabindex="2" 
         ng-model="cadastro.imovel.tipo" requerido>
           <option value="APARTAMENTO">Apartamento</option>
           <option value="CASA">Casa</option>
           <option value="CONDOMINIO">Condomínio Fechado</option>
+          <option value="SALA">Sala</option>
         </select>
       </div>
 
-      <div class="md-block" flex-gt-sm="30">
+      <div class="md-block" flex-gt-sm="40">
         <label for="motivoLocacao">Motivo da Locação</label>
         <select class="form-control" id="motivoLocacao" ng-tabindex="3"
         ng-model="cadastro.imovel.motivoLocacao" requerido>
-          <option value="CASAMENTO">Casamento</option>
+          <option value="LOCAÇÃO ADICIONAL" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Locação Adicional</option>
+          <option value="TRANSFERÊNCIA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Transferência de Empresa</option>
+          <option value="PRÓXIMO AO TRABALHO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Próximo ao Trabalho</option>
+          <option value="IMÓVEL PRÓXIMO DE FAMILIARES" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Imóvel Próximo de Familiares</option>
+          <option value="PRÓXIMO A INSITUIÇÃO DE ENSINO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Próximo a Insituição de Ensino</option>
+          <option value="CASAMENTO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Casamento</option>
+          <option value="SEPARAÇÃO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Separação</option>
+          <option value="INDEPENDÊNCIA" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          Independência</option>
           <option value="PARA TERCEIROS">Para Terceiros</option>
-          <option value="RENOVAÇÃO COM AUMENTO DE VALORES">Renovação com Aumento de Valores</option>
-          <option value="IMÓVEL PRÓXIMO DE FAMILIARES">Imóvel Próximo de Familiares</option>
-          <option value="REDUÇÃO DE CUSTO">Redução de Custo</option>
-          <option value="SEPARAÇÃO">Separação</option>
-          <option value="TRANSFERÊNCIA DE EMPRESA">Transferência de Empresa</option>
-          <option value="INDEPENDÊNCIA">Independência</option>
-          <option value="ENDOSSO DA APÓLICE">Endosso da Apólice</option>
-          <option value="PRÓXIMO A INSITUIÇÃO DE ENSINO">Próximo a Insituição de Ensino</option>
           <option value="FUNCIONÁRIO DA EMPRESA DO PRETENDENTE">Funcionário da Empresa do Pretendente</option>
-          <option value="CANCELAMENTO DE APÓLICE TROCA DE IMÓVEL">Cancelamento de Apólice Troca de Imóvel</option>
           <option value="VENDA DE IMÓVEL PRÓPRIO">Venda de Imóvel Próprio</option>
+          <option value="REDUÇÃO DE CUSTO">Redução de Custo</option>
           <option value="TROCA DE GARANTIA DA ATUAL LOCAÇÃO">Troca de Garantia da Atual Locação</option>
-          <option value="LOCAÇÃO ADICIONAL">Locação Adicional</option>
-          <option value="PRÓXIMO AO TRABALHO">Próximo ao Trabalho</option>
           <option value="LOCAÇÃO EM VIGOR">Locação em Vigor</option>
+          <option value="RENOVAÇÃO COM AUMENTO DE VALORES">Renovação com Aumento de Valores</option>
           <option value="APÓLICE VENCIDA">Apólice Vencida</option>
+          <option value="CANCELAMENTO DE APÓLICE TROCA DE IMÓVEL">Cancelamento de Apólice Troca de Imóvel</option>
+          <option value="ENDOSSO DA APÓLICE">Endosso da Apólice</option>
+
+          <option value="ABERTURA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          Abertura de Empresa</option>
+          <option value="ABERTURA DE FILIAL" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          Abertura de Filial</option>
+          <option value="MUDANÇA PARA UM PONTO MELHOR" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          Mudança para um Ponto Melhor</option>
+          
+          
+          
+          
+          
+          
+          
+          
+          
         </select>
       </div>
 
@@ -80,7 +107,7 @@
 
      <div class="md-block" flex-gt-sm="10">
       <label for="numeroImovel">Numero</label>
-      <input type="number" id="numeroImovel" name="numeroImovel" requerido
+      <input type="number" id="numeroImovel" name="numeroImovel"
       class="form-control" ng-model="cadastro.imovel.numero" ng-tabindex="9">
     </div>
 

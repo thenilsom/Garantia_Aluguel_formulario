@@ -29,7 +29,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
-          $scope.passo = '1';
+          $scope.passo = '5';
 
           $scope.cadastro = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
@@ -120,7 +120,8 @@
             $scope.errors = [];
              validador.validarCamposObrigatorios(form, $scope.errors);
 
-            if($scope.cadastro.profissional.outrosRendimentos && !$scope.cadastro.profissional.totalRendimentos)
+            if($scope.cadastro.profissional.outrosRendimentos && 
+              !parseFloat($scope.cadastro.profissional.totalRendimentos) > 0)
               $scope.errors.push("Informe o total dos outros rendimentos.");
 
             $scope.proximoPasso();

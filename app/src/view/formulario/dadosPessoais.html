@@ -1,41 +1,6 @@
 <form name="formDadosPessoais" class="fundo-formulario">
-   <div layout="column" layout-gt-sm="row" layout-padding>
-
-    <div class="md-block" flex-gt-sm="15">
-        <label for="tpPessoa">Tipo Pessoa</label>
-        <select class="form-control" name="tipoPessoa" id="tpPessoa" 
-          ng-model="cadastro.pessoal.tipoPessoa" ng-tabindex="1">
-          <option value="FISICA">Física</option>
-          <option value="JURIDICA">Jurídica</option>
-      </select>
-      </div>
-
-     <div class="md-block" flex-gt-sm="60">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" upper name="nome" focus requerido 
-        class="form-control" ng-model="cadastro.pessoal.nome" ng-tabindex="2">
-      </div>
-  
-    <div class="md-block" flex-gt-sm="20">
-      <label for="telefone">Telefone</label>
-      <input mobile="tel" mascara-telefone id="telefone" name="telefone" 
-      class="form-control" ng-model="cadastro.pessoal.telefone" ng-tabindex="3">
-    </div>
-
-    <div class="md-block" flex-gt-sm="20">
-      <label for="celular">Celular</label>
-      <input mobile="tel" mascara-telefone id="celular" name="celular" 
-      class="form-control" ng-model="cadastro.pessoal.celular" ng-tabindex="4">
-    </div>
-  </div>
-
+   
   <div layout="column" layout-gt-sm="row" layout-padding>
-    <div class="md-block" flex-gt-sm="50">
-      <label for="grauParentesco">Grau de Parentesco</label>
-      <input type="text" id="grauParentesco" upper name="nome" 
-      class="form-control" ng-model="cadastro.pessoal.grauParentesco" ng-tabindex="5">
-    </div>
-
     <div class="md-block" flex-gt-sm="35">
       <label for="possuiRendaArcarLocacao">Possui renda suficiente para arcar com a locação</label>
       <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35" requerido
@@ -45,7 +10,7 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
+    <div class="md-block" flex-gt-sm="35" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
       <label>Nº Pessoas compondo renda (Locatários Solidários)</label>
       <select class="form-control" flex-gt-sm="30"
       ng-model="cadastro.pessoal.numSolidarios" ng-tabindex="6">
