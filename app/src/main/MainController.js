@@ -29,7 +29,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
-          $scope.passo = '5';
+          $scope.passo = '1';
 
           $scope.cadastro = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
