@@ -1,10 +1,11 @@
 <form name="formDadosPessoais" class="fundo-formulario">
    
-  <div layout="column" layout-gt-sm="row" layout-padding>
+  <div layout="column" layout-gt-sm="row" layout-padding 
+  ng-init="cadastro.pessoal.possuiRendaArcarLocacao = isRendaSuficiente() ? 'SIM' : 'NAO'">
     <div class="md-block" flex-gt-sm="35">
       <label for="possuiRendaArcarLocacao">Possui renda suficiente para arcar com a locação</label>
       <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35" requerido
-      ng-model="cadastro.pessoal.possuiRendaArcarLocacao" ng-tabindex="18" ng-change="alertaLocatarioSolidario()">
+      ng-model="cadastro.pessoal.possuiRendaArcarLocacao" ng-tabindex="1" ng-change="alertaLocatarioSolidario()">
         <option value="SIM">SIM</option>
         <option value="NAO">NÃO</option>
       </select>
@@ -13,7 +14,7 @@
     <div class="md-block" flex-gt-sm="35" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
       <label>Nº Pessoas compondo renda (Locatários Solidários)</label>
       <select class="form-control" flex-gt-sm="30"
-      ng-model="cadastro.pessoal.numSolidarios" ng-tabindex="6">
+      ng-model="cadastro.pessoal.numSolidarios" ng-tabindex="2">
         <option value=0>0</option>
         <option value=1>1</option>
         <option value=2>2</option>
@@ -41,16 +42,26 @@
     </div>
 
     <div class="md-block" flex-gt-sm="20">
+      <label for="rendaBruta1">Renda mensal bruta</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mobile="number" mascara-monetaria id="rendaBruta1" name="rendaMensalBruta" 
+      class="form-control" ng-model="cadastro.pessoal.solidario1.rendaMensalBruta" ng-tabindex="9">
+    </div>
+    </div>
+
+    <div class="md-block" flex-gt-sm="20">
       <label for="telefone1">Telefone</label>
       <input mobile="tel" mascara-telefone id="telefone1" name="telefone" 
-      class="form-control" ng-model="cadastro.pessoal.solidario1.telefone" ng-tabindex="9">
+      class="form-control" ng-model="cadastro.pessoal.solidario1.telefone" ng-tabindex="10">
     </div>  
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="20">
-      <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pessoal.solidario1.sexo" ng-tabindex="10">
+      <label for="sexo1">Sexo</label>
+      <select class="form-control" ng-model="cadastro.pessoal.solidario1.sexo" ng-tabindex="11" id="sexo1">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
@@ -60,21 +71,21 @@
       <label for="numDoc1">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="number" id="numDoc1" name="numDoc1" class="form-control" 
       ng-model="cadastro.pessoal.solidario1.numDoc" 
-      ng-tabindex="11">
+      ng-tabindex="12">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="orgaoExpedidor1">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor1" name="orgaoExpedidor1" 
       class="form-control" 
-      ng-model="cadastro.pessoal.solidario1.orgaoExpedidor" ng-tabindex="12">
+      ng-model="cadastro.pessoal.solidario1.orgaoExpedidor" ng-tabindex="13">
     </div>
 
     <div flex-gt-sm="20">
       <label for="dataEmissao1">Data Emissão</label>
       <input id="dataEmissao1" name="dataEmissao1" 
       class="form-control" datepicker mascara="99/99/9999"
-      ng-model="cadastro.pessoal.solidario1.dataEmissao" ng-tabindex="13">
+      ng-model="cadastro.pessoal.solidario1.dataEmissao" ng-tabindex="14">
     </div>
   </div>
 </fieldset>
@@ -85,7 +96,7 @@
     <div class="md-block" flex-gt-sm="60">
         <label for="nome2">Nome</label>
         <input type="text" id="nome2" upper name="nome2" 
-        class="form-control" ng-model="cadastro.pessoal.solidario2.nome" ng-tabindex="14">
+        class="form-control" ng-model="cadastro.pessoal.solidario2.nome" ng-tabindex="15">
     </div>
 
 
@@ -93,20 +104,30 @@
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf2">CPF</label>
       <input mobile="number"  mascara="999.999.999-99"  id="cpf2" name="cpf2"
-      class="form-control" ng-model="cadastro.pessoal.solidario2.cpf" ng-tabindex="15">
+      class="form-control" ng-model="cadastro.pessoal.solidario2.cpf" ng-tabindex="16">
+    </div>
+
+    <div class="md-block" flex-gt-sm="20">
+      <label for="rendaBruta2">Renda mensal bruta</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mobile="number" mascara-monetaria id="rendaBruta2" name="rendaMensalBruta2" 
+      class="form-control" ng-model="cadastro.pessoal.solidario2.rendaMensalBruta" ng-tabindex="17">
+    </div>
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="telefone2">Telefone</label>
       <input mobile="tel" mascara-telefone id="telefone2" name="telefone2" 
-      class="form-control" ng-model="cadastro.pessoal.solidario2.telefone" ng-tabindex="16">
+      class="form-control" ng-model="cadastro.pessoal.solidario2.telefone" ng-tabindex="18">
     </div>  
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="20">
-      <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pessoal.solidario2.sexo" ng-tabindex="17">
+      <label for="sexo2">Sexo</label>
+      <select class="form-control" ng-model="cadastro.pessoal.solidario2.sexo" ng-tabindex="19" id="sexo2">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
@@ -116,21 +137,21 @@
       <label for="numDoc2">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="number" id="numDoc2" name="numDoc2" class="form-control" 
       ng-model="cadastro.pessoal.solidario2.numDoc" 
-      ng-tabindex="18">
+      ng-tabindex="20">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="orgaoExpedidor2">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor2" name="orgaoExpedidor2" 
       class="form-control" 
-      ng-model="cadastro.pessoal.solidario2.orgaoExpedidor" ng-tabindex="19">
+      ng-model="cadastro.pessoal.solidario2.orgaoExpedidor" ng-tabindex="21">
     </div>
 
     <div flex-gt-sm="20">
       <label for="dataEmissao2">Data Emissão</label>
       <input id="dataEmissao2" name="dataEmissao2" 
       class="form-control" datepicker mascara="99/99/9999"
-      ng-model="cadastro.pessoal.solidario2.dataEmissao" ng-tabindex="20">
+      ng-model="cadastro.pessoal.solidario2.dataEmissao" ng-tabindex="22">
     </div>
   </div>
 </fieldset>
@@ -141,7 +162,7 @@
     <div class="md-block" flex-gt-sm="60">
         <label for="nome3">Nome</label>
         <input type="text" id="nome3" upper name="nome3" 
-        class="form-control" ng-model="cadastro.pessoal.solidario3.nome" ng-tabindex="21">
+        class="form-control" ng-model="cadastro.pessoal.solidario3.nome" ng-tabindex="23">
     </div>
 
 
@@ -149,20 +170,30 @@
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf3">CPF</label>
       <input mobile="number"  mascara="999.999.999-99"  id="cpf3" name="cpf3"
-      class="form-control" ng-model="cadastro.pessoal.solidario3.cpf" ng-tabindex="22">
+      class="form-control" ng-model="cadastro.pessoal.solidario3.cpf" ng-tabindex="24">
+    </div>
+
+    <div class="md-block" flex-gt-sm="20">
+      <label for="rendaBruta3">Renda mensal bruta</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mobile="number" mascara-monetaria id="rendaBruta3" name="rendaMensalBruta3" 
+      class="form-control" ng-model="cadastro.pessoal.solidario3.rendaMensalBruta" ng-tabindex="25">
+    </div>
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="telefone3">Telefone</label>
       <input mobile="tel" mascara-telefone id="telefone3" name="telefone3" 
-      class="form-control" ng-model="cadastro.pessoal.solidario3.telefone" ng-tabindex="23">
+      class="form-control" ng-model="cadastro.pessoal.solidario3.telefone" ng-tabindex="26">
     </div>  
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
     <div class="md-block" flex-gt-sm="20">
-      <label>Sexo</label>
-      <select class="form-control" ng-model="cadastro.pessoal.solidario3.sexo" ng-tabindex="24">
+      <label for="sexo3">Sexo</label>
+      <select class="form-control" ng-model="cadastro.pessoal.solidario3.sexo" ng-tabindex="27" id="sexo 3">
         <option value="M">Masculino</option>
         <option value="F">Feminino</option>
       </select>
@@ -172,21 +203,21 @@
       <label for="numDoc3">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="number" id="numDoc3" name="numDoc3" class="form-control" 
       ng-model="cadastro.pessoal.solidario3.numDoc" 
-      ng-tabindex="25">
+      ng-tabindex="28">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="orgaoExpedidor3">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor3" name="orgaoExpedidor3" 
       class="form-control" 
-      ng-model="cadastro.pessoal.solidario3.orgaoExpedidor" ng-tabindex="26">
+      ng-model="cadastro.pessoal.solidario3.orgaoExpedidor" ng-tabindex="29">
     </div>
 
     <div flex-gt-sm="20">
       <label for="dataEmissao3">Data Emissão</label>
       <input id="dataEmissao3" name="dataEmissao3" 
       class="form-control" datepicker mascara="99/99/9999"
-      ng-model="cadastro.pessoal.solidario3.dataEmissao" ng-tabindex="27">
+      ng-model="cadastro.pessoal.solidario3.dataEmissao" ng-tabindex="30">
     </div>
   </div>
 </fieldset>

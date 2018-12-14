@@ -179,15 +179,28 @@
     </div>
     </div>
 
-    <div class="md-block">
-      <label for="total">Total</label>
+    <div class="md-block" flex-gt-sm="15">
+      <label for="total">Total gastos mensais</label>
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">R$</span>
-        <span class="form-control disabled-value">{{getTotal(cadastro.imovel) | currency: "":2}}</span>
+        <span class="form-control disabled-value">{{getTotalGastosMensais() | currency: "":2}}</span>
       </div>
     </div>
-
   </div>
+
+  <div layout="column" layout-padding layout-gt-sm="row" ng-if="getTotalGastosMensais() > 0">
+    <div class="alert alert-warning">
+      Renda mensal necessária para essa locação: <strong>{{getRendaNecessaria() | currency:"R$ ":2}}</strong>
+      <i>(A renda considerada é a soma das rendas do pretendente e seus locatários solidários.)</i>
+    </div>  
+  </div>
+
+<div layout="column" layout-padding layout-gt-sm="row" ng-if="!isRendaSuficiente()">
+  <div class="alert alert-danger">
+      Renda mensal informada <strong>{{getRendaInformada() | currency:"R$ ":2}}</strong> insuficiente para essa locação. <br/>Inclua locatários solidários na próxima janela para compor renda e alcançar o valor mínimo necessário <strong>{{getRendaNecessaria() | currency:"R$ ":2}}</strong>
+    </div> 
+</div>
+
 </form>
 
 <div layout="row" layout-align="center center">

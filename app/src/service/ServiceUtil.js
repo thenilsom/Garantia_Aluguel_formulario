@@ -88,7 +88,7 @@ angular.module('app')
 				case '2' : return 'Residência Atual';
 				case '3' : return 'Dados Profissionais';
 				case '4' : return 'Imóvel Pretendido';
-				case '5' : return 'Dados Pessoais';
+				case '5' : return 'Composição Renda';
 				case '6' : return 'Upload de Arquivos';
 			}
 		}

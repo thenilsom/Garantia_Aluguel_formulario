@@ -135,14 +135,30 @@
           }
 
 
-          $scope.getTotal = function(obj){
-            if(service.isNull(obj)) return 0;
-            return service.valorOuZeroSeNull(obj.aluguel) +
-                   service.valorOuZeroSeNull(obj.iptu) +
-                   service.valorOuZeroSeNull(obj.condominio) +
-                   service.valorOuZeroSeNull(obj.agua) +
-                   service.valorOuZeroSeNull(obj.luz) +
-                   service.valorOuZeroSeNull(obj.gas);
+          $scope.getTotalGastosMensais = function(){
+            if(service.isNull($scope.cadastro.imovel)) return 0;
+            return service.valorOuZeroSeNull($scope.cadastro.imovel.aluguel) +
+                   service.valorOuZeroSeNull($scope.cadastro.imovel.iptu) +
+                   service.valorOuZeroSeNull($scope.cadastro.imovel.condominio) +
+                   service.valorOuZeroSeNull($scope.cadastro.imovel.agua) +
+                   service.valorOuZeroSeNull($scope.cadastro.imovel.luz) +
+                   service.valorOuZeroSeNull($scope.cadastro.imovel.gas);
+          }
+
+          $scope.getRendaNecessaria = function(){
+            if(angular.equals($scope.cadastro.imovel.finalidade, 'RESIDENCIAL'))
+                return $scope.getTotalGastosMensais() / 0.35;
+
+              return $scope.getTotalGastosMensais() / 0.15;
+          }
+
+          $scope.getRendaInformada = function(){
+            return service.valorOuZeroSeNull($scope.cadastro.profissional.salario) +
+                   service.valorOuZeroSeNull($scope.cadastro.profissional.totalRendimentos);
+          }
+
+          $scope.isRendaSuficiente = function(){
+            return $scope.getRendaInformada() >= $scope.getRendaNecessaria();
           }
 
           $scope.pesquisarCep = function(obj){
