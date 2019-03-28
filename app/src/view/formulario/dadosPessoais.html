@@ -1,9 +1,13 @@
 <form name="formDadosPessoais" class="fundo-formulario">
    
   <div layout="column" layout-gt-sm="row" layout-padding 
-  ng-init="cadastro.pessoal.possuiRendaArcarLocacao = isRendaSuficiente() ? 'SIM' : 'NAO'">
+  ng-init="cadastro.pessoal.possuiRendaArcarLocacao = isRendaSuficiente() ? 'NAO' : 'SIM'">
     <div class="md-block" flex-gt-sm="35">
-      <label for="possuiRendaArcarLocacao">Possui renda suficiente para arcar com a locação</label>
+      <label for="possuiRendaArcarLocacao">
+       {{isRendaSuficiente() ? 'Você Possui renda suficiente para arcar com a locação (gostaria de incluir novos pretendentes)' : 
+       'Você não possui renda para arcar com a locação (gostaria de incluir novos pretendentes)'}}
+      </label>
+
       <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35" requerido
       ng-model="cadastro.pessoal.possuiRendaArcarLocacao" ng-tabindex="1" ng-change="alertaLocatarioSolidario()">
         <option value="SIM">SIM</option>
@@ -11,7 +15,7 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="35" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
+    <div class="md-block" flex-gt-sm="35" ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'SIM'">
       <label>Nº Pessoas compondo renda (Locatários Solidários)</label>
       <select class="form-control" flex-gt-sm="30"
       ng-model="cadastro.pessoal.numSolidarios" ng-tabindex="2">
@@ -23,7 +27,7 @@
     </div>
   </div>
 
-<div ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'NAO'">
+<div ng-if="cadastro.pessoal.possuiRendaArcarLocacao == 'SIM'">
 <fieldset class="scheduler-border" ng-if="cadastro.pessoal.numSolidarios >=1">
   <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 1</legend>
   <div layout="column" layout-gt-sm="row" layout-padding>

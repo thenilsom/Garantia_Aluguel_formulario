@@ -3,7 +3,9 @@
        .controller('MainController', ['$scope', '$http', 'serviceUtil', 'validaService', 'FileUploader', 
         function($scope, $http, service, validador, FileUploader){
 
-               
+        //obtem os parametros na url se existir
+        var paramUrl = service.extraiParamUrl();
+
           //controla o hide/show do botão ir para topo quando chegar no fim da pagina
         $(window).scroll(function () {
           //usar esse if para exibir o btn ir para o top quando o usuario rolar a pagina
@@ -37,6 +39,14 @@
           $scope.cadastro.profissional = {};
           $scope.cadastro.imovel = {};
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
+
+          if(paramUrl){
+            $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : paramUrl.cpfCnpj}).then(function(data){
+             service.alertar(data);
+            }, function(erro){
+              service.alertarErro(erro.statusText);
+            });
+          }
 
           /*inicia as configurações de upload*/
           var iniciarUpload = function(id_codigo){

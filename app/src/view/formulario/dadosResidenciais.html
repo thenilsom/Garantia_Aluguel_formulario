@@ -12,10 +12,21 @@
         </select>
   </div>
 
+  <div class="md-block" flex-gt-sm="15">
+        <label for="tipoResidencia">Tipo Residência</label>
+        <select class="form-control" id="tipoResidencia" requerido
+        ng-model="cadastro.residencia.tipo" ng-tabindex="2">
+          <option value="ALUGADA">Alugada</option>
+          <option value="FINANCIADA">Financiada</option>
+          <option value="PROPRIA">Própria</option>
+          <option value="OUTROS">Outros</option>
+        </select>
+  </div>
+
   <div class="md-block" flex-gt-sm="20">
         <label for="emNome">Em nome de</label>
          <select class="form-control" id="emNome" requerido
-          ng-model="cadastro.residencia.emNome" ng-tabindex="2">
+          ng-model="cadastro.residencia.emNome" ng-tabindex="3">
           <option value="PRÓPRIO NOME">Próprio Nome</option>
           <option value="AMIGOS">Amigos</option>
           <option value="EMPRESA">Empresa</option>
@@ -24,26 +35,16 @@
         </select>
   </div>
 
-  <div class="md-block" flex-gt-sm="15">
+  <div class="md-block" flex-gt-sm="15" ng-if="cadastro.residencia.tipo == 'ALUGADA'">
         <label for="arcaAluguel">Arca com aluguel</label>
-        <select class="form-control" id="arcaAluguel" ng-tabindex="3" 
+        <select class="form-control" id="arcaAluguel" ng-tabindex="4" 
         ng-model="cadastro.residencia.arcaAluguel">
           <option value="SIM">SIM</option>
           <option value="NAO">NÃO</option>
         </select>
   </div>
 
-  <div class="md-block" flex-gt-sm="15">
-        <label for="tipoResidencia">Tipo Residência</label>
-        <select class="form-control" id="tipoResidencia" requerido
-        ng-model="cadastro.residencia.tipo" ng-tabindex="4">
-          <option value="ALUGADA">Alugada</option>
-          <option value="FINANCIADA">Financiada</option>
-          <option value="PROPRIA">Própria</option>
-          <option value="OUTROS">Outros</option>
-        </select>
-  </div>
-
+  
 </div>
 
 <div layout="column" layout-padding layout-gt-sm="row" ng-if="cadastro.residencia.tipo == 'ALUGADA'">
