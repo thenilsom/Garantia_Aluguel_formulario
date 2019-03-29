@@ -97,7 +97,7 @@ diretiva.directive('mascaraTelefone', function(serviceUtil) {
 	            }  
 	        });
 
-	        el.on('keyup', function () {
+	        el.on('focusout', function () {
 				scope.$apply(function(){
 				ctrl.$setViewValue(el.val().replace(/[^0-9]/g, '').length >= 10 ? el.val() : undefined);
 			});

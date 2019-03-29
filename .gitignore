@@ -13,3 +13,4 @@ vendor/
 composer.lock
 debug.log
 /.project
+/package-lock.json
