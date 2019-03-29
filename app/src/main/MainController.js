@@ -42,7 +42,7 @@
 
           if(paramUrl){
             $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : paramUrl.cpfCnpj}).then(function(data){
-             service.alertar(data);
+             $scope.cadastro.pretendente.nome = data.data;
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
