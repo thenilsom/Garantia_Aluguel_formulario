@@ -1,6 +1,6 @@
 angular.module('app')
-.factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', 
-	function($location, $anchorScroll, $mdDialog){
+.factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter',
+	function($location, $anchorScroll, $mdDialog, $filter){
 
 		var service = {};
 
@@ -19,6 +19,12 @@ angular.module('app')
 	          });
 
 	          return paramUrl;
+		}
+
+		//formata o valor monetario, Ex: param = 100000 resultado 1.000,00
+		service.formatarValor = function(valor){
+			valor = valor.substring(0, valor.length - 2) + '.' + valor.substring(valor.length - 2);
+			return $filter('currency')(valor, '');
 		}
 
 		service.isMobile = function(){
@@ -136,6 +142,28 @@ angular.module('app')
        		$('#passwordsNoMatchRegister').fadeOut(1000); 
    		}, 8000);
 	  }
+
+	  //formata o cpfCnpj
+	  service.formatarCpfCnpj = function(valor) {
+	  	//retira a formatação
+	  	valor = valor.replace(/(\.|\/|\-)/g,"");
+	    if (valor.length <= 11) {
+	       return mascaraCpf(valor);
+
+	    } else {
+	        return mascaraCnpj(valor);
+	    }
+	}
+
+	  //formata o cpf
+	  var mascaraCpf = function(valor) {
+    	return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
+	 }
+
+	 //formata cnpj
+	 var mascaraCnpj = function(valor) {
+    	return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+	}
 
 		return service;
 }]);

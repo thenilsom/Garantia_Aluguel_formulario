@@ -41,8 +41,15 @@
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
 
           if(paramUrl){
-            $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : paramUrl.cpfCnpj}).then(function(data){
+            var cpfCnpjParam = service.formatarCpfCnpj(paramUrl.var1);
+            $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
              $scope.cadastro.pretendente.nome = data.data;
+             $scope.cadastro.imovel.aluguel = service.formatarValor(paramUrl.var2);
+             $scope.cadastro.imovel.condominio = service.formatarValor(paramUrl.var3);
+             $scope.cadastro.imovel.iptu = service.formatarValor(paramUrl.var4);
+             $scope.cadastro.imovel.agua = service.formatarValor(paramUrl.var5);
+             $scope.cadastro.imovel.luz = service.formatarValor(paramUrl.var6);
+             $scope.cadastro.imovel.gas = service.formatarValor(paramUrl.var7);
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
