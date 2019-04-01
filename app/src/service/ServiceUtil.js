@@ -23,6 +23,7 @@ angular.module('app')
 
 		//formata o valor monetario, Ex: param = 100000 resultado 1.000,00
 		service.formatarValor = function(valor){
+			if(!valor) return '0,00';
 			valor = valor.substring(0, valor.length - 2) + '.' + valor.substring(valor.length - 2);
 			return $filter('currency')(valor, '');
 		}
