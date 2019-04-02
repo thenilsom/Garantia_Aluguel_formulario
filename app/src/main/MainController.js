@@ -41,7 +41,7 @@
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
 
           if(paramUrl){
-            var cpfCnpjParam = service.formatarCpfCnpj(paramUrl.var1);
+            var cpfCnpjParam = service.formatarCpfCnpj(service.decriptografar(paramUrl.var1));
             $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
              $scope.cadastro.pretendente.nome = data.data;
              $scope.cadastro.imovel.aluguel = service.formatarValor(paramUrl.var2);
