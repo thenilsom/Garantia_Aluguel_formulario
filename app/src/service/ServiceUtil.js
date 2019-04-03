@@ -169,7 +169,7 @@ angular.module('app')
 	//descriptografa codigo
 	service.decriptografar = function(val){
 		val = val.replace(new RegExp('@', 'g'), '1');
-		val = val.replace(new RegExp('%', 'g'), '2');
+		val = val.replace(new RegExp('m', 'g'), '2');
 		val = val.replace(new RegExp('s', 'g'), '3');
 		val = val.replace(new RegExp('x', 'g'), '4');
 		val = val.replace(new RegExp('!', 'g'), '5');
