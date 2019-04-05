@@ -95,14 +95,15 @@
 
           $scope.proximoPasso = function(){
             if($scope.errors.length == 0){
-               passosValidados.push($scope.passo);
+               if(!isPassoValidado($scope.passo))
+                passosValidados.push($scope.passo);
+
                setarPasso(service.obterProximoPasso($scope.passo));
                
               }else{
-                var index = passosValidados.indexOf($scope.passo);
-                if(index > -1)
-                  passosValidados.splice(index, 1);
-
+                if(isPassoValidado($scope.passo))
+                  passosValidados.splice(passosValidados.indexOf($scope.passo), 1);
+                
                 setTimeout(function(){
                   $scope.goTo('listErrors');
                 });
@@ -110,6 +111,7 @@
               }
           }
 
+          //navega entre as abas
           $scope.navegarAbas = function(passo){
             var passoAtual = parseInt($scope.passo)
             var passoPretendido = parseInt(passo)
