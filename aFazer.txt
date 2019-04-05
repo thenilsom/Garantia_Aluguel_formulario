@@ -1,0 +1,2 @@
+*colocar cursor pointer nas abas
+*descriptografar os valores dos parametros

@@ -31,6 +31,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
+          var passosValidados = [];
           $scope.passo = '1';
 
           $scope.cadastro = {};
@@ -84,16 +85,52 @@
             });
           }
         
+          var setarPasso = function(passo){
+            $scope.passo = passo;
+          }
+
+          var isPassoValidado = function(passo){
+            return passosValidados.indexOf(passo) > -1;
+          }
 
           $scope.proximoPasso = function(){
             if($scope.errors.length == 0){
-               $scope.passo = service.obterProximoPasso($scope.passo);
+               passosValidados.push($scope.passo);
+               setarPasso(service.obterProximoPasso($scope.passo));
+               
               }else{
+                var index = passosValidados.indexOf($scope.passo);
+                if(index > -1)
+                  passosValidados.splice(index, 1);
+
                 setTimeout(function(){
                   $scope.goTo('listErrors');
                 });
                 
               }
+          }
+
+          $scope.navegarAbas = function(passo){
+            var passoAtual = parseInt($scope.passo)
+            var passoPretendido = parseInt(passo)
+            if(passoAtual > passoPretendido || 
+                (isPassoValidado(passoAtual.toString()) && (passoAtual + 1) == passoPretendido)){
+              setarPasso(passo);
+
+            }else{
+              var validado = true;
+              for (var i = 1; i < parseInt(passo); i++) {
+                  if(!isPassoValidado(i.toString())){
+                    service.alertarErro('Preencha os dados obrigatorios das abas anteriores.');
+                    validado = false;
+                    break;
+                  }
+                }
+
+              if(validado)
+                setarPasso(passo);
+            }
+            
           }
 
           $scope.passoAnterior = function(){

@@ -4,8 +4,8 @@
   ng-init="cadastro.pessoal.possuiRendaArcarLocacao = isRendaSuficiente() ? 'NAO' : 'SIM'">
     <div class="md-block" flex-gt-sm="35">
       <label for="possuiRendaArcarLocacao">
-       {{isRendaSuficiente() ? 'Você Possui renda suficiente para arcar com a locação (gostaria de incluir novos pretendentes)' : 
-       'Você não possui renda para arcar com a locação (gostaria de incluir novos pretendentes)'}}
+       {{isRendaSuficiente() ? 'Você Possui renda suficiente para arcar com a locação, mas gostaria de incluir novos pretendentes mesmo assim ?' : 
+       'Você não possui renda para arcar com a locação. Gostaria de incluir novos pretendentes para somar à sua renda ?'}}
       </label>
 
       <select class="form-control" id="possuiRendaArcarLocacao" flex-gt-sm="35" requerido
