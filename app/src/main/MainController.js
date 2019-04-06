@@ -32,7 +32,7 @@
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
           var passosValidados = [];
-          $scope.passo = '1';
+          $scope.passo = '2';
 
           $scope.cadastro = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
@@ -40,17 +40,18 @@
           $scope.cadastro.profissional = {};
           $scope.cadastro.imovel = {};
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
-
+          
           if(paramUrl){
             var cpfCnpjParam = service.formatarCpfCnpj(service.decriptografar(paramUrl.var1));
             $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
-             $scope.cadastro.pretendente.nome = data.data;
-             $scope.cadastro.imovel.aluguel = service.formatarValor(paramUrl.var2);
-             $scope.cadastro.imovel.condominio = service.formatarValor(paramUrl.var3);
-             $scope.cadastro.imovel.iptu = service.formatarValor(paramUrl.var4);
-             $scope.cadastro.imovel.agua = service.formatarValor(paramUrl.var5);
-             $scope.cadastro.imovel.luz = service.formatarValor(paramUrl.var6);
-             $scope.cadastro.imovel.gas = service.formatarValor(paramUrl.var7);
+             $scope.nomeImobiliaria = data.data;
+             
+             $scope.cadastro.imovel.aluguel = service.formatarValor(service.decriptografar(paramUrl.var2));
+             $scope.cadastro.imovel.condominio = service.formatarValor(service.decriptografar(paramUrl.var3));
+             $scope.cadastro.imovel.iptu = service.formatarValor(service.decriptografar(paramUrl.var4));
+             $scope.cadastro.imovel.agua = service.formatarValor(service.decriptografar(paramUrl.var5));
+             $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar(paramUrl.var6));
+             $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar(paramUrl.var7));
             }, function(erro){
               service.alertarErro(erro.statusText);
             });

@@ -84,6 +84,7 @@ diretiva.directive('mascaraTelefone', function(serviceUtil) {
 
 	function link(scope, el, attrs, ctrl) {
 		if(!serviceUtil.isMobile()){
+			$(el).attr('type', 'text');
 			$(el).mask("(99) 9999-9999?9").change(function (event) {  
 	            var target, phone, element;  
 	            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
