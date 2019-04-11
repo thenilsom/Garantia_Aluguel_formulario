@@ -38,6 +38,12 @@ function salvar($request, $response){
 	$fone_com_inquilino = trim(json_encode($cadastro->pretendente->telefoneComercial, JSON_UNESCAPED_UNICODE), '"');
 	$email_inquilino = trim(json_encode($cadastro->pretendente->email, JSON_UNESCAPED_UNICODE), '"');
 
+	//DADOS DA IMOBILIARIA
+	$fantasia_imobiliaria = trim(json_encode($cadastro->imobiliaria->fantasia, JSON_UNESCAPED_UNICODE), '"');
+	$fantasia_razao = trim(json_encode($cadastro->imobiliaria->razao, JSON_UNESCAPED_UNICODE), '"');
+	$fantasia_corretor = trim(json_encode($cadastro->imobiliaria->corretor, JSON_UNESCAPED_UNICODE), '"');
+	$fantasia_cnpj = trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE), '"');
+
 	//DADOS RESIDENCIAIS ATUAIS//
 	$tempo_resid_inquilino = trim(json_encode($cadastro->residencia->tempoResidencia, JSON_UNESCAPED_UNICODE), '"');
 	$tipo_resid_inquilino = trim(json_encode($cadastro->residencia->tipo, JSON_UNESCAPED_UNICODE), '"');
@@ -102,22 +108,22 @@ function salvar($request, $response){
 	$solidario1_fone = trim(json_encode($cadastro->pessoal->solidario1->telefone, JSON_UNESCAPED_UNICODE), '"');
 	$solidario1_sexo = trim(json_encode($cadastro->pessoal->solidario1->sexo, JSON_UNESCAPED_UNICODE), '"');
 	$solidario1_rg = trim(json_encode($cadastro->pessoal->solidario1->numDoc, JSON_UNESCAPED_UNICODE), '"');
-//	$solidario2_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante1->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-//	$solidario2_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante1->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
+	$solidario2_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante1->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
+	$solidario2_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante1->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
 	$solidario2 = trim(json_encode($cadastro->pessoal->solidario2->nome, JSON_UNESCAPED_UNICODE), '"');
 	$solidario2_cpf = trim(json_encode($cadastro->pessoal->solidario2->cpf, JSON_UNESCAPED_UNICODE), '"');
 	$solidario2_fone = trim(json_encode($cadastro->pessoal->solidario2->telefone, JSON_UNESCAPED_UNICODE), '"');
 	$solidario2_sexo = trim(json_encode($cadastro->pessoal->solidario2->sexo, JSON_UNESCAPED_UNICODE), '"');
 	$solidario2_rg = trim(json_encode($cadastro->pessoal->solidario2->numDoc, JSON_UNESCAPED_UNICODE), '"');
-//	$solidario2_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-//	$solidario2_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
+	$solidario2_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
+	$solidario2_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
 	$solidario3 = trim(json_encode($cadastro->pessoal->solidario3->nome, JSON_UNESCAPED_UNICODE), '"');
 	$solidario3_cpf = trim(json_encode($cadastro->pessoal->solidario3->cpf, JSON_UNESCAPED_UNICODE), '"');
 	$solidario3_fone = trim(json_encode($cadastro->pessoal->solidario3->telefone, JSON_UNESCAPED_UNICODE), '"');
 	$solidario3_sexo = trim(json_encode($cadastro->pessoal->solidario3->sexo, JSON_UNESCAPED_UNICODE), '"');
 	$solidario3_rg = trim(json_encode($cadastro->pessoal->solidario3->numDoc, JSON_UNESCAPED_UNICODE), '"');
-//	$solidario3_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-//	$solidario3_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante3->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
+	$solidario3_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
+	$solidario3_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante3->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
 
     $data_cob = date("Y-m-d");
     $hora_cob = date("H:i:s");
@@ -151,8 +157,6 @@ function salvar($request, $response){
           $aux++;
     }
 
-    return $registro;
-
     /*
     //return requisicaoSucesso('dados salvo com sucesso'); ex: retorno sucesso
     //return erroInternoServidor('erro ao salvar dados'); ex: retorno erro servidor
@@ -172,7 +176,47 @@ function salvar($request, $response){
     }      */
 
     $mensagem = "<html><body><div align='center'><b>** Análise de Cadastro para Fiança Locatícia nº: ". $registro . " **</b><BR>" . $inquilino . "<BR><BR>";
-    $mensagem .= "</body></html>";
+    $mensagem .= "
+        <HR></div><div align='left'>
+        <b>Imobiliária:</b> ".$CGC_imob." - <b>Corretor:</b> ".$corretor."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>Pretendente:</b> ".$inquilino." - <b>Tipo Pessoa:</b> ".$tipo_inquilino." - <b>CPF/CNPJ:</b> ".$CPF_inquilino."<BR>
+        <b>Data de Nascimento:</b> ".$data_inquilino." - <b>Sexo:</b> ".$sexo_inquilino." - <b>Estado Civil:</b> ".$est_civil_inquilino."<BR>
+        <b>RG/Documento:</b> ".$tipo_DOC_inquilino." - <b>Órgão Expedidor:</b> ".$orgao_exp_inquilino." - <b>Data de Expedição do Documento:</b> ".$data_exp_inquilino." - <b>Validade:</b> ".$data_validade_doc_inquilino."<BR>
+        <b>Responsável pela PJ:</b> ".$resp_inquilino." - <b>CPF:</b> ".$CPF_resp_inquilino."<BR>
+        <b>Telefone:</b> ".$fone_inquilino." - <b>Celular:</b> ".$cel_inquilino." - <b>E-mail:</b> ".$email_inquilino."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>CPF Cônjuge:</b> ".$cpf_conjuge_inquilino." - <b>Número de Dependentes:</b> ".$num_dependente_inquilino."<BR>
+        <b>Nome da Mãe:</b> ".$nome_mae_inquilino." - <b>Nome do Pai:</b> ".$nome_pai_inquilino."<BR>
+        <b>Nacionalidade Pretendente:</b> ".$nacionalidade_inquilino." - <b>País:</b> ".$pais_inquilino." - <b>Tempo no País:</b> ".$tempo_pais_inquilino."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>Responsável pela Locação:</b> ".$resp_locacao_inquilino." - <b>Inquilino vai residir no imóvel?</b> ".$vai_residir_imov_inquilino." - <b>Tem renda para arcar com a locação?</b> ".$tem_renda_arcar_loc_inquilino."<BR>
+        <b>Tempo de residência atual:</b> ".$tempo_resid_inquilino." - <b>Tipo de Residência:</b> ".$tipo_resid_inquilino." -
+        <b>Imobiliária/Proprietário Atual:</b> ".$imob_prop_atual." - <b>Telefone:</b> ".$fone_imob_prop_atual." - <b>Residência em Nome de quem?</b> ".$resid_emnomede_inquilino."<BR>
+        <b>Arca com aluguel?</b> ".$arca_com_aluguel_inquilino."<b>CEP Atual:</b> ".$cep_anterior_inquilino." - <b>UF:</b> ".$uf_anterior_inquilino." - <b>Cidade:</b> ".$cidade_anterior_inquilino."<BR>
+        <b>Endereço Atual:</b> ".$endereco_anterior_inquilino." - <b>Número:</b> ".$num_anterior_inquilino." - <b>Complemento:</b> ".$complemento_anterior_inquilino." - <b>Bairro:</b> ".$bairro_anterior_inquilino."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>Empresa que Trabalha:</b> ".$empresa_trab_inquilino." - <b>Telefone:</b> ".$fone_com_inquilino." - <b>Ramal:</b> ".$ramal_com_inquilino." - <b>Data de Admissão:</b> ".$data_admissao_inquilino." - <b>Endereço Comercial:</b> ".$endereco_com_inquilino."<BR>
+        <b>Profissão:</b> ".$profissao_inquilino." - <b>Natureza da Renda:</b> ".$natureza_renda_inquilino." - <b>Salário:</b> ".$salario_inquilino."<BR>
+        <b>Ourtos Rendimentos:</b> ".$outros_rendim_inquilino." - <b>Total de Outros Rendimentos:</b> ".$total_rendim_inquilino."<BR>
+        <b>Empresa que trabalhou Anteriormente:</b> ".$empresa_anterior_inquilino."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>Referência Bancária:</b> ".$ref_bancaria_inquilino." - <b>Banco:</b> ".$banco_inquilino." - <b>Agência:</b> ".$agencia_inquilino." - <b>Conta Corrente:</b> ".$ccorrente_inquilino."<BR>
+        <b>Gerente da Conta:</b> ".$gerente_inquilino." - <b>Telefone:</b> ".$fone_gerente_inquilino."<BR>
+        <b>Referência Pessoal:</b> ".$ref_pessoal_nome." - <b>Telefone:</b> ".$ref_pessoal_fone." - <b>Celular:</b> ".$ref_pessoal_cel." - <b>Grau de Parentesco/Relacionamento:</b> ".$ref_pessoal_grau_parent."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>Número de Locatários Solidários:</b> ".$num_solidarios."<BR>
+        <b>Nome do Solidário 1:</b> ".$solidario1." - <b>CPF/CNPJ:</b> ".$solidario1_cpf." - <b>Sexo:</b> ".$solidario1_sexo." - <b>RG:</b> ".$solidario1_rg." - <b>Órgão Expedidor:</b> ".$solidario1_orgao_exp_rg." - <b>Data de Expedição:</b> ".$solidario1_data_exp_rg." - <b>Telefone:</b> ".$solidario1_fone."<BR>
+        <b>Nome do Solidário 2:</b> ".$solidario2." - <b>CPF/CNPJ:</b> ".$solidario2_cpf." - <b>Sexo:</b> ".$solidario2_sexo." - <b>RG:</b> ".$solidario2_rg." - <b>Órgão Expedidor:</b> ".$solidario2_orgao_exp_rg." - <b>Data de Expedição:</b> ".$solidario2_data_exp_rg." - <b>Telefone:</b> ".$solidario2_fone."<BR>
+        <b>Nome do Solidário 3:</b> ".$solidario3." - <b>CPF/CNPJ:</b> ".$solidario3_cpf." - <b>Sexo:</b> ".$solidario3_sexo." - <b>RG:</b> ".$solidario3_rg." - <b>Órgão Expedidor:</b> ".$solidario3_orgao_exp_rg." - <b>Data de Expedição:</b> ".$solidario3_data_exp_rg." - <b>Telefone:</b> ".$solidario3_fone."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>CEP do Imóvel Pretendido:</b> ".$cep." - <b>Endereço:</b> ".$endereco." - <b>Número:</b> ".$numero." - <b>Quadra:</b> ".$quadra." - <b>Lote:</b> ".$lote." - <b>Complemento:</b> ".$complemento."<BR>
+        <b>Bairro:</b> ".$bairro." - <b>Cidade:</b> ".$cidade." - <b>UF:</b> ".$uf."<BR>
+        <b>Finalidade da Locação:</b> ".$ocupacao." - <b>Tipo do Imóvel:</b> ".$imovel_tipo." - <b>Motivo da Locação:</b> ".$motivo_locacao."<BR>
+        </div><div align='center'><HR></div><div align='left'>
+        <b>Aluguel:</b> ".$aluguel." - <b>Condomínio:</b> ".$condominio." - <b>Gás:</b> ".$gas." - <b>IPTU:</b> ".$iptu." - <b>Energia:</b> ".$energia." - <b>Água:</b> ".$agua."
+        </div><div align='center'><HR></div>";
+    $mensagem .= "<div align='center'><font size='2'>Data e hora de envio: ".$data_cob." - ".$hora_cob." - Seg: ".$seguradora." - Usuário: ".$usuario_upload."</font></div></body></html>";
 
     // Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
     require("../../../../adm/phpmailer/class.phpmailer.php");
@@ -210,7 +254,7 @@ function salvar($request, $response){
     mysql_close($conexao);
 
     //echo $retorno_mail;
-
+    return $registro;
 }
 
 $app->run();

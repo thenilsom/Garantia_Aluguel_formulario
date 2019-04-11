@@ -4,7 +4,7 @@
         function($scope, $http, service, validador, FileUploader){
 
         //obtem os parametros na url se existir
-        var paramUrl = service.extraiParamUrl();
+        var paramUrl = service.extraiParamUrl(location.search.slice(1));
 
           //controla o hide/show do botão ir para topo quando chegar no fim da pagina
         $(window).scroll(function () {
@@ -32,9 +32,10 @@
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
           var passosValidados = [];
-          $scope.passo = '2';
+          $scope.passo = '1';
 
           $scope.cadastro = {};
+          $scope.cadastro.imobiliaria = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
           $scope.cadastro.residencia = {};
           $scope.cadastro.profissional = {};
@@ -44,7 +45,11 @@
           if(paramUrl){
             var cpfCnpjParam = service.formatarCpfCnpj(service.decriptografar(paramUrl.var1));
             $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
-             $scope.nomeImobiliaria = data.data;
+            var dadosImobiliaria = service.extraiParamUrl(data.data);
+            $scope.cadastro.imobiliaria.fantasia = dadosImobiliaria.fantasia;
+            $scope.cadastro.imobiliaria.razao = dadosImobiliaria.razao;
+            $scope.cadastro.imobiliaria.corretor = dadosImobiliaria.corretor;
+            $scope.cadastro.imobiliaria.cnpj = cpfCnpjParam;
              
              $scope.cadastro.imovel.aluguel = service.formatarValor(service.decriptografar(paramUrl.var2));
              $scope.cadastro.imovel.condominio = service.formatarValor(service.decriptografar(paramUrl.var3));

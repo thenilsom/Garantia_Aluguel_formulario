@@ -5,8 +5,7 @@ angular.module('app')
 		var service = {};
 
 		//extrai os parametros da url em objeto json
-		service.extraiParamUrl = function(){
-			var query = location.search.slice(1);
+		service.extraiParamUrl = function(query){
 			if(!query) return null;
 			
 	          var partes = query.split('&');
