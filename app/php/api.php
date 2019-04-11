@@ -39,8 +39,6 @@ function salvar($request, $response){
 	$email_inquilino = trim(json_encode($cadastro->pretendente->email, JSON_UNESCAPED_UNICODE), '"');
 
 	//DADOS DA IMOBILIARIA
-	$fantasia_imobiliaria = trim(json_encode($cadastro->imobiliaria->fantasia, JSON_UNESCAPED_UNICODE), '"');
-	$fantasia_razao = trim(json_encode($cadastro->imobiliaria->razao, JSON_UNESCAPED_UNICODE), '"');
 	$fantasia_corretor = trim(json_encode($cadastro->imobiliaria->corretor, JSON_UNESCAPED_UNICODE), '"');
 	$fantasia_cnpj = trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE), '"');
 
