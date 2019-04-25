@@ -167,17 +167,19 @@ angular.module('app')
 	
 	//descriptografa codigo
 	service.decriptografar = function(val){
-		val = val.replace(new RegExp('a', 'g'), '0');
-		val = val.replace(new RegExp('@', 'g'), '1');
-		val = val.replace(new RegExp('m', 'g'), '2');
-		val = val.replace(new RegExp('s', 'g'), '3');
-		val = val.replace(new RegExp('x', 'g'), '4');
-		val = val.replace(new RegExp('!', 'g'), '5');
-		val = val.replace(new RegExp('v', 'g'), '6');
-		val = val.replace(new RegExp(',', 'g'), '7');
-		val = val.replace(new RegExp(';', 'g'), '8');
-		val = val.replace(new RegExp('i', 'g'), '9');
-
+		if(val){
+			val = val.replace(new RegExp('a', 'g'), '0');
+			val = val.replace(new RegExp('@', 'g'), '1');
+			val = val.replace(new RegExp('m', 'g'), '2');
+			val = val.replace(new RegExp('s', 'g'), '3');
+			val = val.replace(new RegExp('x', 'g'), '4');
+			val = val.replace(new RegExp('!', 'g'), '5');
+			val = val.replace(new RegExp('v', 'g'), '6');
+			val = val.replace(new RegExp(',', 'g'), '7');
+			val = val.replace(new RegExp(';', 'g'), '8');
+			val = val.replace(new RegExp('i', 'g'), '9');
+		}
+		
 		return val;
 	}
 

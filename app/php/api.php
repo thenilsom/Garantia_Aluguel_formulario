@@ -40,7 +40,7 @@ function salvar($request, $response){
 
 	//DADOS DA IMOBILIARIA
 	$fantasia_corretor = trim(json_encode($cadastro->imobiliaria->corretor, JSON_UNESCAPED_UNICODE), '"');
-	$fantasia_cnpj = trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE), '"');
+	$$CGC_imob = trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE), '"');
 
 	//DADOS RESIDENCIAIS ATUAIS//
 	$tempo_resid_inquilino = trim(json_encode($cadastro->residencia->tempoResidencia, JSON_UNESCAPED_UNICODE), '"');
@@ -135,7 +135,18 @@ function salvar($request, $response){
 
     $conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 
-    $sql = "insert into fianca values ('', '$data_cob', '$hora_cob', '$seguradora', '', '$usuario_upload', '', '', '', '', '', '', '', '',
+    $sql_imob = "select fantasia, razao, corretor, (select razao from corretores where corretores.codigo=imobs.corretor) AS NOME_COR from imobs where cpf='$CGC_imob'";
+    $consulta_imob = mysql_db_query("segurosja", $sql_imob) or die ("problema no SQL imob");
+    while($campo_imob = mysql_fetch_assoc($consulta_imob)){
+            $razao_imob = $campo_imob['razao'];
+            $fantasia_imob = $campo_imob['fantasia'];
+            $cod_cor = $campo_imob['corretor'];
+            $corretor = $campo_imob['NOME_COR'];
+    }
+    if($fantasia_imob <> ""){$IMOB = $fantasia_imob;}
+    else{$IMOB = $razao_imob;}
+
+    $sql = "insert into fianca values ('', '$data_cob', '$hora_cob', '$seguradora', '', '$usuario_upload', '', '$CGC_imob', '', '', '', '', '', '',
 								   '', '', '', '', '', '', '', '', '', '', '',
 								   '$inquilino', '$tipo_inquilino', '$CPF_inquilino', '$data_inquilino', '$sexo_inquilino', '$est_civil_inquilino', '$DOC_inquilino', '$orgao_exp_inquilino', '$data_exp_inquilino', '$data_validade_doc_inquilino', '$resp_inquilino', '$CPF_resp_inquilino', '$cpf_conjuge_inquilino', '$num_dependente_inquilino', '$nome_mae_inquilino', '$nome_pai_inquilino', '$nacionalidade_inquilino', '$pais_inquilino', '$tempo_pais_inquilino', '$resp_locacao_inquilino', '$vai_residir_imov_inquilino', '$tem_renda_arcar_loc_inquilino', '$fone_inquilino', '$cel_inquilino', '$email_inquilino',
 								   '$tempo_resid_inquilino', '$tipo_resid_inquilino', '$nome_imobiliaria', '$telefone_imobiliaria', '$resid_emnomede_inquilino', '$arca_com_aluguel_inquilino', '$cep_anterior_inquilino', '$uf_anterior_inquilino', '$cidade_anterior_inquilino', '$endereco_anterior_inquilino', '$bairro_anterior_inquilino', '$complemento_anterior_inquilino', '$num_anterior_inquilino',
@@ -143,7 +154,7 @@ function salvar($request, $response){
                                    '$num_solidarios', '$solidario1', '$solidario1_cpf', '$solidario1_fone', '$solidario1_sexo', '$solidario1_rg', '$solidario2', '$solidario2_cpf', '$solidario2_fone', '$solidario2_sexo', '$solidario2_rg', '$solidario3', '$solidario3_cpf', '$solidario3_fone', '$solidario3_sexo', '$solidario3_rg',
 								   '$cep', '$endereco', '$numero', '', '', '$complemento', '$bairro', '$cidade', '$uf', '$aluguel',
 								   '$ocupacao', '$imovel_tipo', '$motivo_locacao', '$inicio', '', '', '', '', '', '', '', '', '', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa', '',
-							       '', '', '', '', '$corretor', '')";
+							       '', '', '', '', '$cod_cor', '')";
 
     mysql_db_query("segurosja", $sql) or die (mysql_error());
     $sql_last_insert = "SELECT LAST_INSERT_ID()";
@@ -154,7 +165,7 @@ function salvar($request, $response){
           $registro = $campo_last_insert[0];
           $aux++;
     }
-
+    
     /*
     //return requisicaoSucesso('dados salvo com sucesso'); ex: retorno sucesso
     //return erroInternoServidor('erro ao salvar dados'); ex: retorno erro servidor
@@ -176,7 +187,7 @@ function salvar($request, $response){
     $mensagem = "<html><body><div align='center'><b>** Análise de Cadastro para Fiança Locatícia nº: ". $registro . " **</b><BR>" . $inquilino . "<BR><BR>";
     $mensagem .= "
         <HR></div><div align='left'>
-        <b>Imobiliária:</b> ".$CGC_imob." - <b>Corretor:</b> ".$corretor."<BR>
+        <b>Imobiliária:</b> ".$IMOB." - <b>Corretor:</b> ".$corretor."<BR>
         </div><div align='center'><HR></div><div align='left'>
         <b>Pretendente:</b> ".$inquilino." - <b>Tipo Pessoa:</b> ".$tipo_inquilino." - <b>CPF/CNPJ:</b> ".$CPF_inquilino."<BR>
         <b>Data de Nascimento:</b> ".$data_inquilino." - <b>Sexo:</b> ".$sexo_inquilino." - <b>Estado Civil:</b> ".$est_civil_inquilino."<BR>
@@ -234,7 +245,16 @@ function salvar($request, $response){
     // Define os dados técnicos da Mensagem
     $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
     $mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
-    $mail->AddAddress("leandro@maximizaseguros.com.br");//apagar
+
+    if($cod_cor == "0"){$mail->AddAddress('aluguel@mx10.com.br');$mail->AddAddress('aluguel2@maximizaseguros.com.br');$mail->AddAddress('cadastro@maximizaseguros.com.br');}
+    if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddAddress("aluguel.df@maximizaseguros.com.br");}
+    if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddAddress("mt@mx10.com.br");}
+    if($cod_cor == "6"){$mail->AddAddress('aluguel@mx10.com.br');$mail->AddAddress('aluguel2@maximizaseguros.com.br');$mail->AddAddress('cadastro@maximizaseguros.com.br');}
+    if($cod_cor == "5"){$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');$mail->AddAddress('ccavalcante@riolupo.com.br');}
+    if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
+
+    $mail->AddBCC("leandro@maximizaseguros.com.br");
+
     $mail->Body = $mensagem;//apagar
     $mail->Subject = "Análise de Fiança " . $registro . " - " . $inquilino; //apagar
     $enviado = $mail->Send();//apagar
