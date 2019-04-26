@@ -16,6 +16,8 @@ function consultarCpfCnpj($request, $response){
 	$cnpjCpf = trim(json_encode($param->cpfCnpj, JSON_UNESCAPED_UNICODE), '"');
 	
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+	
 	$sql = "SELECT fantasia, razao, corretor FROM imobs where cpf='$cnpjCpf'";
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 	while($campo = mysql_fetch_assoc($consulta)){
