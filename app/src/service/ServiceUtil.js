@@ -122,16 +122,21 @@ angular.module('app')
 	   */
 	  service.consultarCep = function(cep, callback){
 	   var url = "http://viacep.com.br/ws/"+ cep +"/json/?callback=?"
-	    	    
+	    
+	    $('.loader').show();	    
 	     $.getJSON(url, function(dados) {
+	     	 $('.loader').hide();
+
 	         if (!("erro" in dados)) { 
 	         	callback(dados)
 
 	         }else {
 	             callback(null);
 	         }
+	         
 	     }).fail(function(d) {
-	    	 console.log("Servidor Fora do Ar.");
+	     	 $('.loader').hide();
+	    	 alert('Erro ao consultar cep');
          });   	
 	  }
 

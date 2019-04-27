@@ -1,5 +1,73 @@
 var diretiva = angular.module('diretiva', []);
 
+/** Configuração do módulo de diretivas da aplicação. */
+diretiva.config([ '$httpProvider', function($httpProvider) {
+
+	/**
+	 * Implementação de 'interceptor' para obter a quantidades total de
+	 * requisições ocorridas nas iterações ocorridas na aplicação.
+	 * 
+	 * 
+	 * Importante - O loader da aplicação não está usando a implementação de
+	 * modal do bootstrap para evitar o bug de escroll, mas o estilo está sendo
+	 * adotado e invocado com o Jquery.
+	 */
+	$httpProvider.interceptors.push(function($q, $rootScope) {
+		var count = 0;
+
+		return {
+			request : function(config) {
+				if (count <= 0) {
+					$('.loader').show();
+				}
+				++count;
+				return config;
+			},
+			requestError : function(request) {
+				if (!(--count)) {
+					$('.loader').hide();
+				}
+				return $q.reject(request);
+			},
+			response : function(response) {
+				if ((--count) === 0) {
+					$('.loader').hide();
+				}
+				return response;
+			},
+			responseError : function(response) {
+				if (!(--count)) {
+					$('.loader').hide();
+				}
+				return $q.reject(response);
+			}
+		};
+	});
+
+} ]);
+
+/**
+ * Realiza o carregamento dos templates das directivas.
+ */
+diretiva
+		.run([
+				'$templateCache',
+				function($templateCache) {
+
+					/** Template referente Modal Loader. */
+					$templateCache
+							.put(
+									'modalLoader.html',
+									'<div class="loader modal" tabindex="-1">'
+											+ '<div class="modal-backdrop  in" style="min-height: 100%;"></div>'
+											+ '<div class="modal-dialog"> <div class="modal-content">'
+											+ '<div class="modal-header" style="text-align: center"><h5 class="modal-title">Aguarde...</h5></div>'
+											+ '<div class="modal-body" ><div class="row row-mg-1 row-center text-center" ><img src="./assets/img/ajax-loader.gif"></div>'
+											+ '</div></div></div></div>');
+
+					$('body').append($templateCache.get('modalLoader.html'));
+				} ]);
+
 /*Converte para maiusculo*/
 diretiva.directive('upper', function($parse) {
 
