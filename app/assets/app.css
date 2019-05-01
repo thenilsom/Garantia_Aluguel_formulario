@@ -218,6 +218,12 @@ legend.scheduler-border {
    background-color: rgb(125, 137, 202) !important;
 }
 
+
+.registros-tabela{
+  padding-top: 9px;
+  padding-right: 15px;
+}
+
 /*****Efeitos de transição de tela*******/
 .animate-if {
   background:white;

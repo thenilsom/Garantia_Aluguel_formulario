@@ -1,0 +1,37 @@
+  <h2>Listagem</h2>
+          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF/CNPJ</th>
+        <th>Telefone</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="registro in listaTabela | filter:search as filters">
+        <td>{{registro.nome}}</td>
+        <td>{{registro.cpf}}</td>
+        <td>{{registro.telefone}}</td> 
+        <td><button type="button" class="btn btn-info">Detalhar</button></td>       
+      </tr>
+        
+    </tbody>
+  </table>
+  <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="input-group">
+            <span class="input-group-addon"> <span
+              class="glyphicon glyphicon-search"></span>
+            </span> <input id="inputFiltro" type="text" data-focus class="form-control"
+              placeholder="Digite a Pesquisa" data-ng-model="search.$">
+          </div>
+              </div>
+            
+              <div class="col-offset-md-3 text-right registros-tabela">
+                <span>Total de Registros: {{filters.length}}</span>
+              </div>      
+      </div>
+    </div>
