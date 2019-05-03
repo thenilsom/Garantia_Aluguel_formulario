@@ -11,9 +11,9 @@
     </thead>
     <tbody>
       <tr ng-repeat="registro in listaTabela | filter:search as filters">
-        <td>{{registro.nome}}</td>
-        <td>{{registro.cpf}}</td>
-        <td>{{registro.telefone}}</td> 
+        <td>{{registro.inquilino}}</td>
+        <td>{{registro.CPF_inquilino | cpfcnpj}}</td>
+        <td>{{getTelefoneInquilino(registro) | telefonefilter}}</td> 
         <td><button type="button" class="btn btn-info">Detalhar</button></td>       
       </tr>
         

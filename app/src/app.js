@@ -2,7 +2,7 @@
   'use strict';
 
   // Prepare the 'users' module for subsequent registration of controllers and delegates
-  angular.module('app', [ 'ngMaterial', 'diretiva', 'angularFileUpload', 'ngRoute' ])
+  angular.module('app', [ 'ngMaterial', 'diretiva', 'angularFileUpload', 'ngRoute', 'appFilters' ])
   .config(function($routeProvider, $locationProvider){
   	//$locationProvider.html5Mode(true);
 

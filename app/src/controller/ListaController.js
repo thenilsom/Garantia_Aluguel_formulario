@@ -6,16 +6,20 @@
        
        $scope.acao = 'listar';
 
-       $scope.listaTabela = [{nome:'Denilson', cpf:'026.715.34140', telefone: '99451-5367'},
-       {nome:'Vanessa', cpf:'026.715.34140', telefone: '99451-5367'},
-       {nome:'Danilo', cpf:'033.222.34140', telefone: '99351-5588'}]
+       $scope.listaTabela = [];
 
        var listar = function(){
          $http.get('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar').then(function(data){
-            console.log(data);
+            $scope.listaTabela.push(data.data.root_name);
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
+       }
+
+       $scope.getTelefoneInquilino = function(registro){
+        if(registro.cel_inquilino) return registro.cel_inquilino;
+        if(registro.fone_inquilino) return registro.fone_inquilino;
+        if(registro.fone_com_inquilino) return registro.fone_com_inquilino;
        }
 
        listar();
