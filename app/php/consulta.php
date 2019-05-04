@@ -40,12 +40,16 @@ function listar($request, $response){
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
+
+ 	$sql = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
+			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
+			FROM fianca order by codigo";
 	
-	$sql = "SELECT *FROM fianca";
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){
-      $rows['root_name'] = $campo;
+      $rows[] = $campo;
     }
 
 	echo json_encode($rows);

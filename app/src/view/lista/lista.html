@@ -1,19 +1,22 @@
   <h2>Listagem</h2>
+  <hr/>
           
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Nome</th>
+        <th>CÓDIGO</th>
+        <th>CLIENTE</th>
         <th>CPF/CNPJ</th>
-        <th>Telefone</th>
+        <th>IMOBILIÁRIA</th>
         <th>#</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="registro in listaTabela | filter:search as filters">
+        <td>{{registro.codigo}}</td>
         <td>{{registro.inquilino}}</td>
         <td>{{registro.CPF_inquilino | cpfcnpj}}</td>
-        <td>{{getTelefoneInquilino(registro) | telefonefilter}}</td> 
+        <td>{{registro.fantasia}}</td> 
         <td><button type="button" class="btn btn-info">Detalhar</button></td>       
       </tr>
         

@@ -83,7 +83,7 @@
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-              service.alertar('Cadastro: ' + data.data + ' Gravado !');
+              service.alertar('Cadastro: ' + data.data + ' Gravado ! (FAVOR FAZER UPLOAD DE ARQUIVOS DE COMPROVAÇÃO DE RENDA.)');
               iniciarUpload(data.data);
               $scope.proximoPasso();
             }, function(erro){

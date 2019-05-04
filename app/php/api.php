@@ -14,114 +14,119 @@ function salvar($request, $response){
     //echo json_encode($cadastro->pretendente->cpf);
 
 	//DADOS DO PRETENDENTE
-	$inquilino = trim(json_encode($cadastro->pretendente->nome, JSON_UNESCAPED_UNICODE), '"');
-	$CPF_inquilino = trim(json_encode($cadastro->pretendente->cpf, JSON_UNESCAPED_UNICODE), '"');
-	$data_inquilino = trim(json_encode($cadastro->pretendente->dataNascimento, JSON_UNESCAPED_UNICODE), '"');
-	$tipo_DOC_inquilino = trim(json_encode($cadastro->pretendente->tipoDoc, JSON_UNESCAPED_UNICODE), '"');
-	$DOC_inquilino = trim(json_encode($cadastro->pretendente->numDoc, JSON_UNESCAPED_UNICODE), '"');
-	$orgao_exp_inquilino = trim(json_encode($cadastro->pretendente->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-	$data_exp_inquilino = trim(json_encode($cadastro->pretendente->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
-	$data_validade_doc_inquilino = trim(json_encode($cadastro->pretendente->dataValidade, JSON_UNESCAPED_UNICODE), '"');
-	$sexo_inquilino = trim(json_encode($cadastro->pretendente->sexo, JSON_UNESCAPED_UNICODE), '"');
-	$est_civil_inquilino = trim(json_encode($cadastro->pretendente->estadoCivil, JSON_UNESCAPED_UNICODE), '"');
-	$cpf_conjuge_inquilino = trim(json_encode($cadastro->pretendente->cpfConjuge, JSON_UNESCAPED_UNICODE), '"');
-	$num_dependente_inquilino = trim(json_encode($cadastro->pretendente->numeroDependente, JSON_UNESCAPED_UNICODE), '"');
-	$nome_mae_inquilino = trim(json_encode($cadastro->pretendente->nomeMae, JSON_UNESCAPED_UNICODE), '"');
-	$nome_pai_inquilino = trim(json_encode($cadastro->pretendente->nomePai, JSON_UNESCAPED_UNICODE), '"');
-	$nacionalidade_inquilino = trim(json_encode($cadastro->pretendente->nacionalidade, JSON_UNESCAPED_UNICODE), '"');
-	//$pais_inquilino = trim(json_encode($cadastro->pretendente->paisOrigem, JSON_UNESCAPED_UNICODE), '"');
-	$tempo_pais_inquilino = trim(json_encode($cadastro->pretendente->tempoPais, JSON_UNESCAPED_UNICODE), '"');
-	//$resp_locacao_inquilino = trim(json_encode($cadastro->pretendente->responsavelLocacao, JSON_UNESCAPED_UNICODE), '"');
-	$vai_residir_imov_inquilino = trim(json_encode($cadastro->pretendente->iraResidirImovel, JSON_UNESCAPED_UNICODE), '"');
-	$fone_inquilino = trim(json_encode($cadastro->pretendente->telefone, JSON_UNESCAPED_UNICODE), '"');
-	$cel_inquilino = trim(json_encode($cadastro->pretendente->celular, JSON_UNESCAPED_UNICODE), '"');
-	$fone_com_inquilino = trim(json_encode($cadastro->pretendente->telefoneComercial, JSON_UNESCAPED_UNICODE), '"');
-	$email_inquilino = trim(json_encode($cadastro->pretendente->email, JSON_UNESCAPED_UNICODE), '"');
+	$inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$CPF_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$data_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tipo_DOC_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tipoDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$DOC_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$orgao_exp_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$data_exp_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$data_validade_doc_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$sexo_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$est_civil_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cpf_conjuge_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$num_dependente_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->numeroDependente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$nome_mae_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomeMae, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$nome_pai_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomePai, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$nacionalidade_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nacionalidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	//$pais_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->paisOrigem, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tempo_pais_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tempoPais, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	//$resp_locacao_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->responsavelLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$vai_residir_imov_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$fone_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cel_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->celular, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$fone_com_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->telefoneComercial, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$email_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->email, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS DA IMOBILIARIA
-	$fantasia_corretor = trim(json_encode($cadastro->imobiliaria->corretor, JSON_UNESCAPED_UNICODE), '"');
-	$$CGC_imob = trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE), '"');
+	$fantasia_corretor = utf8_decode(trim(json_encode($cadastro->imobiliaria->corretor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$CGC_imob = utf8_decode(trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS RESIDENCIAIS ATUAIS//
-	$tempo_resid_inquilino = trim(json_encode($cadastro->residencia->tempoResidencia, JSON_UNESCAPED_UNICODE), '"');
-	$tipo_resid_inquilino = trim(json_encode($cadastro->residencia->tipo, JSON_UNESCAPED_UNICODE), '"');
-	$nome_imobiliaria = trim(json_encode($cadastro->residencia->nomeImobiliaria, JSON_UNESCAPED_UNICODE), '"');
-	$telefone_imobiliaria = trim(json_encode($cadastro->residencia->telefoneImobiliaria, JSON_UNESCAPED_UNICODE), '"');
-	$resid_emnomede_inquilino = trim(json_encode($cadastro->residencia->emNome, JSON_UNESCAPED_UNICODE), '"');
-	$arca_com_aluguel_inquilino = trim(json_encode($cadastro->residencia->arcaAluguel, JSON_UNESCAPED_UNICODE), '"');
-	$cep_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->cep, JSON_UNESCAPED_UNICODE), '"');
-	$uf_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->estado, JSON_UNESCAPED_UNICODE), '"');
-	$cidade_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->cidade, JSON_UNESCAPED_UNICODE), '"');
-	$endereco_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->endereco, JSON_UNESCAPED_UNICODE), '"');
-	$bairro_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->bairro, JSON_UNESCAPED_UNICODE), '"');
-	if(json_encode($cadastro->residencia->anterior->complemento) <> "null"){$complemento_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->complemento, JSON_UNESCAPED_UNICODE), '"');}else{$complemento_anterior_inquilino="";}
-	$num_anterior_inquilino = trim(json_encode($cadastro->residencia->anterior->numero, JSON_UNESCAPED_UNICODE), '"');
+	$tempo_resid_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->tempoResidencia, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tipo_resid_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->tipo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$nome_imobiliaria = utf8_decode(trim(json_encode($cadastro->residencia->nomeImobiliaria, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$telefone_imobiliaria = utf8_decode(trim(json_encode($cadastro->residencia->telefoneImobiliaria, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$resid_emnomede_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->emNome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$arca_com_aluguel_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->arcaAluguel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cep_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$uf_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->estado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cidade_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->cidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$endereco_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->endereco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$bairro_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->bairro, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	if(json_encode($cadastro->residencia->anterior->complemento) <> "null"){$complemento_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->complemento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));}else{$complemento_anterior_inquilino="";}
+	$num_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->numero, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS PROFISSIONAIS//
-	$empresa_trab_inquilino = trim(json_encode($cadastro->profissional->empresa, JSON_UNESCAPED_UNICODE), '"');
-	$fone_com_2_inquilino = trim(json_encode($cadastro->profissional->telefone, JSON_UNESCAPED_UNICODE), '"');
-	$ramal_com_inquilino = trim(json_encode($cadastro->profissional->ramal, JSON_UNESCAPED_UNICODE), '"');
-	$profissao_inquilino = trim(json_encode($cadastro->profissional->profissao, JSON_UNESCAPED_UNICODE), '"');
-	$natureza_renda_inquilino = trim(json_encode($cadastro->profissional->naturezaRenda, JSON_UNESCAPED_UNICODE), '"');
-	$data_admissao_inquilino = trim(json_encode($cadastro->profissional->dataAdmissao, JSON_UNESCAPED_UNICODE), '"');
-	$salario_inquilino = trim(json_encode($cadastro->profissional->salario, JSON_UNESCAPED_UNICODE), '"');
-	$outros_rendim_inquilino = trim(json_encode($cadastro->profissional->outrosRendimentos, JSON_UNESCAPED_UNICODE), '"');
-	$total_rendim_inquilino = trim(json_encode($cadastro->profissional->totalRendimentos, JSON_UNESCAPED_UNICODE), '"');
-	$empresa_anterior_inquilino = trim(json_encode($cadastro->profissional->empresaAnterior, JSON_UNESCAPED_UNICODE), '"');
-	$endereco_com_inquilino = trim(json_encode($cadastro->profissional->enderecoComercial, JSON_UNESCAPED_UNICODE), '"');
-	$ref_bancaria_inquilino = trim(json_encode($cadastro->profissional->possuiRefBancaria, JSON_UNESCAPED_UNICODE), '"');
-	$banco_inquilino = trim(json_encode($cadastro->profissional->banco, JSON_UNESCAPED_UNICODE), '"');
-	$agencia_inquilino = trim(json_encode($cadastro->profissional->agencia, JSON_UNESCAPED_UNICODE), '"');
-	$ccorrente_inquilino = trim(json_encode($cadastro->profissional->contaCorrente, JSON_UNESCAPED_UNICODE), '"');
-	$gerente_inquilino = trim(json_encode($cadastro->profissional->gerente, JSON_UNESCAPED_UNICODE), '"');
-	$fone_gerente_inquilino = trim(json_encode($cadastro->profissional->telefoneGerente, JSON_UNESCAPED_UNICODE), '"');
+	$empresa_trab_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->empresa, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$fone_com_2_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ramal_com_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->ramal, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$natureza_renda_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$data_admissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$salario_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->salario, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$outros_rendim_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->outrosRendimentos, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$total_rendim_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->totalRendimentos, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$empresa_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->empresaAnterior, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$endereco_com_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->enderecoComercial, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ref_bancaria_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->possuiRefBancaria, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$banco_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->banco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$agencia_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->agencia, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ccorrente_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->contaCorrente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$gerente_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->gerente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$fone_gerente_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->telefoneGerente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS IMÓVEL PRETENDIDO//
-	$ocupacao = trim(json_encode($cadastro->imovel->finalidade, JSON_UNESCAPED_UNICODE), '"');
-	$imovel_tipo = trim(json_encode($cadastro->imovel->tipo, JSON_UNESCAPED_UNICODE), '"');
-	$motivo_locacao = trim(json_encode($cadastro->imovel->motivoLocacao, JSON_UNESCAPED_UNICODE), '"');
-	$cep = trim(json_encode($cadastro->imovel->cep, JSON_UNESCAPED_UNICODE), '"');
-	$uf = trim(json_encode($cadastro->imovel->estado, JSON_UNESCAPED_UNICODE), '"');
-	$cidade = trim(json_encode($cadastro->imovel->cidade, JSON_UNESCAPED_UNICODE), '"');
-	$endereco = trim(json_encode($cadastro->imovel->endereco, JSON_UNESCAPED_UNICODE), '"');
-	$bairro = trim(json_encode($cadastro->imovel->bairro, JSON_UNESCAPED_UNICODE), '"');
-	$numero = trim(json_encode($cadastro->imovel->numero, JSON_UNESCAPED_UNICODE), '"');
-	$complemento = trim(json_encode($cadastro->imovel->complemento, JSON_UNESCAPED_UNICODE), '"');
-	$aluguel = trim(json_encode($cadastro->imovel->aluguel, JSON_UNESCAPED_UNICODE), '"');
-	$iptu = trim(json_encode($cadastro->imovel->iptu, JSON_UNESCAPED_UNICODE), '"');
-	$condominio = trim(json_encode($cadastro->imovel->condominio, JSON_UNESCAPED_UNICODE), '"');
-	$agua = trim(json_encode($cadastro->imovel->agua, JSON_UNESCAPED_UNICODE), '"');
-	$energia = trim(json_encode($cadastro->imovel->luz, JSON_UNESCAPED_UNICODE), '"');
-	$gas = trim(json_encode($cadastro->imovel->gas, JSON_UNESCAPED_UNICODE), '"');
+	$ocupacao = utf8_decode(trim(json_encode($cadastro->imovel->finalidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$imovel_tipo = utf8_decode(trim(json_encode($cadastro->imovel->tipo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$motivo_locacao = utf8_decode(trim(json_encode($cadastro->imovel->motivoLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cep = utf8_decode(trim(json_encode($cadastro->imovel->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$uf = utf8_decode(trim(json_encode($cadastro->imovel->estado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cidade = utf8_decode(trim(json_encode($cadastro->imovel->cidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$endereco = utf8_decode(trim(json_encode($cadastro->imovel->endereco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$bairro = utf8_decode(trim(json_encode($cadastro->imovel->bairro, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$numero = utf8_decode(trim(json_encode($cadastro->imovel->numero, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$complemento = utf8_decode(trim(json_encode($cadastro->imovel->complemento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$aluguel = utf8_decode(trim(json_encode($cadastro->imovel->aluguel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$iptu = utf8_decode(trim(json_encode($cadastro->imovel->iptu, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$condominio = utf8_decode(trim(json_encode($cadastro->imovel->condominio, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$agua = utf8_decode(trim(json_encode($cadastro->imovel->agua, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$energia = utf8_decode(trim(json_encode($cadastro->imovel->luz, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$gas = utf8_decode(trim(json_encode($cadastro->imovel->gas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS PESSOAIS//
-	$ref_pessoal_nome = trim(json_encode($cadastro->pessoal->nome, JSON_UNESCAPED_UNICODE), '"');
-	$ref_pessoal_fone = trim(json_encode($cadastro->pessoal->telefone, JSON_UNESCAPED_UNICODE), '"');
-	$ref_pessoal_cel = trim(json_encode($cadastro->pessoal->celular, JSON_UNESCAPED_UNICODE), '"');
-	$ref_pessoal_grau_parent = trim(json_encode($cadastro->pessoal->grauParentesco, JSON_UNESCAPED_UNICODE), '"');
-	$tem_renda_arcar_loc_inquilino = trim(json_encode($cadastro->pessoal->possuiRendaArcarLocacao, JSON_UNESCAPED_UNICODE), '"');
-	$num_solidarios = trim(json_encode($cadastro->pessoal->numSolidarios, JSON_UNESCAPED_UNICODE), '"');
-	$solidario1 = trim(json_encode($cadastro->pessoal->solidario1->nome, JSON_UNESCAPED_UNICODE), '"');
-	$solidario1_cpf = trim(json_encode($cadastro->pessoal->solidario1->cpf, JSON_UNESCAPED_UNICODE), '"');
-	$solidario1_fone = trim(json_encode($cadastro->pessoal->solidario1->telefone, JSON_UNESCAPED_UNICODE), '"');
-	$solidario1_sexo = trim(json_encode($cadastro->pessoal->solidario1->sexo, JSON_UNESCAPED_UNICODE), '"');
-	$solidario1_rg = trim(json_encode($cadastro->pessoal->solidario1->numDoc, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante1->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante1->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2 = trim(json_encode($cadastro->pessoal->solidario2->nome, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_cpf = trim(json_encode($cadastro->pessoal->solidario2->cpf, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_fone = trim(json_encode($cadastro->pessoal->solidario2->telefone, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_sexo = trim(json_encode($cadastro->pessoal->solidario2->sexo, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_rg = trim(json_encode($cadastro->pessoal->solidario2->numDoc, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-	$solidario2_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3 = trim(json_encode($cadastro->pessoal->solidario3->nome, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3_cpf = trim(json_encode($cadastro->pessoal->solidario3->cpf, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3_fone = trim(json_encode($cadastro->pessoal->solidario3->telefone, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3_sexo = trim(json_encode($cadastro->pessoal->solidario3->sexo, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3_rg = trim(json_encode($cadastro->pessoal->solidario3->numDoc, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3_orgao_exp_rg = trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE), '"');
-	$solidario3_data_exp_rg = trim(json_encode($cadastro->pessoal->ocupante3->dataEmissao, JSON_UNESCAPED_UNICODE), '"');
+	$ref_pessoal_nome = utf8_decode(trim(json_encode($cadastro->pessoal->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ref_pessoal_fone = utf8_decode(trim(json_encode($cadastro->pessoal->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ref_pessoal_cel = utf8_decode(trim(json_encode($cadastro->pessoal->celular, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ref_pessoal_grau_parent = utf8_decode(trim(json_encode($cadastro->pessoal->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tem_renda_arcar_loc_inquilino = utf8_decode(trim(json_encode($cadastro->pessoal->possuiRendaArcarLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$num_solidarios = utf8_decode(trim(json_encode($cadastro->pessoal->numSolidarios, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+
+	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+
+	$solidario3 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
     $data_cob = date("Y-m-d");
     $hora_cob = date("H:i:s");
@@ -135,13 +140,14 @@ function salvar($request, $response){
 
     $conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 
-    $sql_imob = "select fantasia, razao, corretor, (select razao from corretores where corretores.codigo=imobs.corretor) AS NOME_COR from imobs where cpf='$CGC_imob'";
+    $sql_imob = "select fantasia, razao, corretor, (select razao from corretores where corretores.codigo=imobs.corretor) AS NOME_COR, (select email from corretores where corretores.codigo=imobs.corretor) AS EMAIL_COR from imobs where cpf='$CGC_imob'";
     $consulta_imob = mysql_db_query("segurosja", $sql_imob) or die ("problema no SQL imob");
     while($campo_imob = mysql_fetch_assoc($consulta_imob)){
             $razao_imob = $campo_imob['razao'];
             $fantasia_imob = $campo_imob['fantasia'];
             $cod_cor = $campo_imob['corretor'];
             $corretor = $campo_imob['NOME_COR'];
+            $email_cor = $campo_imob['EMAIL_COR'];
     }
     if($fantasia_imob <> ""){$IMOB = $fantasia_imob;}
     else{$IMOB = $razao_imob;}
@@ -241,16 +247,16 @@ function salvar($request, $response){
     $mail->From = "cobertura@segurosja.com.br"; // Seu e-mail
     $mail->Sender = "cobertura@segurosja.com.br"; // Seu e-mail
     $mail->FromName = "Seguros Já! Cadastro"; // Seu nome
-    $mail->AddReplyTo("cobertura@segurosja.com.br"); // Email para receber as respostas
+    $mail->AddReplyTo("$email_cor"); // Email para receber as respostas
     // Define os dados técnicos da Mensagem
     $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
     $mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
 
-    if($cod_cor == "0"){$mail->AddAddress('aluguel@mx10.com.br');$mail->AddAddress('aluguel2@maximizaseguros.com.br');$mail->AddAddress('cadastro@maximizaseguros.com.br');}
-    if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddAddress("aluguel.df@maximizaseguros.com.br");}
-    if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddAddress("mt@mx10.com.br");}
-    if($cod_cor == "6"){$mail->AddAddress('aluguel@mx10.com.br');$mail->AddAddress('aluguel2@maximizaseguros.com.br');$mail->AddAddress('cadastro@maximizaseguros.com.br');}
-    if($cod_cor == "5"){$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');$mail->AddAddress('ccavalcante@riolupo.com.br');}
+    if($cod_cor == "0"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');}
+    if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddCC("aluguel.df@maximizaseguros.com.br");}
+    if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddCC("mt@mx10.com.br");}
+    if($cod_cor == "6"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');}
+    if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
     if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
 
     $mail->AddBCC("leandro@maximizaseguros.com.br");
