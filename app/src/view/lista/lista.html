@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="registro in listaTabela | filter:search as filters">
+      <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 10">
         <td>{{registro.codigo}}</td>
         <td>{{registro.inquilino}}</td>
         <td>{{registro.CPF_inquilino | cpfcnpj}}</td>
@@ -22,19 +22,21 @@
         
     </tbody>
   </table>
+
   <div class="panel-footer">
       <div class="row">
         <div class="col-sm-4">
           <div class="input-group">
-            <span class="input-group-addon"> <span
-              class="glyphicon glyphicon-search"></span>
-            </span> <input id="inputFiltro" type="text" data-focus class="form-control"
-              placeholder="Digite a Pesquisa" data-ng-model="search.$">
-          </div>
+              <span class="input-group-addon"> <span
+                class="glyphicon glyphicon-search"></span>
+              </span> <input id="inputFiltro" type="text" data-focus class="form-control"
+                placeholder="Digite a Pesquisa" data-ng-model="q.$">
               </div>
-            
-              <div class="col-offset-md-3 text-right registros-tabela">
-                <span>Total de Registros: {{filters.length}}</span>
-              </div>      
+          </div>
+                            
       </div>
     </div>
+
+    <dir-pagination-controls max-size="20"></dir-pagination-controls>
+
+    <!--Link da documentação da paginação = https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
