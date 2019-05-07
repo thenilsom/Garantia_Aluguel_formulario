@@ -8,6 +8,17 @@
 
        $scope.listaTabela = [];
 
+       $scope.detalhar = function(registro){
+
+        for (var key in registro) {
+          if(!registro[key])
+            registro[key] = '--';
+        }
+
+        $scope.registro = registro;
+        $scope.acao = 'detalhar';
+       }
+
        var listar = function(){
          $http.get('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar').then(function(data){
             $scope.listaTabela = data.data;
