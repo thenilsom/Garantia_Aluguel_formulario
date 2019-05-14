@@ -1,0 +1,73 @@
+<div class="container" layout-padding>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    	
+    <div class="form-group">
+		<label>Finalidade Imóvel: </label> <span>{{registro.ocupacao}}</span>
+	</div>
+
+	<div class="form-group">
+	<label>Tipo de Imóvel: </label> <span>{{registro.imovel_tipo}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Motivo da Locação: </label> <span>{{registro.motivo_locacao}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>CEP: </label> <span>{{registro.cep}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Estado: </label> <span>{{registro.uf}}</span>
+
+		<label>Cidade: </label> <span>{{registro.cidade}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Endereço: </label> <span>{{registro.endereco}}</span>
+
+	</div>
+
+	<div class="form-group">
+		<label>Bairro: </label> <span>{{registro.bairro}}</span>
+		
+	</div>
+
+	<div class="form-group">
+		<label>Numero: </label> <span>{{registro.numero}}</span>
+	
+		<label>Complemento: </label> <span>{{registro.complemento}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Aluguel: </label> <span>{{registro.aluguel}}</span>
+	</div>
+
+<div ng-if="registro.ref_bancaria_inquilino == 'sim'">
+	<div class="form-group">
+		<label>Iptu Mensal: </label> <span>{{registro.iptu}}</span>
+	</div>
+	
+
+	<div class="form-group">
+		<label>Condomínio: </label> <span>{{registro.condominio}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Água: </label> <span>{{registro.agua}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Luz: </label> <span>{{registro.energia}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Gás Canalizado: </label> <span>{{registro.gas}}</span>
+	</div>
+</div>
+
+    </div>
+  </div>
+</div>
