@@ -1,0 +1,99 @@
+<div class="container" layout-padding>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    	
+    <div class="form-group">
+		<label>Possui renda arcar locação: </label> <span>{{registro.tem_renda_arcar_loc_inquilino}}</span>
+	</div>
+
+	<div class="form-group">
+	<label>Nº Pessoas compondo renda (Locatários Solidários): </label> <span>{{registro.num_solidarios}}</span>
+	</div>
+
+<fieldset class="scheduler-border" ng-if="registro.num_solidarios >=1">
+  <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 1</legend>
+	<div class="form-group">
+		<label>Nome: </label> <span>{{registro.solidario1}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>CPF: </label> <span>{{registro.solidario1_cpf}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Renda mensal bruta: </label> <span>{{registro.solidario1_renda}}</span>
+
+		<label>Telefone: </label> <span>{{registro.solidario1_fone}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Sexo: </label> <span>{{registro.solidario1_sexo}}</span>
+
+	</div>
+
+	<div class="form-group">
+		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{registro.solidario1_rg}}</span>
+		
+	</div>
+</fieldset>
+
+<fieldset class="scheduler-border" ng-if="registro.num_solidarios >=2">
+  <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 2</legend>
+	<div class="form-group">
+		<label>Nome: </label> <span>{{registro.solidario2}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>CPF: </label> <span>{{registro.solidario2_cpf}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Renda mensal bruta: </label> <span>{{registro.solidario2_renda}}</span>
+
+		<label>Telefone: </label> <span>{{registro.solidario2_fone}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Sexo: </label> <span>{{registro.solidario2_sexo}}</span>
+
+	</div>
+
+	<div class="form-group">
+		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{registro.solidario2_rg}}</span>
+		
+	</div>
+</fieldset>
+
+<fieldset class="scheduler-border" ng-if="registro.num_solidarios == 3">
+  <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 3</legend>
+	<div class="form-group">
+		<label>Nome: </label> <span>{{registro.solidario3}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>CPF: </label> <span>{{registro.solidario3_cpf}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Renda mensal bruta: </label> <span>{{registro.solidario3_renda}}</span>
+
+		<label>Telefone: </label> <span>{{registro.solidario3_fone}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Sexo: </label> <span>{{registro.solidario3_sexo}}</span>
+
+	</div>
+
+	<div class="form-group">
+		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{registro.solidario3_rg}}</span>
+		
+	</div>
+</fieldset>
+
+    </div>
+  </div>
+</div>
