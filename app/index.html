@@ -33,7 +33,8 @@
 <body ng-app="app" ng-cloak>
 
   <div class="container">
-    <div data-ng-view></div>
+    <!-- Inclusão da pagina do formulario -->
+      <div data-ng-include="'./src/view/formulario/principal.html'" ng-controller="MainController"></div> 
   </div>
 
     <!-- Bibliotecas Angular-Material -->

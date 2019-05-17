@@ -1,6 +1,4 @@
 <div class="container" layout-padding>
-  <div class="panel panel-default">
-    <div class="panel-body">
     	
     <div class="form-group">
 		<label>Possui renda arcar locação: </label> <span>{{registro.tem_renda_arcar_loc_inquilino}}</span>
@@ -10,8 +8,8 @@
 	<label>Nº Pessoas compondo renda (Locatários Solidários): </label> <span>{{registro.num_solidarios}}</span>
 	</div>
 
-<fieldset class="scheduler-border" ng-if="registro.num_solidarios >=1">
-  <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 1</legend>
+<div ng-if="registro.num_solidarios >=1">
+  <label><u>LOCATÁRIO SOLIDÁRIO 1</u></label>
 	<div class="form-group">
 		<label>Nome: </label> <span>{{registro.solidario1}}</span>
 	</div>
@@ -36,10 +34,10 @@
 		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{registro.solidario1_rg}}</span>
 		
 	</div>
-</fieldset>
+</div>
 
-<fieldset class="scheduler-border" ng-if="registro.num_solidarios >=2">
-  <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 2</legend>
+<div ng-if="registro.num_solidarios >=2">
+  <label><u>LOCATÁRIO SOLIDÁRIO 2</u></label>
 	<div class="form-group">
 		<label>Nome: </label> <span>{{registro.solidario2}}</span>
 	</div>
@@ -64,10 +62,11 @@
 		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{registro.solidario2_rg}}</span>
 		
 	</div>
-</fieldset>
+</div>
 
-<fieldset class="scheduler-border" ng-if="registro.num_solidarios == 3">
-  <legend class="scheduler-border">LOCATÁRIO SOLIDÁRIO 3</legend>
+
+  <div ng-if="registro.num_solidarios == 3">
+  	<label><u>LOCATÁRIO SOLIDÁRIO 3</u></label>
 	<div class="form-group">
 		<label>Nome: </label> <span>{{registro.solidario3}}</span>
 	</div>
@@ -92,8 +91,6 @@
 		<label>Numero do Documento (RG/RNE/Ordem/Conselho): </label> <span>{{registro.solidario3_rg}}</span>
 		
 	</div>
-</fieldset>
+</div>
 
-    </div>
-  </div>
 </div>

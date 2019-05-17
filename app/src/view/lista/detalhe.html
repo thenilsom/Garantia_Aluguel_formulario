@@ -1,14 +1,118 @@
-<!-- Detalhamento dados do pretendente -->
-<div data-ng-include="'./src/view/lista/dadosPretendenteDetalhe.html'"></div> 
 
-<!-- Detalhamento dados residenciais -->
-<div data-ng-include="'./src/view/lista/dadosResidenciaisDetalhe.html'"></div> 
+<div class="row row-center">
+	<div class="col-sm-9 col-center">
+		<div class="panel panel-default" style="margin-bottom: 5px;">
+			<div class="panel-heading">
+				<h2 class="panel-title">Detalhamento</h2>
+			</div>
 
-<!-- Detalhamento dados profissionais -->
-<div data-ng-include="'./src/view/lista/dadosProfissionaisDetalhe.html'"></div> 
+			<div class="panel-body fixed-panel">
 
-<!-- Detalhamento dados imóvel -->
-<div data-ng-include="'./src/view/lista/dadosImovelDetalhe.html'"></div> 
+					<div class="bs-example">
+						<div class="panel-group" id="accordion">
+						
+						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseTwo">
+										Dados Pretendente <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseTwo panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados do pretendente -->
+										<div data-ng-include="'./src/view/lista/dadosPretendenteDetalhe.html'"></div> 
+										
+									</div>
+								</div>
+							</div>
+						
+						<!-- Permissões do Financeiro -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseOne">
+										Residência Atual <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseOne panel-collapse collapse">
+									<div class="panel-body">												
+										<!-- Detalhamento dados residenciais -->
+										<div data-ng-include="'./src/view/lista/dadosResidenciaisDetalhe.html'"></div> 
+									</div>
+								</div>
+							</div>
+							
+							
+							<!-- Permissões do Caixa -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseNine">
+										Dados Profissionais <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseNine panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados profissionais -->
+										<div data-ng-include="'./src/view/lista/dadosProfissionaisDetalhe.html'"></div>								
+									</div>
+								</div>
+							</div>
+							
+														
+							<!-- Permissões Especiais -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseEspecial">
+										Imóvel Pretendido <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseEspecial panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados imóvel -->
+										<div data-ng-include="'./src/view/lista/dadosImovelDetalhe.html'"></div>																				
+									</div>
+								</div>
+							</div>
+												
+							
+							<!-- Permissões da Automação -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseAutomacao">
+										Composição Renda <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseAutomacao panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados composição de renda -->
+										<div data-ng-include="'./src/view/lista/composicaoRendaDetalhe.html'"></div> 
+																					
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				
 
-<!-- Detalhamento dados composição de renda -->
-<div data-ng-include="'./src/view/lista/composicaoRendaDetalhe.html'"></div> 
+			</div>
+
+		</div>
+		
+		<!-- Importe dos botoes do Form -->
+					<div class="form-group last">
+						<div class="col-md-12 text-center">
+							 <md-button class="md-raised" style="background-color: green; color: white" 
+						      ng-click="irParaListagem()">Voltar a listagem <span aria-hidden="true"></span>
+						      </md-button>
+						</div>
+				</div>
+
+	</div>
+</div>

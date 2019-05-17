@@ -1,11 +1,9 @@
  angular
        .module('app')
-       .controller('ListaController', ['$scope', '$http', 'serviceUtil', 
-        function($scope, $http, service){
+       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 
+        function($scope, $http, service, $timeout){
 
-       
-       $scope.acao = 'listar';
-
+     
        $scope.listaTabela = [];
 
        $scope.detalhar = function(registro){
@@ -15,8 +13,18 @@
             registro[key] = '--';
         }
 
+        $timeout(function(){
+          $("#accordion a:first").trigger("click");
+        });
+
+
         $scope.registro = registro;
         $scope.acao = 'detalhar';
+
+       }
+
+       $scope.irParaListagem = function(){
+        $scope.acao = 'listar';
        }
 
        var listar = function(){
@@ -27,6 +35,6 @@
             });
        }
 
-      
+       $scope.irParaListagem();
        listar();
     }]);
