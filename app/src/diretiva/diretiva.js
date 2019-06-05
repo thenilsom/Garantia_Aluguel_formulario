@@ -270,6 +270,30 @@ diretiva.directive('focus', function($timeout) {
 });
 
 /**
+ * Implementação de 'directive', para não permitir acentuação nos inputs
+ */
+diretiva.directive('semAcento', function() {
+	return {
+
+		restrinct : 'A',
+
+		link : function(scope, element) {
+			$(element).keypress(function(e,args){
+				if (document.all){var evt=event.keyCode;} // caso seja IE
+				else{var evt = e.charCode;}	// do contrário deve ser Mozilla
+				var valid_chars = '0123456789abcdefghijlmnopqrstuvxzwykABCDEFGHIJLMNOPQRSTUVXZWYK-_ '+args;	// criando a lista de teclas permitidas
+				var chr= String.fromCharCode(evt);	// pegando a tecla digitada
+				if (valid_chars.indexOf(chr)>-1 ){return true;}	// se a tecla estiver na lista de permissão permite-a
+				// para permitir teclas como <BACKSPACE> adicionamos uma permissão para 
+				// códigos de tecla menores que 09 por exemplo (geralmente uso menores que 20)
+				if (valid_chars.indexOf(chr)>-1 || evt < 9){return true;}	// se a tecla estiver na lista de permissão permite-a
+				return false;	// do contrário nega
+			});
+		}
+	};
+});
+
+/**
  * Seta o tabindex passado por parametro no elemento e adiciona o manipulador de
  * evento keydow para controlar a tabulação com enter entre os elementos do
  * formulario.
