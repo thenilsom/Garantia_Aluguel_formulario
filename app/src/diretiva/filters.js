@@ -5,7 +5,7 @@ var directives = angular.module('appFilters', []);
  */
 directives.filter('cpfcnpj', function() {
 	return function(input) {
-		if(input.length < 12){
+		if(input.replace(/\D/g, '').length < 12){
 			return cpf(input); 
 		}else{
 			return cnpj(input);

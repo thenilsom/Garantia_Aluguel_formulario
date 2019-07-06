@@ -1,4 +1,4 @@
-  <h2>Listagem</h2>
+  <h2>Cadastros de Fiança Locatícia</h2>
   <hr/>
           
   <table class="table table-striped">
@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 10">
+      <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 20">
         <td>{{registro.codigo}}</td>
         <td>{{registro.inquilino}}</td>
         <td>{{registro.CPF_inquilino | cpfcnpj}}</td>
@@ -30,7 +30,7 @@
               <span class="input-group-addon"> <span
                 class="glyphicon glyphicon-search"></span>
               </span> <input id="inputFiltro" type="text" data-focus class="form-control"
-                placeholder="Digite a Pesquisa" data-ng-model="q.$">
+                placeholder="Digite a Pesquisa" data-ng-model="q.inquilino">
               </div>
           </div>
                             

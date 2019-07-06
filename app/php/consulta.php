@@ -1,5 +1,7 @@
 <?php
  header("Access-Control-Allow-Origin: *");
+ header("Access-Control-Allow-Methods: GET,PUT,POST,DELETE");
+ header("Access-Control-Allow-Headers: Content-Type, Authorization");
  
 require_once("php7_mysql_shim.php");
 
@@ -11,7 +13,7 @@ $app->get('/hello', function(){
 });
 
 $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
-$app->get('/listar', 'listar');
+$app->post('/listar', 'listar');
 
 function consultarCpfCnpj($request, $response){
 	$param = json_decode($request->getBody());
@@ -34,19 +36,24 @@ function consultarCpfCnpj($request, $response){
 
 function listar($request, $response){
 	$param = json_decode($request->getBody());
-	$cnpjCpf = trim(json_encode($param->cpfCnpj, JSON_UNESCAPED_UNICODE), '"');
+	$codigo = trim(json_encode($param->codigo, JSON_UNESCAPED_UNICODE), '"');
 	
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
 
- 	$sql = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
+ 	$sqlTodos = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
-			FROM fianca order by codigo";
+			from fianca order by codigo desc";
+
+	$sqlPorCodigo = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
+			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
+			from fianca where corretor='$codigo' order by codigo desc";
 	
-	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+	$consulta = mysql_db_query("segurosja", $codigo != "null" ? $sqlPorCodigo : $sqlTodos) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){
       $rows[] = $campo;

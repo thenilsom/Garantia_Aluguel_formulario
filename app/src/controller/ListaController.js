@@ -3,6 +3,12 @@
        .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 
         function($scope, $http, service, $timeout){
 
+        //obtem os parametros na url se existir
+        var codigoParam = null;
+        var paramUrl = service.extraiParamUrl(location.search.slice(1));
+        if(paramUrl)
+          codigoParam = service.decriptografar(paramUrl['var']);
+
      
        $scope.listaTabela = [];
 
@@ -28,11 +34,16 @@
        }
 
        var listar = function(){
-         $http.get('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar').then(function(data){
+         $http.post('../app/php/consulta.php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $scope.listaTabela = data.data;
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
+       }
+
+       //formata o nome para o link de uploads
+       $scope.formatarNomeParaLink = function(nome){
+        return nome.replace(/ /g, '_');
        }
 
        $scope.irParaListagem();
