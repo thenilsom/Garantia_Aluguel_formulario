@@ -34,7 +34,7 @@
        }
 
        var listar = function(){
-         $http.post('../app/php/consulta.php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+         $http.post('../app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $scope.listaTabela = data.data;
             }, function(erro){
               service.alertarErro(erro.statusText);
