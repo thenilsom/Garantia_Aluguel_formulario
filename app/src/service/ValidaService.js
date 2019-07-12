@@ -67,6 +67,19 @@ angular.module('app')
 		}		
 	}
 
+	//validação de caracteres especiais
+	service.validarCaracteresEspeciais = function(texto){
+		var regex = '[^a-zA-Z]+';
+  		if(texto.match(regex)) {
+       //encontrou então não passa na validação
+		return false;
+ 		 }
+  		else {
+       //não encontrou caracteres especiais
+		return true;
+		  }
+		}
+
 		
 	return service;
 }]);

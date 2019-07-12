@@ -170,6 +170,10 @@
                 $scope.errors.push("Preencha ao menos um campo de telefone.");
               }
 
+              if(!validador.validarCaracteresEspeciais($scope.cadastro.pretendente.nome)){
+                $scope.errors.push("Nome do pretendente não pode conter acentos ou caracteres especiais.");
+              }
+
               //se tiver sido informado telefone comercial seta no tel da empresa
               if($scope.cadastro.pretendente.telefoneComercial)
                   $scope.cadastro.profissional.telefone = $scope.cadastro.pretendente.telefoneComercial
