@@ -69,7 +69,7 @@ angular.module('app')
 
 	//validação de caracteres especiais
 	service.validarCaracteresEspeciais = function(texto){
-		var regex = '[^a-zA-Z]+';
+		var regex = '[^a-z A-Z]+';
   		if(texto.match(regex)) {
        //encontrou então não passa na validação
 		return false;
