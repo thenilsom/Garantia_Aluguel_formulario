@@ -69,6 +69,34 @@
               formData:[{codigo: id_codigo}]
             });
 
+             /*Envia o upload dos arquivos*/
+          $scope.enviarArquivos = function(){
+            var listaTipoNaoInformado = $scope.uploader.queue
+                                          .filter(item=> !item.isUploaded)
+                                          .filter(item=> !item.file.tipoDoc || 
+                                          angular.equals(item.file.tipoDoc, 'outros') && !item.file.descOutros);
+
+            if(listaTipoNaoInformado.length > 0){
+              service.alertar('Informe o tipo do documento.');
+
+            }else{
+                $scope.uploader.queue.forEach(function(item, index){
+                var arrayName = item.file.name.split('.');
+                var extensao = '.' + arrayName[arrayName.length - 1];
+
+                if(angular.equals(item.file.tipoDoc, 'outros')){
+                  item.file.name = (index + 1) + '-' + item.file.descOutros + extensao;
+                }else{
+                  item.file.name = (index + 1) + '-' + item.file.tipoDoc + extensao;
+                }
+              });
+
+              $scope.uploader.uploadAll();
+            }
+            
+          }
+
+
            /*função chamada em caso de erro no upload*/
           $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);
