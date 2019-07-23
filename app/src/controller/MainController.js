@@ -110,6 +110,9 @@
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
+            //garante a formatação do cpf
+            $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
+
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
               service.alertar('Cadastro: ' + data.data + ' Gravado ! (FAVOR FAZER UPLOAD DE ARQUIVOS DE COMPROVAÇÃO DE RENDA.)');
               iniciarUpload(data.data);

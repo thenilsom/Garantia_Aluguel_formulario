@@ -8,6 +8,7 @@
         <th>CLIENTE</th>
         <th>CPF/CNPJ</th>
         <th>IMOBILIÁRIA</th>
+        <th>DATA</th>
         <th>#</th>
       </tr>
     </thead>
@@ -17,6 +18,7 @@
         <td>{{registro.inquilino}}</td>
         <td>{{registro.CPF_inquilino | cpfcnpj}}</td>
         <td>{{registro.fantasia}}</td> 
+        <td>{{registro.data_transm ? (registro.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
         <td><button type="button" class="btn btn-info" ng-click="detalhar(registro)">Detalhar</button></td>       
       </tr>
         
