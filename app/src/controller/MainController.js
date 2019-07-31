@@ -224,6 +224,19 @@
             $scope.proximoPasso();
           }
 
+          /*Valida os dados do imóvel*/
+          $scope.validarDadosDoImovel = function(form){
+            $scope.errors = [];
+            validador.validarCamposObrigatorios(form, $scope.errors);
+
+            if($scope.cadastro.imovel.cnpjEmpresaConstituida && !validador.validarCNPJ($scope.cadastro.imovel.cnpjEmpresaConstituida)){
+                $scope.errors.push("CNPJ empresa constituída inválido");
+              }
+
+              $scope.proximoPasso();
+
+          }
+
           /*Valida os dados obrigatorios*/
           $scope.validarDadosObrigatorios = function(form){
              $scope.errors = [];
