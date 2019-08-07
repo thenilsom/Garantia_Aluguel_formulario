@@ -4,6 +4,12 @@
     <strong>Informação!</strong> {{msgInfo}}
   </div> 
 
+<div layout="row" ng-if="cadastro.imobiliaria.fantasia">
+  <div class="col-md-12 well well-sm" style="margin-bottom: 0px;">
+      <label style="font-size: 13pt;">{{cadastro.imobiliaria.fantasia}}</label>
+  </div>
+</div>
+
 <div layout="row" layout-padding>
   <ul class="nav nav-pills" role="tablist">
     <li role="presentation" ng-class="{'active': passo == 1}" flex-xs="20" ng-click="navegarAbas('1')">
@@ -36,11 +42,7 @@
   <div class="row">
       <div class="col-md-3">
         <h4><label class="label label-default"> passo {{passo}} / 6 :: {{getLabelEtapa(passo)}}</label></h4>
-      </div>
-
-      <div class="col-md-9">
-      <h4>{{cadastro.imobiliaria.fantasia}}</h4>
-    </div>
+      </div>     
   </div>
   <!-- Array erros de validação -->
   <span id="listErrors">
@@ -71,5 +73,11 @@
      <!-- DADOS DO UPLOAD -->
     <div ng-if="passo == 6" class="animate-if" data-ng-include="'./src/view/formulario/dadosUpload.html'"></div>
        
-     
+   <footer ng-if="passo != 6">
+      <div class="alert alert-warning">
+       <span class="glyphicon glyphicon-exclamation-sign"> </span> 
+       O preenchimento de todos os campos, mesmo que não obrigatórios, aumentam as chances de aprovação do cadastro.
+      </div>
+    </footer>
+
   </div>

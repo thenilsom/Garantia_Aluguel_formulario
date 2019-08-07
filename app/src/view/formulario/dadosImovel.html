@@ -71,13 +71,13 @@
               <label for="locPretEmpConst">A locação pretendida é para empresa já constituída ?</label>
               <select class="form-control" id="locPretEmpConst" ng-tabindex="4" flex-gt-sm="25"
               ng-model="cadastro.imovel.locacaoEmpresaConstituida" requerido>
-                <option value="não">Não</option>
-                <option value="sim">Sim</option>
+                <option value="N">Não</option>
+                <option value="S">Sim</option>
                         
               </select>
             </div>
 
-        <div class="md-block" flex-gt-sm="20" ng-if="cadastro.imovel.locacaoEmpresaConstituida == 'sim'">
+        <div class="md-block" flex-gt-sm="20" ng-if="cadastro.imovel.locacaoEmpresaConstituida == 'S'">
           <label for="cnpjEmpConst">Informar CNPJ</label>
           <input mobile="number" mascara="99.999.999/9999-99" id="cnpjEmpConst" name="cnpjEmpConst" 
           class="form-control" ng-model="cadastro.imovel.cnpjEmpresaConstituida" requerido
@@ -101,48 +101,44 @@
             <label for="trataFranquia">Trata-se de Franquia ?</label>
             <select class="form-control" id="trataFranquia" ng-tabindex="7" flex-gt-sm="50"
             ng-model="cadastro.imovel.trataDeFranquia" requerido>
-              <option value="não">Não</option>
-              <option value="sim">Sim</option>
+              <option value="N">Não</option>
+              <option value="S">Sim</option>
                       
             </select>
       </div>
 
-      <div class="md-block" flex-gt-sm="40" ng-if="cadastro.imovel.trataDeFranquia == 'sim'">
+      <div class="md-block" flex-gt-sm="40" ng-if="cadastro.imovel.trataDeFranquia == 'S'">
           <label for="nomeFranqueadora">Informar Nome da Franqueadora</label>
           <input type="text" id="nomeFranqueadora" upper name="nomeFranqueadora" requerido
-          class="form-control" ng-model="cadastro.imovel.nomeFranqueadora" ng-tabindex="8">
+          maxlength="30" class="form-control" ng-model="cadastro.imovel.nomeFranqueadora" ng-tabindex="8">
         </div>
     </div>
 
     <div layout="column" layout-padding layout-gt-sm="row">
       <div class="md-block" flex-gt-sm="50">
           <label for="descProdFabRevPrest">Quais serão os principais produtos/serviços fabricados, revendidos ou prestados</label>
-          <textarea id="descProdFabRevPrest" upper name="descProdFabRevPrest" requerido
+          <input type="text" id="descProdFabRevPrest" upper name="descProdFabRevPrest" requerido maxlength="50" 
             class="form-control" ng-model="cadastro.imovel.produtosFabRevPrest" ng-tabindex="9">
-          </textarea>
         </div>
 
         <div class="md-block" flex-gt-sm="50">
           <label for="experienciaNoRamo">Qual a sua experiência no ramo pretendido (experiência prática ou acadêmica/quanto tempo de experiência)</label>
-          <textarea id="experienciaNoRamo" upper name="experienciaNoRamo" requerido
+          <input type="text" id="experienciaNoRamo" upper name="experienciaNoRamo" requerido maxlength="60" 
             class="form-control" ng-model="cadastro.imovel.experienciaNoRamo" ng-tabindex="10">
-          </textarea>
         </div>
     </div>
 
     <div layout="column" layout-padding layout-gt-sm="row">
       <div class="md-block" flex-gt-sm="50">
           <label for="faturamentoMensalEstimado">Qual faturamento mensal estimado</label>
-          <textarea id="faturamentoMensalEstimado" upper name="faturamentoMensalEstimado" requerido
+          <input type="text" id="faturamentoMensalEstimado" upper name="faturamentoMensalEstimado" requerido maxlength="20" 
             class="form-control" ng-model="cadastro.imovel.faturamentoMensalEstimado" ng-tabindex="11">
-          </textarea>
         </div>
 
         <div class="md-block" flex-gt-sm="50">
           <label for="prazoRetCapitalInvest">Qual o prazo estimado para o retorno do capital inventido</label>
-          <textarea id="prazoRetCapitalInvest" upper name="prazoRetCapitalInvest" requerido
+          <input type="text" id="prazoRetCapitalInvest" upper name="prazoRetCapitalInvest" requerido maxlength="15" 
             class="form-control" ng-model="cadastro.imovel.prazoRetCapitalInvest" ng-tabindex="12">
-          </textarea>
         </div>
     </div>
 

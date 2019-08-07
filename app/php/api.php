@@ -93,6 +93,17 @@ function salvar($request, $response){
 	$agua = utf8_decode(trim(json_encode($cadastro->imovel->agua, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$energia = utf8_decode(trim(json_encode($cadastro->imovel->luz, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$gas = utf8_decode(trim(json_encode($cadastro->imovel->gas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	
+	//DADOS IMÓVEL PARA CADASTRO NÃO RESIDENCIAL//
+	$empresa_constituida = utf8_decode(trim(json_encode($cadastro->imovel->locacaoEmpresaConstituida, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$cnpj_empresa_constituida = utf8_decode(trim(json_encode($cadastro->imovel->cnpjEmpresaConstituida, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ramo_atividade_empresa = utf8_decode(trim(json_encode($cadastro->imovel->ramoAtividadeEmpresa, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$franquia_empresa = utf8_decode(trim(json_encode($cadastro->imovel->trataDeFranquia, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$franqueadora_empresa = utf8_decode(trim(json_encode($cadastro->imovel->nomeFranqueadora, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$produtos_servicos_empresa = utf8_decode(trim(json_encode($cadastro->imovel->produtosFabRevPrest, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$experiencia_ramo_empresa = utf8_decode(trim(json_encode($cadastro->imovel->experienciaNoRamo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$faturam_estim_empresa = utf8_decode(trim(json_encode($cadastro->imovel->faturamentoMensalEstimado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ret_cap_invest_empresa = utf8_decode(trim(json_encode($cadastro->imovel->prazoRetCapitalInvest, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS PESSOAIS//
 	$ref_pessoal_nome = utf8_decode(trim(json_encode($cadastro->pessoal->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -157,10 +168,12 @@ function salvar($request, $response){
 								   '$inquilino', '$tipo_inquilino', '$CPF_inquilino', '$data_inquilino', '$sexo_inquilino', '$est_civil_inquilino', '$DOC_inquilino', '$orgao_exp_inquilino', '$data_exp_inquilino', '$data_validade_doc_inquilino', '$resp_inquilino', '$CPF_resp_inquilino', '$cpf_conjuge_inquilino', '$num_dependente_inquilino', '$nome_mae_inquilino', '$nome_pai_inquilino', '$nacionalidade_inquilino', '$pais_inquilino', '$tempo_pais_inquilino', '$resp_locacao_inquilino', '$vai_residir_imov_inquilino', '$tem_renda_arcar_loc_inquilino', '$fone_inquilino', '$cel_inquilino', '$email_inquilino',
 								   '$tempo_resid_inquilino', '$tipo_resid_inquilino', '$nome_imobiliaria', '$telefone_imobiliaria', '$resid_emnomede_inquilino', '$arca_com_aluguel_inquilino', '$cep_anterior_inquilino', '$uf_anterior_inquilino', '$cidade_anterior_inquilino', '$endereco_anterior_inquilino', '$bairro_anterior_inquilino', '$complemento_anterior_inquilino', '$num_anterior_inquilino',
                                    '$empresa_trab_inquilino', '$fone_com_inquilino', '$ramal_com_inquilino', '$profissao_inquilino', '$natureza_renda_inquilino', '$data_admissao_inquilino', '$salario_inquilino', '$outros_rendim_inquilino', '$total_rendim_inquilino', '$empresa_anterior_inquilino', '$endereco_com_inquilino', '$ref_bancaria_inquilino', '$banco_inquilino', '$agencia_inquilino', '$ccorrente_inquilino', '$gerente_inquilino', '$fone_gerente_inquilino', '$ref_pessoal_nome', '$ref_pessoal_fone', '$ref_pessoal_cel', '$ref_pessoal_grau_parent',
+                                   '$empresa_constituida',	'$cnpj_empresa_constituida', '$ramo_atividade_empresa',	'$franquia_empresa', '$franqueadora_empresa', '$produtos_servicos_empresa', '$experiencia_ramo_empresa', '$faturam_estim_empresa', '$ret_cap_invest_empresa',
                                    '$num_solidarios', '$solidario1', '$solidario1_cpf', '$solidario1_fone', '$solidario1_sexo', '$solidario1_rg', '$solidario2', '$solidario2_cpf', '$solidario2_fone', '$solidario2_sexo', '$solidario2_rg', '$solidario3', '$solidario3_cpf', '$solidario3_fone', '$solidario3_sexo', '$solidario3_rg',
 								   '$cep', '$endereco', '$numero', '', '', '$complemento', '$bairro', '$cidade', '$uf', '$aluguel',
 								   '$ocupacao', '$imovel_tipo', '$motivo_locacao', '$inicio', '', '', '', '', '', '', '', '', '', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa', '',
 							       '', '', '', '', '$cod_cor', '')";
+
 
     mysql_db_query("segurosja", $sql) or die (mysql_error());
     $sql_last_insert = "SELECT LAST_INSERT_ID()";
@@ -259,7 +272,8 @@ function salvar($request, $response){
     if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
     if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
 
-    $mail->AddBCC("leandro@maximizaseguros.com.br");
+    $mail->AddBCC("leandro@mx10.com.br");
+    $mail->AddBCC("clemente@maximizaseguros.com.br");
 
     $mail->Body = $mensagem;//apagar
     $mail->Subject = "Análise de Fiança " . $registro . " - " . $inquilino; //apagar
