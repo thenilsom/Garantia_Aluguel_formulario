@@ -42,6 +42,13 @@ angular.module('app')
 			);
 			
 		}
+		
+		/**
+		 * Exibe o modal de alerta do cadastro
+		 */
+		service.exibirAlertaCadastro = function(){
+			$('#abrirModalAlertCadastro').click();
+		}
 
 		service.alertarErro = function(msg){
 			$mdDialog.show(
