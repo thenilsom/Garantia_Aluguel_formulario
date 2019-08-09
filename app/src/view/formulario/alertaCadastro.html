@@ -5,10 +5,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Informação</h4>
         </div>
         <div class="modal-body">
-          <p>This is a small modal.</p>
+          <p><strong>Cadastro: {{codigoCadastro}}  Gravado !</strong></p>
+          
+          <div class="alert alert-danger" style="font-size: 12pt;">
+    		<strong><span class="glyphicon glyphicon-exclamation-sign" style="padding-right: 8px;"></span>ATENÇÃO!</strong>
+    		Os dados do formulário foram gravados, mas para conclusão do cadastro é necessário o 
+            envio dos arquivos de comprovação de renda e de endereço atual e do documento de identificação. 
+            O cadastro só seguirá para análise após o envio dessa documentação.
+  		</div>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
