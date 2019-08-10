@@ -114,7 +114,8 @@
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
 
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-              service.alertar('Cadastro: ' + data.data + ' Gravado ! (FAVOR FAZER UPLOAD DE ARQUIVOS DE COMPROVAÇÃO DE RENDA.)');
+              $scope.codigoCadastro = data.data;
+              service.exibirAlertaCadastro();
               iniciarUpload(data.data);
               $scope.proximoPasso();
             }, function(erro){
