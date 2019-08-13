@@ -13,7 +13,7 @@
 	</div>
 	
 	<!-- Trecho executado se finalidade imovel for não residencial -->
-	 <div ng-if="">
+	 <div ng-if="registro.ocupacao = 'N'">
 		<div class="form-group">
 			<label>A locação pretendida é para empresa já constituída: </label> <span>{{registro.empresa_constituida}}</span>
 			
