@@ -15,7 +15,7 @@
 	<!-- Trecho executado se finalidade imovel for não residencial -->
 		<div class="form-group" ng-if="registro.ocupacao = 'N'">
 			<label>A locação pretendida é para empresa já constituída: </label> <span>{{registro.empresa_constituida}}</span>
-			<label ng-if="registro.cnpj_empresa_constituida">CNPJ empresa: </label> <span>{{registro.cnpj_empresa_constituida}}</span>
+			<label ng-if="registro.empresa_constituida == 'S' ">CNPJ empresa: </label> <span ng-if="registro.empresa_constituida == 'S' ">{{registro.cnpj_empresa_constituida}}</span>
 		</div>
 		
 		<div class="form-group" ng-if="registro.ocupacao = 'N'">
@@ -24,7 +24,7 @@
 		
 		<div class="form-group" ng-if="registro.ocupacao = 'N'">
 			<label>Trata-se de Franquia: </label> <span>{{registro.franquia_empresa}}</span>
-			<label ng-if="registro.franqueadora_empresa">Nome da Franqueadora: </label> <span>{{registro.franqueadora_empresa}}</span>	
+			<label ng-if="registro.franquia_empresa == 'S' ">Nome da Franqueadora: </label> <span ng-if="registro.franquia_empresa == 'S' ">{{registro.franqueadora_empresa}}</span>	
 		</div>
 		
 		<div class="form-group" ng-if="registro.ocupacao = 'N'">
