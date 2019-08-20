@@ -118,17 +118,17 @@ function salvar($request, $response){
 	$solidario1_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
-	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	$solidario3 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -136,8 +136,8 @@ function salvar($request, $response){
 	$solidario3_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->ocupante3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
     $data_cob = date("Y-m-d");
     $hora_cob = date("H:i:s");

@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'validaService', 'FileUploader', 
-        function($scope, $http, service, validador, FileUploader){
+       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'formularioService', 'validaService', 'FileUploader', 
+        function($scope, $http, service, formularioService, validador, FileUploader){
 
         //obtem os parametros na url se existir
         var paramUrl = service.extraiParamUrl(location.search.slice(1));
@@ -106,7 +106,23 @@
           $scope.uploader.onCompleteAll = function() {
             service.alertar('Arquivos enviados com sucesso!');
           };
-        }          
+        } 
+
+        //########### TESTE ALTERAÇÃO NO FORMULARIO ##########################
+        var testarAlteracao = function(){
+          var codigoParam = null;
+          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar', {codigo: '0'}).then(function(data){
+            formularioService.preencherFormulario(data.data[0]);
+            }, function(erro){
+              service.alertarErro(erro.statusText);
+            });
+        }
+
+        testarAlteracao();         
+        //######################################################################
+
+
+
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
