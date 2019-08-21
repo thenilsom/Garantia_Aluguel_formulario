@@ -111,8 +111,9 @@
         //########### TESTE ALTERAÇÃO NO FORMULARIO ##########################
         var testarAlteracao = function(){
           var codigoParam = null;
-          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar', {codigo: '0'}).then(function(data){
-            $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
+          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar', {codigo: null}).then(function(data){
+            $scope.cadastro = formularioService.preencherFormulario(data.data.filter(dados=> dados.codigo == '1194')[0]);
+            $scope.isAlteracao = true;
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
@@ -167,26 +168,30 @@
 
           //navega entre as abas
           $scope.navegarAbas = function(passo){
-            var passoAtual = parseInt($scope.passo)
-            var passoPretendido = parseInt(passo)
-            if(passoAtual > passoPretendido || 
-                (isPassoValidado(passoAtual.toString()) && (passoAtual + 1) == passoPretendido)){
+            if($scope.isAlteracao){
               setarPasso(passo);
 
             }else{
-              var validado = true;
-              for (var i = 1; i < parseInt(passo); i++) {
-                  if(!isPassoValidado(i.toString())){
-                    service.alertarErro('Preencha os dados obrigatorios das abas anteriores.');
-                    validado = false;
-                    break;
-                  }
-                }
-
-              if(validado)
+              var passoAtual = parseInt($scope.passo)
+              var passoPretendido = parseInt(passo)
+              if(passoAtual > passoPretendido || 
+                  (isPassoValidado(passoAtual.toString()) && (passoAtual + 1) == passoPretendido)){
                 setarPasso(passo);
-            }
-            
+
+              }else{
+                var validado = true;
+                for (var i = 1; i < parseInt(passo); i++) {
+                    if(!isPassoValidado(i.toString())){
+                      service.alertarErro('Preencha os dados obrigatorios das abas anteriores.');
+                      validado = false;
+                      break;
+                    }
+                  }
+
+                if(validado)
+                  setarPasso(passo);
+              }
+            }   
           }
 
           $scope.passoAnterior = function(){
