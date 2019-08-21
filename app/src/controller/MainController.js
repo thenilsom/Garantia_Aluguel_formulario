@@ -112,7 +112,7 @@
         var testarAlteracao = function(){
           var codigoParam = null;
           $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar', {codigo: '0'}).then(function(data){
-            formularioService.preencherFormulario(data.data[0]);
+            $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
             }, function(erro){
               service.alertarErro(erro.statusText);
             });

@@ -4,7 +4,15 @@ angular.module('app')
 		var service = {};
 
 		service.preencherFormulario = function(dados){
-			console.log(dados);
+			var cadastro = {};
+			cadastro.pretendente = preencherDadosPretendente(dados);
+			cadastro.imobiliaria = preencherDadosImobiliaria(dados);
+			cadastro.residencia = preencherDadosResidenciaAtual(dados);
+			cadastro.profissional = preencherDadosProfissionais(dados);
+			cadastro.imovel = preencherDadosImovelPretendido(dados);
+			cadastro.pessoal = preencherDadosComposicaoRenda(dados);
+
+			return cadastro;
 		}
 
 		var preencherDadosPretendente = function(dados){
@@ -30,6 +38,16 @@ angular.module('app')
 			pretendente.celular = dados.cel_inquilino;
 			pretendente.telefoneComercial = dados.fone_com_inquilino;
 			pretendente.email = dados.email_inquilino;
+
+			return pretendente;
+		}
+
+		var preencherDadosImobiliaria = function(dados){
+			var imobiliaria = {};
+			imobiliaria.corretor = dados.fantasia_corretor;
+			imobiliaria.cnpj = dados.CGC_imob;
+
+			return imobiliaria;
 		}
 
 		var preencherDadosResidenciaAtual = function(dados){
@@ -50,6 +68,8 @@ angular.module('app')
 			residencia.anterior.complemento = dados.complemento_anterior_inquilino;
 			residencia.anterior.bairro = dados.bairro_anterior_inquilino;
 			residencia.anterior.numero = dados.num_anterior_inquilino;
+
+			return residencia;
 		}
 
 		var preencherDadosProfissionais = function(dados){
@@ -70,9 +90,11 @@ angular.module('app')
 			profissional.contaCorrente = dados.ccorrente_inquilino;
 			profissional.gerente = dados.gerente_inquilino;
 			profissional.telefoneGerente = dados.fone_gerente_inquilino;
+
+			return profissional;
 		}
 
-		var preencherImovelPretendido = function(dados){
+		var preencherDadosImovelPretendido = function(dados){
 			var imovel = {};
 			imovel.finalidade = dados.ocupacao;
 			imovel.tipo = dados.imovel_tipo;
@@ -99,9 +121,11 @@ angular.module('app')
 			imovel.agua = dados.agua;
 			imovel.luz = dados.energia;
 			imovel.gas = dados.gas;
+
+			return imovel;
 		}
 
-		var preencherComposicaoRenda = function(dados){
+		var preencherDadosComposicaoRenda = function(dados){
 			var pessoal = {};
 			pessoal.solidario1 = {};
 			pessoal.solidario2 = {};
@@ -136,6 +160,8 @@ angular.module('app')
 			pessoal.solidario3.numDoc = dados.solidario3_rg;
 			pessoal.solidario3.orgaoExpedidor = dados.solidario3_orgao_exp_rg;
 			pessoal.solidario3.dataEmissao = dados.solidario3_data_exp_rg;	
+
+			return pessoal;
 		}
 
 		return service;
