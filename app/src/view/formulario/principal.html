@@ -42,7 +42,11 @@
   <div class="row">
       <div class="col-md-3">
         <h4><label class="label label-default"> passo {{passo}} / 6 :: {{getLabelEtapa(passo)}}</label></h4>
-      </div>     
+      </div>  
+      
+       <div class="col-md-9 text-right">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#pesquisaCpf" id="abrirModalAlertCadastro">Já possuo cadastro</button>
+      </div>      
   </div>
   <!-- Array erros de validação -->
   <span id="listErrors">
@@ -82,7 +86,11 @@
     
     <!-- Inclusão do alerta de salvamento do cadastro -->
      <div data-ng-include="'./src/view/formulario/alertaCadastro.html'"></div> 
-      <!-- Trigger the modal with a button -->
+     
+     <!-- Inclusão do modal pesquisa por cpf -->
+     <div data-ng-include="'./src/view/formulario/pesquisaCpf.html'"></div> 
+     
+      <!-- Trigger fantasma para abrir o alerta de cadastro -->
     <button type="button" class="btn btn-info btn-lg hidden" data-toggle="modal" data-target="#alertaCadastro" id="abrirModalAlertCadastro"></button>
 
   </div>

@@ -182,7 +182,7 @@ angular.module('app')
 			if(dados.includes("ACIMA DE"))
 				return "ACIMA DE 10 ANOS";
 
-			return value;
+			return dados;
 		}
 
 		return service;

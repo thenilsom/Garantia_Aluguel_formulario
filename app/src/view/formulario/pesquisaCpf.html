@@ -1,0 +1,25 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="pesquisaCpf" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cadastro</h4>
+        </div>
+        <div class="modal-body">
+        
+        <div class="form-group">
+			      <label for="cpfPesquisa">CPF</label>
+			      <input mobile="number"  mascara="999.999.999-99"  id="cpfPesquisa" name="filtro.cpf" autofocus requerido
+			      class="form-control" ng-model="filtro.cpf">
+	   	</div>
+	   			
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="pesquisarCpfInquilino()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

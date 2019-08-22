@@ -34,6 +34,7 @@
           var passosValidados = [];
           $scope.passo = '1';
 
+          $scope.filtro = {};
           $scope.cadastro = {};
           $scope.cadastro.imobiliaria = {};
           $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
@@ -108,22 +109,23 @@
           };
         } 
 
-        //########### TESTE ALTERAÇÃO NO FORMULARIO ##########################
-        var testarAlteracao = function(){
-          var codigoParam = null;
-          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/consultarPorCpfInquilino', {cpf: '026.715.341-40'}).then(function(data){
-            $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
-            $scope.isAlteracao = true;
+        //########### PESQUISA CADASTRO POR CPF INQUILINO ##########################
+        $scope.pesquisarCpfInquilino = function(){
+          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/consultarPorCpfInquilino', {cpf: service.formatarCpfCnpj($scope.filtro.cpf)}).then(function(data){
+        	 if(data.data.length == 0){
+        		 service.alertar('Cadastro não encontrado.');
+        		 $scope.filtro.cpf = '';
+        		 
+        	 }else{
+        		 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
+        		 $scope.isAlteracao = true;
+        	 }
+        	 
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
         }
-
-        testarAlteracao();         
         //######################################################################
-
-
-
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
