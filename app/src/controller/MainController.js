@@ -62,6 +62,11 @@
               service.alertarErro(erro.statusText);
             });
           }
+          
+          //formata o nome para o link de uploads
+          $scope.formatarNomeParaLink = function(nome){
+           return nome.replace(/ /g, '_');
+          }
 
           /*inicia as configurações de upload*/
           var iniciarUpload = function(id_codigo){
@@ -119,6 +124,7 @@
         	 }else{
         		 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
         		 $scope.isAlteracao = true;
+        		 iniciarUpload($scope.cadastro.codigo);
         	 }
         	 
             }, function(erro){
