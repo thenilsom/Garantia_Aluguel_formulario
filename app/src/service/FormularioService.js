@@ -5,6 +5,7 @@ angular.module('app')
 
 		service.preencherFormulario = function(dados){
 			var cadastro = {};
+			cadastro.codigo = dados.codigo;
 			cadastro.pretendente = preencherDadosPretendente(dados);
 			cadastro.imobiliaria = preencherDadosImobiliaria(dados);
 			cadastro.residencia = preencherDadosResidenciaAtual(dados);
@@ -21,14 +22,14 @@ angular.module('app')
 			pretendente.cpf = dados.CPF_inquilino;
 			pretendente.dataNascimento = dados.data_inquilino;
 			pretendente.tipoDoc = dados.tipo_DOC_inquilino;
-			pretendente.numDoc = dados.DOC_inquilino
+			pretendente.numDoc = parseInt(dados.rg_inquilino);
 			pretendente.orgaoExpedidor = dados.orgao_exp_inquilino;
 			pretendente.dataEmissao = dados.data_exp_inquilino;
 			pretendente.dataValidade = dados.data_validade_doc_inquilino;
 			pretendente.sexo = dados.sexo_inquilino;
 			pretendente.estadoCivil = dados.est_civil_inquilino;
 			pretendente.cpfConjuge = dados.cpf_conjuge_inquilino;
-			pretendente.numeroDependente = dados.num_dependente_inquilino;
+			pretendente.numeroDependente = parseInt(dados.num_dependente_inquilino);
 			pretendente.nomeMae = dados.nome_mae_inquilino;
 			pretendente.nomePai = dados.nome_pai_inquilino;
 			pretendente.nacionalidade = dados.nacionalidade_inquilino;
@@ -54,12 +55,12 @@ angular.module('app')
 			var residencia = {};
 			residencia.anterior = {};
 
-			residencia.tempoResidencia = dados.tempo_resid_inquilino;
+			residencia.tempoResidencia = tratarTempoResidencia(dados.tempo_resid_inquilino);
 			residencia.tipo = dados.tipo_resid_inquilino;
 			residencia.emNome = dados.resid_emnomede_inquilino;
 			residencia.arcaAluguel = dados.arca_com_aluguel_inquilino;
-			residencia.nomeImobiliaria = dados.nome_imobiliaria;
-			residencia.telefoneImobiliaria = dados.telefone_imobiliaria;
+			residencia.nomeImobiliaria = dados.imob_prop_atual;
+			residencia.telefoneImobiliaria = dados.fone_imob_prop_atual;
 
 			residencia.anterior.cep = dados.cep_anterior_inquilino;
 			residencia.anterior.estado = dados.uf_anterior_inquilino;
@@ -67,7 +68,7 @@ angular.module('app')
 			residencia.anterior.endereco = dados.endereco_anterior_inquilino;
 			residencia.anterior.complemento = dados.complemento_anterior_inquilino;
 			residencia.anterior.bairro = dados.bairro_anterior_inquilino;
-			residencia.anterior.numero = dados.num_anterior_inquilino;
+			residencia.anterior.numero = parseInt(dados.num_anterior_inquilino);
 
 			return residencia;
 		}
@@ -81,7 +82,7 @@ angular.module('app')
 			profissional.outrosRendimentos = dados.outros_rendim_inquilino;
 			profissional.totalRendimentos = dados.total_rendim_inquilino;
 			profissional.empresa = dados.empresa_trab_inquilino;
-			profissional.telefone = dados.fone_com_2_inquilino;
+			profissional.telefone = dados.fone_com_inquilino;
 			profissional.ramal = dados.ramal_com_inquilino;
 			profissional.empresaAnterior = dados.empresa_anterior_inquilino;
 			profissional.possuiRefBancaria = dados.ref_bancaria_inquilino;
@@ -96,7 +97,7 @@ angular.module('app')
 
 		var preencherDadosImovelPretendido = function(dados){
 			var imovel = {};
-			imovel.finalidade = dados.ocupacao;
+			imovel.finalidade = dados.ocupacao == 'N' ? 'NÃO RESIDENCIAL' : 'RESIDENCIAL';
 			imovel.tipo = dados.imovel_tipo;
 			imovel.motivoLocacao = dados.motivo_locacao;
 			imovel.locacaoEmpresaConstituida = dados.empresa_constituida;
@@ -113,7 +114,7 @@ angular.module('app')
 			imovel.cidade = dados.cidade;
 			imovel.endereco = dados.endereco;
 			imovel.bairro = dados.bairro;
-			imovel.numero = dados.numero;
+			imovel.numero = parseInt(dados.numero);
 			imovel.complemento = dados.complemento;
 			imovel.aluguel = dados.aluguel;
 			imovel.iptu = dados.iptu;
@@ -139,7 +140,7 @@ angular.module('app')
 			pessoal.solidario1.rendaMensalBruta = dados.solidario1_renda;
 			pessoal.solidario1.telefone = dados.solidario1_fone;
 			pessoal.solidario1.sexo = dados.solidario1_sexo;
-			pessoal.solidario1.numDoc = dados.solidario1_rg;
+			pessoal.solidario1.numDoc = parseInt(dados.solidario1_rg);
 			pessoal.solidario1.orgaoExpedidor = dados.solidario1_orgao_exp_rg;
 			pessoal.solidario1.dataEmissao = dados.solidario1_data_exp_rg;
 
@@ -148,7 +149,7 @@ angular.module('app')
 			pessoal.solidario2.rendaMensalBruta = dados.solidario2_renda;
 			pessoal.solidario2.telefone = dados.solidario2_fone;
 			pessoal.solidario2.sexo = dados.solidario2_sexo;
-			pessoal.solidario2.numDoc = dados.solidario2_rg;
+			pessoal.solidario2.numDoc = parseInt(dados.solidario2_rg);
 			pessoal.solidario2.orgaoExpedidor = dados.solidario2_orgao_exp_rg;
 			pessoal.solidario2.dataEmissao = dados.solidario2_data_exp_rg;
 
@@ -157,11 +158,31 @@ angular.module('app')
 			pessoal.solidario3.rendaMensalBruta = dados.solidario3_renda;
 			pessoal.solidario3.telefone = dados.solidario3_fone;
 			pessoal.solidario3.sexo = dados.solidario3_sexo;
-			pessoal.solidario3.numDoc = dados.solidario3_rg;
+			pessoal.solidario3.numDoc = parseInt(dados.solidario3_rg);
 			pessoal.solidario3.orgaoExpedidor = dados.solidario3_orgao_exp_rg;
 			pessoal.solidario3.dataEmissao = dados.solidario3_data_exp_rg;	
 
 			return pessoal;
+		}
+
+
+		var tratarTempoResidencia = function(dados){
+			if(dados.includes("MENOS DE"))
+				return "MENOS DE 1 ANO";
+
+			if(dados.includes("DE 1"))
+				return "DE 1 A 2 ANOS";
+
+			if(dados.includes("DE 3"))
+				return "DE 3 A 4 ANOS";
+
+			if(dados.includes("DE 5"))
+				return "DE 5 A 10 ANOS";
+
+			if(dados.includes("ACIMA DE"))
+				return "ACIMA DE 10 ANOS";
+
+			return value;
 		}
 
 		return service;

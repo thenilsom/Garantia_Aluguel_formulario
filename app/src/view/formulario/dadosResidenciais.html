@@ -1,5 +1,6 @@
 <form name="formDadosResidenciais" class="fundo-formulario">
 <div layout="column" layout-padding layout-gt-sm="row">
+  <!-- OBS: SE ALTERAR ESTE SELECT TEM QUE ALTERAR NO FormularioService onde captura esta informação-->
   <div class="md-block" flex-gt-sm="25">
         <label for="tempoResidencia">Tempo de Residencia</label>
           <select class="form-control" id="tempoResidencia" focus requerido
@@ -39,8 +40,8 @@
         <label for="arcaAluguel">Arca com aluguel</label>
         <select class="form-control" id="arcaAluguel" ng-tabindex="4" 
         ng-model="cadastro.residencia.arcaAluguel">
-          <option value="SIM">SIM</option>
-          <option value="NAO">NÃO</option>
+          <option value="S">SIM</option>
+          <option value="N">NÃO</option>
         </select>
   </div>
 

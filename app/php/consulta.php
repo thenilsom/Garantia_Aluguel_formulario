@@ -14,6 +14,7 @@ $app->get('/hello', function(){
 
 $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
 $app->post('/listar', 'listar');
+$app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
 
 function consultarCpfCnpj($request, $response){
 	$param = json_decode($request->getBody());
@@ -54,6 +55,26 @@ function listar($request, $response){
 			from fianca where corretor='$codigo' order by codigo desc";
 	
 	$consulta = mysql_db_query("segurosja", $codigo != "null" ? $sqlPorCodigo : $sqlTodos) or die (mysql_error());
+
+	while($campo = mysql_fetch_assoc($consulta)){
+      $rows[] = $campo;
+    }
+
+	echo json_encode($rows);
+}
+
+function consultarPorCpfInquilino($request, $response){
+	$param = json_decode($request->getBody());
+	$cpf = trim(json_encode($param->cpf, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+ 	$sql = "SELECT * FROM fianca WHERE codigo = (SELECT max(codigo) as CODIGO from fianca where CPF_inquilino = '$cpf')";
+	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){
       $rows[] = $campo;
