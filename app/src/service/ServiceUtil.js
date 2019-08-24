@@ -47,7 +47,7 @@ angular.module('app')
 		 * Exibe o modal de alerta do cadastro
 		 */
 		service.exibirAlertaCadastro = function(){
-			$('#abrirModalAlertCadastro').click();
+			$('#alertaCadastro').modal();
 		}
 
 		service.alertarErro = function(msg){

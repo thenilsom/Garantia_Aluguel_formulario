@@ -116,7 +116,7 @@
 
         //########### PESQUISA CADASTRO POR CPF INQUILINO ##########################
         $scope.pesquisarCpfInquilino = function(){
-          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/consultarPorCpfInquilino', {cpf: service.formatarCpfCnpj($scope.filtro.cpf)}).then(function(data){
+          $http.post('../app/php/consulta.php/consultarPorCpfInquilino', {cpf: service.formatarCpfCnpj($scope.filtro.cpf)}).then(function(data){
         	 if(data.data.length == 0){
         		 service.alertar('Cadastro não encontrado.');
         		 $scope.filtro.cpf = '';
@@ -140,7 +140,14 @@
 
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
               $scope.codigoCadastro = data.data;
-              service.exibirAlertaCadastro();
+
+              if($scope.isAlteracao){
+                service.alertar('Cadastro alterado com sucesso.');
+                
+              }else{
+                service.exibirAlertaCadastro();
+              }
+              
               iniciarUpload(data.data);
               $scope.proximoPasso();
             }, function(erro){

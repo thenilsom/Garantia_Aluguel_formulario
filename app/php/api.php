@@ -1,4 +1,8 @@
 <?php
+ header("Access-Control-Allow-Origin: *");
+ header("Access-Control-Allow-Methods: GET,PUT,POST,DELETE");
+ header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 require_once("php7_mysql_shim.php");
 
 require '../../vendor/autoload.php';
@@ -12,6 +16,8 @@ $app->post('/salvarFormulario', 'salvar');
 function salvar($request, $response){
 	$cadastro = json_decode($request->getBody());
     //echo json_encode($cadastro->pretendente->cpf);
+
+	$codigoCadastro = utf8_decode(trim(json_encode($cadastro->codigo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS DO PRETENDENTE
 	$inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -163,7 +169,10 @@ function salvar($request, $response){
     if($fantasia_imob <> ""){$IMOB = $fantasia_imob;}
     else{$IMOB = $razao_imob;}
 
-    $sql = "insert into fianca values ('', '$data_cob', '$hora_cob', '$seguradora', '', '$usuario_upload', '', '$CGC_imob', '', '', '', '', '', '',
+    //se não veio codigo cadastro é inclusão senão é alteração
+    if($codigoCadastro == "" || $codigoCadastro == null || $codigoCadastro == "null"){
+
+    	$sql = "insert into fianca values ('', '$data_cob', '$hora_cob', '$seguradora', '', '$usuario_upload', '', '$CGC_imob', '', '', '', '', '', '',
 								   '', '', '', '', '', '', '', '', '', '', '',
 								   '$inquilino', '$tipo_inquilino', '$CPF_inquilino', '$data_inquilino', '$sexo_inquilino', '$est_civil_inquilino', '$DOC_inquilino', '$orgao_exp_inquilino', '$data_exp_inquilino', '$data_validade_doc_inquilino', '$resp_inquilino', '$CPF_resp_inquilino', '$cpf_conjuge_inquilino', '$num_dependente_inquilino', '$nome_mae_inquilino', '$nome_pai_inquilino', '$nacionalidade_inquilino', '$pais_inquilino', '$tempo_pais_inquilino', '$resp_locacao_inquilino', '$vai_residir_imov_inquilino', '$tem_renda_arcar_loc_inquilino', '$fone_inquilino', '$cel_inquilino', '$email_inquilino',
 								   '$tempo_resid_inquilino', '$tipo_resid_inquilino', '$nome_imobiliaria', '$telefone_imobiliaria', '$resid_emnomede_inquilino', '$arca_com_aluguel_inquilino', '$cep_anterior_inquilino', '$uf_anterior_inquilino', '$cidade_anterior_inquilino', '$endereco_anterior_inquilino', '$bairro_anterior_inquilino', '$complemento_anterior_inquilino', '$num_anterior_inquilino',
@@ -174,7 +183,114 @@ function salvar($request, $response){
 								   '$ocupacao', '$imovel_tipo', '$motivo_locacao', '$inicio', '', '', '', '', '', '', '', '', '', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa', '',
 							       '', '', '', '', '$cod_cor', '')";
 
+    }else{
+    	$sql = "UPDATE fianca set 
+		inquilino='$inquilino',
+		tipo_inquilino='$tipo_inquilino',
+		CPF_inquilino='$CPF_inquilino',
+		data_inquilino='$data_inquilino',
+		sexo_inquilino='$sexo_inquilino',
+		est_civil_inquilino='$est_civil_inquilino',
+		rg_inquilino='$DOC_inquilino',
+		orgao_exp_inquilino='$orgao_exp_inquilino',
+		data_exp_inquilino='$data_exp_inquilino',
+		data_validade_doc_inquilino='$data_validade_doc_inquilino',
+		resp_inquilino='$resp_inquilino',
+		CPF_resp_inquilino='$CPF_resp_inquilino',
+		cpf_conjuge_inquilino='$cpf_conjuge_inquilino',
+		num_dependente_inquilino='$num_dependente_inquilino',
+		nome_mae_inquilino='$nome_mae_inquilino',
+		nome_pai_inquilino='$nome_pai_inquilino',
+		nacionalidade_inquilino='$nacionalidade_inquilino',
+		pais_inquilino='$pais_inquilino',
+		tempo_pais_inquilino='$tempo_pais_inquilino',
+		resp_locacao_inquilino='$resp_locacao_inquilino',
+		vai_residir_imov_inquilino='$vai_residir_imov_inquilino',
+		tem_renda_arcar_loc_inquilino='$tem_renda_arcar_loc_inquilino',
+		fone_inquilino='$fone_inquilino',
+		cel_inquilino='$cel_inquilino',
+		email_inquilino='$email_inquilino',
+		tempo_resid_inquilino='$tempo_resid_inquilino',
+		tipo_resid_inquilino='$tipo_resid_inquilino',
+		imob_prop_atual='$nome_imobiliaria',
+		fone_imob_prop_atual='$telefone_imobiliaria',
+		resid_emnomede_inquilino='$resid_emnomede_inquilino',
+		arca_com_aluguel_inquilino='$arca_com_aluguel_inquilino',
+		cep_anterior_inquilino='$cep_anterior_inquilino',
+		uf_anterior_inquilino='$uf_anterior_inquilino',
+		cidade_anterior_inquilino='$cidade_anterior_inquilino',
+		endereco_anterior_inquilino='$endereco_anterior_inquilino',
+		bairro_anterior_inquilino='$bairro_anterior_inquilino',
+		complemento_anterior_inquilino='$complemento_anterior_inquilino',
+		num_anterior_inquilino='$num_anterior_inquilino',
+		empresa_trab_inquilino='$empresa_trab_inquilino',
+		fone_com_inquilino='$fone_com_inquilino',
+		ramal_com_inquilino='$ramal_com_inquilino',
+		profissao_inquilino='$profissao_inquilino',
+		natureza_renda_inquilino='$natureza_renda_inquilino',
+		data_admissao_inquilino='$data_admissao_inquilino',
+		salario_inquilino='$salario_inquilino',
+		outros_rendim_inquilino='$outros_rendim_inquilino',
+		total_rendim_inquilino='$total_rendim_inquilino',
+		empresa_anterior_inquilino='$empresa_anterior_inquilino',
+		endereco_com_inquilino='$endereco_com_inquilino',
+		ref_bancaria_inquilino='$ref_bancaria_inquilino',
+		banco_inquilino='$banco_inquilino',
+		agencia_inquilino='$agencia_inquilino',
+		ccorrente_inquilino='$ccorrente_inquilino',
+		gerente_inquilino='$gerente_inquilino',
+		fone_gerente_inquilino='$fone_gerente_inquilino',
+		ref_pessoal_nome='$ref_pessoal_nome',
+		ref_pessoal_fone='$ref_pessoal_fone',
+		ref_pessoal_cel='$ref_pessoal_cel',
+		ref_pessoal_grau_parent='$ref_pessoal_grau_parent',
+		empresa_constituida='$empresa_constituida',
+		cnpj_empresa_constituida='$cnpj_empresa_constituida',
+		ramo_atividade_empresa='$ramo_atividade_empresa',
+		franquia_empresa='$franquia_empresa',
+		franqueadora_empresa='$franqueadora_empresa',
+		produtos_servicos_empresa='$produtos_servicos_empresa',
+		experiencia_ramo_empresa='$experiencia_ramo_empresa',
+		faturam_estim_empresa='$faturam_estim_empresa',
+		ret_cap_invest_empresa='$ret_cap_invest_empresa',
+		num_solidarios='$num_solidarios',
+		solidario1='$solidario1',
+		solidario1_cpf='$solidario1_cpf',
+		solidario1_fone='$solidario1_fone',
+		solidario1_sexo='$solidario1_sexo',
+		solidario1_rg='$solidario1_rg',
+		solidario2='$solidario2',
+		solidario2_cpf='$solidario2_cpf',
+		solidario2_fone='$solidario2_fone',
+		solidario2_sexo='$solidario2_sexo',
+		solidario2_rg='$solidario2_rg',
+		solidario3='$solidario3',
+		solidario3_cpf='$solidario3_cpf', 
+		solidario3_fone='$solidario3_fone',
+		solidario3_sexo='$solidario3_sexo',
+		solidario3_rg='$solidario3_rg',
+		cep='$cep',
+		endereco='$endereco',
+		numero='$numero',
+		quadra='$quadra',
+		lote='$lote',
+		complemento='$complemento',
+		bairro='$bairro',
+		cidade='$cidade',
+		uf='$uf',
+		aluguel='$aluguel',
+		ocupacao='$ocupacao',
+		imovel_tipo='$imovel_tipo',
+		motivo_locacao='$motivo_locacao',
+		condominio='$condominio',
+		gas='$gas',
+		iptu='$iptu',
+		energia='$energia',
+		agua='$agua'
+		WHERE codigo=$codigoCadastro";
+    }
 
+   
     mysql_db_query("segurosja", $sql) or die (mysql_error());
     $sql_last_insert = "SELECT LAST_INSERT_ID()";
     $consulta_last_insert = mysql_db_query("segurosja", $sql_last_insert) or die (mysql_error());
