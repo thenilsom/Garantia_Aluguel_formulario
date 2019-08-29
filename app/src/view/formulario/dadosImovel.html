@@ -129,11 +129,16 @@
     </div>
 
     <div layout="column" layout-padding layout-gt-sm="row">
-      <div class="md-block" flex-gt-sm="50">
-          <label for="faturamentoMensalEstimado">Qual faturamento mensal estimado</label>
-          <input type="text" id="faturamentoMensalEstimado" upper name="faturamentoMensalEstimado" requerido maxlength="20" 
-            class="form-control" ng-model="cadastro.imovel.faturamentoMensalEstimado" ng-tabindex="11">
-        </div>
+      <div class="md-block" flex-gt-sm="25">
+        <label for="faturamentoMensalEstimado">Qual faturamento mensal estimado</label>
+        <div class="input-group">
+        <span class="input-group-addon"
+          id="basic-addon1">R$</span>
+        <input mobile="number" mascara-monetaria id="faturamentoMensalEstimado" name="faturamentoMensalEstimado" requerido
+        class="form-control" ng-model="cadastro.imovel.faturamentoMensalEstimado" ng-tabindex="11">
+      </div>
+    </div>
+
 
         <div class="md-block" flex-gt-sm="50">
           <label for="prazoRetCapitalInvest">Qual o prazo estimado para o retorno do capital inventido</label>

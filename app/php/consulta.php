@@ -72,7 +72,10 @@ function consultarPorCpfInquilino($request, $response){
 
 	$rows = array();
 
- 	$sql = "SELECT * FROM fianca WHERE codigo = (SELECT max(codigo) as CODIGO from fianca where CPF_inquilino = '$cpf')";
+ 	$sql = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
+			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
+			from fianca WHERE codigo = (SELECT max(codigo) as CODIGO from fianca where CPF_inquilino = '$cpf')";
 	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 

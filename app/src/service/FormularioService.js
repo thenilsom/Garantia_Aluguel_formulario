@@ -45,9 +45,9 @@ angular.module('app')
 
 		var preencherDadosImobiliaria = function(dados){
 			var imobiliaria = {};
-			imobiliaria.corretor = dados.fantasia_corretor;
 			imobiliaria.cnpj = dados.CGC_imob;
-
+			imobiliaria.fantasia = dados.fantasia;
+			imobiliaria.corretor = dados.fantasia;
 			return imobiliaria;
 		}
 

@@ -125,6 +125,7 @@
         		 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
         		 $scope.isAlteracao = true;
         		 iniciarUpload($scope.cadastro.codigo);
+             $scope.passo = '1';
         	 }
         	 
             }, function(erro){
