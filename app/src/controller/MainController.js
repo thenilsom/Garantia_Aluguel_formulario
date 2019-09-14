@@ -140,16 +140,17 @@
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
 
             $http.post('../app/php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-              $scope.codigoCadastro = data.data;
-
+             
               if($scope.isAlteracao){
+                $scope.codigoCadastro = $scope.cadastro.codigo
                 service.alertar('Cadastro alterado com sucesso.');
                 
               }else{
+                $scope.codigoCadastro = data.data;
                 service.exibirAlertaCadastro();
+                iniciarUpload($scope.codigoCadastro);
               }
-              
-              iniciarUpload(data.data);
+                            
               $scope.proximoPasso();
             }, function(erro){
               service.alertarErro(erro.statusText);
