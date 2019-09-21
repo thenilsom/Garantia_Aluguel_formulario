@@ -195,5 +195,13 @@ angular.module('app')
 		return val;
 	}
 
-		return service;
+	//cria uma data hora. os parametros deve ser no pardrão : '2019-09-20' '20:37:37'
+	service.criarDataHora = function(data, hora){
+		var dataArray = data.split('-');
+		var horaArray = hora.split(':');
+
+		return new Date(dataArray[0], parseInt(dataArray[1]) - 1, dataArray[2], horaArray[0], horaArray[1], horaArray[2]);
+	}
+
+	return service;
 }]);

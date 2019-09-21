@@ -3,6 +3,11 @@
        .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 
         function($scope, $http, service, $timeout){
 
+        var qtdRegistros = 0;
+        var TEMPO_REFRESH = 5;
+        $scope.contador = TEMPO_REFRESH;
+        $scope.promise;
+
         //obtem os parametros na url se existir
         var codigoParam = null;
         var paramUrl = service.extraiParamUrl(location.search.slice(1));
@@ -11,6 +16,21 @@
 
      
        $scope.listaTabela = [];
+
+       /**
+       * thread para ficar verificando se existe um novo atendimento,
+       * se existir atualiza a listagem
+       */
+      var ativarRefresh = function(){
+        $scope.contador--;
+        if($scope.contador === 0){
+          $(".loader").addClass('hidden');// parar a execução do popUp de carregamento
+          listar();
+          $scope.contador = TEMPO_REFRESH;
+        }
+        
+        $scope.promise = $timeout(ativarRefresh, 1000);
+      }
 
        $scope.detalhar = function(registro){
 
@@ -34,9 +54,17 @@
        }
 
        var listar = function(){
-         $http.post('../app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+         $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+            $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
+            if(qtdRegistros > 0 && qtdRegistros < $scope.listaTabela.length){
+              $('#notificacao').trigger('play');
+            }
+
+            qtdRegistros = $scope.listaTabela.length;
+            
             }, function(erro){
+              $(".loader").removeClass('hidden');
               service.alertarErro(erro.statusText);
             });
        }
@@ -48,4 +76,5 @@
 
        $scope.irParaListagem();
        listar();
+       ativarRefresh();
     }]);
