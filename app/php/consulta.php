@@ -15,6 +15,7 @@ $app->get('/hello', function(){
 $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
 $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
+$app->post('/registrarAtendimento', 'registrarAtendimento');
 
 function consultarCpfCnpj($request, $response){
 	$param = json_decode($request->getBody());
@@ -84,6 +85,21 @@ function consultarPorCpfInquilino($request, $response){
     }
 
 	echo json_encode($rows);
+}
+
+function registrarAtendimento($request, $response){
+	$param = json_decode($request->getBody());
+	$codigoUsuario = trim(json_encode($param->codigoUsuario, JSON_UNESCAPED_UNICODE), '"');
+	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+ 	$sql = "UPDATE fianca set usuario_analise = '$codigo', data_aceite_analise = '' WHERE codigo=$codigoCadastro";
+	
+	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }
 
 $app->run();

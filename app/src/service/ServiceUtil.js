@@ -57,8 +57,24 @@ angular.module('app')
 			    .textContent(msg)
 			    .ok('OK')
 			);
-			
 		}
+		
+		/**
+		 * Exibe um alerta de confirm
+		 */
+		service.showConfirm = function(text, callback) {
+		    var confirm = $mdDialog.confirm()
+		          .title('Confirmação')
+		          .textContent(text)
+		          .ariaLabel('Lucky day')
+		          .ok('OK')
+		          .cancel('Cancelar');
+
+		    $mdDialog.show(confirm).then(function() {
+		    	callback();
+		    }, function() {
+		    });
+		  };
 
 	
 		service.setarFocus = function(id){

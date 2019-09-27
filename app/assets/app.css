@@ -191,6 +191,11 @@ input[type="text"][upper] {
   
 }
 
+/* cor de fundo da linha amarelo para status pendente */
+.pendente{
+color: #CC6600!important;
+}
+
 /*Legenda fieldset*/
 fieldset.scheduler-border {
     border: 1px solid #ccc !important;

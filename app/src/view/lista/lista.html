@@ -17,13 +17,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 20">
+      <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 20" data-ng-class="{'pendente': registro.data_aceite_analise == '0000-00-00 00:00:00' }">
         <td>{{registro.codigo}}</td>
         <td>{{registro.inquilino}}</td>
         <td>{{registro.CPF_inquilino | cpfcnpj}}</td>
         <td>{{registro.fantasia}}</td> 
         <td>{{registro.data_transm ? (registro.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
-        <td><button type="button" class="btn btn-info" ng-click="detalhar(registro)">Detalhar</button></td>       
+        <td>
+        	<button type="button" class="btn btn-info" ng-click="detalhar(registro)">Detalhar</button>
+        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(registro)" ng-if="registro.usuario_analise == '0' ">Atender</button>
+        </td>       
       </tr>
         
     </tbody>

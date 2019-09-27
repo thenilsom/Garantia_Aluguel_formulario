@@ -4,7 +4,7 @@
         function($scope, $http, service, $timeout){
 
         var qtdRegistros = 0;
-        var TEMPO_REFRESH = 5;
+        var TEMPO_REFRESH = 60;
         $scope.contador = TEMPO_REFRESH;
         $scope.promise;
 
@@ -65,14 +65,23 @@
             
             }, function(erro){
               $(".loader").removeClass('hidden');
-              service.alertarErro(erro.statusText);
+             // service.alertarErro(erro.statusText);
             });
+       }
+       
+       $scope.registrarAtendimento = function(registro){
+    	   service.showConfirm('Confirma registrar o atendimento ?',function(){
+    		   registro.data_aceite_analise = 'data atual';
+    		   registro.usuario_analise = 'codigo usuario';
+    		   alert('atendimento registrado');
+    	   });
        }
 
        //formata o nome para o link de uploads
        $scope.formatarNomeParaLink = function(nome){
         return nome.replace(/ /g, '_');
        }
+       
 
        $scope.irParaListagem();
        listar();
