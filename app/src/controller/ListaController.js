@@ -69,11 +69,16 @@
             });
        }
        
+       //registra o atendimento para o usuário
        $scope.registrarAtendimento = function(registro){
     	   service.showConfirm('Confirma registrar o atendimento ?',function(){
-    		   registro.data_aceite_analise = 'data atual';
-    		   registro.usuario_analise = 'codigo usuario';
-    		   alert('atendimento registrado');
+          var atendimento = {codigoUsuario : '12345', codigoCadastro: registro.codigo};
+          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/registrarAtendimento', atendimento).then(function(data){    
+             alert('atendimento registrado');
+             listar();
+            }, function(erro){
+              service.alertarErro(erro.statusText);
+            });
     	   });
        }
 
