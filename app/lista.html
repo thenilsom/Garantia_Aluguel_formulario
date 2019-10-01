@@ -32,6 +32,9 @@
 
 <body ng-app="app" ng-cloak>
 
+  <!-- Captura o codigo do usuario -->
+  <input name="codigo_usuario" type="hidden" value="<?echo $_POST['status_codigo'];?>" />
+
   <div class="container">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/lista/principal.html'" ng-controller="ListaController"></div> 
