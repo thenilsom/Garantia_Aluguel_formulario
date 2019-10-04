@@ -72,13 +72,19 @@
        //registra o atendimento para o usuário
        $scope.registrarAtendimento = function(registro){
     	   service.showConfirm('Confirma registrar o atendimento ?',function(){
-          var atendimento = {codigoUsuario : $("input[name='codigo_usuario']").val(), codigoCadastro: registro.codigo};
-          $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/registrarAtendimento', atendimento).then(function(data){    
-             alert('atendimento registrado');
-             listar();
-            }, function(erro){
-              service.alertarErro(erro.statusText);
-            });
+	    	  var codUser = $("input[name='codigo_usuario']").val();
+	    	  if(!codUser){
+	    		  service.alertarErro('Usuário não identificado.');
+	    		  
+	    	  }else{
+	    		  var atendimento = {codigoUsuario : codUser, codigoCadastro: registro.codigo};
+	    		  $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/registrarAtendimento', atendimento).then(function(data){    
+	    			  alert('atendimento registrado');
+	    			  listar();
+	    		  }, function(erro){
+	    			  service.alertarErro(erro.statusText);
+	    		  });
+	    	  }
     	   });
        }
 
