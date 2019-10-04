@@ -4,7 +4,7 @@
     <!--<base href="/app/">-->
     <title>Seguros Já! - Fiança Locatícia</title>
 
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -35,7 +35,7 @@
   <!-- Captura o codigo do usuario -->
   <input name="codigo_usuario" type="hidden" value="<?echo $_POST['status_codigo'];?>" />
 
-  <div class="container">
+  <div class="container" style="padding: 0">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/lista/principal.html'" ng-controller="ListaController"></div> 
   </div>
