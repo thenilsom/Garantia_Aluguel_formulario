@@ -54,7 +54,7 @@
        }
 
        var listar = function(){
-         $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+         $http.post('../app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
             if(qtdRegistros > 0 && qtdRegistros < $scope.listaTabela.length){
@@ -78,7 +78,7 @@
 	    		  
 	    	  }else{
 	    		  var atendimento = {codigoUsuario : codUser, codigoCadastro: registro.codigo};
-	    		  $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/registrarAtendimento', atendimento).then(function(data){    
+	    		  $http.post('../app/php/consulta.php/registrarAtendimento', atendimento).then(function(data){    
 	    			  alert('atendimento registrado');
 	    			  listar();
 	    		  }, function(erro){
