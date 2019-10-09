@@ -4,7 +4,7 @@
         function($scope, $http, service, formularioService, validador, FileUploader){
 
         //obtem os parametros na url se existir
-        var paramUrl = service.extraiParamUrl(location.search.slice(1));
+        $scope.paramUrl = service.extraiParamUrl(location.search.slice(1));
 
           //controla o hide/show do botão ir para topo quando chegar no fim da pagina
         $(window).scroll(function () {
@@ -43,8 +43,8 @@
           $scope.cadastro.imovel = {};
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
           
-          if(paramUrl){
-            var cpfCnpjParam = service.formatarCpfCnpj(service.decriptografar(paramUrl.var1));
+          if($scope.paramUrl){
+            var cpfCnpjParam = service.formatarCpfCnpj(service.decriptografar($scope.paramUrl.var1));
             $http.post('../app/php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
             var dadosImobiliaria = service.extraiParamUrl(data.data);
             $scope.cadastro.imobiliaria.fantasia = dadosImobiliaria.fantasia;
@@ -52,12 +52,12 @@
             $scope.cadastro.imobiliaria.corretor = dadosImobiliaria.corretor;
             $scope.cadastro.imobiliaria.cnpj = cpfCnpjParam;
              
-             $scope.cadastro.imovel.aluguel = service.formatarValor(service.decriptografar(paramUrl.var2));
-             $scope.cadastro.imovel.condominio = service.formatarValor(service.decriptografar(paramUrl.var3));
-             $scope.cadastro.imovel.iptu = service.formatarValor(service.decriptografar(paramUrl.var4));
-             $scope.cadastro.imovel.agua = service.formatarValor(service.decriptografar(paramUrl.var5));
-             $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar(paramUrl.var6));
-             $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar(paramUrl.var7));
+             $scope.cadastro.imovel.aluguel = service.formatarValor(service.decriptografar($scope.paramUrl.var2));
+             $scope.cadastro.imovel.condominio = service.formatarValor(service.decriptografar($scope.paramUrl.var3));
+             $scope.cadastro.imovel.iptu = service.formatarValor(service.decriptografar($scope.paramUrl.var4));
+             $scope.cadastro.imovel.agua = service.formatarValor(service.decriptografar($scope.paramUrl.var5));
+             $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar($scope.paramUrl.var6));
+             $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar($scope.paramUrl.var7));
             }, function(erro){
               service.alertarErro(erro.statusText);
             });

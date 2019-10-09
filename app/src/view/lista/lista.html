@@ -15,9 +15,10 @@
     <thead>
       <tr>
         <th class="col-sm-1">CÓDIGO</th>
-        <th class="col-sm-3">CLIENTE</th>
-        <th class="col-sm-2">CPF/CNPJ</th>
+        <th class="col-sm-2">CLIENTE</th>
+        <th class="col-sm-1">CPF/CNPJ</th>
         <th class="col-sm-2">IMOBILIÁRIA</th>
+        <th class="col-sm-2">ATENDENTE</th>
         <th class="col-sm-1">DATA</th>
          <th class="col-sm-1">HORA</th>
         <th class="col-sm-2">#</th>
@@ -26,14 +27,16 @@
     <tbody>
       <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 20" data-ng-class="{'pendente': registro.data_aceite_analise == '0000-00-00 00:00:00' }">
         <td class="col-sm-1">{{registro.codigo}}</td>
-        <td class="col-sm-3">{{registro.inquilino}}</td>
-        <td class="col-sm-2">{{registro.CPF_inquilino | cpfcnpj}}</td>
+        <td class="col-sm-2">{{registro.inquilino}}</td>
+        <td class="col-sm-1">{{registro.CPF_inquilino | cpfcnpj}}</td>
         <td class="col-sm-2">{{registro.fantasia}}</td> 
+         <td class="col-sm-2">{{registro.usuario_atendente}}</td> 
         <td class="col-sm-1">{{registro.data_transm ? (registro.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
         <td class="col-sm-1">{{registro.hora_transm}}</td>
         <td class="col-sm-2">
         	<button type="button" class="btn btn-info" ng-click="detalhar(registro)">Detalhar</button>
-        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(registro)" ng-if="registro.usuario_analise == '0' ">Registrar</button>
+        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(registro)" 
+          ng-if="!registro.usuario_analise || registro.usuario_analise == '0' ">Registrar</button>
         </td>       
       </tr>
         

@@ -37,6 +37,11 @@ input[type="text"][upper] {
     text-transform: uppercase;
 }
 
+.margin-lista{
+  margin-left: 8%;
+  margin-right: 8%
+}
+
 /*classe usada para renderizar bordas vermelhas nos inputs*/
 .errorAttribute {
     border-bottom-color: #f56a67 !important;

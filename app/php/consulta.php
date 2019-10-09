@@ -47,12 +47,14 @@ function listar($request, $response){
 
  	$sqlTodos = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
-			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
+			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
 			from fianca order by codigo desc";
 
 	$sqlPorCodigo = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
-			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
+			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
 			from fianca where corretor='$codigo' order by codigo desc";
 	
 	$consulta = mysql_db_query("segurosja", $codigo != "null" ? $sqlPorCodigo : $sqlTodos) or die (mysql_error());
