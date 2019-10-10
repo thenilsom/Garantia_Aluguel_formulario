@@ -3,6 +3,7 @@
        .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 
         function($scope, $http, service, $timeout){
 
+    	var title = 'Seguros Já! - Fiança Locatícia';
         var qtdRegistros = 0;
         var TEMPO_REFRESH = 60;
         $scope.contador = TEMPO_REFRESH;
@@ -57,6 +58,8 @@
          $http.post('../app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
+            alertarQtdRegPendenteNoTitle();
+            
             if(qtdRegistros > 0 && qtdRegistros < $scope.listaTabela.length){
               $('#notificacao').trigger('play');
             }
@@ -67,6 +70,19 @@
               $(".loader").removeClass('hidden');
              // service.alertarErro(erro.statusText);
             });
+       }
+       
+       /**
+        * Alerta a qtd de registros pendentes no title da aba do navegador
+        */
+       var alertarQtdRegPendenteNoTitle = function(){
+    	   var qtdRegPendente = $scope.listaTabela.filter(reg=> reg.data_aceite_analise == '0000-00-00 00:00:00').length;
+    	   if(qtdRegPendente > 0){
+    		   document.title = '(' + qtdRegPendente + ') ' + title; 
+    		   
+    	   }else{
+    		   document.title = title;
+    	   }
        }
        
        //registra o atendimento para o usuário
