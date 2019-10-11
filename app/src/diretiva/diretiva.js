@@ -386,3 +386,19 @@ diretiva.directive('ngThumb', ['$window', function($window) {
          }
      };
  }]);
+
+/**
+ * Implementação de diretiva para chamar um tooltip
+ */
+diretiva.directive('tooltip', function () {
+    return {
+        restrinct: 'A',
+        link: function (scope, element, attrs) {
+            $(element).tooltip({
+                trigger: 'hover',
+                title: attrs.tooltip,
+                placement: attrs.posicao
+            });
+        }
+    }
+});

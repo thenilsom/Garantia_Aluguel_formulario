@@ -103,6 +103,10 @@
 	    	  }
     	   });
        }
+       
+       $scope.isRegPendenteMais30Minutos = function(reg){
+    	   return service.isDifHoraMais30minutos(service.criarDataHora(reg.data_transm, reg.hora_transm));
+       }
 
        //formata o nome para o link de uploads
        $scope.formatarNomeParaLink = function(nome){

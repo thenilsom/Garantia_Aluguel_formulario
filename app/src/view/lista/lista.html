@@ -36,7 +36,9 @@
         <td class="col-sm-2">
         	<button type="button" class="btn btn-info" ng-click="detalhar(registro)">Detalhar</button>
         	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(registro)" 
-          ng-if="!registro.usuario_analise || registro.usuario_analise == '0' ">Registrar</button>
+          		ng-if="!registro.usuario_analise || registro.usuario_analise == '0' ">Registrar</button>
+          		<span	class="glyphicon glyphicon-alert" style="font-size: 11pt; padding-left: 7px"
+          		ng-if="registro.data_aceite_analise == '0000-00-00 00:00:00' && isRegPendenteMais30Minutos(registro)"></span>
         </td>       
       </tr>
         
