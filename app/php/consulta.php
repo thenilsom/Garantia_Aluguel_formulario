@@ -15,7 +15,6 @@ $app->get('/hello', function(){
 $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
 $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
-$app->post('/registrarAtendimento', 'registrarAtendimento');
 $app->post('/listarCGC_Imob', 'listarCGC_Imob');
 
 function consultarCpfCnpj($request, $response){
@@ -88,22 +87,6 @@ function consultarPorCpfInquilino($request, $response){
     }
 
 	echo json_encode($rows);
-}
-
-function registrarAtendimento($request, $response){
-	$param = json_decode($request->getBody());
-	$codigoUsuario = trim(json_encode($param->codigoUsuario, JSON_UNESCAPED_UNICODE), '"');
-	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
-	$dataAceite = date("Y-m-d H:i:s");
-	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
-	mysql_set_charset('utf8',$conexao);
-
-	$rows = array();
-
- 	$sql = "UPDATE fianca set usuario_analise = '$codigoUsuario', data_aceite_analise = '$dataAceite' WHERE codigo=$codigoCadastro";
-	
-	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }
 
 function listarCGC_Imob($request, $response){	

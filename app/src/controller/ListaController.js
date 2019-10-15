@@ -77,6 +77,16 @@
         listarCGC_Imob();
         $scope.acao = 'incluir';
        }
+
+
+       $scope.gravarRegistro = function(){
+         $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
+           service.alertar('Registro incluido com sucesso!');
+            $scope.irParaListagem();
+          }, function(erro){
+            service.alertarErro(erro.statusText);
+          });
+       }
        
        /**
         * Alerta a qtd de registros pendentes no title da aba do navegador
@@ -100,7 +110,7 @@
 	    		  
 	    	  }else{
 	    		  var atendimento = {codigoUsuario : codUser, codigoCadastro: registro.codigo};
-	    		  $http.post('../app/php/consulta.php/registrarAtendimento', atendimento).then(function(data){    
+	    		  $http.post('../app/php/gravar.php/registrarAtendimento', atendimento).then(function(data){    
 	    			  alert('atendimento registrado');
 	    			  listar();
 	    		  }, function(erro){

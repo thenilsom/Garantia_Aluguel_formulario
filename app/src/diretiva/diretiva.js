@@ -402,3 +402,121 @@ diretiva.directive('tooltip', function () {
         }
     }
 });
+
+/**
+ * Implementação de 'mascaras', para Criação de Mascaras para CPF/CNPJ
+ * 
+ * Adicione data-mascara-cpfcnpj ao imput.
+ * Faz a Conversão Automatica De Mascara De acordo com o Digitado
+ *  
+ */
+diretiva.directive('mascaraCpfcnpj', function($filter) {
+
+	function link(scope, el, attrs, ngModelCtrl) {
+		var tokens = { '9' : { mascara: /(\d)$/ , caracter: /[^\d]/g } };
+
+		var cpf ='999.999.999-99',
+		cnpj    ='99.999.999\/9999-99',
+		mascara = cpf;
+		
+		function atualizaValor(valor){
+			
+			valor = aplicaMascara(valor , mascara);
+			ngModelCtrl.$viewValue = valor;
+			ngModelCtrl.$render();
+			
+			return valor;
+			
+		}
+
+		ngModelCtrl.$parsers.push(function(valor) {
+			if(valor){
+				valor = atualizaValor(valor);
+				return clear(valor,0);
+			}
+		});
+		
+		ngModelCtrl.$formatters.push(function(valor) {
+			if(valor){
+				return atualizaValor(String(valor));
+			}
+		});
+		
+
+		function clear(valor , ind){
+			
+			return valor.replace(/[^\d]/g,'');
+						
+		}
+		
+		function aplicaMascara(valor, mascara) {
+
+            valor = clear(valor, 0);
+			if(valor.length > 11){
+				mascara = cnpj;
+			}
+			
+			var formatted = '';
+			var valuePos = 0;
+			var tamanho = mascara.length < valor.length ? mascara.length : valor.length;
+			
+			
+			function temTokens(pattern, pos, inc) {
+				var pc = pattern.charAt(pos);
+				var token = tokens[pc];
+				if (pc === '') return false;
+				return token ? true : temTokens(pattern, pos + inc, inc);
+			}
+			
+			function continua() {
+				if (temTokens(mascara, i, 1)) {
+					return true;
+				}
+				return i < mascara.length && i >= 0;
+			}
+
+			
+	
+			for (var i = 0; continua() ; i++ ) {
+				var pc = mascara.charAt(i);
+				var vc = String(valor).charAt(valuePos);
+				var token = tokens[pc];
+				
+				if(token){
+					if (token.mascara.test(vc)) {
+						formatted += vc;
+						valuePos++;
+					}
+					if(vc === '') break;
+				}else{
+					formatted += pc;
+				}
+				
+			}
+	
+			return formatted;
+	
+		}
+		
+		// Auto-format on blur
+		el.bind('blur', function() {
+			var valor = ngModelCtrl.$viewValue;
+			if(valor){
+				if(valor.length < mascara.length){
+					valor = "";
+					ngModelCtrl.$modelValue = valor;
+				}
+				atualizaValor(valor);
+				ngModelCtrl.$commitViewValue();
+			}
+		});
+	
+	}
+
+	return {
+		restrict : 'A',
+		require : 'ngModel',
+		link : link
+	};
+	
+});
