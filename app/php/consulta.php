@@ -16,6 +16,7 @@ $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
 $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
 $app->post('/registrarAtendimento', 'registrarAtendimento');
+$app->post('/listarCGC_Imob', 'listarCGC_Imob');
 
 function consultarCpfCnpj($request, $response){
 	$param = json_decode($request->getBody());
@@ -103,6 +104,26 @@ function registrarAtendimento($request, $response){
  	$sql = "UPDATE fianca set usuario_analise = '$codigoUsuario', data_aceite_analise = '$dataAceite' WHERE codigo=$codigoCadastro";
 	
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
+}
+
+function listarCGC_Imob($request, $response){	
+	$param = json_decode($request->getBody());
+	$codigCorretor = trim(json_encode($param->codCorretor, JSON_UNESCAPED_UNICODE), '"');
+
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+ 	$sql = "SELECT cpf, fantasia FROM imobs WHERE corretor='$codigCorretor' and fantasia <> '' order BY fantasia";
+	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+
+	while($campo = mysql_fetch_assoc($consulta)){
+      $rows[] = $campo;
+    }
+
+	echo json_encode($rows);
 }
 
 $app->run();

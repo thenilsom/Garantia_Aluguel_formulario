@@ -71,6 +71,12 @@
              // service.alertarErro(erro.statusText);
             });
        }
+
+       $scope.incluirRegistro = function(){
+        $scope.novoReg = {};
+        listarCGC_Imob();
+        $scope.acao = 'incluir';
+       }
        
        /**
         * Alerta a qtd de registros pendentes no title da aba do navegador
@@ -111,6 +117,16 @@
        //formata o nome para o link de uploads
        $scope.formatarNomeParaLink = function(nome){
         return nome.replace(/ /g, '_');
+       }
+
+       //traz a lista de cgc imob
+       var listarCGC_Imob = function(){
+         $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listarCGC_Imob', {codCorretor: $("input[name='codigo_corretor']").val()}).then(function(data){
+            $scope.listaCGC_Imob = data;
+            
+            }, function(erro){
+              service.alertarErro(erro.statusText);
+            });
        }
        
 

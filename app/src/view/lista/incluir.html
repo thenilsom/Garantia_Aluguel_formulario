@@ -1,0 +1,56 @@
+<div class="row row-center">
+	<div class="col-sm-10 col-center">
+		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
+			<div class="panel-heading">
+				<h2 class="panel-title">Incluir Registro</h2>
+			</div>
+
+			<div class="panel-body fixed-panel">
+
+			<form name="formIncluirRegistro" class="fundo-formulario">
+			<div layout="column" layout-padding layout-gt-sm="row">
+			  <div class="md-block" flex-gt-sm="30">
+			        <label for="cgcImob">CGC IMOB</label>
+			        <select class="form-control" id="cgcImob" ng-tabindex="2" name="novoReg.cgcImob" 
+			          data-ng-options="cgc as cgc.nome for cgc in listaCGC_Imob"
+			          ng-model="novoReg.cgcImob" requerido focus>
+			        </select>
+			  </div>
+
+			  <div class="md-block" flex-gt-sm="40">
+          		<label for="inquilino">Inquilino</label>
+          		<input type="text" id="inquilino" upper name="novoReg.inquilino" requerido
+          		maxlength="30" class="form-control" ng-model="novoReg.inquilino" ng-tabindex="2">
+        	</div>
+
+        	<div class="md-block" flex-gt-sm="20">
+	            <label for="tipoInquilino">Tipo Inquilino</label>
+	            <select class="form-control" id="tipoInquilino" ng-tabindex="3" flex-gt-sm="50"
+	            	ng-model="novoReg.tipoInquilino" requerido>
+	              <option value="f">F</option>
+	              <option value="j">J</option>
+	                      
+	            </select>
+     	   </div>
+
+     	  <div class="md-block" flex-gt-sm="20">
+		      <label for="cpfInquilino">CPF Inquilino</label>
+		      <input mobile="number"  mascara="999.999.999-99"  id="cpfInquilino" name="novoReg.cpfInquilino"
+		      class="form-control" ng-model="novoReg.cpfInquilino" ng-tabindex="4" requerido>
+	     </div>
+					
+		</div>
+
+		</div>
+		
+		<!-- Importe dos botoes do Form -->
+		<div class="form-group last">
+			<div class="col-md-12 text-center">
+				 <md-button class="md-raised md-warn md-hue-2" 
+			      ng-click="irParaListagem()">Cancelar <span aria-hidden="true"></span>
+			      </md-button>
+			</div>
+		</div>
+
+	</div>
+</div>

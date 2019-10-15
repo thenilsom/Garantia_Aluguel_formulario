@@ -38,6 +38,9 @@
   <!-- Captura o codigo do usuario -->
   <input name="codigo_usuario" type="hidden" value="<?echo $_POST['status_codigo'];?>" />
 
+  <!-- Captura o codigo do corretor -->
+  <input name="codigo_corretor" type="hidden" value="<?echo $_POST['cod_corr'];?>" />
+
   <div class="margin-lista">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/lista/principal.html'" ng-controller="ListaController"></div> 
