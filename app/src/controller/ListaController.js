@@ -99,6 +99,8 @@
 
        $scope.gravarRegistro = function(){
         if(validarDadosRegistro('formIncluirRegistro')){
+          $scope.novoReg.cpfInquilino = service.formatarCpfCnpj($scope.novoReg.cpfInquilino);
+          $scope.novoReg.codCorretor = getCodCorretor();
           $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
            service.alertar('Registro incluido com sucesso!');
             $scope.irParaListagem();
@@ -107,6 +109,11 @@
           });
         }
          
+       }
+
+       //retorna o codigo do corretor
+       var getCodCorretor = function(){
+        return $("input[name='codigo_corretor']").val();
        }
        
        /**
@@ -152,7 +159,7 @@
 
        //traz a lista de cgc imob
        var listarCGC_Imob = function(){
-         $http.post('../app/php/consulta.php/listarCGC_Imob', {codCorretor: $("input[name='codigo_corretor']").val()}).then(function(data){
+         $http.post('../app/php/consulta.php/listarCGC_Imob', {codCorretor: getCodCorretor()}).then(function(data){
             $scope.listaCGC_Imob = data.data;
             
             }, function(erro){

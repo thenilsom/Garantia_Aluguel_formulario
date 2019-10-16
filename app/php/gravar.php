@@ -40,13 +40,14 @@ function gravarRegInquilino($request, $response){
 	$inquilino = trim(json_encode($param->inquilino, JSON_UNESCAPED_UNICODE), '"');
 	$tipo_inquilino = trim(json_encode($param->tipoInquilino, JSON_UNESCAPED_UNICODE), '"');
 	$cpfCnpj = trim(json_encode($param->cpfInquilino, JSON_UNESCAPED_UNICODE), '"');
+	$codCorretor = trim(json_encode($param->codCorretor, JSON_UNESCAPED_UNICODE), '"');
 	
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
 
- 	$sql = "INSERT INTO fianca(data_transm, hora_transm, seguradora, solicitante, CGC_imob, inquilino, tipo_inquilino, CPF_inquilino) VALUES ('$data_servidor', '$hora_servidor', 'ALL', 'Seguros Já', '$CGC_imob', '$inquilino', '$tipo_inquilino', '$cpfCnpj')";
+ 	$sql = "INSERT INTO fianca(data_transm, hora_transm, seguradora, solicitante, CGC_imob, inquilino, tipo_inquilino, CPF_inquilino, corretor) VALUES ('$data_servidor', '$hora_servidor', 'ALL', 'Seguros Já', '$CGC_imob', '$inquilino', '$tipo_inquilino', '$cpfCnpj', '$codCorretor')";
 	
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }

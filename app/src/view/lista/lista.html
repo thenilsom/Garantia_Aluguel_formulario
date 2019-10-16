@@ -4,7 +4,18 @@
 }
 </style>
 
-  <h2>Cadastros de Fiança Locatícia</h2>
+  <div class="row">
+      <div class="col-md-9">
+        <h2>Cadastros de Fiança Locatícia</h2>
+      </div>  
+      
+       <div class="col-md-3">
+       <md-button class="md-raised md-primary" ng-click="incluirRegistro()" style="margin-top: 20px;">Incluir 
+        <span aria-hidden="true"></span>
+      </md-button>
+      </div>      
+  </div>
+
   <hr/>
 
   <audio id="notificacao" preload="auto">
@@ -62,10 +73,3 @@
     <dir-pagination-controls max-size="20"></dir-pagination-controls>
     <!--Link da documentação da paginação = https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
 
-    <div layout="row" layout-align="center center">
-    <div>
-      <md-button class="md-raised md-primary" 
-      ng-click="incluirRegistro()">Incluir <span aria-hidden="true"></span>
-      </md-button>
-    </div>
-  </div> 
