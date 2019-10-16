@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 
-        function($scope, $http, service, $timeout){
+       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService',
+        function($scope, $http, service, $timeout, validador){
 
     	var title = 'Seguros Já! - Fiança Locatícia';
         var qtdRegistros = 0;
@@ -73,19 +73,40 @@
        }
 
        $scope.incluirRegistro = function(){
+        $scope.errors = [];
         $scope.novoReg = {};
         listarCGC_Imob();
         $scope.acao = 'incluir';
        }
 
+        var validarDadosRegistro = function(form){
+             $scope.errors = [];
+             validador.validarCamposObrigatorios(form, $scope.errors);
+
+             var isCpf = $scope.novoReg.cpfInquilino.length <= 11;
+
+              if(isCpf && !validador.validarCpf($scope.novoReg.cpfInquilino)){
+                $scope.errors.push("CPF inválido");
+              }
+
+              if(!isCpf && !validador.validarCNPJ($scope.novoReg.cpfInquilino)){
+                $scope.errors.push("CNPJ inválido");
+              }
+
+              return $scope.errors.length == 0;
+          }
+
 
        $scope.gravarRegistro = function(){
-         $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
+        if(validarDadosRegistro('formIncluirRegistro')){
+          $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
            service.alertar('Registro incluido com sucesso!');
             $scope.irParaListagem();
           }, function(erro){
             service.alertarErro(erro.statusText);
           });
+        }
+         
        }
        
        /**
