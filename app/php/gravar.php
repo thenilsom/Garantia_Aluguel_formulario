@@ -36,7 +36,7 @@ function gravarRegInquilino($request, $response){
 	$param = json_decode($request->getBody());
 	$data_servidor = date("Y-m-d");
 	$hora_servidor = date("H:i:s");
-	$CGC_imob = trim(json_encode($param->cgcImob, JSON_UNESCAPED_UNICODE), '"');
+	$CGC_imob = trim(json_encode($param->cgcImob->cpf, JSON_UNESCAPED_UNICODE), '"');
 	$inquilino = trim(json_encode($param->inquilino, JSON_UNESCAPED_UNICODE), '"');
 	$tipo_inquilino = trim(json_encode($param->tipoInquilino, JSON_UNESCAPED_UNICODE), '"');
 	$cpfCnpj = trim(json_encode($param->cpfInquilino, JSON_UNESCAPED_UNICODE), '"');

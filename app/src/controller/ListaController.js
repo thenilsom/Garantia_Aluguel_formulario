@@ -131,8 +131,8 @@
 
        //traz a lista de cgc imob
        var listarCGC_Imob = function(){
-         $http.post('http://www.segurosja.com.br/gerenciador/fianca/app/php/consulta.php/listarCGC_Imob', {codCorretor: $("input[name='codigo_corretor']").val()}).then(function(data){
-            $scope.listaCGC_Imob = data;
+         $http.post('../app/php/consulta.php/listarCGC_Imob', {codCorretor: $("input[name='codigo_corretor']").val()}).then(function(data){
+            $scope.listaCGC_Imob = data.data;
             
             }, function(erro){
               service.alertarErro(erro.statusText);
