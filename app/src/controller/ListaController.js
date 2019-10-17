@@ -104,6 +104,7 @@
           $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
            service.alertar('Registro incluido com sucesso!');
             $scope.irParaListagem();
+            listar();
           }, function(erro){
             service.alertarErro(erro.statusText);
           });
