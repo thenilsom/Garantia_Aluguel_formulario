@@ -211,26 +211,5 @@ angular.module('app')
 		return val;
 	}
 
-	//cria uma data hora. os parametros deve ser no pardrão : '2019-09-20' '20:37:37'
-	service.criarDataHora = function(data, hora){
-		var dataArray = data.split('-');
-		var horaArray = hora.split(':');
-
-		return new Date(dataArray[0], parseInt(dataArray[1]) - 1, dataArray[2], horaArray[0], horaArray[1], horaArray[2]);
-	}
-	
-	//retorna true se a data passada estiver a mais de 30 minutos da data atual
-	service.isDifHoraMais30minutos = function(data){
-		var agora = new Date();
-	
-		if(agora.getDate() > data.getDate() || agora.getMonth() > data.getMonth() || agora.getYear() > data.getYear())
-			return true;
-		
-		var dif = ((agora.getHours() * 60) + agora.getMinutes()) - ((data.getHours() * 60) + data.getMinutes());
-		
-		return dif > 30;
-		
-	}
-
 	return service;
 }]);

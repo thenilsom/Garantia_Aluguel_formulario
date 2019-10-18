@@ -12,6 +12,11 @@ $app->get('/hello', function(){
 	return 'Hello World!';
 });
 
+$app->get('/dataServidor', function(){
+	$result = array( 'data' => date("Y-m-d"), 'hora' => date("H:i:s")); 
+	echo json_encode($result);
+});
+
 $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
 $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');

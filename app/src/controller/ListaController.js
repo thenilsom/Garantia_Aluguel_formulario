@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService',
-        function($scope, $http, service, $timeout, validador){
+       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil',
+        function($scope, $http, service, $timeout, validador, dataUtil){
 
     	var title = 'Seguros Já! - Fiança Locatícia';
         var qtdRegistros = 0;
@@ -73,10 +73,16 @@
        }
 
        $scope.incluirRegistro = function(){
-        $scope.errors = [];
-        $scope.novoReg = {};
-        listarCGC_Imob();
-        $scope.acao = 'incluir';
+         $http.get('../app/php/consulta.php/dataServidor').then(function(data){
+             $scope.errors = [];
+             $scope.novoReg = {};
+             $scope.novoReg.data = dataUtil.formatarDataServidor(data.data.data);
+             $scope.novoReg.hora = data.data.hora;
+             listarCGC_Imob();
+             $scope.acao = 'incluir';
+        }, function(erro){
+         service.alertarErro(erro.statusText);
+        });
        }
 
         var validarDadosRegistro = function(form){
@@ -99,8 +105,8 @@
 
        $scope.gravarRegistro = function(){
         if(validarDadosRegistro('formIncluirRegistro')){
-          $scope.novoReg.cpfInquilino = service.formatarCpfCnpj($scope.novoReg.cpfInquilino);
-          $scope.novoReg.codCorretor = getCodCorretor();
+          tratarDadosRegistro()
+
           $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
            service.alertar('Registro incluido com sucesso!');
             $scope.irParaListagem();
@@ -110,6 +116,13 @@
           });
         }
          
+       }
+
+       //trata os dados do registro que será enviado ao servidor
+       var tratarDadosRegistro = function(){
+         $scope.novoReg.cpfInquilino = service.formatarCpfCnpj($scope.novoReg.cpfInquilino);
+         $scope.novoReg.codCorretor = getCodCorretor();
+         $scope.novoReg.data = dataUtil.formatarParaDataServidor($scope.novoReg.data);
        }
 
        //retorna o codigo do corretor
@@ -150,7 +163,7 @@
        }
        
        $scope.isRegPendenteMais30Minutos = function(reg){
-    	   return service.isDifHoraMais30minutos(service.criarDataHora(reg.data_transm, reg.hora_transm));
+    	   return dataUtil.isDifHoraMais30minutos(dataUtil.criarDataHora(reg.data_transm, reg.hora_transm));
        }
 
        //formata o nome para o link de uploads
