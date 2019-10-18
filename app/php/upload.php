@@ -46,7 +46,7 @@ if ( !empty( $_FILES ) ) {
 } else {
     echo 'Sem arquivo.';
 }
-
+/*
 $mensagem = "<html><body><div align='center'><b>** Análise de Cadastro para Fiança Locatícia nº: ". $registro . " **</b><BR>" . $inquilino . "<BR><BR><BR><BR>Foi feito upload de um ou mais arquivos para análise desse cadastro. Clique no link a seguir para abrir a pasta de arquivos desse cliente: <a href='http://www.segurosja.com.br/gerenciador/fianca/app/php/uploads/" . $registro . '_' . $inquilino . "'>Arquivo(s) anexado(s)</a><BR>(Novos arquivos ainda podem ser enviados)</body></html>";
 
 // Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
@@ -68,14 +68,13 @@ $mail->AddReplyTo("cobertura@segurosja.com.br"); // Email para receber as respos
 $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
 $mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
 
-if($cod_cor == "0"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');}
-if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddCC("aluguel.df@maximizaseguros.com.br");}
-if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddCC("mt@mx10.com.br");}
-if($cod_cor == "6"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');}
-if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
-if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
-
-$mail->AddBCC("clemente@maximizaseguros.com.br");
+if($cod_cor == "0"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');$mail->AddCC('cadastro@mx10.com.br');}
+else if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddCC("aluguel.df@maximizaseguros.com.br");}
+else if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddCC("mt@mx10.com.br");}
+else if($cod_cor == "6"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');$mail->AddCC('cadastro@mx10.com.br');}
+else if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
+else if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
+else{$mail->AddBCC("clemente@maximizaseguros.com.br");}
 $mail->AddBCC("leandro@mx10.com.br");
 
 $mail->Body = $mensagem;//apagar
@@ -92,8 +91,8 @@ else{
     $retorno_mail .= " Informações do erro: " . $mail->ErrorInfo;
 }
 
-mysql_close($conexao);
-
 echo $retorno_mail;
+*/
+mysql_close($conexao);
 
 ?>

@@ -157,11 +157,12 @@ function salvar($request, $response){
 
     $conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 
-    $sql_imob = "select fantasia, razao, corretor, (select razao from corretores where corretores.codigo=imobs.corretor) AS NOME_COR, (select email from corretores where corretores.codigo=imobs.corretor) AS EMAIL_COR from imobs where cpf='$CGC_imob'";
+    $sql_imob = "select fantasia, razao, corretor, email, (select razao from corretores where corretores.codigo=imobs.corretor) AS NOME_COR, (select email from corretores where corretores.codigo=imobs.corretor) AS EMAIL_COR from imobs where cpf='$CGC_imob'";
     $consulta_imob = mysql_db_query("segurosja", $sql_imob) or die ("problema no SQL imob");
     while($campo_imob = mysql_fetch_assoc($consulta_imob)){
             $razao_imob = $campo_imob['razao'];
             $fantasia_imob = $campo_imob['fantasia'];
+            $email_imob = $campo_imob['email'];
             $cod_cor = $campo_imob['corretor'];
             $corretor = $campo_imob['NOME_COR'];
             $email_cor = $campo_imob['EMAIL_COR'];
@@ -382,15 +383,15 @@ function salvar($request, $response){
     $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
     $mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
 
-    if($cod_cor == "0"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');}
-    if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddCC("aluguel.df@maximizaseguros.com.br");}
-    if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddCC("mt@mx10.com.br");}
-    if($cod_cor == "6"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');}
-    if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
-    if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
-
+    if($cod_cor == "0"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');$mail->AddCC('cadastro@mx10.com.br');}
+    else if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddCC("aluguel.df@maximizaseguros.com.br");}
+    else if($cod_cor == "8"){$mail->AddAddress("mt@maximizaseguros.com.br");$mail->AddCC("mt@mx10.com.br");}
+    else if($cod_cor == "6"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');$mail->AddCC('cadastro@mx10.com.br');}
+    else if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
+    else if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
+    else{$mail->AddBCC("clemente@maximizaseguros.com.br");}
+    $mail->AddCC("$email_imob");}
     $mail->AddBCC("leandro@mx10.com.br");
-    $mail->AddBCC("clemente@maximizaseguros.com.br");
 
     $mail->Body = $mensagem;//apagar
     $mail->Subject = "Análise de Fiança " . $registro . " - " . $inquilino; //apagar
