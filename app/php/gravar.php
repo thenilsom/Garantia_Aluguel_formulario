@@ -34,8 +34,8 @@ function registrarAtendimento($request, $response){
 
 function gravarRegInquilino($request, $response){
 	$param = json_decode($request->getBody());
-	$data_servidor = date("Y-m-d");
-	$hora_servidor = date("H:i:s");
+	$data_servidor = trim(json_encode($param->data, JSON_UNESCAPED_UNICODE), '"');
+	$hora_servidor = trim(json_encode($param->hora, JSON_UNESCAPED_UNICODE), '"');
 	$CGC_imob = trim(json_encode($param->cgcImob->cpf, JSON_UNESCAPED_UNICODE), '"');
 	$inquilino = trim(json_encode($param->inquilino, JSON_UNESCAPED_UNICODE), '"');
 	$tipo_inquilino = trim(json_encode($param->tipoInquilino, JSON_UNESCAPED_UNICODE), '"');

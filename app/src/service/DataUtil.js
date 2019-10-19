@@ -10,8 +10,8 @@ angular.module('app')
 	}
 
 	//recebe no padrao: dd/MM/yyyy retorna no padrão 2019-10-18 
-	service.formatarParaDataServidor = function(data){
-		var data = dataServidor.split('/');
+	service.formatarParaDataServidor = function(dataParaServidor){
+		var data = dataParaServidor.split('/');
 		return data[2] + '-' + data[1] + '-' + data[0];
 	}
 
