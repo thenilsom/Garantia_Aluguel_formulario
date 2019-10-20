@@ -45,7 +45,7 @@
         });
 
 
-        $scope.registro = registro;
+        $scope.registro = angular.copy(registro);
         $scope.acao = 'detalhar';
 
        }

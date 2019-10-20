@@ -36,20 +36,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="registro in listaTabela | filter:q | itemsPerPage: 20" data-ng-class="{'pendente': registro.data_aceite_analise == '0000-00-00 00:00:00' }">
-        <td class="col-sm-1">{{registro.codigo}}</td>
-        <td class="col-sm-2">{{registro.inquilino}}</td>
-        <td class="col-sm-1">{{registro.CPF_inquilino | cpfcnpj}}</td>
-        <td class="col-sm-2">{{registro.fantasia}}</td> 
-         <td class="col-sm-2">{{registro.usuario_atendente}}</td> 
-        <td class="col-sm-1">{{registro.data_transm ? (registro.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
-        <td class="col-sm-1">{{registro.hora_transm}}</td>
+      <tr dir-paginate="reg in listaTabela | filter:q | itemsPerPage: 20" data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00' }">
+        <td class="col-sm-1">{{reg.codigo}}</td>
+        <td class="col-sm-2">{{reg.inquilino}}</td>
+        <td class="col-sm-1">{{reg.CPF_inquilino | cpfcnpj}}</td>
+        <td class="col-sm-2">{{reg.fantasia}}</td> 
+         <td class="col-sm-2">{{reg.usuario_atendente}}</td> 
+        <td class="col-sm-1">{{reg.data_transm ? (reg.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
+        <td class="col-sm-1">{{reg.hora_transm}}</td>
         <td class="col-sm-2">
-        	<button type="button" class="btn btn-info" ng-click="detalhar(registro)">Detalhar</button>
-        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(registro)" 
-          		ng-if="!registro.usuario_analise || registro.usuario_analise == '0' ">Registrar</button>
+        	<button type="button" class="btn btn-info" ng-click="detalhar(reg)">Detalhar</button>
+        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(reg)" 
+          		ng-if="!reg.usuario_analise || reg.usuario_analise == '0' ">Registrar</button>
           		<span	class="glyphicon glyphicon-alert" style="font-size: 11pt; padding-left: 7px"
-          		ng-if="registro.data_aceite_analise == '0000-00-00 00:00:00' && isRegPendenteMais30Minutos(registro)"></span>
+          		ng-if="reg.data_aceite_analise == '0000-00-00 00:00:00' && isRegPendenteMais30Minutos(reg)"></span>
         </td>       
       </tr>
         
