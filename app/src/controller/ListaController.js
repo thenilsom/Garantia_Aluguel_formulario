@@ -34,18 +34,17 @@
       }
 
        $scope.detalhar = function(registro){
-
-        for (var key in registro) {
-          if(!registro[key])
-            registro[key] = '--';
+    	 $scope.registro = angular.copy(registro);
+    	   
+        for (var key in $scope.registro) {
+          if(!$scope.registro[key])
+        	  $scope.registro[key] = '--';
         }
 
         $timeout(function(){
           $("#accordion a:first").trigger("click");
         });
 
-
-        $scope.registro = angular.copy(registro);
         $scope.acao = 'detalhar';
 
        }
