@@ -390,7 +390,7 @@ function salvar($request, $response){
     else if($cod_cor == "5"){$mail->AddAddress('ccavalcante@riolupo.com.br');$mail->AddBCC('clemente@mx10.com.br');$mail->AddBCC('leandro@maximizaseguros.com.br');}
     else if($cod_cor == "11"){$mail->AddAddress('ba@maximizaseguros.com.br');$mail->AddBCC('eduardo@maximizaseguros.com.br');$mail->AddBCC('silmara@maximizaseguros.com.br');}
     else{$mail->AddBCC("clemente@maximizaseguros.com.br");}
-    $mail->AddCC("$email_imob");}
+    $mail->AddCC("$email_imob");
     $mail->AddBCC("leandro@mx10.com.br");
 
     $mail->Body = $mensagem;//apagar
