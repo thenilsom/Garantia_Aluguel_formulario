@@ -159,7 +159,7 @@ angular.module('app')
 	         
 	     }).fail(function(d) {
 	     	 $('.loader').hide();
-	    	 alert('Erro ao consultar cep');
+	    	 alert('API correios fora de serviço, favor inserir manualmente');
          });   	
 	  }
 
