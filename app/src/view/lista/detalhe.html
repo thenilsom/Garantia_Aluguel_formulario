@@ -106,7 +106,12 @@
 					</div>
 				
 
-					<a ng-href="../app/php/uploads/{{registro.codigo}}_{{formatarNomeParaLink(registro.inquilino)}}" class="btn btn-info" role="button">Ver arquivos</a>
+					<a ng-href="../app/php/uploads/{{registro.codigo}}_{{formatarNomeParaLink(registro.inquilino)}}" ng-if="registro.fezUpload"
+					class="btn btn-info" role="button">Ver arquivos</a>
+
+					<div class="alert alert-warning" ng-if="!registro.fezUpload">
+  						Não fez upload de arquivos.
+					</div>
 			</div>
 
 		</div>

@@ -34,18 +34,26 @@
       }
 
        $scope.detalhar = function(registro){
-    	 $scope.registro = angular.copy(registro);
-    	   
-        for (var key in $scope.registro) {
-          if(!$scope.registro[key])
-        	  $scope.registro[key] = '--';
-        }
+        var pastaArquivos = registro.codigo + '_' + $scope.formatarNomeParaLink(registro.inquilino);
+        $http.post('../app/php/consulta.php/fezUploadArquivos', {pasta: pastaArquivos}).then(function(data){ 
+             $scope.registro = angular.copy(registro);
+         
+            for (var key in $scope.registro) {
+              if(!$scope.registro[key])
+                $scope.registro[key] = '--';
+            }
 
-        $timeout(function(){
-          $("#accordion a:first").trigger("click");
-        });
+            $scope.registro.fezUpload = data.data.qtd > 0;
 
-        $scope.acao = 'detalhar';
+            $timeout(function(){
+              $("#accordion a:first").trigger("click");
+            });
+
+            $scope.acao = 'detalhar'; 
+
+            }, function(erro){
+             service.alertarErro(erro.statusText);
+            });
 
        }
 

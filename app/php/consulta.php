@@ -21,6 +21,28 @@ $app->post('/consultarCpfCnpj', 'consultarCpfCnpj');
 $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
 $app->post('/listarCGC_Imob', 'listarCGC_Imob');
+$app->post('/fezUploadArquivos', 'fezUploadArquivos');
+
+
+function fezUploadArquivos($request, $response){
+	$param = json_decode($request->getBody());
+	$pasta = trim(json_encode($param->pasta, JSON_UNESCAPED_UNICODE), '"');
+
+	$dir = scandir('./uploads/'.$pasta.'/');
+	$aux=0;
+	$num_files=0;
+	while($aux < count($dir)){
+	    $arquivo = $dir[$aux];
+	    $caminho_todo = './uploads/'.$pasta.'/'. $arquivo;
+	    if(is_file($caminho_todo)){
+	        if($arquivo != "index.php" and $arquivo != ".user.ini" and $arquivo != "logo.jpg"){$num_files++;}
+	    }
+	    $aux++;
+}
+
+	$result = array('qtd' => $num_files); 
+	echo json_encode($result);
+}
 
 function consultarCpfCnpj($request, $response){
 	$param = json_decode($request->getBody());
