@@ -63,9 +63,9 @@
             });
           }
           
-          //formata o nome para o link de uploads
-          $scope.formatarNomeParaLink = function(nome){
-           return nome.replace(/ /g, '_');
+          /*gera o link para a pasta upload*/
+           $scope.gerarLinkPastaUpload = function(cadastro){
+            return service.gerarLinkPastaUpload(cadastro.codigo, cadastro.pretendente.nome);
           }
 
           /*inicia as configurações de upload*/
@@ -125,11 +125,21 @@
         		 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
         		 $scope.isAlteracao = true;
         		 iniciarUpload($scope.cadastro.codigo);
+             verificarSeFezUploadArquivos();
              $scope.passo = '1';
         	 }
         	 
             }, function(erro){
               service.alertarErro(erro.statusText);
+            });
+        }
+
+        //verifica se fez Upload de arquivos
+        var verificarSeFezUploadArquivos = function(){
+           $http.post('../app/php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload($scope.cadastro)}).then(function(data){ 
+            $scope.cadastro.fezUpload = data.data.qtd > 0;
+            }, function(erro){
+             service.alertarErro(erro.statusText);
             });
         }
         //######################################################################

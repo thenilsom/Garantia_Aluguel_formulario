@@ -211,5 +211,9 @@ angular.module('app')
 		return val;
 	}
 
+	service.gerarLinkPastaUpload = function(codigo, nome){
+		 return codigo + '_' + nome.replace(/ /g, '_');
+	}
+
 	return service;
 }]);

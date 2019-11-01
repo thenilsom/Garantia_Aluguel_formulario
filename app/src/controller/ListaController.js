@@ -34,8 +34,7 @@
       }
 
        $scope.detalhar = function(registro){
-        var pastaArquivos = registro.codigo + '_' + $scope.formatarNomeParaLink(registro.inquilino);
-        $http.post('../app/php/consulta.php/fezUploadArquivos', {pasta: pastaArquivos}).then(function(data){ 
+        $http.post('../app/php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
              $scope.registro = angular.copy(registro);
          
             for (var key in $scope.registro) {
@@ -174,8 +173,8 @@
        }
 
        //formata o nome para o link de uploads
-       $scope.formatarNomeParaLink = function(nome){
-        return nome.replace(/ /g, '_');
+       $scope.gerarLinkPastaUpload = function(registro){
+        return service.gerarLinkPastaUpload(registro.codigo, registro.inquilino);
        }
 
        //traz a lista de cgc imob
