@@ -31,6 +31,11 @@ function salvar($request, $response){
 	$sexo_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$est_civil_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$cpf_conjuge_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$nome_conjuge_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomeConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$data_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->dataNascimentoConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$vai_residir_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->iraResidirImovelConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$vai_compor_renda_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->iraComporRendaConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$renda_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->rendaConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$num_dependente_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->numeroDependente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$nome_mae_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomeMae, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$nome_pai_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomePai, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -173,16 +178,34 @@ function salvar($request, $response){
     //se não veio codigo cadastro é inclusão senão é alteração
     if($codigoCadastro == "" || $codigoCadastro == null || $codigoCadastro == "null"){
 
-    	$sql = "insert into fianca values ('', '$data_cob', '$hora_cob', '$seguradora', '', '$usuario_upload', '', '$CGC_imob', '', '', '', '', '', '',
-								   '', '', '', '', '', '', '', '', '', '', '',
-								   '$inquilino', '$tipo_inquilino', '$CPF_inquilino', '$data_inquilino', '$sexo_inquilino', '$est_civil_inquilino', '$tipo_DOC_inquilino', '$DOC_inquilino', '$orgao_exp_inquilino', '$data_exp_inquilino', '$data_validade_doc_inquilino', '$resp_inquilino', '$CPF_resp_inquilino', '$cpf_conjuge_inquilino', '$num_dependente_inquilino', '$nome_mae_inquilino', '$nome_pai_inquilino', '$nacionalidade_inquilino', '$pais_inquilino', '$tempo_pais_inquilino', '$resp_locacao_inquilino', '$vai_residir_imov_inquilino', '$tem_renda_arcar_loc_inquilino', '$fone_inquilino', '$cel_inquilino', '$email_inquilino',
+        $sql = "insert into fianca (data_transm, hora_transm, seguradora, solicitante, CGC_imob,
+                                    inquilino, tipo_inquilino, CPF_inquilino, data_inquilino, sexo_inquilino, est_civil_inquilino, tipo_doc_inquilino, rg_inquilino, orgao_exp_inquilino, data_exp_inquilino, data_validade_doc_inquilino, resp_inquilino, CPF_resp_inquilino,
+                                    nome_conjuge_inquilino, cpf_conjuge_inquilino, data_conjuge_inquilno, vai_residir_conjuge_inquilno, vai_compor_renda_conjuge_inquilno, renda_conjuge_inquilno,
+                                    num_dependente_inquilino, nome_mae_inquilino, nome_pai_inquilino, nacionalidade_inquilino, pais_inquilino, tempo_pais_inquilino, resp_locacao_inquilino, vai_residir_imov_inquilino, tem_renda_arcar_loc_inquilino, fone_inquilino, cel_inquilino, email_inquilino,
+                                    tempo_resid_inquilino, tipo_resid_inquilino, imob_prop_atual, fone_imob_prop_atual, resid_emnomede_inquilino, arca_com_aluguel_inquilino, cep_anterior_inquilino, uf_anterior_inquilino, cidade_anterior_inquilino, endereco_anterior_inquilino, bairro_anterior_inquilino, complemento_anterior_inquilino, num_anterior_inquilino,
+                                    empresa_trab_inquilino, fone_com_inquilino, ramal_com_inquilino, profissao_inquilino, natureza_renda_inquilino, data_admissao_inquilino, salario_inquilino, outros_rendim_inquilino, total_rendim_inquilino, empresa_anterior_inquilino, endereco_com_inquilino,
+                                    ref_bancaria_inquilino, banco_inquilino, agencia_inquilino, ccorrente_inquilino, gerente_inquilino, fone_gerente_inquilino, ref_pessoal_nome, ref_pessoal_fone, ref_pessoal_cel, ref_pessoal_grau_parent,
+                                    empresa_constituida, cnpj_empresa_constituida, ramo_atividade_empresa, franquia_empresa, franqueadora_empresa, produtos_servicos_empresa, experiencia_ramo_empresa, faturam_estim_empresa, ret_cap_invest_empresa,
+                                    num_solidarios, solidario1, solidario1_cpf, solidario1_fone, solidario1_sexo, solidario1_rg, solidario2, solidario2_cpf, solidario2_fone, solidario2_sexo, solidario2_rg, solidario3, solidario3_cpf, solidario3_fone, solidario3_sexo, solidario3_rg,
+                                    cep, endereco, numero, complemento, bairro, cidade, uf, aluguel,
+                                    ocupacao, imovel_tipo, motivo_locacao, inicio,
+                                    condominio, gas, iptu, energia, agua, pintura_int, pintura_ext, danos, multa,
+                                    corretor)
+
+                            values ('$data_cob', '$hora_cob', '$seguradora', '$usuario_upload', '$CGC_imob',
+								   '$inquilino', '$tipo_inquilino', '$CPF_inquilino', '$data_inquilino', '$sexo_inquilino', '$est_civil_inquilino', '$tipo_DOC_inquilino', '$DOC_inquilino', '$orgao_exp_inquilino', '$data_exp_inquilino', '$data_validade_doc_inquilino', '$resp_inquilino', '$CPF_resp_inquilino',
+                                   '$nome_conjuge_inquilino', '$cpf_conjuge_inquilino', '$data_conjuge_inquilno', '$vai_residir_conjuge_inquilno', '$vai_compor_renda_conjuge_inquilno', '$renda_conjuge_inquilno',
+                                   '$num_dependente_inquilino', '$nome_mae_inquilino', '$nome_pai_inquilino', '$nacionalidade_inquilino', '$pais_inquilino', '$tempo_pais_inquilino', '$resp_locacao_inquilino', '$vai_residir_imov_inquilino', '$tem_renda_arcar_loc_inquilino', '$fone_inquilino', '$cel_inquilino', '$email_inquilino',
 								   '$tempo_resid_inquilino', '$tipo_resid_inquilino', '$nome_imobiliaria', '$telefone_imobiliaria', '$resid_emnomede_inquilino', '$arca_com_aluguel_inquilino', '$cep_anterior_inquilino', '$uf_anterior_inquilino', '$cidade_anterior_inquilino', '$endereco_anterior_inquilino', '$bairro_anterior_inquilino', '$complemento_anterior_inquilino', '$num_anterior_inquilino',
-                                   '$empresa_trab_inquilino', '$fone_com_inquilino', '$ramal_com_inquilino', '$profissao_inquilino', '$natureza_renda_inquilino', '$data_admissao_inquilino', '$salario_inquilino', '$outros_rendim_inquilino', '$total_rendim_inquilino', '$empresa_anterior_inquilino', '$endereco_com_inquilino', '$ref_bancaria_inquilino', '$banco_inquilino', '$agencia_inquilino', '$ccorrente_inquilino', '$gerente_inquilino', '$fone_gerente_inquilino', '$ref_pessoal_nome', '$ref_pessoal_fone', '$ref_pessoal_cel', '$ref_pessoal_grau_parent',
-                                   '$empresa_constituida',	'$cnpj_empresa_constituida', '$ramo_atividade_empresa',	'$franquia_empresa', '$franqueadora_empresa', '$produtos_servicos_empresa', '$experiencia_ramo_empresa', '$faturam_estim_empresa', '$ret_cap_invest_empresa',
+                                   '$empresa_trab_inquilino', '$fone_com_inquilino', '$ramal_com_inquilino', '$profissao_inquilino', '$natureza_renda_inquilino', '$data_admissao_inquilino', '$salario_inquilino', '$outros_rendim_inquilino', '$total_rendim_inquilino', '$empresa_anterior_inquilino', '$endereco_com_inquilino',
+                                   '$ref_bancaria_inquilino', '$banco_inquilino', '$agencia_inquilino', '$ccorrente_inquilino', '$gerente_inquilino', '$fone_gerente_inquilino', '$ref_pessoal_nome', '$ref_pessoal_fone', '$ref_pessoal_cel', '$ref_pessoal_grau_parent',
+                                   '$empresa_constituida', '$cnpj_empresa_constituida', '$ramo_atividade_empresa',	'$franquia_empresa', '$franqueadora_empresa', '$produtos_servicos_empresa', '$experiencia_ramo_empresa', '$faturam_estim_empresa', '$ret_cap_invest_empresa',
                                    '$num_solidarios', '$solidario1', '$solidario1_cpf', '$solidario1_fone', '$solidario1_sexo', '$solidario1_rg', '$solidario2', '$solidario2_cpf', '$solidario2_fone', '$solidario2_sexo', '$solidario2_rg', '$solidario3', '$solidario3_cpf', '$solidario3_fone', '$solidario3_sexo', '$solidario3_rg',
-								   '$cep', '$endereco', '$numero', '', '', '$complemento', '$bairro', '$cidade', '$uf', '$aluguel',
-								   '$ocupacao', '$imovel_tipo', '$motivo_locacao', '$inicio', '', '', '', '', '', '', '', '', '', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa', '',
-							       '', '', '', '', '$cod_cor', '')";
+								   '$cep', '$endereco', '$numero', '$complemento', '$bairro', '$cidade', '$uf', '$aluguel',
+								   '$ocupacao', '$imovel_tipo', '$motivo_locacao', '$inicio', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa',
+							       '$cod_cor')";
+							       
+        $sql = str_replace("null", "", $sql);
 
     }else{
     	$sql = "UPDATE fianca set 
@@ -199,7 +222,14 @@ function salvar($request, $response){
 		data_validade_doc_inquilino='$data_validade_doc_inquilino',
 		resp_inquilino='$resp_inquilino',
 		CPF_resp_inquilino='$CPF_resp_inquilino',
+		nome_conjuge_inquilino='$nome_conjuge_inquilino',
 		cpf_conjuge_inquilino='$cpf_conjuge_inquilino',
+		nome_conjuge_inquilino='$nome_conjuge_inquilino',
+        cpf_conjuge_inquilino='$cpf_conjuge_inquilino',
+        data_conjuge_inquilno='$data_conjuge_inquilno',
+        vai_residir_conjuge_inquilno='$vai_residir_conjuge_inquilno',
+        vai_compor_renda_conjuge_inquilno='$vai_compor_renda_conjuge_inquilno',
+        renda_conjuge_inquilno='$renda_conjuge_inquilno',
 		num_dependente_inquilino='$num_dependente_inquilino',
 		nome_mae_inquilino='$nome_mae_inquilino',
 		nome_pai_inquilino='$nome_pai_inquilino',

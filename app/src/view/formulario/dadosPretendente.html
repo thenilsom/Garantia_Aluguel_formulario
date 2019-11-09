@@ -1,4 +1,4 @@
-<form name="formDadosPretendente" class="fundo-formulario">
+<form name="formDadosPretendente" class="fundo-formulario" autocomplete="off">
    <div layout="column" layout-gt-sm="row" layout-padding>
      <div class="md-block" flex-gt-sm="50">
         <label for="nome">Nome do Pretendente</label>
@@ -66,7 +66,7 @@
   </div>
 
 <div layout="column" layout-gt-sm="row" layout-padding>
-    <div class="md-block" flex-gt-sm="25">
+    <div class="md-block" flex-gt-sm="15">
       <label for="sexo">Sexo</label>
       <select class="form-control" id="sexo" requerido
         ng-model="cadastro.pretendente.sexo" ng-tabindex="9">
@@ -75,7 +75,7 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="25">
+    <div class="md-block" flex-gt-sm="15">
       <label for="estadoCivil">Estado Civil</label>
       <select class="form-control" id="estadoCivil" requerido
         ng-model="cadastro.pretendente.estadoCivil" ng-tabindex="10">
@@ -87,17 +87,64 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pretendente.estadoCivil == 'CASADO'">
+    <div class="md-block" flex-gt-sm="15">
+      <label for="numeroDependente">Nº Dependentes</label>
+      <input type="number" id="numeroDependente" name="numeroDependente" 
+      class="form-control" ng-model="cadastro.pretendente.numeroDependente" ng-tabindex="11">
+    </div>
+
+    <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pretendente.estadoCivil == 'CASADO'">
       <label for="cpfConjuge">CPF Cônjuge</label>
       <input mobile="number" mascara="999.999.999-99" id="cpfConjuge" name="cpfConjuge" 
       class="form-control" ng-model="cadastro.pretendente.cpfConjuge" requerido
-      ng-tabindex="11">
+      ng-tabindex="12">
     </div>
 
-    <div class="md-block" flex-gt-sm="25">
-      <label for="numeroDependente">Nº Dependentes</label>
-      <input type="number" id="numeroDependente" name="numeroDependente" 
-      class="form-control" ng-model="cadastro.pretendente.numeroDependente" ng-tabindex="12">
+    <div class="md-block" flex-gt-sm="50" ng-if="cadastro.pretendente.estadoCivil == 'CASADO'">
+        <label for="nomeConjuge">Nome do Cônjuge</label>
+        <input type="text" id="nomeConjuge" upper name="nomeConjuge" requerido sem-acento
+        class="form-control" ng-model="cadastro.pretendente.nomeConjuge" ng-tabindex="13">
+      </div>
+ 
+  </div>
+
+  <div layout="column" layout-gt-sm="row" layout-padding ng-if="cadastro.pretendente.estadoCivil == 'CASADO'">
+
+    <div flex-gt-sm="20">
+      <label for="dataNascimentoConjuge">Data Nascimento Cônjuge</label>
+      <input id="dataNascimentoConjuge" name="dataNascimentoConjuge" class="form-control" 
+      datepicker mascara="99/99/9999" requerido
+      ng-model="cadastro.pretendente.dataNascimentoConjuge" ng-tabindex="14">
+    </div>
+
+    
+    <div class="md-block" flex-gt-sm="20">
+      <label for="iraResidirImovelConjuge">Cônjuge irá residir no imóvel</label>
+      <select class="form-control" id="iraResidirImovelConjuge" flex-gt-sm="40" requerido
+      ng-model="cadastro.pretendente.iraResidirImovelConjuge" ng-tabindex="15">
+        <option value="S">SIM</option>
+        <option value="N">NÃO</option>
+      </select>
+    </div>
+
+    <div class="md-block" flex-gt-sm="20">
+      <label for="iraComporRendaConjuge">Cônjuge irá compor renda</label>
+      <select class="form-control" id="iraComporRendaConjuge" flex-gt-sm="40" requerido
+      ng-model="cadastro.pretendente.iraComporRendaConjuge" ng-tabindex="16">
+        <option value="S">SIM</option>
+        <option value="N">NÃO</option>
+      </select>
+    </div>
+
+    <div class="md-block" flex-gt-sm="15">
+      <label for="rendaConjuge">Renda do Cônjuge</label>
+      <div class="input-group">
+      <span class="input-group-addon"
+        id="basic-addon1">R$</span>
+      <input mobile="text" mascara-monetaria id="rendaConjuge" name="rendaConjuge" requerido
+      class="form-control" ng-model="cadastro.pretendente.rendaConjuge" ng-tabindex="17">
+    </div>
+
     </div>
 
   </div>
@@ -107,13 +154,13 @@
      <div class="md-block" flex-gt-sm="50">
       <label for="nomeMae">Nome Mãe</label>
       <input type="text" id="nomeMae" upper name="nomeMae"
-      class="form-control" ng-model="cadastro.pretendente.nomeMae" ng-tabindex="13">
+      class="form-control" ng-model="cadastro.pretendente.nomeMae" ng-tabindex="18">
     </div>
 
     <div class="md-block" flex-gt-sm="50">
       <label for="nomePai">Nome Pai</label>
       <input type="text" id="nomePai" upper name="nomePai" 
-      class="form-control" ng-model="cadastro.pretendente.nomePai" ng-tabindex="14">
+      class="form-control" ng-model="cadastro.pretendente.nomePai" ng-tabindex="19">
     </div>
 </div>
    
@@ -121,19 +168,19 @@
     <div class="md-block" flex-gt-sm="55">
       <label for="nacionalidade">Nacionalidade</label>
       <input type="text" id="nacionalidade" name="nacionalidade" requerido
-      class="form-control" ng-model="cadastro.pretendente.nacionalidade" ng-tabindex="15">
+      class="form-control" ng-model="cadastro.pretendente.nacionalidade" ng-tabindex="20">
     </div>  
 
      <div class="md-block" flex-gt-sm="25">
       <label for="tempoPais">Tempo no País (se for estrangeiro)</label>
       <input type="text" id="tempoPais" name="tempoPais" upper
-      class="form-control" ng-model="cadastro.pretendente.tempoPais" ng-tabindex="16">
+      class="form-control" ng-model="cadastro.pretendente.tempoPais" ng-tabindex="21">
     </div>
 
     <div class="md-block" flex-gt-sm="25">
       <label for="iraResidirImovel">Pretendente irá residir no imóvel</label>
       <select class="form-control" id="iraResidirImovel" flex-gt-sm="40" requerido
-      ng-model="cadastro.pretendente.iraResidirImovel" ng-tabindex="17">
+      ng-model="cadastro.pretendente.iraResidirImovel" ng-tabindex="22">
         <option value="S">SIM</option>
         <option value="N">NÃO</option>
       </select>
@@ -152,26 +199,26 @@
       <label for="telefone">Telefone</label>
       <input mobile="tel" mascara-telefone
       id="telefone" name="telefone"
-      class="form-control" ng-model="cadastro.pretendente.telefone" ng-tabindex="19">
+      class="form-control" ng-model="cadastro.pretendente.telefone" ng-tabindex="23">
     </div>
 
     <div class="md-block" flex-gt-sm="15">
       <label for="celular">Celular</label>
       <input mobile="tel" mascara-telefone 
       id="celular" name="celular"
-      class="form-control" ng-model="cadastro.pretendente.celular" ng-tabindex="20">
+      class="form-control" ng-model="cadastro.pretendente.celular" ng-tabindex="24">
     </div>
 
     <div class="md-block" flex-gt-sm="15">
       <label for="telefoneComercial">Telefone Comercial</label>
       <input mobile="tel" mascara-telefone id="telefoneComercial" name="telefoneComercial" 
-      class="form-control" ng-model="cadastro.pretendente.telefoneComercial" ng-tabindex="21">
+      class="form-control" ng-model="cadastro.pretendente.telefoneComercial" ng-tabindex="25">
     </div>
 
     <div class="md-block" flex-gt-sm="55">
       <label for="email">Email</label>
       <input type="text" id="email" name="email" requerido
-      class="form-control" ng-model="cadastro.pretendente.email" ng-tabindex="22">
+      class="form-control" ng-model="cadastro.pretendente.email" ng-tabindex="26">
     </div>
   </div>
 </form>

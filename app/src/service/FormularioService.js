@@ -21,7 +21,7 @@ angular.module('app')
 			pretendente.nome = dados.inquilino;
 			pretendente.cpf = dados.CPF_inquilino;
 			pretendente.dataNascimento = dados.data_inquilino;
-			pretendente.tipoDoc = dados.tipo_DOC_inquilino;
+			pretendente.tipoDoc = dados.tipo_doc_inquilino;
 			pretendente.numDoc = parseInt(dados.rg_inquilino);
 			pretendente.orgaoExpedidor = dados.orgao_exp_inquilino;
 			pretendente.dataEmissao = dados.data_exp_inquilino;
@@ -29,6 +29,11 @@ angular.module('app')
 			pretendente.sexo = dados.sexo_inquilino;
 			pretendente.estadoCivil = dados.est_civil_inquilino;
 			pretendente.cpfConjuge = dados.cpf_conjuge_inquilino;
+			pretendente.nomeConjuge = dados.nome_conjuge_inquilino;
+			pretendente.dataNascimentoConjuge = dados.data_conjuge_inquilno;
+			pretendente.iraResidirImovelConjuge = dados.vai_residir_conjuge_inquilno;
+			pretendente.iraComporRendaConjuge = dados.vai_compor_renda_conjuge_inquilno;
+			pretendente.rendaConjuge = dados.renda_conjuge_inquilno;
 			pretendente.numeroDependente = parseInt(dados.num_dependente_inquilino);
 			pretendente.nomeMae = dados.nome_mae_inquilino;
 			pretendente.nomePai = dados.nome_pai_inquilino;
