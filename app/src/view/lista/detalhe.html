@@ -15,6 +15,32 @@
 				<h2 class="panel-title"><strong>Código SJ: {{registro.codigo}}</strong></h2>
 			</div>
 
+	<div class="row" style="padding: 10px;">
+		<!-- Card Liberty -->
+		<div class="card col-sm-4">
+		  <img class="card-img-top" src="./assets/img/liberty_icone.png" alt="Card image cap" style="height: 47px">
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_liberty}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_liberty}}</p>
+		  </div>
+		</div>
+		
+		<!-- Card Porto -->
+		<div class="card col-sm-4">
+		  <img class="card-img-top" src="./assets/img/porto_icone.png" alt="Card image cap" style="height: 47px">
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_porto}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_porto}}</p>
+		  </div>
+		</div>
+		
+		<!-- Card Too -->
+		<div class="card col-sm-4">
+		  <img class="card-img-top" src="./assets/img/too_icone.png" alt="Card image cap">
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_too}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_too}}</p>
+		  </div>
+		</div>
+	</div>
+
 			<div class="panel-body fixed-panel">
 
 					<div class="bs-example">
