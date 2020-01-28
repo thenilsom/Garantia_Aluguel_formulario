@@ -396,6 +396,7 @@ diretiva.directive('tooltip', function () {
         link: function (scope, element, attrs) {
             $(element).tooltip({
                 trigger: 'hover',
+                html: true,
                 title: attrs.tooltip,
                 placement: attrs.posicao
             });
