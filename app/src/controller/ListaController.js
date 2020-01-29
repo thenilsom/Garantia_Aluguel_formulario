@@ -107,6 +107,21 @@
 
               return $scope.errors.length == 0;
           }
+        
+        //valida os dados da apolice
+        var validarDadosApolice = function(){
+        	if(!$scope.dadosAplice.numApolice){
+        		service.alertar('Informe o número da apólice');
+        		return false;
+        	}
+        	
+        	if(!$scope.dadosAplice.codSeguradora){
+        		service.alertar('Informe a seguradora');
+        		return false;
+        	}
+        	
+        	return true;
+        }
 
 
        $scope.gravarRegistro = function(){
@@ -126,13 +141,15 @@
        
        //grava os dados da apolice
        $scope.gravarDadosApolice = function(){
-             $http.post('../app/php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
-              service.alertar('Dados da apólice atualizado com sucesso!');
-              $scope.registro.apolice = $scope.dadosAplice.numApolice;
-              $scope.registro.seguradora = $scope.dadosAplice.codSeguradora;
-             }, function(erro){
-               service.alertarErro(erro.statusText);
-             });
+    	   if(validarDadosApolice()){
+    		   $http.post('../app/php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
+    			   service.alertar('Dados da apólice atualizado com sucesso!');
+    			   $scope.registro.apolice = $scope.dadosAplice.numApolice;
+    			   $scope.registro.seguradora = $scope.dadosAplice.codSeguradora;
+    		   }, function(erro){
+    			   service.alertarErro(erro.statusText);
+    		   });
+    	   }
           }
 
        //trata os dados do registro que será enviado ao servidor
