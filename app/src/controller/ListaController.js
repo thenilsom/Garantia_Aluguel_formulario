@@ -123,6 +123,17 @@
         }
          
        }
+       
+       //grava os dados da apolice
+       $scope.gravarDadosApolice = function(){
+             $http.post('../app/php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
+              service.alertar('Dados da apólice atualizado com sucesso!');
+              $scope.registro.apolice = $scope.dadosAplice.numApolice;
+              $scope.registro.seguradora = $scope.dadosAplice.codSeguradora;
+             }, function(erro){
+               service.alertarErro(erro.statusText);
+             });
+          }
 
        //trata os dados do registro que será enviado ao servidor
        var tratarDadosRegistro = function(){
