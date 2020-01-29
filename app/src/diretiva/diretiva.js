@@ -218,6 +218,89 @@ diretiva.directive('mascaraMonetaria', function(serviceUtil) {
 });
 
 /**
+ * Implementação de 'mascaras', para formatar os Campos como Numerico
+ * 
+ * Adicione data-mascara-numero ao imput, 
+ * 
+ * PAra aceitar "0" a Esquerda use data-mascara-numero="0".
+ */
+diretiva.directive('mascaraNumero', function($parse) {
+
+	var NUMBER_REGEXP = /^([\d\-\ \.\ \/]+)$/;
+
+	function link(scope, el, attrs, ngModelCtrl) {
+		var lastValidViewValue;
+		var zeroEsquerda = $parse(attrs.mascaraNumero)(scope) == '0' ? true	: false;
+
+		
+		function atualizaValor() {
+			var modelValue = String(ngModelCtrl.$modelValue);
+
+			if (!zeroEsquerda) {
+				modelValue = String(parseFloat(modelValue));
+				if(modelValue === '0'){
+					modelValue = '';
+				}
+			}
+			if(isNaN(modelValue)){
+				modelValue = '';
+			}
+			changeViewValue(modelValue);
+
+			// Save the rounded view value
+			lastValidViewValue = ngModelCtrl.$viewValue;
+		
+			return modelValue;
+		}
+
+		function changeViewValue(value) {
+
+			ngModelCtrl.$viewValue = value;
+			ngModelCtrl.$commitViewValue();
+			ngModelCtrl.$render();
+		}
+
+		ngModelCtrl.$parsers.push(function(value) {
+			if (ngModelCtrl.$isEmpty(value)) {
+				lastValidViewValue = value;
+				return null;
+			}
+			
+			value = String(value);
+
+			if (NUMBER_REGEXP.test(value)) {
+				lastValidViewValue = value;
+				if (!zeroEsquerda) {
+					value = String(parseFloat(value));
+				}
+				return value;
+			} else {
+				changeViewValue(lastValidViewValue);
+				return lastValidViewValue;
+			}
+		});
+		
+		ngModelCtrl.$formatters.push(function(valor) {
+			if(valor){
+				return atualizaValor(String(valor));
+			}
+		});
+		
+		// Auto-format precision on blur
+		el.bind('blur', function() {
+			atualizaValor();
+			ngModelCtrl.$commitViewValue();
+		});
+	}
+
+	return {
+		restrict : 'A',
+		require : 'ngModel',
+		link : link
+	};
+});
+
+/**
  * Implementação de 'directive', para Abrir o Calendário.
  * 
  * O input que estiver com "datepicker", abre o calendário ao ser clicado.

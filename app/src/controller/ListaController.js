@@ -186,6 +186,13 @@
               service.alertarErro(erro.statusText);
             });
        }
+       
+       /**
+        * Inicia os dados da aplice
+        */
+       $scope.iniciarDadosAplice = function(){
+    	   $scope.dadosAplice = {numApolice : $scope.registro.apolice, codSeguradora : $scope.registro.seguradora};
+       }
 
        //retorna o nome da seguradora pelo código
        $scope.getNomeSeguradora = function(registro){
