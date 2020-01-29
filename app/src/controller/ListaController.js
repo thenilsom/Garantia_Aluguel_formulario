@@ -186,6 +186,22 @@
               service.alertarErro(erro.statusText);
             });
        }
+
+       //retorna o nome da seguradora pelo código
+       $scope.getNomeSeguradora = function(registro){
+        switch(registro.seguradora){
+          case 'BKY': return 'Berkley';
+          case 'BRA': return 'Bradesco';
+          case 'CDF': return 'Cardif';
+          case 'FFX': return 'Fairfax';
+          case 'LIB': return 'Liberty';
+          case 'POR': return 'Porto Seguro';
+          case 'PTC': return 'Pottencial';
+          case 'TOK': return 'Tokio Marine';
+          case 'TOO': return 'Too';
+          default: return registro.seguradora;
+        }
+       }
        
 
        $scope.irParaListagem();
