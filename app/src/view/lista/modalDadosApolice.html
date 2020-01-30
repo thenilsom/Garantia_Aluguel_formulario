@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Modal -->
-  <div class="modal fade" id="modalDadosApolice" role="dialog">
+  <div class="modal fade" id="modalDadosApolice" role="dialog" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,11 +10,19 @@
         <div class="modal-body">
         
        <form name="formApolice" class="form form-horizontal" role="form" autocomplete="off">
+       
+        <!-- Array erros de validação -->
+		    <div class="alert alert-warning" role="alert" data-ng-if="errors.length > 0">
+		      <div data-ng-repeat="erro in errors">
+		        <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
+		      </div>
+		  </div>
+		  
          <div class="form-group">
 			<label for="txtApolice" class="col-xs-2 control-label label-thin">Apólice:</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control form-control-small" id="txtApolice"
-                                 data-focus maxlength="20"
+                                 data-focus maxlength="20" requerido
                                  name="dadosAplice.numApolice" data-ng-model="dadosAplice.numApolice" data-mascara-numero="0">
 			</div>
 			</div>
@@ -23,7 +31,7 @@
 						<label for="txtSeguradora" class="col-xs-2 control-label label-thin">Seguradora:</label>
                         <div class="col-xs-4">
 							<select id="txtSeguradora" name="dadosAplice.codSeguradora"
-                                    data-ng-model="dadosAplice.codSeguradora"
+                                    data-ng-model="dadosAplice.codSeguradora" requerido
                                     class="form-control form-control-small"
                                     data-ng-tabindex='3'>
                                 <option  value="BKY">Berkley</option>

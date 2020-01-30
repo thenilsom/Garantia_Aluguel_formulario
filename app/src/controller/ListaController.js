@@ -110,17 +110,10 @@
         
         //valida os dados da apolice
         var validarDadosApolice = function(){
-        	if(!$scope.dadosAplice.numApolice){
-        		service.alertar('Informe o número da apólice');
-        		return false;
-        	}
-        	
-        	if(!$scope.dadosAplice.codSeguradora){
-        		service.alertar('Informe a seguradora');
-        		return false;
-        	}
-        	
-        	return true;
+        	 $scope.errors = [];
+             validador.validarCamposObrigatorios('formApolice', $scope.errors);
+             
+             return $scope.errors.length == 0;
         }
 
 
@@ -143,6 +136,7 @@
        $scope.gravarDadosApolice = function(){
     	   if(validarDadosApolice()){
     		   $http.post('../app/php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
+    			   $('#modalDadosApolice').modal('hide');
     			   service.alertar('Dados da apólice atualizado com sucesso!');
     			   $scope.registro.apolice = $scope.dadosAplice.numApolice;
     			   $scope.registro.seguradora = $scope.dadosAplice.codSeguradora;
@@ -219,7 +213,10 @@
         * Inicia os dados da aplice
         */
        $scope.iniciarDadosAplice = function(){
-    	   $scope.dadosAplice = {numApolice : $scope.registro.apolice, codSeguradora : $scope.registro.seguradora};
+    	   $scope.dadosAplice = {
+    			   codigoCadastro : $scope.registro.codigo,
+    			   numApolice : $scope.registro.apolice, 
+    			   codSeguradora : $scope.registro.seguradora};
        }
 
        //retorna o nome da seguradora pelo código
