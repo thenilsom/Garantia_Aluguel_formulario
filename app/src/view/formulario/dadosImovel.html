@@ -4,8 +4,8 @@
         <label for="finalidade">Finalidade Imóvel</label>
         <select class="form-control" id="finalidade" ng-tabindex="1" name="finalidade" 
           ng-model="cadastro.imovel.finalidade" requerido focus>
-          <option value="RESIDENCIAL">Residencial</option>
-          <option value="NÃO RESIDENCIAL">NÃO Residencial</option>
+          <option value="R">Residencial</option>
+          <option value="C">NÃO Residencial</option>
         </select>
   </div>
 
@@ -24,21 +24,21 @@
         <label for="motivoLocacao">Motivo da Locação</label>
         <select class="form-control" id="motivoLocacao" ng-tabindex="3"
         ng-model="cadastro.imovel.motivoLocacao" requerido>
-          <option value="LOCAÇÃO ADICIONAL" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="LOCAÇÃO ADICIONAL" ng-if="cadastro.imovel.finalidade == 'R' ">
           Locação Adicional</option>
-          <option value="TRANSFERÊNCIA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="TRANSFERÊNCIA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'R' ">
           Transferência de Empresa</option>
-          <option value="PRÓXIMO AO TRABALHO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="PRÓXIMO AO TRABALHO" ng-if="cadastro.imovel.finalidade == 'R' ">
           Próximo ao Trabalho</option>
-          <option value="IMÓVEL PRÓXIMO DE FAMILIARES" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="IMÓVEL PRÓXIMO DE FAMILIARES" ng-if="cadastro.imovel.finalidade == 'R' ">
           Imóvel Próximo de Familiares</option>
-          <option value="PRÓXIMO A INSITUIÇÃO DE ENSINO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="PRÓXIMO A INSITUIÇÃO DE ENSINO" ng-if="cadastro.imovel.finalidade == 'R' ">
           Próximo a Insituição de Ensino</option>
-          <option value="CASAMENTO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="CASAMENTO" ng-if="cadastro.imovel.finalidade == 'R' ">
           Casamento</option>
-          <option value="SEPARAÇÃO" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="SEPARAÇÃO" ng-if="cadastro.imovel.finalidade == 'R' ">
           Separação</option>
-          <option value="INDEPENDÊNCIA" ng-if="cadastro.imovel.finalidade == 'RESIDENCIAL' ">
+          <option value="INDEPENDÊNCIA" ng-if="cadastro.imovel.finalidade == 'R' ">
           Independência</option>
           <option value="PARA TERCEIROS">Para Terceiros</option>
           <option value="FUNCIONÁRIO DA EMPRESA DO PRETENDENTE">Funcionário da Empresa do Pretendente</option>
@@ -50,13 +50,13 @@
           <option value="APÓLICE VENCIDA">Apólice Vencida</option>
           <option value="CANCELAMENTO DE APÓLICE TROCA DE IMÓVEL">Cancelamento de Apólice Troca de Imóvel</option>
           <option value="ENDOSSO DA APÓLICE">Endosso da Apólice</option>
-          <option value="TROCA LOCAL SEDE" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          <option value="TROCA LOCAL SEDE" ng-if="cadastro.imovel.finalidade == 'C' ">
           Troca de Local de Sede</option>
-          <option value="ABERTURA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          <option value="ABERTURA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'C' ">
           Abertura de Empresa</option>
-          <option value="ABERTURA DE FILIAL" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          <option value="ABERTURA DE FILIAL" ng-if="cadastro.imovel.finalidade == 'C' ">
           Abertura de Filial</option>
-          <option value="MUDANÇA PARA UM PONTO MELHOR" ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+          <option value="MUDANÇA PARA UM PONTO MELHOR" ng-if="cadastro.imovel.finalidade == 'C' ">
           Mudança para um Ponto Melhor</option>
                   
         </select>
@@ -65,7 +65,7 @@
   </div>
 
 
-<div ng-if="cadastro.imovel.finalidade == 'NÃO RESIDENCIAL' ">
+<div ng-if="cadastro.imovel.finalidade == 'C' ">
     <div layout="column" layout-padding layout-gt-sm="row">
       <div class="md-block" flex-gt-sm="35">
               <label for="locPretEmpConst">A locação pretendida é para empresa já constituída ?</label>
@@ -186,7 +186,7 @@
 
      <div class="md-block" flex-gt-sm="10">
       <label for="numeroImovel">Numero</label>
-      <input type="number" id="numeroImovel" name="numeroImovel"
+      <input type="text" id="numeroImovel" name="numeroImovel"
       class="form-control" ng-model="cadastro.imovel.numero" ng-tabindex="18">
     </div>
 

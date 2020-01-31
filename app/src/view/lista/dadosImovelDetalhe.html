@@ -1,7 +1,7 @@
 <div class="container detalhamento" layout-padding>
       	
     <div class="form-group">
-		<label>Finalidade Imóvel: </label> <span>{{registro.ocupacao}}</span>
+		<label>Finalidade Imóvel: </label> <span>{{registro.ocupacao == 'R' ? 'RESIDENCIAL' : 'NÃO RESIDENCIAL'}}</span>
 	</div>
 
 	<div class="form-group">
