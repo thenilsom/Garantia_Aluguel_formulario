@@ -210,6 +210,23 @@ angular.module('app')
 		
 		return val;
 	}
+	
+	service.criptografar = function(val){
+		if(val){
+			val = val.replace(new RegExp('0', 'g'), 'a');
+			val = val.replace(new RegExp('1', 'g'), '@');
+			val = val.replace(new RegExp('2', 'g'), 'm');
+			val = val.replace(new RegExp('3', 'g'), 's');
+			val = val.replace(new RegExp('4', 'g'), 'x');
+			val = val.replace(new RegExp('5', 'g'), '!');
+			val = val.replace(new RegExp('6', 'g'), 'v');
+			val = val.replace(new RegExp('7', 'g'), ',');
+			val = val.replace(new RegExp('8', 'g'), ';');
+			val = val.replace(new RegExp('9', 'g'), 'i');
+		}
+		
+		return val;
+	}
 
 	service.gerarLinkPastaUpload = function(codigo, nome){
 		 return codigo + '_' + nome.replace(/ /g, '_');

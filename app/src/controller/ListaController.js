@@ -3,6 +3,9 @@
        .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil',
         function($scope, $http, service, $timeout, validador, dataUtil){
 
+    	var url = '../app/';
+    	//var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
+    		
     	var title = 'Seguros Já! - Fiança Locatícia';
         var qtdRegistros = 0;
         var TEMPO_REFRESH = 60;
@@ -34,7 +37,7 @@
       }
 
        $scope.detalhar = function(registro){
-        $http.post('../app/php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
+        $http.post(url + 'php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
              $scope.registro = angular.copy(registro);
          
             for (var key in $scope.registro) {
@@ -61,7 +64,7 @@
        }
 
        var listar = function(){
-         $http.post('../app/php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+         $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
             alertarQtdRegPendenteNoTitle();
@@ -79,7 +82,7 @@
        }
 
        $scope.incluirRegistro = function(){
-         $http.get('../app/php/consulta.php/dataServidor').then(function(data){
+         $http.get(url + 'php/consulta.php/dataServidor').then(function(data){
              $scope.errors = [];
              $scope.novoReg = {};
              $scope.novoReg.data = dataUtil.formatarDataServidor(data.data.data);
@@ -121,7 +124,7 @@
         if(validarDadosRegistro('formIncluirRegistro')){
           tratarDadosRegistro()
 
-          $http.post('../app/php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
+          $http.post(url + 'php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
            service.alertar('Registro incluido com sucesso!');
             $scope.irParaListagem();
             listar();
@@ -135,7 +138,7 @@
        //grava os dados da apolice
        $scope.gravarDadosApolice = function(){
     	   if(validarDadosApolice()){
-    		   $http.post('../app/php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
+    		   $http.post(url + 'php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
     			   $('#modalDadosApolice').modal('hide');
     			   service.alertar('Dados da apólice atualizado com sucesso!');
     			   $scope.registro.apolice = $scope.dadosAplice.numApolice;
@@ -180,7 +183,7 @@
 	    		  
 	    	  }else{
 	    		  var atendimento = {codigoUsuario : codUser, codigoCadastro: registro.codigo};
-	    		  $http.post('../app/php/gravar.php/registrarAtendimento', atendimento).then(function(data){    
+	    		  $http.post(url + 'php/gravar.php/registrarAtendimento', atendimento).then(function(data){    
 	    			  alert('atendimento registrado');
 	    			  listar();
 	    		  }, function(erro){
@@ -201,7 +204,7 @@
 
        //traz a lista de cgc imob
        var listarCGC_Imob = function(){
-         $http.post('../app/php/consulta.php/listarCGC_Imob', {codCorretor: getCodCorretor()}).then(function(data){
+         $http.post(url + 'php/consulta.php/listarCGC_Imob', {codCorretor: getCodCorretor()}).then(function(data){
             $scope.listaCGC_Imob = data.data;
             
             }, function(erro){
