@@ -80,6 +80,13 @@
              // service.alertarErro(erro.statusText);
             });
        }
+       
+       /**
+        * Redireciona para o formulario
+        */
+       $scope.enviarAnalise = function(){
+    	   window.location.href = url + 'index.php?var1=' + service.criptografar($scope.novoReg.cpfInquilino);
+       }
 
        $scope.incluirRegistro = function(){
          $http.get(url + 'php/consulta.php/dataServidor').then(function(data){
