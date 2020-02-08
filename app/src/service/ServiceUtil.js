@@ -114,12 +114,14 @@ angular.module('app')
 				case '3' : return '4';
 				case '4' : return '5';
 				case '5' : return '6'
+				case '6' : return '7'
 				default : return passoAtual;
 			}
 		}
 
 		service.obterPassoAnterior = function(passoAtual){
 			switch(passoAtual){
+				case '6' : return '5';
 				case '5' : return '4';
 				case '4': return '3';
 				case '3': return '2';
@@ -135,7 +137,8 @@ angular.module('app')
 				case '3' : return 'Dados Profissionais';
 				case '4' : return 'Imóvel Pretendido';
 				case '5' : return 'Composição Renda';
-				case '6' : return 'Upload de Arquivos';
+				case '6' : return 'Análise Cadastral';
+				case '7' : return 'Upload de Arquivos';
 			}
 		}
 

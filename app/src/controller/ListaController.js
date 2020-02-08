@@ -111,8 +111,14 @@
                 $scope.errors.push("CPF inválido");
               }
 
-              if(!isCpf && !validador.validarCNPJ($scope.novoReg.cpfInquilino)){
-                $scope.errors.push("CNPJ inválido");
+              if(!isCpf){
+                if(angular.equals($scope.novoReg.tipoInquilino, 'F')){
+                  $scope.errors.push("Para pessoa física deve ser informado um CPF");
+
+                }else if(!validador.validarCNPJ($scope.novoReg.cpfInquilino)){
+                  $scope.errors.push("CNPJ inválido");
+                }
+                
               }
 
               return $scope.errors.length == 0;
