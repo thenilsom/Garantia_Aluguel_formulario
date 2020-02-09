@@ -107,8 +107,13 @@
 
              var isCpf = $scope.novoReg.cpfInquilino.length <= 11;
 
-              if(isCpf && !validador.validarCpf($scope.novoReg.cpfInquilino)){
-                $scope.errors.push("CPF inválido");
+              if(isCpf){
+            	  if(angular.equals($scope.novoReg.tipoInquilino, 'J')){
+                      $scope.errors.push("Para pessoa jurídica deve ser informado um CNPJ");
+
+                    }else if(!validador.validarCpf($scope.novoReg.cpfInquilino)){
+            		  $scope.errors.push("CPF inválido");
+            	  }
               }
 
               if(!isCpf){
