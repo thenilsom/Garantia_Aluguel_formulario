@@ -3,8 +3,7 @@
        .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil',
         function($scope, $http, service, $timeout, validador, dataUtil){
 
-    	var url = '../app/';
-    	//var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
+    	var url = service.getUrl();
     		
     	var title = 'Seguros Já! - Fiança Locatícia';
         var qtdRegistros = 0;

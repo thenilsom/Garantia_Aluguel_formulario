@@ -2,7 +2,13 @@ angular.module('app')
 .factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter',
 	function($location, $anchorScroll, $mdDialog, $filter){
 
+		var url = '../app/';
+		//var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
 		var service = {};
+		
+		service.getUrl = function(){
+			return url;
+		}
 
 		//extrai os parametros da url em objeto json
 		service.extraiParamUrl = function(query){
