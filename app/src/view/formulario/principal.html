@@ -12,30 +12,34 @@
 
 <div layout="row" layout-padding>
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" ng-class="{'active': passo == 1}" flex-xs="20" ng-click="navegarAbas('1')">
+    <li role="presentation" ng-class="{'active': passo == 1}" flex-xs="100" ng-click="navegarAbas('1')">
       <a href="#" style="cursor: pointer;">
-        <span class="badge">1 </span> <label hide-xs>{{getLabelEtapa('1')}}</label></a>
+        <span class="badge">1 </span> <label>{{getLabelEtapa('1')}}</label></a>
     </li>
 
-    <li role="presentation" ng-class="{'active': passo == 2}" flex-xs="15" ng-click="navegarAbas('2')">
+    <li role="presentation" ng-class="{'active': passo == 2}" flex-xs="100" ng-click="navegarAbas('2')">
       <a href="#" style="cursor: pointer;">
-        <span class="badge">2 </span> <label hide-xs>{{getLabelEtapa('2')}}</label> </a></li>
+        <span class="badge">2 </span> <label>{{getLabelEtapa('2')}}</label> </a></li>
 
-    <li role="presentation" ng-class="{'active': passo == 3}" flex-xs="15" ng-click="navegarAbas('3')">
+    <li role="presentation" ng-class="{'active': passo == 3}" flex-xs="100" ng-click="navegarAbas('3')">
       <a href="#" style="cursor: pointer;">
-        <span class="badge">3 </span> <label hide-xs>{{getLabelEtapa('3')}} </label> </a></li>
+        <span class="badge">3 </span> <label>{{getLabelEtapa('3')}} </label> </a></li>
 
-      <li role="presentation" ng-class="{'active': passo == 4}" flex-xs="15" ng-click="navegarAbas('4')">
+      <li role="presentation" ng-class="{'active': passo == 4}" flex-xs="100" ng-click="navegarAbas('4')">
       <a href="#" style="cursor: pointer;">
-        <span class="badge">4 </span> <label hide-xs>{{getLabelEtapa('4')}} </label> </a></li>
+        <span class="badge">4 </span> <label>{{getLabelEtapa('4')}} </label> </a></li>
 
-      <li role="presentation" ng-class="{'active': passo == 5}" flex-xs="15" ng-click="navegarAbas('5')">
+      <li role="presentation" ng-class="{'active': passo == 5}" flex-xs="100" ng-click="navegarAbas('5')">
       <a href="#" style="cursor: pointer;">
-        <span class="badge">5 </span> <label hide-xs>{{getLabelEtapa('5')}} </label> </a></li>
+        <span class="badge">5 </span> <label>{{getLabelEtapa('5')}} </label> </a></li>
+    
+  <li role="presentation" ng-class="{'active': passo == 6}" flex-xs="100" ng-click="navegarAbas('6')">
+      <a href="#" style="cursor: pointer;">
+        <span class="badge">6 </span> <label>{{getLabelEtapa('6')}} </label> </a></li>
         
-        <li role="presentation" ng-class="{'active': passo == 6}" flex-xs="15" ng-click="navegarAbas('6')">
+        <li role="presentation" ng-class="{'active': passo == 7}" flex-xs="100" ng-click="navegarAbas('7')">
       <a href="#" style="cursor: pointer;">
-        <span class="badge">6 </span> <label hide-xs>{{getLabelEtapa('6')}} </label> </a></li>
+        <span class="badge">7 </span> <label>{{getLabelEtapa('7')}} </label> </a></li>
   </ul>
 </div>
 
@@ -59,8 +63,8 @@
 
 <div class="borda-formulario">
 
-  	<!-- DADOS DO PRTENDENTE -->
-  	<div ng-if="passo == 1" class="animate-if" data-ng-include="'./src/view/formulario/dadosPretendente.html'"></div>  
+    <!-- DADOS DO PRTENDENTE -->
+    <div ng-if="passo == 1" class="animate-if" data-ng-include="'./src/view/formulario/dadosPretendente.html'"></div>  
 
     <!-- DADOS Residenciais -->
     <div ng-if="passo == 2" class="animate-if" data-ng-include="'./src/view/formulario/dadosResidenciais.html'"></div>  
@@ -73,11 +77,14 @@
 
     <!-- DADOS PESSOAIS -->
     <div ng-if="passo == 5" class="animate-if" data-ng-include="'./src/view/formulario/dadosPessoais.html'"></div>
+  
+  <!-- DADOS PESSOAIS -->
+    <div ng-if="passo == 6" class="animate-if" data-ng-include="'./src/view/formulario/dadosPorto.html'"></div>
     
      <!-- DADOS DO UPLOAD -->
-    <div ng-if="passo == 6" class="animate-if" data-ng-include="'./src/view/formulario/dadosUpload.html'"></div>
+    <div ng-if="passo == 7" class="animate-if" data-ng-include="'./src/view/formulario/dadosUpload.html'"></div>
        
-   <footer ng-if="passo != 6">
+   <footer ng-if="passo != 7">
       <div class="alert alert-warning">
        <span class="glyphicon glyphicon-exclamation-sign"> </span> 
        O preenchimento de todos os campos, mesmo que não obrigatórios, aumentam as chances de aprovação do cadastro.
