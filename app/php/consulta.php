@@ -22,8 +22,6 @@ $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
 $app->post('/listarCGC_Imob', 'listarCGC_Imob');
 $app->post('/fezUploadArquivos', 'fezUploadArquivos');
-$app->post('/consultarParceiros', 'consultarParceiros');
-
 
 function fezUploadArquivos($request, $response){
 	$param = json_decode($request->getBody());
@@ -61,26 +59,6 @@ function consultarCpfCnpj($request, $response){
     }
     if($fantasia == ""){$fantasia = $razao;}
     return "fantasia=".$fantasia."&"."razao=".$razao."&"."corretor=".$corretor;
-}
-
-function consultarParceiros($request, $response){
-	$param = json_decode($request->getBody());
-	$cidade = trim(json_encode($param->cpf, JSON_UNESCAPED_UNICODE), '"');
-	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
-	mysql_set_charset('utf8',$conexao);
-
-	$rows = array();
-
- 	$sql = "SELECT codigo, fantasia, razao, cidade, uf, fone FROM imobs WHERE site='1' and cidade='$variavel_vinda_da_sua_aplicacao' order by fantasia asc";
-	
-	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
-
-	while($campo = mysql_fetch_assoc($consulta)){
-      $rows[] = $campo;
-    }
-
-	echo json_encode($rows);
 }
 
 
