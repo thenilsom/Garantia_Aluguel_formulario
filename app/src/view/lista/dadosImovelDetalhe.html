@@ -13,33 +13,33 @@
 	</div>
 	
 	<!-- Trecho executado se finalidade imovel for não residencial -->
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>A locação pretendida é para empresa já constituída: </label> <span>{{registro.empresa_constituida}}</span>
 			<label ng-if="registro.empresa_constituida == 'S' ">CNPJ empresa: </label> <span ng-if="registro.empresa_constituida == 'S' ">{{registro.cnpj_empresa_constituida}}</span>
 		</div>
 		
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>Ramo de atividade da empresa: </label> <span>{{registro.ramo_atividade_empresa}}</span>
 		</div>
 		
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>Trata-se de Franquia: </label> <span>{{registro.franquia_empresa}}</span>
 			<label ng-if="registro.franquia_empresa == 'S' ">Nome da Franqueadora: </label> <span ng-if="registro.franquia_empresa == 'S' ">{{registro.franqueadora_empresa}}</span>	
 		</div>
 		
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>Produtos/serviços fabricados, revendidos ou prestados: </label> <span>{{registro.produtos_servicos_empresa}}</span>
 		</div>
 		
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>Experiência no ramo pretendido: </label> <span>{{registro.experiencia_ramo_empresa}}</span>
 		</div>
 		
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>Faturamento mensal estimado: </label> <span>{{registro.faturam_estim_empresa}}</span>
 		</div>
 		
-		<div class="form-group" ng-if="registro.ocupacao = 'N'">
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
 			<label>Prazo estimado para o retorno do capital investido: </label> <span>{{registro.ret_cap_invest_empresa}}</span>
 		</div>
 		

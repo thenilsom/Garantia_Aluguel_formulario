@@ -31,6 +31,7 @@
 
           /*************************FUNÇÕES DO FORMULÁRIO**********************/
           $scope.errors = [];
+          var erroCep = '';
           var passosValidados = [];
           $scope.passo = '1';
 
@@ -65,7 +66,6 @@
              $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar($scope.paramUrl.var6));
              $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar($scope.paramUrl.var7));
 			 $scope.cadastro.imovel.solicitante = service.decriptografar($scope.paramUrl.var8);
-
 			 
             }, function(erro){
               service.alertarErro(erro.statusText);
@@ -155,7 +155,21 @@
 
           /** Submete o formulario ao PHP*/
           $scope.salvar = function(){
+			 
+			if($scope.paramUrl){
+				if($scope.paramUrl.var8 != undefined){
+					$scope.cadastro.imovel.solicitante = service.decriptografar($scope.paramUrl.var8);
+				}else{
+					$scope.cadastro.imovel.solicitante = '';
+				}	
+			}else{
+				$scope.cadastro.imovel.solicitante = '';
+			}
+			 
+		 
 			
+			console.log($scope.cadastro);
+			  
             //garante a formatação do cpf
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
 
@@ -163,10 +177,10 @@
              
               if($scope.isAlteracao){
 				  
-				console.log($scope.cadastro.imovel.finalidade);  
+				//console.log($scope.cadastro.imovel.finalidade);  
 				  
                 $scope.codigoCadastro = $scope.cadastro.codigo;
-				console.log($scope.codigoCadastro);
+				//console.log($scope.codigoCadastro);
 				
 							$scope.corretoras.codMsg = 1;
 							$scope.codigoStatus = 4;
@@ -175,7 +189,7 @@
 
                             if($scope.cadastro.imovel.finalidade == 'R'){
 								
-								    console.log('RESIDENCIAL');
+								    //console.log('RESIDENCIAL');
 								
 								
 									$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro).then(function(data){
@@ -183,8 +197,8 @@
 											  $scope.porto.msgValidacao  = data.data.msgValidacao;
 											  $scope.porto.codigoStatus  = data.data.codigoStatus;
 											  
-											  console.log(data.data);
-											  console.log($scope.corretoras.codMsg);
+											  //console.log(data.data);
+											  //console.log($scope.corretoras.codMsg);
 											  
 													 /*
 														$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro).then(function(data){
@@ -230,7 +244,7 @@
 								service.alertar('Cadastro alterado com sucesso.');
 								$scope.proximoPasso();
 								$scope.porto.codigoStatus  = 2;
-								console.log('COMERCIAL');
+								//console.log('COMERCIAL');
 							}
 
 	
@@ -245,7 +259,7 @@
 							
 							if($scope.cadastro.imovel.finalidade == 'R'){
 								
-								   console.log('RESIDENCIAL');
+								   //console.log('RESIDENCIAL');
 								
 								
 									$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro).then(function(data){
@@ -253,7 +267,7 @@
 									  $scope.porto.msgValidacao  = data.data.msgValidacao;
 									  $scope.porto.codigoStatus  = data.data.codigoStatus;
 									  
-									   console.log(data.data);
+									   //console.log(data.data);
                                            
 										   /*
 												$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro).then(function(data){
@@ -284,8 +298,8 @@
 												}, function(erro){
 												  service.alertarErro(erro.statusText);
 												}); */
-							                    
 												
+
 												service.exibirAlertaCadastro();
 												iniciarUpload($scope.codigoCadastro);		
 												$scope.proximoPasso();
@@ -298,7 +312,7 @@
 								
 							}else{
 								
-								console.log('COMERCIAL');
+								//console.log('COMERCIAL');
 								
 								service.exibirAlertaCadastro();
 								iniciarUpload($scope.codigoCadastro);
@@ -389,10 +403,17 @@
           $scope.getLabelEtapa = function(etapa){
             return service.labelEtapa(etapa);
           }
+          
+          var iniciarVariavelErro = function(){
+        	  $scope.errors = [];
+        	  if(erroCep){
+        		  $scope.errors.push(erroCep);
+        	  }
+          }
 
           /*Valida os dados do Pretendente*/
           $scope.validarDadosPretendente = function(form){
-             $scope.errors = [];
+        	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
               if(!validador.validarCpf($scope.cadastro.pretendente.cpf)){
                 $scope.errors.push("CPF inválido");
@@ -426,7 +447,7 @@
 
           /*valida os dados profissionaiss*/
           $scope.validarDadosProfissionais = function(form){
-            $scope.errors = [];
+        	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
 
             if($scope.cadastro.profissional.outrosRendimentos && 
@@ -440,7 +461,7 @@
 
           /*Valida os dados do imóvel*/
           $scope.validarDadosDoImovel = function(form){
-            $scope.errors = [];
+        	  iniciarVariavelErro();
             validador.validarCamposObrigatorios(form, $scope.errors);
 
             if($scope.cadastro.imovel.cnpjEmpresaConstituida && !validador.validarCNPJ($scope.cadastro.imovel.cnpjEmpresaConstituida)){
@@ -455,7 +476,7 @@
 
           /*Valida os dados obrigatorios*/
           $scope.validarDadosObrigatorios = function(form){
-             $scope.errors = [];
+        	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
 			 
 			 //$scope.errors = []; //##################################################
@@ -492,6 +513,7 @@
 
           $scope.pesquisarCep = function(obj){
             //se o cep for valido efetua a consulta no webservice
+        	 erroCep = '';
             var cep = obj.cep.replace(/\.|\-/g, '');
             if(/^[0-9]{8}$/.test(cep)){
               service.consultarCep(cep, function(dados){
@@ -502,6 +524,8 @@
                   obj.bairro = dados.bairro.toUpperCase();
                   obj.complemento = dados.complemento.toUpperCase();
                   $scope.$digest();
+                }else{
+                	erroCep = 'Cep inexistente ou inválido.';
                 }
               })
             }
@@ -516,15 +540,31 @@
 		  
 		  $scope.carregaCbMotivoLocacao = function(){
 			  
-				$http.get("http://www.segurosja.com.br/gerenciador/aplicacao_porto/cb_motivo_locacao.php").then(function(data){
+				$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/cb_motivo_locacao.php").then(function(data){
 							
-                    $scope.cadastro.imovel.motivoLocacao = data.data.motivoLocacao;
+                    $scope.cadastro.imovel.motivoLocacaoSelect = data.data.motivoLocacao;
 					
-					console.log($scope.cadastro.imovel.motivoLocacao);
+					console.log($scope.cadastro.imovel.motivoLocacaoSelect);
 
 				}, function(erro){
 				  service.alertarErro(erro.statusText);
 				});  
 			
           }
+		  
+
+		$scope.getProfissao = function(pesquisa = '') {
+			 
+			 return $http.get("http://www.segurosja.com.br/gerenciador/fianca/app/php/cb_autocomplete_profissoes.php?ocupacao="+pesquisa).then(function(results){return results.data;});
+			 
+		};
+		
+		$scope.seletItemCD = function(codigo = '') {
+
+			$scope.cadastro.profissional.profissao = codigo;
+			 
+			 console.log('codigo a: '+$scope.cadastro.profissional.profissao);
+
+		};
+		
     }]);
