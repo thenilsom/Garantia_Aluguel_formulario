@@ -63,7 +63,7 @@
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="15">
       <label for="sexo1">Sexo</label>
       <select class="form-control" ng-model="cadastro.pessoal.solidario1.sexo" ng-tabindex="11" id="sexo1">
         <option value="M">Masculino</option>
@@ -71,27 +71,72 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="40">
+    <div class="md-block" flex-gt-sm="50">
       <label for="numDoc1">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="text" id="numDoc1" name="numDoc1" class="form-control" 
       ng-model="cadastro.pessoal.solidario1.numDoc" 
       ng-tabindex="12">
     </div>
 
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="15">
       <label for="orgaoExpedidor1">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor1" name="orgaoExpedidor1" 
       class="form-control" 
       ng-model="cadastro.pessoal.solidario1.orgaoExpedidor" ng-tabindex="13">
     </div>
 
-    <div flex-gt-sm="20">
+    <div flex-gt-sm="15">
       <label for="dataEmissao1">Data Emissão</label>
       <input id="dataEmissao1" name="dataEmissao1" 
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario1.dataEmissao" ng-tabindex="14">
     </div>
+    
+    <div flex-gt-sm="15">
+      <label for="dataValidade1">Data Validade</label>
+      <input id="dataValidade1" name="dataValidade1" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pessoal.solidario1.dataValidade" ng-tabindex="14">
+    </div>
   </div>
+ 
+ <div layout="column" layout-gt-sm="row" layout-padding> 
+  <div class="md-block" flex-gt-sm="15">
+      <label for="estadoCivil1">Estado Civil</label>
+      <select class="form-control" id="estadoCivil1"
+        ng-model="cadastro.pessoal.solidario1.estadoCivil" ng-tabindex="10">
+        <option value="SOLTEIRO">Solteiro(a)</option>
+        <option value="CASADO">Casado(a)</option>
+        <option value="AMASIADO">Amasiado(a)</option>
+        <option value="DESQUITADO">Desquitado(a)</option>
+        <option value="DIVORCIADO">Divorciado(a)</option>
+        <option value="SEPARADO">Separado(a)</option>
+        <option value="VIUVO">Viuvo(a)</option>
+      </select>
+    </div>
+    
+    <div flex-gt-sm="15">
+      <label for="dataNascimento1">Data Nascimento</label>
+      <input id="dataNascimento1" name="dataNascimento1" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pessoal.solidario1.dataNascimento" ng-tabindex="14">
+    </div>
+    
+    <div class="md-block" flex-gt-sm="20">
+      <label for="grauParentesco1">Grau de Parentesco</label>
+      <select class="form-control" id="grauParentesco1"
+        ng-model="cadastro.pessoal.solidario1.grauParentesco" ng-tabindex="10">
+        <option value="CONJUGUE">Cônjugue</option>
+        <option value="PAI/MAE">Pai/Mãe</option>
+        <option value="FILHO">Filho</option>
+        <option value="PARENTE 2 GRAU">Parente de 2º grau</option>
+        <option value="AMIGO">Amigo</option>
+        <option value="COMPANHEIRO">Companheiro</option>
+        <option value="OUTROS">Outros</option>
+      </select>
+    </div>
+    
+ </div>   
 </fieldset>
 
 <fieldset class="scheduler-border" ng-if="cadastro.pessoal.numSolidarios >=2">
@@ -129,7 +174,7 @@
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="15">
       <label for="sexo2">Sexo</label>
       <select class="form-control" ng-model="cadastro.pessoal.solidario2.sexo" ng-tabindex="19" id="sexo2">
         <option value="M">Masculino</option>
@@ -137,27 +182,71 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="40">
+    <div class="md-block" flex-gt-sm="50">
       <label for="numDoc2">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="text" id="numDoc2" name="numDoc2" class="form-control" 
       ng-model="cadastro.pessoal.solidario2.numDoc" 
       ng-tabindex="20">
     </div>
 
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="15">
       <label for="orgaoExpedidor2">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor2" name="orgaoExpedidor2" 
       class="form-control" 
       ng-model="cadastro.pessoal.solidario2.orgaoExpedidor" ng-tabindex="21">
     </div>
 
-    <div flex-gt-sm="20">
+    <div flex-gt-sm="15">
       <label for="dataEmissao2">Data Emissão</label>
       <input id="dataEmissao2" name="dataEmissao2" 
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario2.dataEmissao" ng-tabindex="22">
     </div>
+    
+    <div flex-gt-sm="15">
+      <label for="dataValidade2">Data Validade</label>
+      <input id="dataValidade2" name="dataValidade2" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pessoal.solidario2.dataValidade" ng-tabindex="14">
+    </div>
   </div>
+  
+  <div layout="column" layout-gt-sm="row" layout-padding> 
+  <div class="md-block" flex-gt-sm="15">
+      <label for="estadoCivil2">Estado Civil</label>
+      <select class="form-control" id="estadoCivil2"
+        ng-model="cadastro.pessoal.solidario2.estadoCivil" ng-tabindex="10">
+        <option value="SOLTEIRO">Solteiro(a)</option>
+        <option value="CASADO">Casado(a)</option>
+        <option value="AMASIADO">Amasiado(a)</option>
+        <option value="DESQUITADO">Desquitado(a)</option>
+        <option value="DIVORCIADO">Divorciado(a)</option>
+        <option value="SEPARADO">Separado(a)</option>
+        <option value="VIUVO">Viuvo(a)</option>
+      </select>
+    </div>
+    
+    <div flex-gt-sm="15">
+      <label for="dataNascimento2">Data Nascimento</label>
+      <input id="dataNascimento2" name="dataNascimento2" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pessoal.solidario2.dataNascimento" ng-tabindex="14">
+    </div>
+    
+    <div class="md-block" flex-gt-sm="20">
+      <label for="grauParentesco2">Grau de Parentesco</label>
+      <select class="form-control" id="grauParentesco2"
+        ng-model="cadastro.pessoal.solidario2.grauParentesco" ng-tabindex="10">
+        <option value="CONJUGUE">Cônjugue</option>
+        <option value="PAI/MAE">Pai/Mãe</option>
+        <option value="FILHO">Filho</option>
+        <option value="PARENTE 2 GRAU">Parente de 2º grau</option>
+        <option value="AMIGO">Amigo</option>
+        <option value="COMPANHEIRO">Companheiro</option>
+        <option value="OUTROS">Outros</option>
+      </select>
+    </div>
+ </div>   
 </fieldset>
 
 <fieldset class="scheduler-border" ng-if="cadastro.pessoal.numSolidarios ==3">
@@ -195,7 +284,7 @@
   </div>
 
   <div layout="column" layout-gt-sm="row" layout-padding>
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="15">
       <label for="sexo3">Sexo</label>
       <select class="form-control" ng-model="cadastro.pessoal.solidario3.sexo" ng-tabindex="27" id="sexo 3">
         <option value="M">Masculino</option>
@@ -203,27 +292,72 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="40">
+    <div class="md-block" flex-gt-sm="50">
       <label for="numDoc3">Numero do Documento (RG/RNE/Ordem/Conselho)</label>
       <input type="text" id="numDoc3" name="numDoc3" class="form-control" 
       ng-model="cadastro.pessoal.solidario3.numDoc" 
       ng-tabindex="28">
     </div>
 
-    <div class="md-block" flex-gt-sm="20">
+    <div class="md-block" flex-gt-sm="15">
       <label for="orgaoExpedidor3">Orgão Expedidor</label>
       <input type="text" id="orgaoExpedidor3" name="orgaoExpedidor3" 
       class="form-control" 
       ng-model="cadastro.pessoal.solidario3.orgaoExpedidor" ng-tabindex="29">
     </div>
 
-    <div flex-gt-sm="20">
+    <div flex-gt-sm="15">
       <label for="dataEmissao3">Data Emissão</label>
       <input id="dataEmissao3" name="dataEmissao3" 
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario3.dataEmissao" ng-tabindex="30">
     </div>
+    
+    <div flex-gt-sm="15">
+      <label for="dataValidade3">Data Validade</label>
+      <input id="dataValidade3" name="dataValidade3" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pessoal.solidario3.dataValidade" ng-tabindex="14">
+    </div>
   </div>
+  
+  <div layout="column" layout-gt-sm="row" layout-padding> 
+  <div class="md-block" flex-gt-sm="15">
+      <label for="estadoCivil3">Estado Civil</label>
+      <select class="form-control" id="estadoCivil3"
+        ng-model="cadastro.pessoal.solidario3.estadoCivil" ng-tabindex="10">
+        <option value="SOLTEIRO">Solteiro(a)</option>
+        <option value="CASADO">Casado(a)</option>
+        <option value="AMASIADO">Amasiado(a)</option>
+        <option value="DESQUITADO">Desquitado(a)</option>
+        <option value="DIVORCIADO">Divorciado(a)</option>
+        <option value="SEPARADO">Separado(a)</option>
+        <option value="VIUVO">Viuvo(a)</option>
+      </select>
+    </div>
+    
+    <div flex-gt-sm="15">
+      <label for="dataNascimento3">Data Nascimento</label>
+      <input id="dataNascimento3" name="dataNascimento3" 
+      class="form-control" datepicker mascara="99/99/9999"
+      ng-model="cadastro.pessoal.solidario3.dataNascimento" ng-tabindex="14">
+    </div>
+    
+    <div class="md-block" flex-gt-sm="20">
+      <label for="grauParentesco3">Grau de Parentesco</label>
+      <select class="form-control" id="grauParentesco3"
+        ng-model="cadastro.pessoal.solidario3.grauParentesco" ng-tabindex="10">
+        <option value="CONJUGUE">Cônjugue</option>
+        <option value="PAI/MAE">Pai/Mãe</option>
+        <option value="FILHO">Filho</option>
+        <option value="PARENTE 2 GRAU">Parente de 2º grau</option>
+        <option value="AMIGO">Amigo</option>
+        <option value="COMPANHEIRO">Companheiro</option>
+        <option value="OUTROS">Outros</option>
+      </select>
+    </div>
+    
+ </div>   
 </fieldset>
 </div>
 
