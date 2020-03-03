@@ -72,7 +72,12 @@ function salvar($request, $response){
 	$empresa_trab_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->empresa, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$fone_com_2_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$ramal_com_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->ramal, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	
 	$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	//$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao->ocupacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	
+	//$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao->codigo_cbo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	
 	$natureza_renda_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$data_admissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$salario_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->salario, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -90,6 +95,7 @@ function salvar($request, $response){
 	//DADOS IMÓVEL PRETENDIDO//
 	$ocupacao = utf8_decode(trim(json_encode($cadastro->imovel->finalidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$imovel_tipo = utf8_decode(trim(json_encode($cadastro->imovel->tipo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$imovel_tipo_descricao = utf8_decode(trim(json_encode($cadastro->imovel->imovelTipoDescricao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$motivo_locacao = utf8_decode(trim(json_encode($cadastro->imovel->motivoLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$cep = utf8_decode(trim(json_encode($cadastro->imovel->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$uf = utf8_decode(trim(json_encode($cadastro->imovel->estado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -149,11 +155,41 @@ function salvar($request, $response){
 	$solidario3_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	
+	
+	
+	
+	$solicitante = utf8_decode(trim(json_encode($cadastro->imovel->solicitante, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	
+	if($solicitante != ""){
+		
+		$pdo = new PDO("mysql:host=localhost;dbname=segurosja;", "segurosja", "m1181s2081_", array());
+		$sth = $pdo->prepare("select usuarios_imobs.email from usuarios_imobs where usuarios_imobs.codigo_chavinha = $solicitante and usuarios_imobs.cgc_imob = $CGC_imob");
+		$sth->execute();
+		$result = $sth->fetch(PDO::FETCH_ASSOC);
+		$email_solicitante = $result['email'];
+		$pdo = null;
+		
+	}else{
+		$email_solicitante = "";
+	}
+	
+	
+
+	
+	
+	
 
     $data_cob = date("Y-m-d");
     $hora_cob = date("H:i:s");
     $seguradora = "ALL";
-    $usuario_upload = "HOTSITE";
+    //$usuario_upload = "HOTSITE";
+	
+	$usuario_upload = "HOTSITE";
+    if($email_solicitante != ""){
+		$usuario_upload = $email_solicitante;
+	}
+	
     $tipo_inquilino = "F";
     $resp_inquilino = "";
     $CPF_resp_inquilino = "";
@@ -188,7 +224,7 @@ function salvar($request, $response){
                                     empresa_constituida, cnpj_empresa_constituida, ramo_atividade_empresa, franquia_empresa, franqueadora_empresa, produtos_servicos_empresa, experiencia_ramo_empresa, faturam_estim_empresa, ret_cap_invest_empresa,
                                     num_solidarios, solidario1, solidario1_cpf, solidario1_fone, solidario1_sexo, solidario1_rg, solidario2, solidario2_cpf, solidario2_fone, solidario2_sexo, solidario2_rg, solidario3, solidario3_cpf, solidario3_fone, solidario3_sexo, solidario3_rg,
                                     cep, endereco, numero, complemento, bairro, cidade, uf, aluguel,
-                                    ocupacao, imovel_tipo, motivo_locacao, inicio,
+                                    ocupacao, imovel_tipo, imovel_tipo_descricao, motivo_locacao, inicio,
                                     condominio, gas, iptu, energia, agua, pintura_int, pintura_ext, danos, multa,
                                     corretor)
 
@@ -202,7 +238,7 @@ function salvar($request, $response){
                                    '$empresa_constituida', '$cnpj_empresa_constituida', '$ramo_atividade_empresa',	'$franquia_empresa', '$franqueadora_empresa', '$produtos_servicos_empresa', '$experiencia_ramo_empresa', '$faturam_estim_empresa', '$ret_cap_invest_empresa',
                                    '$num_solidarios', '$solidario1', '$solidario1_cpf', '$solidario1_fone', '$solidario1_sexo', '$solidario1_rg', '$solidario2', '$solidario2_cpf', '$solidario2_fone', '$solidario2_sexo', '$solidario2_rg', '$solidario3', '$solidario3_cpf', '$solidario3_fone', '$solidario3_sexo', '$solidario3_rg',
 								   '$cep', '$endereco', '$numero', '$complemento', '$bairro', '$cidade', '$uf', '$aluguel',
-								   '$ocupacao', '$imovel_tipo', '$motivo_locacao', '$inicio', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa',
+								   '$ocupacao', '$imovel_tipo', '$imovel_tipo_descricao', '$motivo_locacao', '$inicio', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa',
 							       '$cod_cor')";
 							       
         $sql = str_replace("null", "", $sql);
@@ -313,6 +349,7 @@ function salvar($request, $response){
 		aluguel='$aluguel',
 		ocupacao='$ocupacao',
 		imovel_tipo='$imovel_tipo',
+		imovel_tipo_descricao = '$imovel_tipo_descricao',
 		motivo_locacao='$motivo_locacao',
 		condominio='$condominio',
 		gas='$gas',
@@ -362,6 +399,7 @@ function salvar($request, $response){
         <b>Responsável pela PJ:</b> ".$resp_inquilino." - <b>CPF:</b> ".$CPF_resp_inquilino."<BR>
         <b>Telefone:</b> ".$fone_inquilino." - <b>Celular:</b> ".$cel_inquilino." - <b>E-mail:</b> ".$email_inquilino."<BR>
         </div><div align='center'><HR></div><div align='left'>
+		<b>Nome do Cônjuge:</b> ".$nome_conjuge_inquilino." - <b>Data de Nascimento do Cônjuge:</b> ".$data_conjuge_inquilno."<BR>
         <b>CPF Cônjuge:</b> ".$cpf_conjuge_inquilino." - <b>Número de Dependentes:</b> ".$num_dependente_inquilino."<BR>
         <b>Nome da Mãe:</b> ".$nome_mae_inquilino." - <b>Nome do Pai:</b> ".$nome_pai_inquilino."<BR>
         <b>Nacionalidade Pretendente:</b> ".$nacionalidade_inquilino." - <b>País:</b> ".$pais_inquilino." - <b>Tempo no País:</b> ".$tempo_pais_inquilino."<BR>

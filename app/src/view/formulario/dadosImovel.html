@@ -9,17 +9,90 @@
         </select>
   </div>
 
-  <div class="md-block" flex-gt-sm="30">
+  <div class="md-block" flex-gt-sm="15">
         <label for="tipoImovel">Tipo de Imóvel</label>
         <select class="form-control" id="tipoImovel" ng-tabindex="2" 
         ng-model="cadastro.imovel.tipo" requerido>
           <option value="APARTAMENTO">Apartamento</option>
           <option value="CASA">Casa</option>
-          <option value="CONDOMINIO">Condomínio Fechado</option>
-          <option value="SALA">Sala</option>
+          <option value="SOBRADO">Sobrado</option>
+           <option value="COMERCIAL">Comercial</option>
+           <option value="CONSULTÓRIO">Consultório</option>
+          <option value="ESCRITÓRIO">Escritório</option>
+          <option value="OUTROS">Outros</option>
         </select>
       </div>
+      
+      <div class="md-block" flex-gt-sm="20" ng-if="cadastro.imovel.tipo == 'OUTROS' ">
+      <label for="imovelTipoDescricao">Descrição Tipo de Imóvel</label>
+      <input type="text" id="imovelTipoDescricao" upper name="imovelTipoDescricao" requerido
+      class="form-control" ng-model="cadastro.imovel.imovelTipoDescricao">
+    </div>
+	  
+	  <div class="md-block" flex-gt-sm="40">
+        <label for="motivoLocacao">Motivo da Locação</label>
+		
+		
+        <select class="form-control" id="motivoLocacao" ng-tabindex="3" ng-init = "carregaCbMotivoLocacao()" ng-model="cadastro.imovel.motivoLocacao" requerido>
 
+            <option ng-repeat="x in cadastro.imovel.motivoLocacaoSelect" value="{{ x.p617descricao | uppercase}}" ng-if="
+			 
+			     (
+				    (x.p617descricao == 'Locação Adicional') ||
+                    (x.p617descricao == 'Transferência de empresa') || 
+                    (x.p617descricao == 'Próximo ao trabalho') ||
+                    (x.p617descricao == 'Imóvel próximo de familiares') || 
+                    (x.p617descricao == 'Próximo a instituição de ensino') || 
+                    (x.p617descricao == 'Casamento') || 
+                    (x.p617descricao == 'Separação') || 
+                    (x.p617descricao == 'Independência')					
+				 ) ? cadastro.imovel.finalidade == 'R' : ''
+			 
+			 ">{{ x.p617descricao }}</option>
+	
+			 <!--
+			  <option value="LOCAÇÃO ADICIONAL" ng-if="cadastro.imovel.finalidade == 'R' ">Locação Adicional</option>
+			  <option value="TRANSFERÊNCIA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'R' ">Transferência de Empresa</option>
+			  <option value="PRÓXIMO AO TRABALHO" ng-if="cadastro.imovel.finalidade == 'R' ">Próximo ao Trabalho</option>
+			  <option value="IMÓVEL PRÓXIMO DE FAMILIARES" ng-if="cadastro.imovel.finalidade == 'R' ">Imóvel Próximo de Familiares</option>
+			  <option value="PRÓXIMO A INSITUIÇÃO DE ENSINO" ng-if="cadastro.imovel.finalidade == 'R' ">Próximo a Insituição de Ensino</option>
+			  <option value="CASAMENTO" ng-if="cadastro.imovel.finalidade == 'R' ">Casamento</option>
+			  <option value="SEPARAÇÃO" ng-if="cadastro.imovel.finalidade == 'R' ">Separação</option>
+			  <option value="INDEPENDÊNCIA" ng-if="cadastro.imovel.finalidade == 'R' ">Independência</option> -->
+			  
+			  <!--
+			  <option value="PARA TERCEIROS">Para Terceiros</option>
+			  <option value="FUNCIONÁRIO DA EMPRESA DO PRETENDENTE">Funcionário da Empresa do Pretendente</option>
+			  <option value="VENDA DE IMÓVEL PRÓPRIO">Venda de Imóvel Próprio</option>
+			  <option value="REDUÇÃO DE CUSTO">Redução de Custo</option>-->
+			  <option value="TROCA DE GARANTIA DA ATUAL LOCAÇÃO">Troca de Garantia da Atual Locação</option>
+			  <!--
+			  <option value="LOCAÇÃO EM VIGOR">Locação em Vigor</option>-->
+			  <option value="RENOVAÇÃO COM AUMENTO DE VALORES">Renovação com Aumento de Valores</option>
+			  <!--<option value="APÓLICE VENCIDA">Apólice Vencida</option>-->
+			  <option value="CANCELAMENTO DE APÓLICE TROCA DE IMÓVEL">Cancelamento de Apólice Troca de Imóvel</option>
+			  <option value="ENDOSSO DA APÓLICE">Endosso da Apólice</option>
+			  
+			  <option value="TROCA LOCAL SEDE" ng-if="cadastro.imovel.finalidade == 'C' ">Troca de Local de Sede</option>
+			  <option value="ABERTURA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'C' ">Abertura de Empresa</option>
+			  <option value="ABERTURA DE FILIAL" ng-if="cadastro.imovel.finalidade == 'C' ">Abertura de Filial</option>
+			  <option value="MUDANÇA PARA UM PONTO MELHOR" ng-if="cadastro.imovel.finalidade == 'C' ">Mudança para um Ponto Melhor</option>
+			 
+			 
+			 
+        </select>
+      </div>
+	  
+	  
+	  <!--
+	  <div class="md-block" flex-gt-sm="40">
+        <label for="motivoLocacao">Motivo da Locação</label>
+        <select ng-init = "carregaCbMotivoLocacao()" class="form-control" id="motivoLocacao" ng-tabindex="3" ng-model="cadastro.imovel.motivoLocacao" requerido ng-options="c.p617descricao as c.p617descricao for c in cadastro.imovel.motivoLocacao">
+          
+        </select>
+      </div>-->
+	  
+<!--
       <div class="md-block" flex-gt-sm="40">
         <label for="motivoLocacao">Motivo da Locação</label>
         <select class="form-control" id="motivoLocacao" ng-tabindex="3"
@@ -61,7 +134,7 @@
                   
         </select>
       </div>
-
+-->
   </div>
 
 
@@ -150,6 +223,7 @@
 </div>
 
 
+
 <div layout="column" layout-padding layout-gt-sm="row">
     <div class="md-block" flex-gt-sm="15">
       <label for="cepImovel">CEP</label>
@@ -186,7 +260,7 @@
 
      <div class="md-block" flex-gt-sm="10">
       <label for="numeroImovel">Numero</label>
-      <input type="text" id="numeroImovel" name="numeroImovel"
+      <input type="number" id="numeroImovel" name="numeroImovel"
       class="form-control" ng-model="cadastro.imovel.numero" ng-tabindex="18">
     </div>
 
@@ -203,7 +277,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="aluguel" ng-disabled="paramUrl.var2 > 0" name="aluguel" requerido
+      <input mobile="text" mascara-monetaria id="aluguel" ng-disabled="paramUrl.var2 >= 0" name="aluguel" requerido
       class="form-control" ng-model="cadastro.imovel.aluguel" ng-tabindex="20">
     </div>
     </div>
@@ -213,7 +287,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="iptu" name="iptu" ng-disabled="paramUrl.var4 > 0"
+      <input mobile="text" mascara-monetaria id="iptu" name="iptu" ng-disabled="paramUrl.var4 >= 0"
       class="form-control" ng-model="cadastro.imovel.iptu" ng-tabindex="21">
     </div>
     </div>
@@ -223,7 +297,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="condominio" name="condominio" ng-disabled="paramUrl.var3 > 0"
+      <input mobile="text" mascara-monetaria id="condominio" name="condominio" ng-disabled="paramUrl.var3 >= 0"
       class="form-control" ng-model="cadastro.imovel.condominio" ng-tabindex="22">
     </div>
     </div>
@@ -233,7 +307,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="agua" name="agua" ng-disabled="paramUrl.var5 > 0"
+      <input mobile="text" mascara-monetaria id="agua" name="agua" ng-disabled="paramUrl.var5 >= 0"
       class="form-control" ng-model="cadastro.imovel.agua" ng-tabindex="23">
     </div>
     </div>
@@ -243,7 +317,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="luz" name="luz" ng-disabled="paramUrl.var6 > 0"
+      <input mobile="text" mascara-monetaria id="luz" name="luz" ng-disabled="paramUrl.var6 >= 0"
       class="form-control" ng-model="cadastro.imovel.luz" ng-tabindex="24">
     </div>
     </div>
@@ -253,7 +327,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="gas" name="gas" ng-disabled="paramUrl.var7 > 0"
+      <input mobile="text" mascara-monetaria id="gas" name="gas" ng-disabled="paramUrl.var7 >= 0"
       class="form-control" ng-model="cadastro.imovel.gas" ng-tabindex="25s">
     </div>
     </div>
