@@ -137,6 +137,16 @@ function salvar($request, $response){
 	$solidario1_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_grau_parentesco = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_cep = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_ira_residir = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_natureza_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_empresa_trabalho = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->localTrabalhoTel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_data_admissao = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_conjuge_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	$solidario2 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -146,6 +156,16 @@ function salvar($request, $response){
 	$solidario2_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_grau_parentesco = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_cep = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_ira_residir = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_natureza_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_empresa_trabalho = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->localTrabalhoTel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_admissao = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_conjuge_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	$solidario3 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -155,6 +175,16 @@ function salvar($request, $response){
 	$solidario3_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_grau_parentesco = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_cep = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_ira_residir = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_natureza_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_empresa_trabalho = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->localTrabalhoTel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_data_admissao = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_conjuge_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	
 	
 	
@@ -222,11 +252,7 @@ function salvar($request, $response){
                                     empresa_trab_inquilino, fone_com_inquilino, ramal_com_inquilino, profissao_inquilino, natureza_renda_inquilino, data_admissao_inquilino, salario_inquilino, outros_rendim_inquilino, total_rendim_inquilino, empresa_anterior_inquilino, endereco_com_inquilino,
                                     ref_bancaria_inquilino, banco_inquilino, agencia_inquilino, ccorrente_inquilino, gerente_inquilino, fone_gerente_inquilino, ref_pessoal_nome, ref_pessoal_fone, ref_pessoal_cel, ref_pessoal_grau_parent,
                                     empresa_constituida, cnpj_empresa_constituida, ramo_atividade_empresa, franquia_empresa, franqueadora_empresa, produtos_servicos_empresa, experiencia_ramo_empresa, faturam_estim_empresa, ret_cap_invest_empresa,
-                                    num_solidarios, solidario1, solidario1_cpf, solidario1_fone, solidario1_sexo, solidario1_rg, solidario2, solidario2_cpf, solidario2_fone, solidario2_sexo, solidario2_rg, solidario3, solidario3_cpf, solidario3_fone, solidario3_sexo, solidario3_rg,
-                                    cep, endereco, numero, complemento, bairro, cidade, uf, aluguel,
-                                    ocupacao, imovel_tipo, imovel_tipo_descricao, motivo_locacao, inicio,
-                                    condominio, gas, iptu, energia, agua, pintura_int, pintura_ext, danos, multa,
-                                    corretor)
+                                    num_solidarios, solidario1, solidario1_cpf, solidario1_fone, solidario1_sexo, solidario1_rg, solidario1_data_valid_doc, solidario1_estado_civil, solidario1_data_nascimento, solidario1_grau_parentesco, solidario1_cep, solidario1_ira_residir, solidario1_natureza_renda, solidario1_empresa_trabalho, solidario1_data_admissao, solidario1_conjuge_cpf, solidario2, solidario2_cpf, solidario2_fone, solidario2_sexo, solidario2_rg, solidario2_data_valid_doc, solidario2_estado_civil, solidario2_data_nascimento, solidario2_grau_parentesco, solidario2_cep, solidario2_ira_residir, solidario2_natureza_renda, solidario2_empresa_trabalho, solidario2_data_admissao, solidario2_conjuge_cpf, solidario3, solidario3_cpf, solidario3_fone, solidario3_sexo, solidario3_rg, solidario3_data_valid_doc, solidario3_estado_civil, solidario3_data_nascimento, solidario3_grau_parentesco, solidario3_cep, solidario3_ira_residir, solidario3_natureza_renda, solidario3_empresa_trabalho, solidario3_data_admissao, solidario3_conjuge_cpf, cep, endereco, numero, complemento, bairro, cidade, uf, aluguel, ocupacao, imovel_tipo, imovel_tipo_descricao, motivo_locacao, inicio, condominio, gas, iptu, energia, agua, pintura_int, pintura_ext, danos, multa, corretor)
 
                             values ('$data_cob', '$hora_cob', '$seguradora', '$usuario_upload', '$CGC_imob',
 								   '$inquilino', '$tipo_inquilino', '$CPF_inquilino', '$data_inquilino', '$sexo_inquilino', '$est_civil_inquilino', '$tipo_DOC_inquilino', '$DOC_inquilino', '$orgao_exp_inquilino', '$data_exp_inquilino', '$data_validade_doc_inquilino', '$resp_inquilino', '$CPF_resp_inquilino',
@@ -236,7 +262,7 @@ function salvar($request, $response){
                                    '$empresa_trab_inquilino', '$fone_com_inquilino', '$ramal_com_inquilino', '$profissao_inquilino', '$natureza_renda_inquilino', '$data_admissao_inquilino', '$salario_inquilino', '$outros_rendim_inquilino', '$total_rendim_inquilino', '$empresa_anterior_inquilino', '$endereco_com_inquilino',
                                    '$ref_bancaria_inquilino', '$banco_inquilino', '$agencia_inquilino', '$ccorrente_inquilino', '$gerente_inquilino', '$fone_gerente_inquilino', '$ref_pessoal_nome', '$ref_pessoal_fone', '$ref_pessoal_cel', '$ref_pessoal_grau_parent',
                                    '$empresa_constituida', '$cnpj_empresa_constituida', '$ramo_atividade_empresa',	'$franquia_empresa', '$franqueadora_empresa', '$produtos_servicos_empresa', '$experiencia_ramo_empresa', '$faturam_estim_empresa', '$ret_cap_invest_empresa',
-                                   '$num_solidarios', '$solidario1', '$solidario1_cpf', '$solidario1_fone', '$solidario1_sexo', '$solidario1_rg', '$solidario2', '$solidario2_cpf', '$solidario2_fone', '$solidario2_sexo', '$solidario2_rg', '$solidario3', '$solidario3_cpf', '$solidario3_fone', '$solidario3_sexo', '$solidario3_rg',
+                                   '$num_solidarios', '$solidario1', '$solidario1_cpf', '$solidario1_fone', '$solidario1_sexo', '$solidario1_rg', '$solidario1_data_valid_doc', '$solidario1_estado_civil', '$solidario1_data_nascimento', '$solidario1_grau_parentesco', '$solidario1_cep', '$solidario1_ira_residir', '$solidario1_natureza_renda', '$solidario1_empresa_trabalho', '$solidario1_data_admissao', '$solidario1_conjuge_cpf', '$solidario2', '$solidario2_cpf', '$solidario2_fone', '$solidario2_sexo', '$solidario2_rg', '$solidario2_data_valid_doc', '$solidario2_estado_civil', '$solidario2_data_nascimento', '$solidario2_grau_parentesco', '$solidario2_cep', '$solidario2_ira_residir', '$solidario2_natureza_renda', '$solidario2_empresa_trabalho', '$solidario2_data_admissao', '$solidario2_conjuge_cpf','$solidario3', '$solidario3_cpf', '$solidario3_fone', '$solidario3_sexo', '$solidario3_rg', '$solidario3_data_valid_doc', '$solidario3_estado_civil', '$solidario3_data_nascimento', '$solidario3_grau_parentesco', '$solidario3_cep', '$solidario3_ira_residir', '$solidario3_natureza_renda', '$solidario3_empresa_trabalho', '$solidario3_data_admissao', '$solidario3_conjuge_cpf',
 								   '$cep', '$endereco', '$numero', '$complemento', '$bairro', '$cidade', '$uf', '$aluguel',
 								   '$ocupacao', '$imovel_tipo', '$imovel_tipo_descricao', '$motivo_locacao', '$inicio', '$condominio', '$gas', '$iptu', '$energia', '$agua', '$pintura_int', '$pintura_ext', '$danos', '$multa',
 							       '$cod_cor')";
@@ -327,16 +353,49 @@ function salvar($request, $response){
 		solidario1_fone='$solidario1_fone',
 		solidario1_sexo='$solidario1_sexo',
 		solidario1_rg='$solidario1_rg',
+		solidario1_data_valid_doc = '$solidario1_data_valid_doc',
+		solidario1_estado_civil = '$solidario1_estado_civil',
+		solidario1_data_nascimento = '$solidario1_data_nascimento',
+		solidario1_grau_parentesco = '$solidario1_grau_parentesco',
+		solidario1_cep = '$solidario1_cep',
+		solidario1_ira_residir = '$solidario1_ira_residir',
+		solidario1_natureza_renda = '$solidario1_natureza_renda',
+		solidario1_empresa_trabalho = '$solidario1_empresa_trabalho',
+		solidario1_data_admissao = '$solidario1_data_admissao',
+		solidario1_conjuge_cpf = '$solidario1_conjuge_cpf',
+
 		solidario2='$solidario2',
 		solidario2_cpf='$solidario2_cpf',
 		solidario2_fone='$solidario2_fone',
 		solidario2_sexo='$solidario2_sexo',
 		solidario2_rg='$solidario2_rg',
+		solidario2_data_valid_doc = '$solidario2_data_valid_doc',
+		solidario2_estado_civil = '$solidario2_estado_civil',
+		solidario2_data_nascimento = '$solidario2_data_nascimento',
+		solidario2_grau_parentesco = '$solidario2_grau_parentesco',
+		solidario2_cep = '$solidario2_cep',
+		solidario2_ira_residir = '$solidario2_ira_residir',
+		solidario2_natureza_renda = '$solidario2_natureza_renda',
+		solidario2_empresa_trabalho = '$solidario2_empresa_trabalho',
+		solidario2_data_admissao = '$solidario2_data_admissao',
+		solidario2_conjuge_cpf = '$solidario2_conjuge_cpf',
+
 		solidario3='$solidario3',
 		solidario3_cpf='$solidario3_cpf', 
 		solidario3_fone='$solidario3_fone',
 		solidario3_sexo='$solidario3_sexo',
 		solidario3_rg='$solidario3_rg',
+		solidario3_data_valid_doc = '$solidario3_data_valid_doc',
+		solidario3_estado_civil = '$solidario3_estado_civil',
+		solidario3_data_nascimento = '$solidario3_data_nascimento',
+		solidario3_grau_parentesco = '$solidario3_grau_parentesco',
+		solidario3_cep = '$solidario3_cep',
+		solidario3_ira_residir = '$solidario3_ira_residir',
+		solidario3_natureza_renda = '$solidario3_natureza_renda',
+		solidario3_empresa_trabalho = '$solidario3_empresa_trabalho',
+		solidario3_data_admissao = '$solidario3_data_admissao',
+		solidario3_conjuge_cpf = '$solidario3_conjuge_cpf',
+
 		cep='$cep',
 		endereco='$endereco',
 		numero='$numero',

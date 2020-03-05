@@ -7,7 +7,10 @@ angular.module('app')
 			$("form[name = '"+formName+"'] [requerido]").each(function(){
 				if($(this).val() == undefined || $(this).val().trim().length == 0 || $(this).val().startsWith('?')){
 					var label = $("label[for='"+$(this).attr('id')+"']").text().replace('*', '');
-					errors.push(label + " obrigatório.");
+					var descErro = label + " obrigatório.";
+					
+					if(!errors.includes(descErro))
+						errors.push(descErro);
 				}
 			});
 		}

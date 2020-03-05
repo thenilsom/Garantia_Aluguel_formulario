@@ -459,6 +459,46 @@
 
               $scope.proximoPasso();
           }
+          
+          /*Valida os dados Pessoais*/
+          $scope.validarDadosPessoaisESalvar = function(form){
+        	  iniciarVariavelErro();
+             validador.validarCamposObrigatorios(form, $scope.errors);
+            
+            if($scope.cadastro.pessoal.solidario1){
+            	if($scope.cadastro.pessoal.solidario1.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario1.cpfConjuge)){
+            		$scope.errors.push("CPF conjuge locatário solidário 1 inválido.");
+            	}
+            	
+            	if($scope.cadastro.pessoal.solidario1.cpf && !validador.validarCpf($scope.cadastro.pessoal.solidario1.cpf)){
+            		$scope.errors.push("CPF locatário solidário 1 inválido.");
+            	}
+            }
+         
+           if($scope.cadastro.pessoal.solidario2){
+        	   if($scope.cadastro.pessoal.solidario2.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario2.cpfConjuge)){
+        		   $scope.errors.push("CPF conjuge locatário solidário 2 inválido.");
+        	   }
+        	   
+        	   if($scope.cadastro.pessoal.solidario2.cpf && !validador.validarCpf($scope.cadastro.pessoal.solidario2.cpf)){
+           		$scope.errors.push("CPF locatário solidário 2 inválido.");
+           	}
+           } 
+            
+           if($scope.cadastro.pessoal.solidario3){
+        	   if($scope.cadastro.pessoal.solidario3.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario3.cpfConjuge)){
+        		   $scope.errors.push("CPF conjuge locatário solidário 3 inválido.");
+        	   }
+        	   
+        	   if($scope.cadastro.pessoal.solidario3.cpf && !validador.validarCpf($scope.cadastro.pessoal.solidario3.cpf)){
+           		$scope.errors.push("CPF locatário solidário 3 inválido.");
+           	}
+           }
+
+              if($scope.errors.length == 0){
+            	  $scope.salvar();
+              }
+          }
 
           /*valida os dados profissionaiss*/
           $scope.validarDadosProfissionais = function(form){
