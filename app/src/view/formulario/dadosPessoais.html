@@ -106,6 +106,12 @@
       </select>
     </div>
     
+    <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pessoal.solidario1.estadoCivil == 'CASADO'">
+      <label for="cpfConjuge1">CPF Cônjuge</label>
+      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge1" name="cpfConjuge1" 
+      class="form-control" ng-model="cadastro.pessoal.solidario1.cpfConjuge" requerido>
+    </div>
+    
     <div flex-gt-sm="15">
       <label for="dataNascimento1">Data Nascimento</label>
       <input id="dataNascimento1" name="dataNascimento1"  requerido
@@ -265,6 +271,12 @@
       </select>
     </div>
     
+    <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pessoal.solidario2.estadoCivil == 'CASADO'">
+      <label for="cpfConjuge2">CPF Cônjuge</label>
+      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge2" name="cpfConjuge2" 
+      class="form-control" ng-model="cadastro.pessoal.solidario2.cpfConjuge" requerido>
+    </div>
+    
     <div flex-gt-sm="15">
       <label for="dataNascimento2">Data Nascimento</label>
       <input id="dataNascimento2" name="dataNascimento2" 
@@ -422,6 +434,12 @@
         <option value="SEPARADO">Separado(a)</option>
         <option value="VIUVO">Viuvo(a)</option>
       </select>
+    </div>
+    
+    <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pessoal.solidario3.estadoCivil == 'CASADO'">
+      <label for="cpfConjuge3">CPF Cônjuge</label>
+      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge3" name="cpfConjuge3" 
+      class="form-control" ng-model="cadastro.pessoal.solidario3.cpfConjuge" requerido>
     </div>
     
     <div flex-gt-sm="15">
