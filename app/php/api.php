@@ -363,7 +363,6 @@ function salvar($request, $response){
 		solidario1_empresa_trabalho = '$solidario1_empresa_trabalho',
 		solidario1_data_admissao = '$solidario1_data_admissao',
 		solidario1_conjuge_cpf = '$solidario1_conjuge_cpf',
-
 		solidario2='$solidario2',
 		solidario2_cpf='$solidario2_cpf',
 		solidario2_fone='$solidario2_fone',
@@ -379,7 +378,6 @@ function salvar($request, $response){
 		solidario2_empresa_trabalho = '$solidario2_empresa_trabalho',
 		solidario2_data_admissao = '$solidario2_data_admissao',
 		solidario2_conjuge_cpf = '$solidario2_conjuge_cpf',
-
 		solidario3='$solidario3',
 		solidario3_cpf='$solidario3_cpf', 
 		solidario3_fone='$solidario3_fone',
@@ -395,7 +393,6 @@ function salvar($request, $response){
 		solidario3_empresa_trabalho = '$solidario3_empresa_trabalho',
 		solidario3_data_admissao = '$solidario3_data_admissao',
 		solidario3_conjuge_cpf = '$solidario3_conjuge_cpf',
-
 		cep='$cep',
 		endereco='$endereco',
 		numero='$numero',
