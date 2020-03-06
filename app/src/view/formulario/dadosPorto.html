@@ -1,0 +1,199 @@
+<form name="formDadosPorto" class="fundo-formulario">
+   
+   
+   <div class="row-md-3 text-left">
+		 <div style="font-size: 16pt;padding:25px;"><strong>Seu cadastro foi gravado e já seguiu para a análise nas seguradoras.</strong></div>
+	  </div>    
+   
+<div layout="column" layout-gt-sm="row" layout-padding layout-align="center center">
+  
+    <!--
+	<div layout="row" style = "border:1px solid #aaa;padding-left:20%;padding-right:20%;">
+	  <div class="md-block" flex-gt-sm="100">
+	    <h1 layout-align="center center" style = "padding:10px;">Situação do Cadastro</h1>
+		
+		<img class="img-fluid" width = '70%' src = 'src/logo_porto.png'>
+		
+		<div layout-align="center center">
+		    <div style="font-size: 16pt;padding:10px;">{{cadastro.porto.descricaoStatus}}</div>
+		</div>
+		
+	  </div> 
+	</div>-->
+ 
+
+
+  <div class="col-xs-4 col-md-4" style="margin-bottom:0px;border-right:1px solid #aaa;height:400px;border-bottom:2px solid #aaa;width:100%;">
+	 <div style = "text-align:center;"><img style = "padding:5px;padding-top:25px;" height = '215' class="img-fluid"  src = 'img/liberty_logo.png'>
+	    
+	 </div>
+	 <div style = "padding:10px;">
+		<div style="font-size: 15pt;padding-top:30px;color:#444;">Situação:</div>
+		<div style="font-size: 12pt;color:green;" ng-if="liberty.codigoStatus == 1"><strong>Aprovado!</strong></div>
+		<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 2"><strong>Em análise.</strong></div>
+		<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 3"><strong>Recusado.</strong></div>
+		<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 4"><strong>Aguardando Documentos para Analisar.</strong></div>
+		<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 5"><strong>Erro ao Analisar.</strong></div>
+		<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 6"><strong>Carta Oferta Não Cadastrada.</strong></div>
+	 </div>
+	  <div style="font-size: 13pt;padding-left:10px;color:#555;" ng-if="liberty.codigoStatus == 2">Prazo médio: 20 horas</div>
+  </div>
+  <div class="col-xs-4 col-md-4" style="margin-bottom: 0px;border-bottom:2px solid #aaa;height:400px;width:100%;">
+	 <div style = "text-align:center;"><img style = "padding:5px;padding-top:25px;" height = '215' class="img-fluid"  src = 'img/porto_logo.png'>
+	    
+	 </div>
+	 <div style = "padding:10px;">
+		<div style="font-size: 15pt;padding-top:30px;color:#444;">Situação:</div>
+		<div style="font-size: 12pt;color:green;" ng-if="porto.codigoStatus == 1"><strong>Aprovado!</strong></div>
+		<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 2"><strong>Em análise.</strong></div>
+		<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 3"><strong>Recusado.</strong></div>
+		<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 4"><strong>Aguardando Documentos para Analisar.</strong></div>
+		<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 5"><strong>Erro ao Analisar.</strong></div>
+	 </div>
+	 <div style="font-size: 13pt;padding-left:10px;color:#555;" ng-if="porto.codigoStatus == 2">Prazo médio: 20 horas</div>
+  </div>
+  <div class="col-xs-4 col-md-4" style="margin-bottom: 0px;border-left:1px solid #aaa;border-bottom:2px solid #aaa;height:400px;width:100%;">
+	 <div style = "text-align:center;"><img style = "padding:5px;padding-top:25px;" height = '215' class="img-fluid"  src = 'img/too_logo.png'>
+	    
+	 </div>
+	 <div style = "padding:10px;">
+		<div style="font-size: 15pt;padding-top:30px;color:#444;">Situação:</div>
+		<div style="font-size: 12pt;color:green;" ng-if="tooseguros.codigoStatus == 1"><strong>Aprovado!</strong></div>
+		<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 2"><strong>Em análise.</strong></div>
+		<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 3"><strong>Recusado.</strong></div>
+		<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 4"><strong>Aguardando Documentos para Analisar.</strong></div>
+		<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 5"><strong>Erro ao Analisar.</strong></div>
+	 </div>
+	 <div style="font-size: 13pt;padding-left:10px;color:#555;">Prazo médio: 10 horas</div>
+  </div>
+
+	
+<!--
+	
+<div class="row" style = "width:100%">
+  
+	  <div class="row-md-3 text-left">
+		 <div style="font-size: 16pt;padding:25px;"><strong>Seu cadastro foi gravado e já seguiu para a análise nas seguradoras.</strong></div>
+	  </div>  
+	  
+	  <div class="row-md-9 text-left">
+		    <div layout="row" style = "width:100%;" layout-align="center center">
+			
+			  <div class="col-md-12 well well-sm" style="margin-bottom: 0px;border-right:1px solid #aaa;height:350px;border-bottom:2px solid #aaa;" flex-xs="20">
+				 <div style = "text-align:center;"><img style = "padding:5px;padding-top:25px;" height = '215' class="img-fluid"  src = 'img/liberty_logo.png'></div>
+				 <div style = "padding:10px;">
+					<div style="font-size: 15pt;padding-top:30px;color:#444;">Situação:</div>
+					
+					<div style="font-size: 12pt;color:green;" ng-if="liberty.codigoStatus == 1"><strong>Aprovado!</strong></div>
+					<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 2"><strong>Em análise.</strong></div>
+					<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 3"><strong>Recusado.</strong></div>
+					<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 4"><strong>Aguardando Documentos para Analisar.</strong></div>
+					<div style="font-size: 12pt;" ng-if="liberty.codigoStatus == 5"><strong>Erro ao Analisar.</strong></div>
+					
+				 </div>
+			  </div>
+			  <div class="col-md-12 well well-sm" style="margin-bottom: 0px;border-bottom:2px solid #aaa;height:350px;" flex-xs="20">
+				 <div style = "text-align:center;"><img style = "padding:5px;padding-top:25px;" height = '215' class="img-fluid"  src = 'img/porto_logo.png'></div>
+				 <div style = "padding:10px;">
+					<div style="font-size: 15pt;padding-top:30px;color:#444;">Situação:</div>
+					<div style="font-size: 12pt;color:green;" ng-if="porto.codigoStatus == 1"><strong>Aprovado!</strong></div>
+					<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 2"><strong>Em análise.</strong></div>
+					<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 3"><strong>Recusado.</strong></div>
+					<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 4"><strong>Aguardando Documentos para Analisar.</strong></div>
+					<div style="font-size: 12pt;" ng-if="porto.codigoStatus == 5"><strong>Erro ao Analisar.</strong></div>
+				 </div>
+			  </div>
+			  <div class="col-md-12 well well-sm" style="margin-bottom: 0px;border-left:1px solid #aaa;border-bottom:2px solid #aaa;height:350px;;" flex-xs="20">
+				 <div style = "text-align:center;"><img style = "padding:5px;padding-top:25px;" height = '215' class="img-fluid"  src = 'img/too_logo.png'></div>
+				 <div style = "padding:10px;">
+					<div style="font-size: 15pt;padding-top:30px;color:#444;">Situação:</div>
+					<div style="font-size: 12pt;color:green;" ng-if="tooseguros.codigoStatus == 1"><strong>Aprovado!</strong></div>
+					<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 2"><strong>Em análise.</strong></div>
+					<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 3"><strong>Recusado.</strong></div>
+					<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 4"><strong>Aguardando Documentos para Analisar.</strong></div>
+					<div style="font-size: 12pt;" ng-if="tooseguros.codigoStatus == 5"><strong>Erro ao Analisar.</strong></div>
+				 </div>
+			  </div>
+			  
+			</div>
+	  </div>   
+      
+	  <div class="row-md-9 text-left">
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 1">
+		     <strong>Mesmo tendo seu cadastro já aprovado por uma ou mais seguradoras, recomendamos o envio de documentos na próxima tela afim de obter preços mais baixos.</strong>
+		 </div>
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 2">
+		     <strong>
+			    <div style = 'color:green;'>Cadastro já aprovado! Não é necessário o envio de documentos.</div>
+                     Seu locador/imobiliária farão contato para prosseguimento do processo.
+			</strong>
+		 </div>
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 3">
+		     <strong>É necessário o envio de documentos na próxima tela para conclusão de análise.</strong>
+		 </div>
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 4">
+		     <strong>
+			    Mesmo em caso de recusa de cadastro por uma ou mais seguradoras, recomendamos o envio de documentos na
+				próxima tela para tentativa de mudança no parecer após análise não eletrônica. Os documentos serão utilizados
+				para análises também nas demais seguradoras. Em caso de restrição cadastral (SPC/SERASA), sugerimos novo
+				cadastro em CPF/CNPJ diferente.
+			</strong>
+		 </div>
+		 
+		<div style="font-size: 11pt;color:#444;padding-left:25px;padding-right:25px;padding-bottom:25px;">
+		     <strong>A aprovação do cadastro junto à seguradora não implica em aprovação automática por parte da imobiliária.</strong>
+		 </div>
+		 
+	  </div>  
+	  
+</div>
+	-->
+		
+          
+</div>
+
+	  <div class="row-md-9 text-left">
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 1">
+		     <strong>Mesmo tendo seu cadastro já aprovado por uma ou mais seguradoras, recomendamos o envio de documentos na próxima tela afim de obter preços mais baixos.</strong>
+		 </div>
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 2">
+		     <strong>
+			    <!--<div style = 'color:green;'>Cadastro já aprovado! Não é necessário o envio de documentos.</div>-->
+			    <div style = 'color:green;'>Cadastro já aprovado! Sugerimos o envio dos documentos para mais opções de orçamentos.</div><!-- mensagem provisória -->
+                     Seu locador/imobiliária farão contato para prosseguimento do processo.
+			</strong>
+		 </div>
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 3">
+		     <strong>É necessário o envio de documentos na próxima tela para conclusão de análise.</strong>
+		 </div>
+		 <div style="font-size: 14pt;color:#444;padding:25px;" ng-if="corretoras.codMsg == 4">
+		     <strong>
+			    Mesmo em caso de recusa de cadastro por uma ou mais seguradoras, recomendamos o envio de documentos na
+				próxima tela para tentativa de mudança no parecer após análise não eletrônica. Os documentos serão utilizados
+				para análises também nas demais seguradoras. Em caso de restrição cadastral (SPC/SERASA), sugerimos novo
+				cadastro em CPF/CNPJ diferente.
+			</strong>
+		 </div>
+		 
+		<div style="font-size: 11pt;color:#444;padding-left:25px;padding-right:25px;padding-bottom:25px;">
+		     <strong>A aprovação do cadastro junto à seguradora não implica em aprovação automática por parte da imobiliária.</strong>
+		 </div>
+		 
+	  </div>  
+
+</form>
+
+<div layout="row" layout-align="center center">
+    <div ng-if="passo != 1">
+      <md-button class="md-raised" ng-click="passoAnterior()">
+        <span aria-hidden="true">&larr;</span> Anterior
+      </md-button>
+    </div>
+
+    <div ng-if="cadastro.corretoras.codMsg != 2">
+      <md-button class="md-raised md-primary" ng-click="proximoPasso()">Seguinte <span aria-hidden="true">&rarr;</span>
+      </md-button>
+    </div>
+	
+  </div> 
+</div> 
