@@ -82,6 +82,7 @@ angular.module('app')
 			var profissional = {};
 			profissional.naturezaRenda = dados.natureza_renda_inquilino;
 			profissional.profissao = dados.profissao_inquilino;
+			profissional.profissao_descricao = dados.profissao_inquilino_descricao;
 			profissional.dataAdmissao = dados.data_admissao_inquilino;
 			profissional.salario = dados.salario_inquilino;
 			profissional.outrosRendimentos = dados.outros_rendim_inquilino;
@@ -102,8 +103,9 @@ angular.module('app')
 
 		var preencherDadosImovelPretendido = function(dados){
 			var imovel = {};
-			imovel.finalidade = dados.ocupacao == 'N' ? 'NÃO RESIDENCIAL' : 'RESIDENCIAL';
+			imovel.finalidade = dados.ocupacao == 'C' ? 'C' : 'R';
 			imovel.tipo = dados.imovel_tipo;
+			imovel.imovelTipoDescricao = dados.imovel_tipo_descricao;
 			imovel.motivoLocacao = dados.motivo_locacao;
 			imovel.locacaoEmpresaConstituida = dados.empresa_constituida;
 			imovel.cnpjEmpresaConstituida = dados.cnpj_empresa_constituida;
@@ -148,6 +150,16 @@ angular.module('app')
 			pessoal.solidario1.numDoc = parseInt(dados.solidario1_rg);
 			pessoal.solidario1.orgaoExpedidor = dados.solidario1_orgao_exp_rg;
 			pessoal.solidario1.dataEmissao = dados.solidario1_data_exp_rg;
+			pessoal.solidario1.dataValidade = dados.solidario1_data_valid_doc;
+			pessoal.solidario1.estadoCivil = dados.solidario1_estado_civil;
+			pessoal.solidario1.dataNascimento = dados.solidario1_data_nascimento;
+			pessoal.solidario1.grauParentesco = dados.solidario1_grau_parentesco;
+			pessoal.solidario1.cep = dados.solidario1_cep;
+			pessoal.solidario1.iraResidirImovel = dados.solidario1_ira_residir;
+			pessoal.solidario1.naturezaRenda = dados.solidario1_natureza_renda;
+			pessoal.solidario1.localTrabalhoTel = dados.solidario1_empresa_trabalho;
+			pessoal.solidario1.dataAdmissao = dados.solidario1_data_admissao;
+			pessoal.solidario1.cpfConjuge = dados.solidario1_conjuge_cpf;
 
 			pessoal.solidario2.nome = dados.solidario2;
 			pessoal.solidario2.cpf = dados.solidario2_cpf;
@@ -157,6 +169,16 @@ angular.module('app')
 			pessoal.solidario2.numDoc = parseInt(dados.solidario2_rg);
 			pessoal.solidario2.orgaoExpedidor = dados.solidario2_orgao_exp_rg;
 			pessoal.solidario2.dataEmissao = dados.solidario2_data_exp_rg;
+			pessoal.solidario2.dataValidade = dados.solidario2_data_valid_doc;
+			pessoal.solidario2.estadoCivil = dados.solidario2_estado_civil;
+			pessoal.solidario2.dataNascimento = dados.solidario2_data_nascimento;
+			pessoal.solidario2.grauParentesco = dados.solidario2_grau_parentesco;
+			pessoal.solidario2.cep = dados.solidario2_cep;
+			pessoal.solidario2.iraResidirImovel = dados.solidario2_ira_residir;
+			pessoal.solidario2.naturezaRenda = dados.solidario2_natureza_renda;
+			pessoal.solidario2.localTrabalhoTel = dados.solidario2_empresa_trabalho;
+			pessoal.solidario2.dataAdmissao = dados.solidario2_data_admissao;
+			pessoal.solidario2.cpfConjuge = dados.solidario2_conjuge_cpf;
 
 			pessoal.solidario3.nome = dados.solidario3;
 			pessoal.solidario3.cpf = dados.solidario3_cpf;
@@ -166,6 +188,16 @@ angular.module('app')
 			pessoal.solidario3.numDoc = parseInt(dados.solidario3_rg);
 			pessoal.solidario3.orgaoExpedidor = dados.solidario3_orgao_exp_rg;
 			pessoal.solidario3.dataEmissao = dados.solidario3_data_exp_rg;	
+			pessoal.solidario3.dataValidade = dados.solidario3_data_valid_doc;
+			pessoal.solidario3.estadoCivil = dados.solidario3_estado_civil;
+			pessoal.solidario3.dataNascimento = dados.solidario3_data_nascimento;
+			pessoal.solidario3.grauParentesco = dados.solidario3_grau_parentesco;
+			pessoal.solidario3.cep = dados.solidario3_cep;
+			pessoal.solidario3.iraResidirImovel = dados.solidario3_ira_residir;
+			pessoal.solidario3.naturezaRenda = dados.solidario3_natureza_renda;
+			pessoal.solidario3.localTrabalhoTel = dados.solidario3_empresa_trabalho;
+			pessoal.solidario3.dataAdmissao = dados.solidario3_data_admissao;
+			pessoal.solidario3.cpfConjuge = dados.solidario3_conjuge_cpf;
 
 			return pessoal;
 		}
