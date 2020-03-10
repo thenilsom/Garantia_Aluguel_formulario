@@ -66,6 +66,7 @@
          $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
+            montarArrayImobiliarias($scope.listaTabela);
             alertarQtdRegPendenteNoTitle();
             
             if(qtdRegistros > 0 && qtdRegistros < $scope.listaTabela.length){
@@ -78,6 +79,13 @@
               $(".loader").removeClass('hidden');
              // service.alertarErro(erro.statusText);
             });
+       }
+       
+       /**
+        * Monta o array de lista das imobiliárias
+        */
+       var montarArrayImobiliarias = function(lista){
+    	   $scope.listaImobiliarias = [...new Set(lista.map(v=> v.fantasia))].sort();
        }
        
        /**
