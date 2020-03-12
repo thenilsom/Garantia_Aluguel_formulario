@@ -61,6 +61,10 @@
        $scope.irParaListagem = function(){
         $scope.acao = 'listar';
        }
+       
+       $scope.filtroLista = function (input, search_param) {
+    	   return !search_param || (input && input.toLocaleLowerCase().includes(search_param.toLocaleLowerCase()));
+    	 }
 
        var listar = function(){
          $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
@@ -85,7 +89,7 @@
         * Monta o array de lista das imobiliárias
         */
        var montarArrayImobiliarias = function(lista){
-    	   $scope.listaImobiliarias = [...new Set(lista.map(v=> v.fantasia))].sort();
+    	   $scope.listaImobiliarias = [...new Set(lista.filter(l=> l.fantasia).map(v=> v.fantasia))].sort();
        }
        
        /**

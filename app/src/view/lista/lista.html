@@ -38,6 +38,17 @@ div {
         <span aria-hidden="true"></span>
       </md-button>
       </div>      
+      
+      <div class="col-md-5"></div>
+      
+      <div class="col-md-4">
+	      <label>Imobiliária</label>
+	      <select  data-ng-model="q.fantasia" class="form-control form-control-small"
+				data-ng-options = "imob for imob in listaImobiliarias">
+				<option value="" style="font-weight: bold;">TODAS</option>
+			</select>
+	</div>
+					
   </div>
 
   <hr/>
@@ -66,7 +77,7 @@ div {
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="reg in listaTabela | filter:q | itemsPerPage: 20" data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00' }">
+      <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | itemsPerPage: 20" data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00' }">
         <td class="col-sm-1">{{reg.codigo}}</td>
         <td class="col-sm-2">{{reg.inquilino}}</td>
         <td class="col-sm-1">{{reg.CPF_inquilino | cpfcnpj}}</td>
@@ -115,7 +126,7 @@ div {
           <div class="input-group">
               <span class="input-group-addon"> <span
                 class="glyphicon glyphicon-search"></span>
-              </span> <input id="inputFiltro" type="text" data-focus class="form-control"
+              </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
                 placeholder="Digite a Pesquisa" data-ng-model="q.inquilino">
               </div>
           </div>
