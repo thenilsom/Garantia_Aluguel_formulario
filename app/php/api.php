@@ -135,8 +135,8 @@ function salvar($request, $response){
 	$solidario1_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_orgao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario1_data_emissao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario1_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -154,8 +154,8 @@ function salvar($request, $response){
 	$solidario2_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_orgao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2_data_emissao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario2_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -173,8 +173,8 @@ function salvar($request, $response){
 	$solidario3_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_orgao_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_data_exp_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_orgao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3_data_emissao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$solidario3_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -328,6 +328,8 @@ function salvar($request, $response){
                                     solidario1_fone, 
                                     solidario1_sexo, 
                                     solidario1_rg, 
+                                    solidario1_orgao_rg,
+                                    solidario1_data_emissao_rg,
                                     solidario1_data_valid_doc, 
                                     solidario1_estado_civil, 
                                     solidario1_data_nascimento, 
@@ -335,6 +337,7 @@ function salvar($request, $response){
                                     solidario1_cep, 
                                     solidario1_ira_residir, 
                                     solidario1_natureza_renda, 
+                                    solidario1_renda,
                                     solidario1_empresa_trabalho, 
                                     solidario1_data_admissao, 
                                     solidario1_conjuge_cpf, 
@@ -343,6 +346,8 @@ function salvar($request, $response){
                                     solidario2_fone, 
                                     solidario2_sexo, 
                                     solidario2_rg, 
+                                    solidario2_orgao_rg,
+                                    solidario2_data_emissao_rg,
                                     solidario2_data_valid_doc, 
                                     solidario2_estado_civil, 
                                     solidario2_data_nascimento, 
@@ -350,6 +355,7 @@ function salvar($request, $response){
                                     solidario2_cep, 
                                     solidario2_ira_residir, 
                                     solidario2_natureza_renda, 
+                                    solidario2_renda,
                                     solidario2_empresa_trabalho, 
                                     solidario2_data_admissao, 
                                     solidario2_conjuge_cpf, 
@@ -357,7 +363,9 @@ function salvar($request, $response){
                                     solidario3_cpf, 
                                     solidario3_fone, 
                                     solidario3_sexo, 
-                                    solidario3_rg, 
+                                    solidario3_rg,
+                                    solidario3_orgao_rg, 
+                                    solidario3_data_emissao_rg,
                                     solidario3_data_valid_doc, 
                                     solidario3_estado_civil, 
                                     solidario3_data_nascimento, 
@@ -365,6 +373,7 @@ function salvar($request, $response){
                                     solidario3_cep, 
                                     solidario3_ira_residir, 
                                     solidario3_natureza_renda, 
+                                    solidario3_renda,
                                     solidario3_empresa_trabalho, 
                                     solidario3_data_admissao, 
                                     solidario3_conjuge_cpf, 
@@ -473,7 +482,9 @@ function salvar($request, $response){
                                    	'$solidario1_cpf', 
                                    	'$solidario1_fone', 
                                    	'$solidario1_sexo', 
-                                   	'$solidario1_rg', 
+                                   	'$solidario1_rg',
+                                   	'$solidario1_orgao_rg', 
+                                   	'$solidario1_data_emissao_rg',
                                    	'$solidario1_data_valid_doc', 
                                    	'$solidario1_estado_civil', 
                                    	'$solidario1_data_nascimento', 
@@ -481,6 +492,7 @@ function salvar($request, $response){
                                    	'$solidario1_cep', 
                                    	'$solidario1_ira_residir', 
                                    	'$solidario1_natureza_renda', 
+                                   	'$solidario1_renda',
                                    	'$solidario1_empresa_trabalho', 
                                    	'$solidario1_data_admissao', 
                                    	'$solidario1_conjuge_cpf', 
@@ -489,6 +501,8 @@ function salvar($request, $response){
                                    	'$solidario2_fone', 
                                    	'$solidario2_sexo', 
                                    	'$solidario2_rg', 
+                                   	'$solidario2_orgao_rg',
+                                   	'$solidario2_data_emissao_rg',
                                    	'$solidario2_data_valid_doc', 
                                    	'$solidario2_estado_civil', 
                                    	'$solidario2_data_nascimento', 
@@ -496,6 +510,7 @@ function salvar($request, $response){
                                    	'$solidario2_cep', 
                                    	'$solidario2_ira_residir', 
                                    	'$solidario2_natureza_renda', 
+                                   	'$solidario2_renda',
                                    	'$solidario2_empresa_trabalho', 
                                    	'$solidario2_data_admissao', 
                                    	'$solidario2_conjuge_cpf',
@@ -503,7 +518,9 @@ function salvar($request, $response){
                                    	'$solidario3_cpf', 
                                    	'$solidario3_fone', 
                                    	'$solidario3_sexo', 
-                                   	'$solidario3_rg', 
+                                   	'$solidario3_rg',
+                                   	'$solidario3_orgao_rg', 
+                                   	'$solidario3_data_emissao_rg',
                                    	'$solidario3_data_valid_doc', 
                                    	'$solidario3_estado_civil', 
                                    	'$solidario3_data_nascimento', 
@@ -511,6 +528,7 @@ function salvar($request, $response){
                                    	'$solidario3_cep', 
                                    	'$solidario3_ira_residir', 
                                    	'$solidario3_natureza_renda', 
+                                   	'$solidario3_renda',
                                    	'$solidario3_empresa_trabalho', 
                                    	'$solidario3_data_admissao', 
                                    	'$solidario3_conjuge_cpf',
@@ -624,6 +642,8 @@ function salvar($request, $response){
 		solidario1_fone='$solidario1_fone',
 		solidario1_sexo='$solidario1_sexo',
 		solidario1_rg='$solidario1_rg',
+		solidario1_orgao_rg = '$solidario1_orgao_rg',
+		solidario1_data_emissao_rg = '$solidario1_data_emissao_rg',
 		solidario1_data_valid_doc = '$solidario1_data_valid_doc',
 		solidario1_estado_civil = '$solidario1_estado_civil',
 		solidario1_data_nascimento = '$solidario1_data_nascimento',
@@ -631,6 +651,7 @@ function salvar($request, $response){
 		solidario1_cep = '$solidario1_cep',
 		solidario1_ira_residir = '$solidario1_ira_residir',
 		solidario1_natureza_renda = '$solidario1_natureza_renda',
+		solidario1_renda = '$solidario1_renda',
 		solidario1_empresa_trabalho = '$solidario1_empresa_trabalho',
 		solidario1_data_admissao = '$solidario1_data_admissao',
 		solidario1_conjuge_cpf = '$solidario1_conjuge_cpf',
@@ -639,6 +660,8 @@ function salvar($request, $response){
 		solidario2_fone='$solidario2_fone',
 		solidario2_sexo='$solidario2_sexo',
 		solidario2_rg='$solidario2_rg',
+		solidario2_orgao_rg = '$solidario2_orgao_rg',
+		solidario2_data_emissao_rg = '$solidario2_data_emissao_rg',
 		solidario2_data_valid_doc = '$solidario2_data_valid_doc',
 		solidario2_estado_civil = '$solidario2_estado_civil',
 		solidario2_data_nascimento = '$solidario2_data_nascimento',
@@ -646,6 +669,7 @@ function salvar($request, $response){
 		solidario2_cep = '$solidario2_cep',
 		solidario2_ira_residir = '$solidario2_ira_residir',
 		solidario2_natureza_renda = '$solidario2_natureza_renda',
+		solidario2_renda = '$solidario2_renda',
 		solidario2_empresa_trabalho = '$solidario2_empresa_trabalho',
 		solidario2_data_admissao = '$solidario2_data_admissao',
 		solidario2_conjuge_cpf = '$solidario2_conjuge_cpf',
@@ -654,6 +678,8 @@ function salvar($request, $response){
 		solidario3_fone='$solidario3_fone',
 		solidario3_sexo='$solidario3_sexo',
 		solidario3_rg='$solidario3_rg',
+		solidario3_orgao_rg = '$solidario3_orgao_rg',
+		solidario3_data_emissao_rg = '$solidario3_data_emissao_rg',
 		solidario3_data_valid_doc = '$solidario3_data_valid_doc',
 		solidario3_estado_civil = '$solidario3_estado_civil',
 		solidario3_data_nascimento = '$solidario3_data_nascimento',
@@ -661,6 +687,7 @@ function salvar($request, $response){
 		solidario3_cep = '$solidario3_cep',
 		solidario3_ira_residir = '$solidario3_ira_residir',
 		solidario3_natureza_renda = '$solidario3_natureza_renda',
+		solidario3_renda = '$solidario3_renda',
 		solidario3_empresa_trabalho = '$solidario3_empresa_trabalho',
 		solidario3_data_admissao = '$solidario3_data_admissao',
 		solidario3_conjuge_cpf = '$solidario3_conjuge_cpf',
@@ -746,9 +773,9 @@ function salvar($request, $response){
         <b>Referência Pessoal:</b> ".$ref_pessoal_nome." - <b>Telefone:</b> ".$ref_pessoal_fone." - <b>Celular:</b> ".$ref_pessoal_cel." - <b>Grau de Parentesco/Relacionamento:</b> ".$ref_pessoal_grau_parent."<BR>
         </div><div align='center'><HR></div><div align='left'>
         <b>Número de Locatários Solidários:</b> ".$num_solidarios."<BR>
-        <b>Nome do Solidário 1:</b> ".$solidario1." - <b>CPF/CNPJ:</b> ".$solidario1_cpf." - <b>Sexo:</b> ".$solidario1_sexo." - <b>RG:</b> ".$solidario1_rg." - <b>Órgão Expedidor:</b> ".$solidario1_orgao_exp_rg." - <b>Data de Expedição:</b> ".$solidario1_data_exp_rg." - <b>Validade Doc:</b> ".$solidario1_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario1_estado_civil." - <b>Data Nascimento:</b> ".$solidario1_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario1_grau_parentesco." - <b>Cep:</b> ".$solidario1_cep." - <b>Irá Residir:</b> ".$solidario1_ira_residir." - <b>Natureza Renda:</b> ".$solidario1_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario1_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario1_data_admissao." - <b>CPF Conjuge:</b> ".$solidario1_conjuge_cpf." - <b>Telefone:</b> ".$solidario1_fone."<BR>
-        <b>Nome do Solidário 2:</b> ".$solidario2." - <b>CPF/CNPJ:</b> ".$solidario2_cpf." - <b>Sexo:</b> ".$solidario2_sexo." - <b>RG:</b> ".$solidario2_rg." - <b>Órgão Expedidor:</b> ".$solidario2_orgao_exp_rg." - <b>Data de Expedição:</b> ".$solidario2_data_exp_rg." - <b>Validade Doc:</b> ".$solidario2_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario2_estado_civil." - <b>Data Nascimento:</b> ".$solidario2_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario2_grau_parentesco." - <b>Cep:</b> ".$solidario2_cep." - <b>Irá Residir:</b> ".$solidario2_ira_residir." - <b>Natureza Renda:</b> ".$solidario2_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario2_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario2_data_admissao." - <b>CPF Conjuge:</b> ".$solidario2_conjuge_cpf." - <b>Telefone:</b> ".$solidario2_fone."<BR>
-        <b>Nome do Solidário 3:</b> ".$solidario3." - <b>CPF/CNPJ:</b> ".$solidario3_cpf." - <b>Sexo:</b> ".$solidario3_sexo." - <b>RG:</b> ".$solidario3_rg." - <b>Órgão Expedidor:</b> ".$solidario3_orgao_exp_rg." - <b>Data de Expedição:</b> ".$solidario3_data_exp_rg." - <b>Validade Doc:</b> ".$solidario3_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario3_estado_civil." - <b>Data Nascimento:</b> ".$solidario3_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario3_grau_parentesco." - <b>Cep:</b> ".$solidario3_cep." - <b>Irá Residir:</b> ".$solidario3_ira_residir." - <b>Natureza Renda:</b> ".$solidario3_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario3_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario3_data_admissao." - <b>CPF Conjuge:</b> ".$solidario3_conjuge_cpf." - <b>Telefone:</b> ".$solidario3_fone."<BR>
+        <b>Nome do Solidário 1:</b> ".$solidario1." - <b>CPF/CNPJ:</b> ".$solidario1_cpf." - <b>Sexo:</b> ".$solidario1_sexo." - <b>RG:</b> ".$solidario1_rg." - <b>Órgão Expedidor:</b> ".$solidario1_orgao_rg." - <b>Data de Expedição:</b> ".$solidario1_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario1_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario1_estado_civil." - <b>Data Nascimento:</b> ".$solidario1_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario1_grau_parentesco." - <b>Cep:</b> ".$solidario1_cep." - <b>Irá Residir:</b> ".$solidario1_ira_residir." - <b>Natureza Renda:</b> ".$solidario1_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario1_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario1_data_admissao." - <b>CPF Conjuge:</b> ".$solidario1_conjuge_cpf." - <b>Telefone:</b> ".$solidario1_fone."<BR>
+        <b>Nome do Solidário 2:</b> ".$solidario2." - <b>CPF/CNPJ:</b> ".$solidario2_cpf." - <b>Sexo:</b> ".$solidario2_sexo." - <b>RG:</b> ".$solidario2_rg." - <b>Órgão Expedidor:</b> ".$solidario2_orgao_rg." - <b>Data de Expedição:</b> ".$solidario2_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario2_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario2_estado_civil." - <b>Data Nascimento:</b> ".$solidario2_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario2_grau_parentesco." - <b>Cep:</b> ".$solidario2_cep." - <b>Irá Residir:</b> ".$solidario2_ira_residir." - <b>Natureza Renda:</b> ".$solidario2_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario2_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario2_data_admissao." - <b>CPF Conjuge:</b> ".$solidario2_conjuge_cpf." - <b>Telefone:</b> ".$solidario2_fone."<BR>
+        <b>Nome do Solidário 3:</b> ".$solidario3." - <b>CPF/CNPJ:</b> ".$solidario3_cpf." - <b>Sexo:</b> ".$solidario3_sexo." - <b>RG:</b> ".$solidario3_rg." - <b>Órgão Expedidor:</b> ".$solidario3_orgao_rg." - <b>Data de Expedição:</b> ".$solidario3_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario3_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario3_estado_civil." - <b>Data Nascimento:</b> ".$solidario3_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario3_grau_parentesco." - <b>Cep:</b> ".$solidario3_cep." - <b>Irá Residir:</b> ".$solidario3_ira_residir." - <b>Natureza Renda:</b> ".$solidario3_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario3_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario3_data_admissao." - <b>CPF Conjuge:</b> ".$solidario3_conjuge_cpf." - <b>Telefone:</b> ".$solidario3_fone."<BR>
         </div><div align='center'><HR></div><div align='left'>
         <b>CEP do Imóvel Pretendido:</b> ".$cep." - <b>Endereço:</b> ".$endereco." - <b>Número:</b> ".$numero." - <b>Quadra:</b> ".$quadra." - <b>Lote:</b> ".$lote." - <b>Complemento:</b> ".$complemento."<BR>
         <b>Bairro:</b> ".$bairro." - <b>Cidade:</b> ".$cidade." - <b>UF:</b> ".$uf."<BR>

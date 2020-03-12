@@ -148,8 +148,8 @@ angular.module('app')
 			pessoal.solidario1.telefone = dados.solidario1_fone;
 			pessoal.solidario1.sexo = dados.solidario1_sexo;
 			pessoal.solidario1.numDoc = parseInt(dados.solidario1_rg);
-			pessoal.solidario1.orgaoExpedidor = dados.solidario1_orgao_exp_rg;
-			pessoal.solidario1.dataEmissao = dados.solidario1_data_exp_rg;
+			pessoal.solidario1.orgaoExpedidor = dados.solidario1_orgao_rg;
+			pessoal.solidario1.dataEmissao = dados.solidario1_data_emissao_rg;
 			pessoal.solidario1.dataValidade = dados.solidario1_data_valid_doc;
 			pessoal.solidario1.estadoCivil = dados.solidario1_estado_civil;
 			pessoal.solidario1.dataNascimento = dados.solidario1_data_nascimento;
@@ -167,8 +167,8 @@ angular.module('app')
 			pessoal.solidario2.telefone = dados.solidario2_fone;
 			pessoal.solidario2.sexo = dados.solidario2_sexo;
 			pessoal.solidario2.numDoc = parseInt(dados.solidario2_rg);
-			pessoal.solidario2.orgaoExpedidor = dados.solidario2_orgao_exp_rg;
-			pessoal.solidario2.dataEmissao = dados.solidario2_data_exp_rg;
+			pessoal.solidario2.orgaoExpedidor = dados.solidario2_orgao_rg;
+			pessoal.solidario2.dataEmissao = dados.solidario2_data_emissao_rg;
 			pessoal.solidario2.dataValidade = dados.solidario2_data_valid_doc;
 			pessoal.solidario2.estadoCivil = dados.solidario2_estado_civil;
 			pessoal.solidario2.dataNascimento = dados.solidario2_data_nascimento;
@@ -186,8 +186,8 @@ angular.module('app')
 			pessoal.solidario3.telefone = dados.solidario3_fone;
 			pessoal.solidario3.sexo = dados.solidario3_sexo;
 			pessoal.solidario3.numDoc = parseInt(dados.solidario3_rg);
-			pessoal.solidario3.orgaoExpedidor = dados.solidario3_orgao_exp_rg;
-			pessoal.solidario3.dataEmissao = dados.solidario3_data_exp_rg;	
+			pessoal.solidario3.orgaoExpedidor = dados.solidario3_orgao_rg;
+			pessoal.solidario3.dataEmissao = dados.solidario3_data_emissao_rg;	
 			pessoal.solidario3.dataValidade = dados.solidario3_data_valid_doc;
 			pessoal.solidario3.estadoCivil = dados.solidario3_estado_civil;
 			pessoal.solidario3.dataNascimento = dados.solidario3_data_nascimento;
