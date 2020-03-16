@@ -505,11 +505,6 @@
         	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
 
-            if($scope.cadastro.profissional.outrosRendimentos && 
-              !parseFloat($scope.cadastro.profissional.totalRendimentos) > 0)
-              $scope.errors.push("Informe o total dos outros rendimentos.");
-
-
             if($scope.cadastro.profissional.naturezaRenda == 'FUNCIONARIO PÚBLICO' || $scope.cadastro.profissional.naturezaRenda == 'FUNCIONÁRIO COM REGISTRO CLT'){
 			    if($scope.cadastro.profissional.profissao == '' || $scope.cadastro.profissional.profissao == undefined){
 				    $scope.errors.push("Profissão é obrigatório.");
