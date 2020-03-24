@@ -494,6 +494,13 @@
            		$scope.errors.push("CPF locatário solidário 3 inválido.");
            	}
            }
+           
+         //se num solidarios não form maior que zero garante os objetos vazios
+           if(!$scope.cadastro.pessoal.numSolidarios > 0){
+        	   $scope.cadastro.pessoal.solidario1 = {};
+        	   $scope.cadastro.pessoal.solidario2 = {};
+        	   $scope.cadastro.pessoal.solidario3 = {};
+           }
 
               if($scope.errors.length == 0){
             	  $scope.salvar();
