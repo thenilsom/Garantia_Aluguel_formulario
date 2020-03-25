@@ -22,6 +22,8 @@ $app->post('/listar', 'listar');
 $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
 $app->post('/listarCGC_Imob', 'listarCGC_Imob');
 $app->post('/fezUploadArquivos', 'fezUploadArquivos');
+$app->post('/consultarFaixaCep', 'consultarFaixaCep');
+
 
 function fezUploadArquivos($request, $response){
 	$param = json_decode($request->getBody());
@@ -103,7 +105,8 @@ function consultarPorCpfInquilino($request, $response){
 
  	$sql = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
-			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
+			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_inquilino_descricao
 			from fianca WHERE codigo = (SELECT max(codigo) as CODIGO from fianca where CPF_inquilino = '$cpf')";
 	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
@@ -133,6 +136,25 @@ function listarCGC_Imob($request, $response){
     }
 
 	echo json_encode($rows);
+}
+
+function consultarFaixaCep($request, $response){
+	$param = json_decode($request->getBody());
+	$cep = trim(json_encode($param->cep, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$sql = "SELECT cidade, estado from cidades where '$cep' < cep_final and '$cep' > cep_inicial";
+	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+	while($campo = mysql_fetch_assoc($consulta)){
+        $cidade=$campo['cidade'];
+        $estado=$campo['estado'];
+    }
+
+    $result = array('cidade' => $cidade, 'estado' => $estado); 
+    echo json_encode($result);
 }
 
 $app->run();

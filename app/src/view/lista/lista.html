@@ -92,21 +92,21 @@ div {
           'circulo-vermelho' : reg.situacao_analise_liberty.toLowerCase().includes('recusad') || reg.situacao_analise_liberty.toLowerCase().includes('reprovad'), 
           'circulo-cinza' : reg.situacao_analise_liberty == ''}" 
           class="circulo" 
-          data-tooltip = "{{reg.processo_liberty ? ('<div>Análise: ' + reg.processo_liberty + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_liberty + '</div>') : ''}}"></div></td>
+          data-tooltip = "{{reg.processo_liberty || reg.situacao_analise_liberty ? ('<div>Análise: ' + reg.processo_liberty + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_liberty + '</div>') : ''}}"></div></td>
 
           <td class="col-sm-1">
           <div ng-class="{'circulo-verde' : reg.situacao_analise_porto.toLowerCase().includes('aprovad'), 
           'circulo-vermelho' : reg.situacao_analise_porto.toLowerCase().includes('recusad') || reg.situacao_analise_porto.toLowerCase().includes('reprovad'), 
           'circulo-cinza' : reg.situacao_analise_porto == ''}" 
           class="circulo" 
-          data-tooltip = "{{reg.processo_porto ? ('<div>Análise: ' + reg.processo_porto + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_porto + '</div>') : ''}}"></div></td>
+          data-tooltip = "{{reg.processo_porto || reg.situacao_analise_porto ? ('<div>Análise: ' + reg.processo_porto + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_porto + '</div>') : ''}}"></div></td>
 
           <td class="col-sm-1">
           <div ng-class="{'circulo-verde' : reg.situacao_analise_too.toLowerCase().includes('aprovad'), 
           'circulo-vermelho' : reg.situacao_analise_too.toLowerCase().includes('recusad') || reg.situacao_analise_too.toLowerCase().includes('reprovad'), 
           'circulo-cinza' : reg.situacao_analise_too == ''}" 
           class="circulo" 
-          data-tooltip = "{{reg.processo_too ? ('<div>Análise: ' + reg.processo_too + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_too + '</div>') : ''}}"></div></td> 
+          data-tooltip = "{{reg.processo_too || reg.situacao_analise_too ? ('<div>Análise: ' + reg.processo_too + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_too + '</div>') : ''}}"></div></td> 
 
         <td class="col-sm-1">
         	<button type="button" class="btn btn-info" ng-click="detalhar(reg)">Detalhar</button>
