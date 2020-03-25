@@ -153,7 +153,7 @@ function consultarFaixaCep($request, $response){
         $estado=$campo['estado'];
     }
 
-    $result = array('cidade' => $cidade, 'estado' => $estado); 
+    $result = array('localidade' => $cidade, 'uf' => $estado); 
     echo json_encode($result);
 }
 

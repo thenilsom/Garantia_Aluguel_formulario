@@ -1,6 +1,6 @@
 angular.module('app')
-.factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter',
-	function($location, $anchorScroll, $mdDialog, $filter){
+.factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter','$http',
+	function($location, $anchorScroll, $mdDialog, $filter, $http){
 
 		var url = '../app/';
 		//var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
@@ -163,13 +163,31 @@ angular.module('app')
 	         	callback(dados)
 
 	         }else {
-	             callback(null);
+	        	 consultarPorFaixaCep(cep, callback);
 	         }
 	         
 	     }).fail(function(d) {
-	     	 $('.loader').hide();
-	    	 alert('API correios fora de serviço, favor inserir manualmente');
+	    	 consultarPorFaixaCep(cep, callback);
          });   	
+	  }
+	  
+	  /**
+	   * Consulta por faixa de cep
+	   */
+	  var consultarPorFaixaCep = function(cepConsulta, callback){
+		  $http.post(url + 'php/consulta.php/consultarFaixaCep', {cep: cepConsulta}).then(function(data){
+			  $('.loader').hide();
+			  if(data.data.localidade){
+				  callback(data.data);
+			  }else{
+				  alert('CEP não encontrado.');
+				  callback(null);
+			  }
+			  
+	            }, function(erro){
+	            $('.loader').hide();
+	   	    	 alert('API correios fora de serviço, favor inserir manualmente');
+	            });
 	  }
 
 	  //exibe um alerta do tipo show hide
