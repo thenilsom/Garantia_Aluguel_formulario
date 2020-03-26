@@ -802,7 +802,7 @@ function salvar($request, $response){
     $mail->AddReplyTo("$email_cor"); // Email para receber as respostas
     // Define os dados técnicos da Mensagem
     $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
-    $mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
+    $mail->CharSet = 'UTF-8'; // Charset da mensagem (opcional)
 
     if($cod_cor == "0"){$mail->AddAddress('cadastro@maximizaseguros.com.br');$mail->AddCC('aluguel@mx10.com.br');$mail->AddCC('aluguel2@maximizaseguros.com.br');$mail->AddCC('cadastro@mx10.com.br');}
     else if($cod_cor == "10"){$mail->AddAddress("cadastro.df@maximizaseguros.com.br");$mail->AddCC("aluguel.df@maximizaseguros.com.br");}
