@@ -75,9 +75,9 @@
              $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar($scope.paramUrl.var7));
 			 $scope.cadastro.imovel.solicitante = service.decriptografar($scope.paramUrl.var8);
 			 
-			 $scope.cadastro.pretendente.nome = service.decriptografar($scope.paramUrl.var9);
+			 $scope.cadastro.pretendente.nome = $scope.paramUrl.var9 ? $scope.paramUrl.var9.replace(/%20/g, ' ') : ''; //%20 são os espaços
 			 $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
-			 $scope.cadastro.pretendente.tipoInquilino = service.decriptografar($scope.paramUrl.var11);
+			 $scope.cadastro.pretendente.tipoInquilino = $scope.paramUrl.var11;
 			 
             }, function(erro){
               service.alertarErro(erro.statusText);
