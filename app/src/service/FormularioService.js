@@ -20,6 +20,7 @@ angular.module('app')
 			var pretendente = {};
 			pretendente.nome = dados.inquilino;
 			pretendente.cpf = dados.CPF_inquilino;
+			pretendente.tipoInquilino = dados.tipo_inquilino;
 			pretendente.dataNascimento = dados.data_inquilino;
 			pretendente.tipoDoc = dados.tipo_doc_inquilino;
 			pretendente.numDoc = parseInt(dados.rg_inquilino);

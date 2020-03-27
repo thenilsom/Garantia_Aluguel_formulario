@@ -46,7 +46,7 @@
           $scope.filtro = {};
           $scope.cadastro = {};
           $scope.cadastro.imobiliaria = {};
-          $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)'};
+          $scope.cadastro.pretendente = {nacionalidade: 'Brasileiro(a)', tipoInquilino: 'F'};
           $scope.cadastro.residencia = {};
           $scope.cadastro.profissional = {};
           $scope.cadastro.imovel = {};
@@ -74,6 +74,10 @@
              $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar($scope.paramUrl.var6));
              $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar($scope.paramUrl.var7));
 			 $scope.cadastro.imovel.solicitante = service.decriptografar($scope.paramUrl.var8);
+			 
+			 $scope.cadastro.pretendente.nome = service.decriptografar($scope.paramUrl.var9);
+			 $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
+			 $scope.cadastro.pretendente.tipoInquilino = service.decriptografar($scope.paramUrl.var11);
 			 
             }, function(erro){
               service.alertarErro(erro.statusText);
@@ -236,7 +240,7 @@
 															
 															if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
 																$scope.corretoras.codMsg = 4;
-															}
+															}                                                            $scope.enviaEmails($scope.codigoCadastro);
 									 
 									                        console.log('PORTO');
 															console.log(data.data);
@@ -261,7 +265,7 @@
 												
 												if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
 													$scope.corretoras.codMsg = 4;
-												}
+												}                                                $scope.enviaEmails($scope.codigoCadastro);
 											
 												service.alertar('Cadastro alterado com sucesso.');
 												$scope.proximoPasso();
@@ -306,7 +310,7 @@
 															
 															if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
 																$scope.corretoras.codMsg = 4;
-															}
+															}                                                            $scope.enviaEmails($scope.codigoCadastro);
 									
 															service.exibirAlertaCadastro();
 															iniciarUpload($scope.codigoCadastro);		
@@ -330,7 +334,7 @@
 												
 												if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
 													$scope.corretoras.codMsg = 4;
-												}
+												}                                                $scope.enviaEmails($scope.codigoCadastro);
 											
 												console.log('COMERCIAL');
 												
@@ -628,6 +632,23 @@
 			 
 			 console.log('codigo a: '+$scope.cadastro.profissional.profissao);
 
+		};
+		$scope.enviaEmails = function(codigo = '') {
+			 
+			 //return $http.get("https://www.segurosja.com.br/gerenciador/fianca/app/php/email_status_propostas.php?codigo="+codigo).then(function(results){return results.data;});
+
+             	$.ajax({
+					type: "POST", 
+					url: "https://www.segurosja.com.br/gerenciador/fianca/app/php/email_status_propostas.php",
+					dataType: "json",           
+                    data:{
+                        codigo:codigo 
+                    },
+					success: function(response) {
+                           console.log('sucess: '+response);        
+					}
+				});                console.log('passou aqui');
+			 
 		};
 		
 		$scope.select2EditaCombo = function(){

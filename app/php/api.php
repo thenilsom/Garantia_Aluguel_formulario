@@ -22,6 +22,7 @@ function salvar($request, $response){
 	//DADOS DO PRETENDENTE
 	$inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$CPF_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tipo_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tipoInquilino, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$data_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$tipo_DOC_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tipoDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$DOC_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -220,7 +221,7 @@ function salvar($request, $response){
 		$usuario_upload = $email_solicitante;
 	}
 	
-    $tipo_inquilino = "F";
+    //$tipo_inquilino = "F"; *esta sendo capturado nos dados do pretendente
     $resp_inquilino = "";
     $CPF_resp_inquilino = "";
    	$cep_anterior_inquilino = str_replace(".","", $cep_anterior_inquilino);

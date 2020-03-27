@@ -10,7 +10,7 @@
 
     <div class="md-block" flex-gt-sm="25">
       <label for="cpf">CPF</label>
-      <input mobile="text"  mascara="999.999.999-99"  id="cpf" name="cpf" requerido
+      <input mobile="text"  mascara-cpfcnpj  id="cpf" name="cpf" requerido
       class="form-control" ng-model="cadastro.pretendente.cpf" ng-tabindex="2">
     </div>
 
@@ -136,7 +136,7 @@
       </select>
     </div>
 
-    <div class="md-block" flex-gt-sm="15">
+    <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pretendente.iraComporRendaConjuge == 'S'">
       <label for="rendaConjuge">Renda do Cônjuge</label>
       <div class="input-group">
       <span class="input-group-addon"

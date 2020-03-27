@@ -96,7 +96,10 @@
         * Redireciona para o formulario
         */
        $scope.enviarAnalise = function(){
-    	   window.location.href = url + 'index.php?var1=' + service.criptografar($scope.novoReg.cpfInquilino);
+    	   window.location.href = url + 'index.php?var1=' + service.criptografar(service.apenasNumeros($scope.novoReg.cgcImob.cpf))
+    	   											+ '&var9=' + service.criptografar($scope.novoReg.inquilino)
+    	   											+ '&var10=' + service.criptografar($scope.novoReg.cpfInquilino)
+    	   											+ '&var11=' + service.criptografar($scope.novoReg.tipoInquilino);
        }
 
        $scope.incluirRegistro = function(){

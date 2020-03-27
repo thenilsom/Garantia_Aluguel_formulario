@@ -2,8 +2,8 @@ angular.module('app')
 .factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter','$http',
 	function($location, $anchorScroll, $mdDialog, $filter, $http){
 
-		var url = '../app/';
-		//var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
+		//var url = '../app/';
+		var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
 		var service = {};
 		
 		service.getUrl = function(){
@@ -111,6 +111,13 @@ angular.module('app')
 		service.convertToFloat = function(str){
 			return parseFloat(str.replace(/[.]/g,"").replace(/,/, '.'));
 		}
+		
+		/**
+         * Mantem apenas os numeros da string passada
+         */
+        service.apenasNumeros = function (string) {
+            return string.replace(/[^0-9]/g, '');
+        }
 
 
 		service.obterProximoPasso = function(passoAtual){
