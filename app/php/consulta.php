@@ -127,7 +127,7 @@ function listarCGC_Imob($request, $response){
 
 	$rows = array();
 
- 	$sql = "SELECT cpf, fantasia FROM imobs WHERE corretor='$codigCorretor' and fantasia <> '' order BY fantasia";
+ 	$sql = "SELECT cpf, fantasia, razao FROM imobs WHERE corretor='$codigCorretor' and fantasia <> '' order BY fantasia";
 	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 

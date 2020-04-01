@@ -38,7 +38,7 @@
 			  <div class="md-block" flex-gt-sm="30">
 			        <label for="cgcImob">Imobiliária</label>
 			        <select class="form-control" id="cgcImob" ng-tabindex="3" name="novoReg.cgcImob" 
-			          data-ng-options="cgc as cgc.fantasia for cgc in listaCGC_Imob"
+			          data-ng-options="cgc as (cgc.fantasia + '-' + cgc.razao) for cgc in listaCGC_Imob"
 			          ng-model="novoReg.cgcImob" requerido focus>
 			        </select>
 			  </div>
