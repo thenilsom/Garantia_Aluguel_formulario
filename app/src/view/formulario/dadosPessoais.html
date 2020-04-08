@@ -136,6 +136,7 @@
     <div class="md-block" flex-gt-sm="15">
       <label for="cepRes1">CEP Residência</label>
       <input mobile="text" mascara="99999-999" id="cepRes1" name="cepRes1" 
+      ng-blur="validarCepLocatarioSolidario(cadastro.pessoal.solidario1.cep)"
       class="form-control" ng-model="cadastro.pessoal.solidario1.cep" requerido
       ng-tabindex="18">
     </div>
@@ -301,6 +302,7 @@
     <div class="md-block" flex-gt-sm="15">
       <label for="cepRes2">CEP Residência</label>
       <input mobile="text" mascara="99999-999" id="cepRes2" name="cepRes2" 
+      ng-blur="validarCepLocatarioSolidario(cadastro.pessoal.solidario2.cep)"
       class="form-control" ng-model="cadastro.pessoal.solidario2.cep" requerido
       ng-tabindex="34">
     </div>
@@ -466,6 +468,7 @@
     <div class="md-block" flex-gt-sm="15">
       <label for="cepRes3">CEP Residência</label>
       <input mobile="text" mascara="99999-999" id="cepRes3" name="cepRes3" 
+      ng-blur="validarCepLocatarioSolidario(cadastro.pessoal.solidario3.cep)"
       class="form-control" ng-model="cadastro.pessoal.solidario3.cep" requerido
       ng-tabindex="50">
     </div>

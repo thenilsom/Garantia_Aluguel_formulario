@@ -597,6 +597,22 @@
               })
             }
           }
+          
+          /**
+           * Valida o cep dos solidarios
+           */
+          $scope.validarCepLocatarioSolidario = function(cep){
+              //se o cep for valido efetua a consulta no webservice
+          	 erroCep = '';
+              cep = cep.replace(/\.|\-/g, '');
+              if(/^[0-9]{8}$/.test(cep)){
+                service.consultarCep(cep, function(dados){
+                  if(dados == null){
+                	  erroCep = 'Cep: ' + cep + ' inexistente ou inválido.';
+                  }
+                })
+              }
+            }
 
           $scope.alertaLocatarioSolidario = function(){
             if(angular.equals($scope.cadastro.pessoal.possuiRendaArcarLocacao, 'C')){
