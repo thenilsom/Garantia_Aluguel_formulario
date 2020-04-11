@@ -28,6 +28,10 @@ angular.module('app')
 		var agora = new Date();
 		return agora.getHours() + ':' + agora.getMinutes();
 	}
+	
+	service.isDataValida = function(data){
+		return data && !angular.equals(data, '0000-00-00');
+	}
 		
 	//cria uma data hora. os parametros deve ser no pardrão : '2019-09-20' '20:37:37'
 	service.criarDataHora = function(data, hora){

@@ -150,6 +150,18 @@
              
              return $scope.errors.length == 0;
         }
+        
+      //valida os dados da analise
+        var validarDadosAnalise = function(){
+        	 $scope.errors = [];
+             validador.validarCamposObrigatorios('formAnalise', $scope.errors);
+             
+        if(!$scope.primeiraOpSituacao.includes($scope.dadosAnalise.situacao)){
+        	$scope.dadosAnalise.dataAprovacao = null;
+        }
+             
+             return $scope.errors.length == 0;
+        }
 
 
        $scope.gravarRegistro = function(){
@@ -175,6 +187,25 @@
     			   service.alertar('Dados da apólice atualizado com sucesso!');
     			   $scope.registro.apolice = $scope.dadosAplice.numApolice;
     			   $scope.registro.seguradora = $scope.dadosAplice.codSeguradora;
+    		   }, function(erro){
+    			   service.alertarErro(erro.statusText);
+    		   });
+    	   }
+          }
+       
+     //grava os dados da analise
+       $scope.gravarDadosAnalise= function(){
+    	   if(validarDadosAnalise()){
+    		   $http.post(url + 'php/gravar.php/alterarDadosAnalise', $scope.dadosAnalise).then(function(data){
+    			   
+    			   $http.post(url + 'php/consulta.php/listar', {codigo: $scope.dadosAnalise.codigoCadastro}).then(function(data){
+    				   		$scope.detalhar(data.data[0]);
+    				   		$('#modalDadosAnalise').modal('hide');
+    		    			 service.alertar('Dados da análise atualizado com sucesso!');
+    		            }, function(erro){
+    		              service.alertarErro(erro.statusText);
+    		            });
+    			   
     		   }, function(erro){
     			   service.alertarErro(erro.statusText);
     		   });
@@ -252,6 +283,37 @@
     			   codigoCadastro : $scope.registro.codigo,
     			   numApolice : $scope.registro.apolice, 
     			   codSeguradora : $scope.registro.seguradora};
+       }
+       
+       /**
+        * Inicia os dados da analise
+        */
+       $scope.iniciarDadosAnalise = function(registro, tipo){
+    	   $scope.dadosAnalise = {codigoCadastro : registro.codigo, tipoSeg: tipo};
+    	   if(angular.equals(tipo, 'liberty')){
+    		   $scope.dadosAnalise = {analise: registro.processo_liberty, 
+    				   								situacao: registro.situacao_analise_liberty,
+    				   								dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_liberty) ? dataUtil.formatarData(registro.data_aprovacao_liberty) : dataUtil.getDataAtual()};
+    		   
+    		   $scope.listaOpAnalise = ['Análise cadastral aprovada', 'Em Análise Pela Companhia', 'Análise cadastral reprovada Pendente'];
+    		   
+    	   }else if(angular.equals(tipo, 'porto')){
+    		   $scope.dadosAnalise = {analise: registro.processo_porto, 
+													situacao: registro.situacao_analise_porto,
+													dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_porto) ? dataUtil.formatarData(registro.data_aprovacao_porto) : dataUtil.getDataAtual()};
+    		   
+    		   $scope.listaOpAnalise = ['Aprovado - Finalizado', 'Em analise - Em analise', 'Recusado pela Analise de Risco - Finalizado Pendente'];
+    		   
+    	   } else if(angular.equals(tipo, 'too')){
+    		   $scope.dadosAnalise = {analise: registro.processo_too, 
+													situacao: registro.situacao_analise_too,
+													dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_too) ? dataUtil.formatarData(registro.data_aprovacao_too) : dataUtil.getDataAtual()};
+    		   
+    		   $scope.listaOpAnalise = ['Aprovado - Finalizado', 'Em analise - Em analise', 'Recusado pela Analise de Risco - Finalizado Pendente'];
+    	   }
+    	   
+    	   $scope.primeiraOpSituacao = ['Análise cadastral aprovada', 'Aprovado - Finalizado'];
+    	      
        }
 
        //retorna o nome da seguradora pelo código

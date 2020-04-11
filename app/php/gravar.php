@@ -15,6 +15,7 @@ $app->get('/hello', function(){
 $app->post('/registrarAtendimento', 'registrarAtendimento');
 $app->post('/gravarRegInquilino', 'gravarRegInquilino');
 $app->post('/gravarDadosApolice', 'gravarDadosApolice');
+$app->post('/alterarDadosAnalise', 'alterarDadosAnalise');
 
 
 function registrarAtendimento($request, $response){
@@ -45,6 +46,39 @@ function gravarDadosApolice($request, $response){
 	$rows = array();
 
  	$sql = "UPDATE fianca set apolice = '$numApolice', seguradora = '$codSeguradora' WHERE codigo=$codigoCadastro";
+	
+	mysql_db_query("segurosja", $sql) or die (mysql_error());
+}
+
+function alterarDadosAnalise($request, $response){
+	$param = json_decode($request->getBody());
+	$tipo = trim(json_encode($param->tipoSeg, JSON_UNESCAPED_UNICODE), '"');
+	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
+	$processo = trim(json_encode($param->analise, JSON_UNESCAPED_UNICODE), '"');
+	$situacao = trim(json_encode($param->situacao, JSON_UNESCAPED_UNICODE), '"');
+	$dataAprovacao = trim(json_encode($param->dataAprovacao, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+ 	$sqlLiberty = "UPDATE fianca set processo_liberty = '$processo', situacao_analise_liberty = '$situacao', data_aprovacao_liberty = '$dataAprovacao'
+ 			WHERE codigo=$codigoCadastro";
+
+ 	$sqlPorto = "UPDATE fianca set processo_porto = '$processo', situacao_analise_porto = '$situacao', data_aprovacao_porto = '$dataAprovacao'
+ 			WHERE codigo=$codigoCadastro";
+
+ 	$sqlToo = "UPDATE fianca set processo_too = '$processo', situacao_analise_too = '$situacao', data_aprovacao_too = '$dataAprovacao'
+ 			WHERE codigo=$codigoCadastro";
+
+ 	if($tipo == "liberty"){
+ 		$sql = $sqlLiberty;
+ 	}else if($tipo == "porto"){
+ 		$sql = $sqlPorto;
+ 	}else if($tipo == "too"){
+ 		$sql = $sqlToo;
+ 	}
 	
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }

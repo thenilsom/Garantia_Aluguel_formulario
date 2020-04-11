@@ -20,7 +20,10 @@
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/liberty_icone.png" alt="Card image cap" style="height: 47px">
 		  <div class="card-body">
-		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_liberty}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_liberty}}</p>
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_liberty}} <br/> 
+		    <strong>Situação:</strong> {{registro.situacao_analise_liberty}}
+		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'liberty')"
+			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
 		  </div>
 		</div>
 		
@@ -28,7 +31,10 @@
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/porto_icone.png" alt="Card image cap" style="height: 47px">
 		  <div class="card-body">
-		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_porto}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_porto}}</p>
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_porto}} <br/> 
+		    <strong>Situação:</strong> {{registro.situacao_analise_porto}}
+		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'porto')"
+			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
 		  </div>
 		</div>
 		
@@ -36,7 +42,10 @@
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/too_icone.png" alt="Card image cap">
 		  <div class="card-body">
-		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_too}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_too}}</p>
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_too}} <br/> 
+		    <strong>Situação:</strong> {{registro.situacao_analise_too}}
+		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'too')"
+			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
 		  </div>
 		</div>
 	</div>
@@ -162,4 +171,7 @@
 	
 	<!-- Inclusão do modal dados apolice -->
      <div data-ng-include="'./src/view/lista/modalDadosApolice.html'"></div> 
+     
+     <!-- Inclusão do modal dados analise -->
+     <div data-ng-include="'./src/view/lista/modalDadosAnalise.html'"></div> 
 </div>

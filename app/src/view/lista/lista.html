@@ -22,6 +22,10 @@
   background-color: rgba(179, 179, 179, 0.87) !important;
 }
 
+.cor-titulo{
+	color: #005E9E
+}
+
 div {
   text-align: left;
 }
@@ -48,8 +52,20 @@ div {
 				<option value="" style="font-weight: bold;">TODAS</option>
 			</select>
 	</div>
-					
   </div>
+  
+   <div class="row">
+   <div class="col-md-1"></div>
+   
+   <div class="col-sm-3">
+          <div class="input-group">
+              <span class="input-group-addon"> <span
+                class="glyphicon glyphicon-search"></span>
+              </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
+                placeholder="Digite a Pesquisa" data-ng-model="q.inquilino">
+              </div>
+          </div>
+   </div>
 
   <hr/>
 
@@ -60,24 +76,48 @@ div {
   <table class="table table-striped">
     <thead>
       <tr>
-        <th class="col-sm-1">CÓDIGO</th>
-        <th class="col-sm-2">CLIENTE</th>
-        <th class="col-sm-1">CPF/CNPJ</th>
-        <th class="col-sm-1">IMOBILIÁRIA</th>
-        <th class="col-sm-1">USUÁRIO</th>
-        <th class="col-sm-1">ATENDENTE</th>
-        <th class="col-sm-1">DATA</th>
-        <th class="col-sm-1">HORA</th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'codigo'; sortOrder = !sortOrder">CÓDIGO
+        	<span ng-show="sortBy == 'codigo' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          	<span ng-show="sortBy == 'codigo' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th class="col-sm-2 cor-titulo th-sort-link" ng-click="sortBy = 'inquilino'; sortOrder = !sortOrder">CLIENTE
+        	<span ng-show="sortBy == 'inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          	<span ng-show="sortBy == 'inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'CPF_inquilino'; sortOrder = !sortOrder">CPF/CNPJ
+        	<span ng-show="sortBy == 'CPF_inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          	<span ng-show="sortBy == 'CPF_inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'fantasia'; sortOrder = !sortOrder">IMOBILIÁRIA
+        	<span ng-show="sortBy == 'fantasia' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          	<span ng-show="sortBy == 'fantasia' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'solicitante'; sortOrder = !sortOrder">USUÁRIO
+        	<span ng-show="sortBy == 'solicitante' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          	<span ng-show="sortBy == 'solicitante' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'usuario_atendente'; sortOrder = !sortOrder">ATENDENTE
+        	<span ng-show="sortBy == 'usuario_atendente' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
+          	<span ng-show="sortBy == 'usuario_atendente' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        </th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'data_transm'; sortOrder = !sortOrder">DATA
+        	<span ng-show="sortBy == 'data_transm' && !sortOrder" class="fa fa-sort-numeric-asc"></span>
+          	<span ng-show="sortBy == 'data_transm' && sortOrder" class="fa fa-sort-numeric-desc"></span>
+        </th>
+        <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'hora_transm'; sortOrder = !sortOrder">HORA
+        	<span ng-show="sortBy == 'hora_transm' && !sortOrder" class="fa fa-sort-numeric-asc"></span>
+          	<span ng-show="sortBy == 'hora_transm' && sortOrder" class="fa fa-sort-numeric-desc"></span>
+        </th>
 
         <th class="col-sm-1"><img src="./assets/img/liberty_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
         <th class="col-sm-1"><img src="./assets/img/porto_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
         <th class="col-sm-1"><img src="./assets/img/too_icone.png" class="icon-seguradora"></div></th>
 
-        <th class="col-sm-1">#</th>
+        <th class="col-sm-1"></th>
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | itemsPerPage: 20" data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00' }">
+      <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | orderBy: sortBy:sortOrder | itemsPerPage: 20" data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00' }">
         <td class="col-sm-1">{{reg.codigo}}</td>
         <td class="col-sm-2">{{reg.inquilino}}</td>
         <td class="col-sm-1">{{reg.CPF_inquilino | cpfcnpj}}</td>
@@ -119,20 +159,6 @@ div {
         
     </tbody>
   </table>
-
-  <div class="panel-footer">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="input-group">
-              <span class="input-group-addon"> <span
-                class="glyphicon glyphicon-search"></span>
-              </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
-                placeholder="Digite a Pesquisa" data-ng-model="q.inquilino">
-              </div>
-          </div>
-                            
-      </div>
-    </div>
 
     <dir-pagination-controls max-size="20"></dir-pagination-controls>
     <!--Link da documentação da paginação = https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
