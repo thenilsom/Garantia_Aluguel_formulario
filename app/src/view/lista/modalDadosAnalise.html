@@ -1,0 +1,64 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="modalDadosAnalise" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Alteração Dados de Análise</h4>
+        </div>
+        <div class="modal-body">
+        
+       <form name="formAnalise" class="form form-horizontal" role="form" autocomplete="off">
+       
+        <!-- Array erros de validação -->
+		    <div class="alert alert-warning" role="alert" data-ng-if="errors.length > 0">
+		      <div data-ng-repeat="erro in errors">
+		        <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
+		      </div>
+		  </div>
+		  
+         <div class="form-group">
+			<label for="txtAnalise" class="col-md-2 control-label label-thin">Análise:</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control form-control-small" id="txtAnalise"
+                                 data-focus maxlength="25" requerido data-ng-tabindex='1'
+                                 name="dadosAnalise.analise" data-ng-model="dadosAnalise.analise">
+			</div>
+			</div>
+			
+			<div class="form-group">
+						<label for="txtSituacao" class="col-md-2 control-label label-thin">Situação:</label>
+                        <div class="col-md-10">
+							<select id="txtSituacao" name="dadosAnalise.situacao"
+									data-ng-options="analise for analise in listaOpAnalise"
+                                    data-ng-model="dadosAnalise.situacao" requerido
+                                    class="form-control form-control-small"
+                                    data-ng-tabindex='2'>
+							</select>
+						</div>
+					</div>
+			
+			<div class="form-group" data-ng-if="primeiraOpSituacao.includes(dadosAnalise.situacao)">		
+			<label for="data" class="col-md-2">Data Aprovação</label>
+				<div class="col-md-3">
+	   				<input id="data" name="dadosAnalise.dataAprovacao" 
+	   				class="form-control" datepicker mascara="99/99/9999" requerido
+	   				ng-model="dadosAnalise.dataAprovacao" ng-tabindex="3">
+	   			</div>
+	   		</div>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+        	<div class="form-group last">
+				<div class="col-md-12 text-center margem-btn-form">
+					<button type="button" class="btn btn-success" data-ng-click="gravarDadosAnalise()">Gravar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
