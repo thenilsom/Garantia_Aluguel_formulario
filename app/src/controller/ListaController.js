@@ -289,7 +289,6 @@
         * Inicia os dados da analise
         */
        $scope.iniciarDadosAnalise = function(registro, tipo){
-    	   $scope.dadosAnalise = {codigoCadastro : registro.codigo, tipoSeg: tipo};
     	   if(angular.equals(tipo, 'liberty')){
     		   $scope.dadosAnalise = {analise: registro.processo_liberty, 
     				   								situacao: registro.situacao_analise_liberty,
@@ -311,6 +310,9 @@
     		   
     		   $scope.listaOpAnalise = ['Aprovado - Finalizado', 'Em analise - Em analise', 'Recusado pela Analise de Risco - Finalizado Pendente'];
     	   }
+    	   
+    	   $scope.dadosAnalise.codigoCadastro = registro.codigo;
+    	   $scope.dadosAnalise.tipoSeg = tipo;
     	   
     	   $scope.primeiraOpSituacao = ['Análise cadastral aprovada', 'Aprovado - Finalizado'];
     	      
