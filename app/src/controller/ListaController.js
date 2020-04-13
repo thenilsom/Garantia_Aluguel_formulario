@@ -198,7 +198,7 @@
     	   if(validarDadosAnalise()){
     		   $http.post(url + 'php/gravar.php/alterarDadosAnalise', $scope.dadosAnalise).then(function(data){
     			   
-    			   $http.post(url + 'php/consulta.php/listar', {codigo: $scope.dadosAnalise.codigoCadastro}).then(function(data){
+    			   $http.post(url + 'php/consulta.php/consultarPorCodigoRegistro', {codigo: $scope.dadosAnalise.codigoCadastro}).then(function(data){
     				   		$scope.detalhar(data.data[0]);
     				   		$('#modalDadosAnalise').modal('hide');
     		    			 service.alertar('Dados da análise atualizado com sucesso!');

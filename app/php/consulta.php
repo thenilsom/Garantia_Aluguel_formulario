@@ -23,6 +23,7 @@ $app->post('/consultarPorCpfInquilino', 'consultarPorCpfInquilino');
 $app->post('/listarCGC_Imob', 'listarCGC_Imob');
 $app->post('/fezUploadArquivos', 'fezUploadArquivos');
 $app->post('/consultarFaixaCep', 'consultarFaixaCep');
+$app->post('/consultarPorCodigoRegistro', 'consultarPorCodigoRegistro');
 
 
 function fezUploadArquivos($request, $response){
@@ -86,6 +87,30 @@ function listar($request, $response){
 			from fianca where corretor='$codigo' order by data_transm desc, hora_transm desc";
 	
 	$consulta = mysql_db_query("segurosja", $codigo != "null" ? $sqlPorCodigo : $sqlTodos) or die (mysql_error());
+
+	while($campo = mysql_fetch_assoc($consulta)){
+      $rows[] = $campo;
+    }
+
+	echo json_encode($rows);
+}
+
+function consultarPorCodigoRegistro($request, $response){
+	$param = json_decode($request->getBody());
+	$codigo = trim(json_encode($param->codigo, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+	$sql = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
+			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
+			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
+			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
+			from fianca where codigo='$codigo' order by data_transm desc, hora_transm desc";
+	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){
       $rows[] = $campo;
