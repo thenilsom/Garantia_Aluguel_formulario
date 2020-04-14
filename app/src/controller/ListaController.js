@@ -39,10 +39,10 @@
         $http.post(url + 'php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
              $scope.registro = angular.copy(registro);
          
-            for (var key in $scope.registro) {
-              if(!$scope.registro[key])
-                $scope.registro[key] = '--';
-            }
+//            for (var key in $scope.registro) {
+//              if(!$scope.registro[key])
+//                $scope.registro[key] = '--';
+//            }
 
             $scope.registro.fezUpload = data.data.qtd > 0;
 
