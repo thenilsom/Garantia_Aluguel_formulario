@@ -33,38 +33,41 @@ div {
 </style>
 
   <div class="row">
-      <div class="col-md-10">
-        <h2>Cadastros de Fiança Locatícia</h2>
+      <div class="col-md-12 text-right">
+        <h2><label style="color: #FF6C00">Gerenciador de Seguro Fiança</label></h2>
       </div>  
       
-       <div class="col-md-3">
+       <div class="col-md-12 text-right">
        <md-button class="md-raised md-primary" ng-click="incluirRegistro()" style="margin-top: 20px;">Incluir 
         <span aria-hidden="true"></span>
       </md-button>
       </div>      
       
-      <div class="col-md-5"></div>
-      
-      <div class="col-md-4">
+  </div>
+  
+   <div class="row">
+   <div class="col-md-4">
+     <div class="form-group">
 	      <label>Imobiliária</label>
 	      <select  data-ng-model="q.fantasia" class="form-control form-control-small"
 				data-ng-options = "imob for imob in listaImobiliarias">
 				<option value="" style="font-weight: bold;">TODAS</option>
 			</select>
+	 </div>
 	</div>
-  </div>
-  
-   <div class="row">
-   <div class="col-md-1"></div>
+ </div>  
    
-   <div class="col-sm-3">
+  <div class="row">
+   <div class="col-md-4">
+   	<div class="form-group">
           <div class="input-group">
               <span class="input-group-addon"> <span
                 class="glyphicon glyphicon-search"></span>
               </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
                 placeholder="Digite a Pesquisa" data-ng-model="q.inquilino">
               </div>
-          </div>
+         </div>     
+     </div>
    </div>
 
   <hr/>
@@ -77,16 +80,16 @@ div {
     <thead>
       <tr>
         <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'codigo'; sortOrder = !sortOrder">CÓDIGO
-        	<span ng-show="sortBy == 'codigo' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
-          	<span ng-show="sortBy == 'codigo' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        	<span ng-show="sortBy == 'codigo' && !sortOrder" class="fa fa-sort-numeric-asc"></span>
+          	<span ng-show="sortBy == 'codigo' && sortOrder" class="fa fa-sort-numeric-desc"></span>
         </th>
         <th class="col-sm-2 cor-titulo th-sort-link" ng-click="sortBy = 'inquilino'; sortOrder = !sortOrder">CLIENTE
         	<span ng-show="sortBy == 'inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           	<span ng-show="sortBy == 'inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
         <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'CPF_inquilino'; sortOrder = !sortOrder">CPF/CNPJ
-        	<span ng-show="sortBy == 'CPF_inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
-          	<span ng-show="sortBy == 'CPF_inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
+        	<span ng-show="sortBy == 'CPF_inquilino' && !sortOrder" class="fa fa-sort-numeric-asc"></span>
+          	<span ng-show="sortBy == 'CPF_inquilino' && sortOrder" class="fa fa-sort-numeric-desc"></span>
         </th>
         <th class="col-sm-1 cor-titulo th-sort-link" ng-click="sortBy = 'fantasia'; sortOrder = !sortOrder">IMOBILIÁRIA
         	<span ng-show="sortBy == 'fantasia' && !sortOrder" class="fa fa-sort-alpha-asc"></span>

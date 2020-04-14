@@ -294,21 +294,21 @@
     				   								situacao: registro.situacao_analise_liberty,
     				   								dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_liberty) ? dataUtil.formatarData(registro.data_aprovacao_liberty) : dataUtil.getDataAtual()};
     		   
-    		   $scope.listaOpAnalise = ['Análise cadastral aprovada', 'Em Análise Pela Companhia', 'Análise cadastral reprovada Pendente'];
+    		   $scope.listaOpAnalise = ['Análise cadastral aprovada', 'Em Análise Pela Companhia', 'Análise cadastral reprovada', 'Pendente'];
     		   
     	   }else if(angular.equals(tipo, 'porto')){
     		   $scope.dadosAnalise = {analise: registro.processo_porto, 
 													situacao: registro.situacao_analise_porto,
 													dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_porto) ? dataUtil.formatarData(registro.data_aprovacao_porto) : dataUtil.getDataAtual()};
     		   
-    		   $scope.listaOpAnalise = ['Aprovado - Finalizado', 'Em analise - Em analise', 'Recusado pela Analise de Risco - Finalizado Pendente'];
+    		   $scope.listaOpAnalise = ['Aprovado - Finalizado', 'Em analise - Em analise', 'Recusado pela Analise de Risco - Finalizado', 'Pendente'];
     		   
     	   } else if(angular.equals(tipo, 'too')){
     		   $scope.dadosAnalise = {analise: registro.processo_too, 
 													situacao: registro.situacao_analise_too,
 													dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_too) ? dataUtil.formatarData(registro.data_aprovacao_too) : dataUtil.getDataAtual()};
     		   
-    		   $scope.listaOpAnalise = ['Aprovado - Finalizado', 'Em analise - Em analise', 'Recusado pela Analise de Risco - Finalizado Pendente'];
+    		   $scope.listaOpAnalise = ['Análise cadastral aprovada', 'Em Análise Pela Companhia', 'Análise cadastral reprovada', 'Pendente'];
     	   }
     	   
     	   $scope.dadosAnalise.codigoCadastro = registro.codigo;
