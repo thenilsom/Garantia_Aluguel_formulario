@@ -79,9 +79,27 @@
 			 $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
 			 $scope.cadastro.pretendente.tipoInquilino = $scope.paramUrl.var11 ? $scope.paramUrl.var11 : 'F';
 			 
+			 //se existir codigo do solicitante obtem o usuario solicitante
+			 if($scope.cadastro.imovel.solicitante){
+				 obterUsuarioSolicitante($scope.cadastro.imovel.solicitante);
+			 }
+			 
             }, function(erro){
               service.alertarErro(erro.statusText);
             });
+          }
+          
+          /**
+           * Obtem o Usuario solicitante
+           */
+          var obterUsuarioSolicitante = function(codigo){
+        	  $http.post(_url + 'php/consulta.php/consultarPorCodigoUsuario', {codigoUser: codigo}).then(function(data){
+        		  if(data.data && data.data.length > 0){
+        			  $scope.usuarioSolicitante = ' - Usuário ' + data.data[0].nome;
+        		  }
+             }, function(erro){
+               service.alertarErro(erro.statusText);
+             });
           }
           
           /*gera o link para a pasta upload*/

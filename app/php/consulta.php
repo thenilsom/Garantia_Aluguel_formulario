@@ -24,6 +24,7 @@ $app->post('/listarCGC_Imob', 'listarCGC_Imob');
 $app->post('/fezUploadArquivos', 'fezUploadArquivos');
 $app->post('/consultarFaixaCep', 'consultarFaixaCep');
 $app->post('/consultarPorCodigoRegistro', 'consultarPorCodigoRegistro');
+$app->post('/consultarPorCodigoUsuario', 'consultarPorCodigoUsuario');
 
 
 function fezUploadArquivos($request, $response){
@@ -179,6 +180,24 @@ function consultarFaixaCep($request, $response){
     }
 
     $result = array('localidade' => $cidade, 'uf' => $estado); 
+    echo json_encode($result);
+}
+
+function consultarPorCodigoUsuario($request, $response){
+	$param = json_decode($request->getBody());
+	$codigo = trim(json_encode($param->codigoUser, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$sql = "SELECT usuario from usuarios_imobs where codigo='$codigo'";
+	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+	while($campo = mysql_fetch_assoc($consulta)){
+        $nome=$campo['usuario'];
+    }
+
+    $result = array('nome' => $nome); 
     echo json_encode($result);
 }
 
