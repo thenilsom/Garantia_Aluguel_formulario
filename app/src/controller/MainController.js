@@ -94,8 +94,8 @@
            */
           var obterUsuarioSolicitante = function(codigo){
         	  $http.post(_url + 'php/consulta.php/consultarPorCodigoUsuario', {codigoUser: codigo}).then(function(data){
-        		  if(data.data && data.data.length > 0){
-        			  $scope.usuarioSolicitante = ' - Usuário ' + data.data[0].nome;
+        		  if(data.data && data.data.nome){
+        			  $scope.usuarioSolicitante = ' - Usuário ' + data.data.nome;
         		  }
              }, function(erro){
                service.alertarErro(erro.statusText);
