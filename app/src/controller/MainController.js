@@ -78,10 +78,11 @@
 			 $scope.cadastro.pretendente.nome = $scope.paramUrl.var9 ? $scope.paramUrl.var9.replace(/%20/g, ' ') : ''; //%20 são os espaços
 			 $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
 			 $scope.cadastro.pretendente.tipoInquilino = $scope.paramUrl.var11 ? $scope.paramUrl.var11 : 'F';
+			 $scope.cadastro.imovel.nivelAcesso = $scope.paramUrl.var12 ? $scope.paramUrl.var12 : '';
 			 
 			 //se existir codigo do solicitante obtem o usuario solicitante
-			 if($scope.cadastro.imovel.solicitante){
-				 obterUsuarioSolicitante($scope.cadastro.imovel.solicitante);
+			 if($scope.cadastro.imovel.solicitante && $scope.cadastro.imovel.nivelAcesso){
+				 obterUsuarioSolicitante($scope.cadastro.imovel.solicitante, $scope.cadastro.imovel.nivelAcesso);
 			 }
 			 
             }, function(erro){
@@ -92,8 +93,8 @@
           /**
            * Obtem o Usuario solicitante
            */
-          var obterUsuarioSolicitante = function(codigo){
-        	  $http.post(_url + 'php/consulta.php/consultarPorCodigoUsuario', {codigoUser: codigo}).then(function(data){
+          var obterUsuarioSolicitante = function(codigo, nivelAcesso){
+        	  $http.post(_url + 'php/consulta.php/consultarPorCodigoUsuario', {codigoUser: codigo, nivel : nivelAcesso}).then(function(data){
         		  if(data.data && data.data.nome){
         			  $scope.usuarioSolicitante = ' - Usuário ' + data.data.nome;
         		  }

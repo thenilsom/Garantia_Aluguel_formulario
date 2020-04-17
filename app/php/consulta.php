@@ -186,15 +186,28 @@ function consultarFaixaCep($request, $response){
 function consultarPorCodigoUsuario($request, $response){
 	$param = json_decode($request->getBody());
 	$codigo = trim(json_encode($param->codigoUser, JSON_UNESCAPED_UNICODE), '"');
-	
+	$nivel = trim(json_encode($param->nivel, JSON_UNESCAPED_UNICODE), '"');
+
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
-	$sql = "SELECT usuario from usuarios_imobs where codigo='$codigo'";
+	if($nivel == '1'){
+		$sql = "SELECT nome from usuarios where codigo='$codigo'";
+	}else if($nivel == '2'){
+		$sql = "SELECT usuario from imobs where codigo='$codigo'";
+	}else if($nivel == '3'){
+		$sql = "SELECT usuario from usuarios_imobs where codigo='$codigo'";
+	}
+	
 	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 	while($campo = mysql_fetch_assoc($consulta)){
-        $nome=$campo['usuario'];
+		if($nivel == '1'){
+			$nome=$campo['nome'];
+		}else{
+			$nome=$campo['usuario'];
+		}
+        
     }
 
     $result = array('nome' => $nome); 
