@@ -1,6 +1,6 @@
-<form name="formDadosProfissionais" class="fundo-formulario">
+<form name="formDadosProfissionais" class="fundo-formulario" ng-init="select2Load()">
 
-<div layout="column" layout-padding layout-gt-sm="row">
+<div layout="column" layout-padding layout-gt-sm="row" ng-init="select2EditaCombo()">
     <div class="md-block" flex-gt-sm="40">
       <label for="naturezaRenda">Natureza da renda / Vínculo empregatício</label>
       <select class="form-control" id="naturezaRenda" requerido focus
@@ -16,12 +16,20 @@
         </select>
     </div>
 
+<!--
     <div class="md-block" flex-gt-sm="40">
       <label for="profissao">Profissão</label>
       <input type="text" id="profissao" name="profissional" ng-tabindex="2" upper
       class="form-control" ng-model="cadastro.profissional.profissao">
+    </div>  -->
+	
+	<div class="md-block" flex-gt-sm="30" >
+        <label for="profissao">Profissão</label>
+		<select class="form-control" id="profissao" ng-model="cadastro.profissional.profissao" ng-tabindex="1" style = "width:350px;">  
+			<option ng-if="cadastro.profissional.profissao != '' || cadastro.profissional.profissao != undefined">{{select2EditaCombo()}}</option>
+		</select>								        
     </div>
-
+	 
     <div class="md-block" flex-gt-sm="20" 
     ng-if="cadastro.profissional.naturezaRenda == 'FUNCIONARIO PÚBLICO' || 
     cadastro.profissional.naturezaRenda == 'FUNCIONÁRIO COM REGISTRO CLT'">
@@ -45,7 +53,7 @@
     </div>
 
     <div class="md-block" flex-gt-sm="55">
-      <label for="outrosRendimentos">Informar todos os outros rendimentos se houver</label>
+      <label for="outrosRendimentos">Descrever todos os outros rendimentos se houver</label>
       <input type="text" id="outrosRendimentos" ng-tabindex="5"
       name="outrosRendimentos" upper maxlength="20" 
       class="form-control" ng-model="cadastro.profissional.outrosRendimentos">
@@ -68,13 +76,13 @@
   <div class="md-block" flex-gt-sm="60">
         <label for="empresa">Nome da Empresa/Instituição/Órgão em que trabalha</label>
         <input type="text" id="empresa" upper name="empresa" 
-        class="form-control" ng-model="cadastro.profissional.empresa" ng-tabindex="7">
-      </div>
+        class="form-control" ng-model="cadastro.profissional.empresa" ng-tabindex="7" requerido>
+    </div>
 
     <div class="md-block" flex-gt-sm="20">
         <label for="telefone">Telefone</label>
         <input mobile="tel" mascara-telefone id="telefone" ng-tabindex="8"
-        name="telefone" class="form-control" ng-model="cadastro.profissional.telefone">
+        name="telefone" class="form-control" ng-model="cadastro.profissional.telefone" requerido>
       </div>
 
       <div class="md-block" flex-gt-sm="20">
