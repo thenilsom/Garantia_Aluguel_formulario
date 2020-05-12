@@ -322,7 +322,7 @@
        $scope.getNomeSeguradora = function(registro){
         switch(registro.seguradora){
           case 'BKY': return 'Berkley';
-          case 'BRA': return 'Bradesco';
+          case 'BRD': return 'Bradesco';
           case 'CDF': return 'Cardif';
           case 'FFX': return 'Fairfax';
           case 'LIB': return 'Liberty';
