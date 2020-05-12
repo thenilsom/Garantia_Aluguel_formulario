@@ -86,6 +86,18 @@
        }
        
        /**
+        * Lista as Seguradoras
+        */
+       var listarSeguradoras = function(callback){
+           $http.get(url + 'php/consulta.php/listarSeguradoras').then(function(data){
+              $scope.listaSeguradoras = data.data;
+              callback(data);
+              }, function(erro){
+               service.alertarErro(erro.statusText);
+              });
+         }
+       
+       /**
         * Monta o array de lista das imobiliárias
         */
        var montarArrayImobiliarias = function(lista){
@@ -182,6 +194,8 @@
        //grava os dados da apolice
        $scope.gravarDadosApolice = function(){
     	   if(validarDadosApolice()){
+    		   $scope.dadosAplice.codSeguradora = $scope.dadosAplice.objSeguradora.sigla;
+    		   $scope.dadosAplice.objSeguradora = null;
     		   $http.post(url + 'php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
     			   $('#modalDadosApolice').modal('hide');
     			   service.alertar('Dados da apólice atualizado com sucesso!');
@@ -279,10 +293,13 @@
         * Inicia os dados da aplice
         */
        $scope.iniciarDadosAplice = function(){
-    	   $scope.dadosAplice = {
-    			   codigoCadastro : $scope.registro.codigo,
-    			   numApolice : $scope.registro.apolice, 
-    			   codSeguradora : $scope.registro.seguradora};
+    	   listarSeguradoras(function(lista){
+    		   $scope.dadosAplice = {
+    				   objSeguradora : lista.data.filter(i=> i.sigla == $scope.registro.seguradora)[0],
+    				   codigoCadastro : $scope.registro.codigo,
+    				   numApolice : $scope.registro.apolice, 
+    				   codSeguradora : $scope.registro.seguradora};
+    	   });
        }
        
        /**

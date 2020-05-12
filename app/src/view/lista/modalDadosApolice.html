@@ -30,9 +30,10 @@
 			<div class="form-group">
 						<label for="txtSeguradora" class="col-xs-2 control-label label-thin">Seguradora:</label>
                         <div class="col-xs-4">
-							<select id="txtSeguradora" name="dadosAplice.codSeguradora"
-                                    data-ng-model="dadosAplice.codSeguradora" requerido
+							<select id="txtSeguradora" name="dadosAplice.objSeguradora"
+                                    data-ng-model="dadosAplice.objSeguradora" requerido
                                     class="form-control form-control-small"
+                                    ng-options="seg as seg.nome_abrev for seg in listaSeguradoras"
                                     data-ng-tabindex='3'>
                                 <option  value="BKY">Berkley</option>
                                 <option  value="BRD">Bradesco</option>
