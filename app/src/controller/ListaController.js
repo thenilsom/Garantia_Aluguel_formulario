@@ -38,7 +38,7 @@
        $scope.detalhar = function(registro){
         $http.post(url + 'php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
              $scope.registro = angular.copy(registro);
-         
+             listarSeguradoras();
 //            for (var key in $scope.registro) {
 //              if(!$scope.registro[key])
 //                $scope.registro[key] = '--';
@@ -88,10 +88,9 @@
        /**
         * Lista as Seguradoras
         */
-       var listarSeguradoras = function(callback){
+       var listarSeguradoras = function(){
            $http.get(url + 'php/consulta.php/listarSeguradoras').then(function(data){
               $scope.listaSeguradoras = data.data;
-              callback(data);
               }, function(erro){
                service.alertarErro(erro.statusText);
               });
@@ -293,13 +292,11 @@
         * Inicia os dados da aplice
         */
        $scope.iniciarDadosAplice = function(){
-    	   listarSeguradoras(function(lista){
     		   $scope.dadosAplice = {
-    				   objSeguradora : lista.data.filter(i=> i.sigla == $scope.registro.seguradora)[0],
+    				   objSeguradora : $scope.listaSeguradoras.filter(i=> i.sigla == $scope.registro.seguradora)[0],
     				   codigoCadastro : $scope.registro.codigo,
     				   numApolice : $scope.registro.apolice, 
     				   codSeguradora : $scope.registro.seguradora};
-    	   });
        }
        
        /**
@@ -337,18 +334,11 @@
 
        //retorna o nome da seguradora pelo código
        $scope.getNomeSeguradora = function(registro){
-        switch(registro.seguradora){
-          case 'BKY': return 'Berkley';
-          case 'BRD': return 'Bradesco';
-          case 'CDF': return 'Cardif';
-          case 'FFX': return 'Fairfax';
-          case 'LIB': return 'Liberty';
-          case 'POR': return 'Porto Seguro';
-          case 'PTC': return 'Pottencial';
-          case 'TOK': return 'Tokio Marine';
-          case 'TOO': return 'Too';
-          default: return registro.seguradora;
-        }
+    	var seguradora = $scope.listaSeguradoras.filter(i=> i.sigla == registro.seguradora)[0];
+    	if(seguradora){
+    		return seguradora.nome_abrev;
+    	}
+    		return '';
        }
        
 
