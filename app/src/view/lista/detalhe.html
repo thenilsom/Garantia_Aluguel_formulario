@@ -16,6 +16,10 @@
 			</div>
 
 	<div class="row" style="padding: 10px;">
+	<form method="POST" action="http://www.segurosja.com.br/gerenciador/fianca/app/index.php">
+   		<input type="hidden" name="codigo" ng-value="registro.codigo">
+   		<input type="hidden" name="codigo_seguradora" value="lib">
+
 		<!-- Card Liberty -->
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/liberty_icone.png" alt="Card image cap" style="height: 47px">
@@ -24,9 +28,15 @@
 		    <strong>Situação:</strong> {{registro.situacao_analise_liberty}}
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'liberty')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
+			
+			<button type="submit" class="btn btn-primary" formtarget="_blank"><span class="glyphicon glyphicon-repeat"></span>Reanalisar</button>
 		  </div>
 		</div>
-		
+	</form>
+	
+	<form method="POST" action="http://www.segurosja.com.br/gerenciador/fianca/app/index.php">
+   		<input type="hidden" name="codigo" ng-value="registro.codigo">
+   		<input type="hidden" name="codigo_seguradora" value="por">	
 		<!-- Card Porto -->
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/porto_icone.png" alt="Card image cap" style="height: 47px">
@@ -35,9 +45,15 @@
 		    <strong>Situação:</strong> {{registro.situacao_analise_porto}}
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'porto')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
+			
+		  <button type="submit" class="btn btn-primary" formtarget="_blank"><span class="glyphicon glyphicon-repeat"></span>Reanalisar</button>
 		  </div>
 		</div>
-		
+	</form>
+
+	<form method="POST" action="http://www.segurosja.com.br/gerenciador/fianca/app/index.php">
+   		<input type="hidden" name="codigo" ng-value="registro.codigo">
+   		<input type="hidden" name="codigo_seguradora" value="too">		
 		<!-- Card Too -->
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/too_icone.png" alt="Card image cap">
@@ -46,8 +62,12 @@
 		    <strong>Situação:</strong> {{registro.situacao_analise_too}}
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'too')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
+			
+			<button type="submit" class="btn btn-primary" formtarget="_blank"><span class="glyphicon glyphicon-repeat"></span>Reanalisar</button>
 		  </div>
 		</div>
+	</form>
+		
 	</div>
 
 			<div class="panel-body fixed-panel">

@@ -8,6 +8,12 @@
         //obtem os parametros na url se existir
         $scope.paramUrl = service.extraiParamUrl(location.search.slice(1));
         
+        var codRegistro = $("input[name='codigo']").val();
+        var codSeguradora = $("input[name='codigo_seguradora']").val();
+        console.log(codRegistro);
+        console.log(codSeguradora);
+        
+        
         if(!$scope.paramUrl || !$scope.paramUrl.var1){
         	service.alertarErro('Favor entrar em contato com a Imobiliária ou a corretora de seguros para liberação do formulário de análise.');
         	

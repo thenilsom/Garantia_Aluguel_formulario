@@ -4,8 +4,8 @@
     <!--<base href="/app/">-->
     <title>Seguros Já! - Fiança Locatícia</title>
 
-	<?php
-      	ini_set('default_charset','UTF-8');
+  <?php
+        ini_set('default_charset','UTF-8');
     ?>
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="assets/app.css"/>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
+  
+    <!--SELECT 2-->
+  <link rel="stylesheet" href="../node_modules/select2/dist/css/select2.min.css"/>
 
     <style type="text/css">
         /**
@@ -35,7 +38,13 @@
 
 <body ng-app="app" ng-cloak>
 
-  <div class="container">
+  <!-- Captura o codigo do registro -->
+  <input name="codigo_registro" type="hidden" value="<?echo $_POST['codigo'];?>" />
+
+  <!-- Captura o codigo da seguradora -->
+  <input name="codigo_seguradora" type="hidden" value="<?echo $_POST['codigo_seguradora'];?>" />
+
+  <div class="container" style = "width:86%;">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/formulario/principal.html'" ng-controller="MainController"></div> 
   </div>
@@ -57,6 +66,7 @@
     <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="../node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+  <script type="text/javascript" src="../node_modules/select2/dist/js/select2.min.js"></script>
 
     <script src="./src/app.js"></script>
     <script src="./src/diretiva/diretiva.js"></script>
