@@ -39,7 +39,7 @@
 <body ng-app="app" ng-cloak>
 
   <!-- Captura o codigo do registro -->
-  <input name="codigo_registro" type="hidden" value="<?echo $_POST['codigo'];?>" />
+  <input name="codigo" type="hidden" value="<?echo $_POST['codigo'];?>" />
 
   <!-- Captura o codigo da seguradora -->
   <input name="codigo_seguradora" type="hidden" value="<?echo $_POST['codigo_seguradora'];?>" />

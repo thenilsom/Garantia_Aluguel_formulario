@@ -10,11 +10,9 @@
         
         var codRegistro = $("input[name='codigo']").val();
         var codSeguradora = $("input[name='codigo_seguradora']").val();
-        console.log(codRegistro);
-        console.log(codSeguradora);
         
         
-        if(!$scope.paramUrl || !$scope.paramUrl.var1){
+        if(!$scope.paramUrl || !$scope.paramUrl.var1 || !codRegistro){
         	service.alertarErro('Favor entrar em contato com a Imobiliária ou a corretora de seguros para liberação do formulário de análise.');
         	
         }else{
@@ -179,6 +177,24 @@
               service.alertarErro(erro.statusText);
             });
         }
+        
+        var pesquisarPorCodigoRegistro = function(codigoReg){
+            $http.post(_url + 'php/consulta.php/consultarPorCodigoRegistro', {codigo: codigoReg}).then(function(data){
+          	 if(data.data.length == 0){
+          		 service.alertar('Não foi possivel carreger o registro pelo código');
+          		 
+          	 }else{
+          		 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
+          		 $scope.isAlteracao = true;
+          		 iniciarUpload($scope.cadastro.codigo);
+                 verificarSeFezUploadArquivos();
+                 $scope.passo = '1';
+          	 }
+          	 
+              }, function(erro){
+                service.alertarErro(erro.statusText);
+              });
+          }
 
         //verifica se fez Upload de arquivos
         var verificarSeFezUploadArquivos = function(){
@@ -732,7 +748,11 @@
 					cache: true
 				} 
 				
-			}); 
+			});
+		    
+		    if(codRegistro){//se foi passado codigo carrega o registro pelo codigo
+		    	pesquisarPorCodigoRegistro(codRegistro);
+		    }
 			
 		}
        }//fim do else de vericação do param1

@@ -215,6 +215,7 @@
     				   		$scope.detalhar(data.data[0]);
     				   		$('#modalDadosAnalise').modal('hide');
     		    			 service.alertar('Dados da análise atualizado com sucesso!');
+    		    			 enviaEmails($scope.dadosAnalise.codigoCadastro);//envia email
     		            }, function(erro){
     		              service.alertarErro(erro.statusText);
     		            });
@@ -331,6 +332,20 @@
     	   $scope.primeiraOpSituacao = ['Análise cadastral aprovada', 'Aprovado - Finalizado'];
     	      
        }
+       
+      var enviaEmails = function(codigo = '') {
+           	$.ajax({
+					type: "POST", 
+					url: "https://www.segurosja.com.br/gerenciador/fianca/app/php/email_status_propostas.php",
+					dataType: "json",           
+                  data:{
+                      codigo:codigo 
+                  },
+					success: function(response) {
+                         console.log('sucess: '+response);        
+					}
+				}); 
+		};
 
        //retorna o nome da seguradora pelo código
        $scope.getNomeSeguradora = function(registro){
