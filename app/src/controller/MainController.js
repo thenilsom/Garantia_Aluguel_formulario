@@ -12,7 +12,7 @@
         var codSeguradora = $("input[name='codigo_seguradora']").val();
         
         
-        if(!$scope.paramUrl || (!$scope.paramUrl.var1 && !codRegistro)){
+        if(codSeguradora && (!$scope.paramUrl || !$scope.paramUrl.var1)){
         	service.alertarErro('Favor entrar em contato com a Imobiliária ou a corretora de seguros para liberação do formulário de análise.');
         	
         }else{
