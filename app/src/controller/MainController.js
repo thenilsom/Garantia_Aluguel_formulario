@@ -749,11 +749,10 @@
 				} 
 				
 			});
-		    
-		    if(codRegistro){//se foi passado codigo carrega o registro pelo codigo
-		    	pesquisarPorCodigoRegistro(codRegistro);
-		    }
-			
 		}
+		
+		if(codRegistro){//se foi passado codigo carrega o registro pelo codigo
+	    	pesquisarPorCodigoRegistro(codRegistro);
+	    }
        }//fim do else de vericação do param1
     }]);
