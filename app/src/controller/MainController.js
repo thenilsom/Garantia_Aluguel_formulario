@@ -518,7 +518,7 @@
 
               //se tiver sido informado telefone comercial seta no tel da empresa
               if($scope.cadastro.pretendente.telefoneComercial)
-                  $scope.cadastro.profissional.telefone = $scope.cadastro.pretendente.telefoneComercial
+                  $scope.cadastro.profissional.telefone = $scope.cadastro.pretendente.telefoneComercial;
 
               //$scope.errors = []; //##################################################
 
@@ -582,6 +582,10 @@
 				    $scope.errors.push("Profissão é obrigatório.");
 			    }
 		    }
+            
+            if($scope.cadastro.profissional.telefone){
+            	$scope.cadastro.pretendente.telefoneComercial = $scope.cadastro.profissional.telefone;
+            }
             //$scope.errors = []; //##################################################
 
             $scope.proximoPasso();

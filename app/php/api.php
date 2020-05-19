@@ -785,7 +785,7 @@ function salvar($request, $response){
         <b>Aluguel:</b> ".$aluguel." - <b>Condomínio:</b> ".$condominio." - <b>Gás:</b> ".$gas." - <b>IPTU:</b> ".$iptu." - <b>Energia:</b> ".$energia." - <b>Água:</b> ".$agua."
         </div><div align='center'><HR></div>";
     $mensagem .= "<div align='center'><font size='2'>Data e hora de envio: ".$data_cob." - ".$hora_cob." - Seg: ".$seguradora." - Usuário: ".$usuario_upload."</font></div></body></html>";
-
+/*
     // Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
     require("../../../../adm/phpmailer/class.phpmailer.php");
     // Inicia a classe PHPMailer
@@ -828,7 +828,7 @@ function salvar($request, $response){
         $retorno_mail = "Não foi possível enviar o(s) e-mail(s).";
         $retorno_mail .= " Informações do erro: " . $mail->ErrorInfo;
     }
-
+*/
     mysql_close($conexao);
 
     //echo $retorno_mail;
