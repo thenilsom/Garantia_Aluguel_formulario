@@ -369,6 +369,7 @@
     </div>
   </div>
 
+<div ng-if="cadastro.imovel.finalidade">
   <div layout="column" layout-padding layout-gt-sm="row" ng-if="getTotalGastosMensais() > 0">
     <div class="alert alert-warning">
       Renda mensal necessária para essa locação: <strong>{{getRendaNecessaria() | currency:"R$ ":2}}</strong>
@@ -376,12 +377,12 @@
     </div>  
   </div>
 
-<div layout="column" layout-padding layout-gt-sm="row" ng-if="!isRendaSuficiente()">
-  <div class="alert alert-danger">
-      Renda mensal informada <strong>{{getRendaInformada() | currency:"R$ ":2}}</strong> insuficiente para essa locação. <br/>Inclua locatários solidários na próxima janela para compor renda e alcançar o valor mínimo necessário <strong>{{getRendaNecessaria() | currency:"R$ ":2}}</strong>
-    </div> 
+	<div layout="column" layout-padding layout-gt-sm="row" ng-if="!isRendaSuficiente()">
+	  <div class="alert alert-danger">
+	      Renda mensal informada <strong>{{getRendaInformada() | currency:"R$ ":2}}</strong> insuficiente para essa locação. <br/>Inclua locatários solidários na próxima janela para compor renda e alcançar o valor mínimo necessário <strong>{{getRendaNecessaria() | currency:"R$ ":2}}</strong>
+	    </div> 
+	</div>
 </div>
-
 </form>
 
 <div layout="row" layout-align="center center">
