@@ -636,7 +636,8 @@
 
           $scope.getRendaInformada = function(){
             return service.valorOuZeroSeNull($scope.cadastro.profissional.salario) +
-                   service.valorOuZeroSeNull($scope.cadastro.profissional.totalRendimentos);
+            		   service.valorOuZeroSeNull($scope.cadastro.pretendente.rendaConjuge) +
+                       service.valorOuZeroSeNull($scope.cadastro.profissional.totalRendimentos);
           }
 
           $scope.isRendaSuficiente = function(){
