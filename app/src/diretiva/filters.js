@@ -56,3 +56,9 @@ directives.filter('telefonefilter', function() {
 	};
 	
 });
+
+directives.filter('num', function() {
+    return function(input) {
+      return parseInt(input);
+    };
+});

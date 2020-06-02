@@ -63,13 +63,14 @@
        }
        
        $scope.filtroLista = function (input, search_param) {
-    	   return !search_param || (input && input.toLocaleLowerCase().includes(search_param.toLocaleLowerCase()));
+    	   return !search_param || (input && input.toString().toLocaleLowerCase().includes(search_param.toLocaleLowerCase()));
     	 }
 
        var listar = function(){
          $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
+            $scope.listaTabela.forEach(l=> l.codigo = parseInt(l.codigo));//converte codigo para inteiro pro filtro da listagem
             montarArrayImobiliarias($scope.listaTabela);
             alertarQtdRegPendenteNoTitle();
             
