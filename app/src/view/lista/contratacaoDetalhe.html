@@ -1,0 +1,27 @@
+<div class="container detalhamento" layout-padding>
+      	
+    <div class="form-group">
+		<label>Data/Hora Contratação: </label> <span>{{registro.data_contratacao}}</span>
+	</div>
+
+	<div class="form-group">
+	<label>Contratado por: </label> <span>{{registro.usuarioContratacao}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Seguradora: </label> <span>{{getNomeSeguradora(registro)}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Forma de Pagamento: </label> <span>{{getDescricaoFormaPagamento(registro.forma_pagto)}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Apólice: </label> <span>{{registro.apolice}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Observações: </label> <span>{{registro.obs_contratacao}}</span>
+	</div>
+
+</div>

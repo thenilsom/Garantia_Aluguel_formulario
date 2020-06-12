@@ -39,6 +39,7 @@
         $http.post(url + 'php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
              $scope.registro = angular.copy(registro);
              listarSeguradoras();
+             listarFormasPgtoPorto();
 //            for (var key in $scope.registro) {
 //              if(!$scope.registro[key])
 //                $scope.registro[key] = '--';
@@ -92,6 +93,17 @@
        var listarSeguradoras = function(){
            $http.get(url + 'php/consulta.php/listarSeguradoras').then(function(data){
               $scope.listaSeguradoras = data.data;
+              }, function(erro){
+               service.alertarErro(erro.statusText);
+              });
+         }
+       
+       /**
+        * Lista as formas pgto porto
+        */
+       var listarFormasPgtoPorto = function(){
+           $http.get(url + 'php/consulta.php/listarFormasPgtoPorto').then(function(data){
+              $scope.listaFormasPgtoPorto = data.data;
               }, function(erro){
                service.alertarErro(erro.statusText);
               });
@@ -352,10 +364,19 @@
        $scope.getNomeSeguradora = function(registro){
     	var seguradora = $scope.listaSeguradoras.filter(i=> i.sigla == registro.seguradora)[0];
     	if(seguradora){
-    		return seguradora.nome_abrev;
+    		return seguradora.sigla + '-' + seguradora.nome_abrev;
     	}
     		return '';
        }
+       
+       $scope.getDescricaoFormaPagamento = function(codigo){
+     	  if( $scope.listaFormasPgtoPorto &&   $scope.listaFormasPgtoPorto.length > 0){
+     		  var formaPgto =  $scope.listaFormasPgtoPorto.filter(fp=> parseInt(codigo) == parseInt(fp.codigo_porto))[0];
+     		  if(formaPgto){
+     			  return formaPgto.descricao;
+     		  }
+     	  }
+        }
        
 
        $scope.irParaListagem();
