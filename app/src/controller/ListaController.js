@@ -373,7 +373,7 @@
      	  if( $scope.listaFormasPgtoPorto &&   $scope.listaFormasPgtoPorto.length > 0){
      		  var formaPgto =  $scope.listaFormasPgtoPorto.filter(fp=> parseInt(codigo) == parseInt(fp.codigo_porto))[0];
      		  if(formaPgto){
-     			  return formaPgto.descricao;
+     			 return formaPgto.descricao + angular.equals(formaPgto.grupo, 'CARTAO_CREDITO_RECORRENTE') ? '  (Recorrência)' : '';
      		  }
      	  }
         }
