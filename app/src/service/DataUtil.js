@@ -23,6 +23,13 @@ angular.module('app')
 	service.formatarData = function(data){
 	 return $filter('date')(data, 'dd/MM/yyyy', 'UTC');
 	}
+	
+	service.formatarPadraoBancoDados = function(data){
+		if(data){
+			return $filter('date')(data, 'YYYY-mm-dd');
+		}
+		return data;
+	}
 
 	service.getHoraAtual = function(){
 		var agora = new Date();
