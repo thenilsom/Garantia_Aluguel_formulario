@@ -222,7 +222,7 @@
      //grava os dados da analise
        $scope.gravarDadosAnalise= function(){
     	   if(validarDadosAnalise()){
-    		   $scope.dadosAnalise.dataAprovacao = dataUtil.formatarPadraoBancoDados($scope.dadosAnalise.dataAprovacao);
+    		   $scope.dadosAnalise.dataAprovacao = dataUtil.formatarParaDataServidor($scope.dadosAnalise.dataAprovacao);
     		   $http.post(url + 'php/gravar.php/alterarDadosAnalise', $scope.dadosAnalise).then(function(data){
     			   
     			   $http.post(url + 'php/consulta.php/consultarPorCodigoRegistro', {codigo: $scope.dadosAnalise.codigoCadastro}).then(function(data){

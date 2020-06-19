@@ -24,14 +24,6 @@ angular.module('app')
 	 return $filter('date')(data, 'dd/MM/yyyy', 'UTC');
 	}
 	
-	//retorna data no padrão dd/MM/yyy para YYYY-dd-mm
-	service.formatarPadraoBancoDados = function(data){
-		if(data){
-			var dataArray = data.split('/');
-			return dataArray[2] + '-' + dataArray[1] + '-' + dataArray[0];
-		}
-		return data;
-	}
 
 	service.getHoraAtual = function(){
 		var agora = new Date();
