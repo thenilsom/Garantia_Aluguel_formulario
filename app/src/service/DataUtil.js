@@ -24,9 +24,11 @@ angular.module('app')
 	 return $filter('date')(data, 'dd/MM/yyyy', 'UTC');
 	}
 	
+	//retorna data no padrão dd/MM/yyy para YYYY-dd-mm
 	service.formatarPadraoBancoDados = function(data){
 		if(data){
-			return $filter('date')(data, 'YYYY-mm-dd');
+			var dataArray = data.split('/');
+			return dataArray[2] + '-' + dataArray[1] + '-' + dataArray[0];
 		}
 		return data;
 	}
