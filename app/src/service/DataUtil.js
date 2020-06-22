@@ -11,8 +11,11 @@ angular.module('app')
 
 	//recebe no padrao: dd/MM/yyyy retorna no padrão 2019-10-18 
 	service.formatarParaDataServidor = function(dataParaServidor){
-		var data = dataParaServidor.split('/');
-		return data[2] + '-' + data[1] + '-' + data[0];
+		if(data){
+			var data = dataParaServidor.split('/');
+			return data[2] + '-' + data[1] + '-' + data[0];
+		}
+		return data;
 	}
 
 	//retorna a data atual no padrão dd/MM/yyyy
