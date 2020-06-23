@@ -26,6 +26,9 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_liberty}} <br/> 
 		    <strong>Situação:</strong> {{registro.situacao_analise_liberty}}
+		    <span ng-if="registro.data_aprovacao_liberty && !registro.data_aprovacao_liberty.startsWith('00')">
+		    	<br/><strong>Data da Aprovação:</strong> {{registro.data_aprovacao_liberty | date: "dd/MM/yyyy" : "UTC"}}
+		    </span>
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'liberty')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
 			
@@ -43,6 +46,9 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_porto}} <br/> 
 		    <strong>Situação:</strong> {{registro.situacao_analise_porto}}
+		    <span ng-if="registro.data_aprovacao_porto && !registro.data_aprovacao_porto.startsWith('00')">
+		    	<br/><strong>Data da Aprovação:</strong> {{registro.data_aprovacao_porto | date: "dd/MM/yyyy" : "UTC"}}
+		    </span>
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'porto')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
 			
@@ -60,6 +66,9 @@
 		  <div class="card-body">
 		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_too}} <br/> 
 		    <strong>Situação:</strong> {{registro.situacao_analise_too}}
+		    <span ng-if="registro.data_aprovacao_too && !registro.data_aprovacao_too.startsWith('00')">
+		    	<br/><strong>Data da Aprovação:</strong> {{registro.data_aprovacao_too | date: "dd/MM/yyyy" : "UTC"}}
+		    </span>
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'too')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
 			
