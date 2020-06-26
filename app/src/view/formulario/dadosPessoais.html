@@ -529,6 +529,15 @@
 
 </form>
 
+<div layout="column" layout-gt-sm="row" layout-padding> 
+<div class="md-block" flex-gt-sm="100">
+      <div class="checkbox">
+ 		 <label style="font-weight: bold;"><input type="checkbox" name="cadastro.autorizaEnvioDados"  ng-model="cadastro.autorizaEnvioDados">
+ 		 Eu autorizo a submissão dos meus dados para análise de cadastro nas seguradoras.</label>
+	</div>
+    </div>
+</div>
+
 <div layout="row" layout-align="center center">
     <div ng-if="passo != 1">
       <md-button class="md-raised" ng-click="passoAnterior()">

@@ -560,6 +560,11 @@
            	}
            }
            
+           if(!$scope.cadastro.autorizaEnvioDados){
+        	   $scope.errors.push("É necessario autorizar o envio dos dados.");
+        	   alert("É necessario autorizar o envio dos dados.");
+           }
+           
          //se num solidarios não form maior que zero garante os objetos vazios
            if(!$scope.cadastro.pessoal.numSolidarios > 0){
         	   $scope.cadastro.pessoal.solidario1 = {};

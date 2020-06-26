@@ -249,7 +249,13 @@
 
        //retorna o codigo do corretor
        var getCodCorretor = function(){
-        return $("input[name='codigo_corretor']").val();
+        var codigo = $("input[name='codigo_corretor']").val();
+        if(codigo){
+        	return codigo;
+        }else{
+        	return codigoParam;
+        }
+        
        }
        
        /**
