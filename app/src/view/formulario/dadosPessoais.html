@@ -546,9 +546,11 @@
     </div>
 
     <div>
-      <md-button class="md-raised" style="background-color: green; color: white" 
-      ng-click="validarDadosPessoaisESalvar('formDadosPessoais')">Gravar e Continuar <span aria-hidden="true"></span>
+      <md-button class="md-raised" style="background-color: green; color: white" ng-if="cadastro.autorizaEnvioDados" 
+      		ng-click="validarDadosPessoaisESalvar('formDadosPessoais')">GRAVAR E ANALISAR <span aria-hidden="true"></span>
       </md-button>
+      
+      <button type="button" class="btn btn-success" disabled="disabled" ng-if="!cadastro.autorizaEnvioDados">GRAVAR E ANALISAR</button>
     </div>
   </div> 
 </div> 
