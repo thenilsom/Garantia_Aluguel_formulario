@@ -329,7 +329,7 @@
     				   								situacao: registro.situacao_analise_liberty,
     				   								dataAprovacao : dataUtil.isDataValida(registro.data_aprovacao_liberty) ? dataUtil.formatarData(registro.data_aprovacao_liberty) : dataUtil.getDataAtual()};
     		   
-    		   $scope.listaOpAnalise = ['Análise cadastral aprovada', 'Em Análise Pela Companhia', 'Análise Cadastral Reprovada', 'Pendente'];
+    		   $scope.listaOpAnalise = ['Análise Cadastral Aprovada', 'Em Análise Pela Companhia', 'Análise Cadastral Reprovada', 'Pendente'];
     		   
     	   }else if(angular.equals(tipo, 'porto')){
     		   $scope.dadosAnalise = {analise: registro.processo_porto, 
