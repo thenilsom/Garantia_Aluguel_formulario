@@ -39,13 +39,14 @@ function gravarDadosApolice($request, $response){
 	$numApolice = trim(json_encode($param->numApolice, JSON_UNESCAPED_UNICODE), '"');
 	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
 	$codSeguradora = trim(json_encode($param->codSeguradora, JSON_UNESCAPED_UNICODE), '"');
+	$data_contratacao = trim(json_encode($param->data_contratacao, JSON_UNESCAPED_UNICODE), '"');
 	
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
 
- 	$sql = "UPDATE fianca set apolice = '$numApolice', seguradora = '$codSeguradora' WHERE codigo=$codigoCadastro";
+ 	$sql = "UPDATE fianca set apolice = '$numApolice', seguradora = '$codSeguradora', data_contratacao = '$data_contratacao' WHERE codigo=$codigoCadastro";
 	
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }

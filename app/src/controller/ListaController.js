@@ -208,6 +208,9 @@
     	   if(validarDadosApolice()){
     		   $scope.dadosAplice.codSeguradora = $scope.dadosAplice.objSeguradora.sigla;
     		   $scope.dadosAplice.objSeguradora = null;
+    		   if($scope.dadosAplice.data && $scope.dadosAplice.hora){
+    			   $scope.dadosAplice.data_contratacao = dataUtil.formatarParaDataServidor($scope.dadosAplice.data) + ' ' + $scope.dadosAplice.hora;
+    		   }
     		   $http.post(url + 'php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
     			   $('#modalDadosApolice').modal('hide');
     			   service.alertar('Dados da apólice atualizado com sucesso!');
@@ -313,11 +316,18 @@
         * Inicia os dados da aplice
         */
        $scope.iniciarDadosAplice = function(){
+    	   $http.get(url + 'php/consulta.php/dataServidor').then(function(data){
     		   $scope.dadosAplice = {
     				   objSeguradora : $scope.listaSeguradoras.filter(i=> i.sigla == $scope.registro.seguradora)[0],
     				   codigoCadastro : $scope.registro.codigo,
     				   numApolice : $scope.registro.apolice, 
+    				   data : dataUtil.formatarDataServidor(data.data.data),
+    		           hora : data.data.hora,
     				   codSeguradora : $scope.registro.seguradora};
+          }, function(erro){
+           service.alertarErro(erro.statusText);
+          });
+    		   
        }
        
        /**
