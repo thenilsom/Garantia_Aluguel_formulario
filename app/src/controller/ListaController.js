@@ -324,6 +324,13 @@
     				   data : dataUtil.formatarDataServidor(data.data.data),
     		           hora : data.data.hora,
     				   codSeguradora : $scope.registro.seguradora};
+    		   
+    		   if($scope.registro.data_contratacao){
+    			   var array =$scope.registro.data_contratacao.split(' ');
+    			   $scope.dadosAplice.data = dataUtil.formatarData(array[0]);
+    			   $scope.dadosAplice.hora = array[1];
+    		   }
+    		   
           }, function(erro){
            service.alertarErro(erro.statusText);
           });
