@@ -40,12 +40,21 @@
              $scope.registro = angular.copy(registro);
              listarSeguradoras();
              listarFormasPgtoPorto();
-//            for (var key in $scope.registro) {
-//              if(!$scope.registro[key])
-//                $scope.registro[key] = '--';
-//            }
-
             $scope.registro.fezUpload = data.data.qtd > 0;
+            
+          //obtem o nome do usuario da contratação pelo codigo
+            if(registro.usuario_contratacao){
+            	var arry = registro.usuario_contratacao.split('_');
+            	if(arry.length == 2){
+            		 $http.post(url + 'php/consulta.php/consultarPorCodigoUsuario', {codigoUser: arry[1], nivel : arry[0]}).then(function(data){
+               		  if(data.data && data.data.nome){
+               			  $scope.registro.usuarioContratacao = data.data.nome;
+               		  }
+                    }, function(erro){
+                      service.alertarErro(erro.statusText);
+                    });
+            	}
+            }
 
             $timeout(function(){
               $("#accordion a:first").trigger("click");
@@ -397,7 +406,7 @@
      	  if( $scope.listaFormasPgtoPorto &&   $scope.listaFormasPgtoPorto.length > 0){
      		  var formaPgto =  $scope.listaFormasPgtoPorto.filter(fp=> parseInt(codigo) == parseInt(fp.codigo_porto))[0];
      		  if(formaPgto){
-     			 return formaPgto.descricao + angular.equals(formaPgto.grupo, 'CARTAO_CREDITO_RECORRENTE') ? '  (Recorrência)' : '';
+     			 return formaPgto.descricao + (angular.equals(formaPgto.grupo, 'CARTAO_CREDITO_RECORRENTE') ? '  (Recorrência)' : '');
      		  }
      	  }
         }
