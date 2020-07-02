@@ -325,7 +325,7 @@
     		           hora : data.data.hora,
     				   codSeguradora : $scope.registro.seguradora};
     		   
-    		   if($scope.registro.data_contratacao){
+    		   if($scope.registro.data_contratacao && !$scope.registro.data_contratacao.startsWith('00')){
     			   var array =$scope.registro.data_contratacao.split(' ');
     			   $scope.dadosAplice.data = dataUtil.formatarData(array[0]);
     			   $scope.dadosAplice.hora = array[1];
