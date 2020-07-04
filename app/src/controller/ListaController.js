@@ -13,9 +13,14 @@
 
         //obtem os parametros na url se existir
         var codigoParam = null;
+        var codigoUserParam = null;
+        
         var paramUrl = service.extraiParamUrl(location.search.slice(1));
-        if(paramUrl)
-          codigoParam = service.decriptografar(paramUrl['var']);
+        
+        if(paramUrl){
+        	codigoParam = service.decriptografar(paramUrl['var']);
+        	codigoUserParam = paramUrl['codUser'];
+        }
 
      
        $scope.listaTabela = [];
@@ -286,7 +291,7 @@
        //registra o atendimento para o usuário
        $scope.registrarAtendimento = function(registro){
     	   service.showConfirm('Confirma registrar o atendimento ?',function(){
-	    	  var codUser = $("input[name='codigo_usuario']").val();
+	    	  var codUser = getCodigoUser();
 	    	  if(!codUser){
 	    		  service.alertarErro('Usuário não identificado.');
 	    		  
@@ -300,6 +305,14 @@
 	    		  });
 	    	  }
     	   });
+       }
+       
+       /**
+        * Devolve o codigo do usuario
+        */
+       var getCodigoUser = function(){
+    	   var codigo = $("input[name='codigo_usuario']").val();
+    	   return codigo ? codigo : codigoUserParam;
        }
        
        $scope.isRegPendenteMais30Minutos = function(reg){
