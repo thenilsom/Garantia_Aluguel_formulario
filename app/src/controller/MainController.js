@@ -538,6 +538,10 @@
             	if($scope.cadastro.pessoal.solidario1.cpf && !validador.validarCpf($scope.cadastro.pessoal.solidario1.cpf)){
             		$scope.errors.push("CPF locatário solidário 1 inválido.");
             	}
+            	
+            	if($scope.cadastro.pessoal.solidario1.numDoc && (!$scope.cadastro.pessoal.solidario1.dataEmissao && !$scope.cadastro.pessoal.solidario1.dataValidade)){
+            		$scope.errors.push("(Locatário solidário 1) Preencha ao menos uma das datas (Emissão ou Validade) a que melhor se adequar ao tipo de documento informado.");
+            	}
             }
          
            if($scope.cadastro.pessoal.solidario2){
@@ -548,6 +552,10 @@
         	   if($scope.cadastro.pessoal.solidario2.cpf && !validador.validarCpf($scope.cadastro.pessoal.solidario2.cpf)){
            		$scope.errors.push("CPF locatário solidário 2 inválido.");
            	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario2.numDoc && (!$scope.cadastro.pessoal.solidario2.dataEmissao && !$scope.cadastro.pessoal.solidario2.dataValidade)){
+           		$scope.errors.push("(Locatário solidário 2) Preencha ao menos uma das datas (Emissão ou Validade) a que melhor se adequar ao tipo de documento informado.");
+           	}
            } 
             
            if($scope.cadastro.pessoal.solidario3){
@@ -557,6 +565,10 @@
         	   
         	   if($scope.cadastro.pessoal.solidario3.cpf && !validador.validarCpf($scope.cadastro.pessoal.solidario3.cpf)){
            		$scope.errors.push("CPF locatário solidário 3 inválido.");
+           	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario3.numDoc && (!$scope.cadastro.pessoal.solidario3.dataEmissao && !$scope.cadastro.pessoal.solidario3.dataValidade)){
+           		$scope.errors.push("(Locatário solidário 3) Preencha ao menos uma das datas (Emissão ou Validade) a que melhor se adequar ao tipo de documento informado.");
            	}
            }
            
