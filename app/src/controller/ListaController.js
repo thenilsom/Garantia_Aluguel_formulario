@@ -415,14 +415,36 @@
     		return '';
        }
        
-       $scope.getDescricaoFormaPagamento = function(codigo){
-     	  if( $scope.listaFormasPgtoPorto &&   $scope.listaFormasPgtoPorto.length > 0){
-     		  var formaPgto =  $scope.listaFormasPgtoPorto.filter(fp=> parseInt(codigo) == parseInt(fp.codigo_porto))[0];
+       $scope.getDescricaoFormaPagamento = function(registro){
+    	   var codigo = registro.forma_pagto;
+    	   if(isCodigoPlanoLiberty(codigo)){
+     		  return service.formatarValor(registro.premio_total) +  " (mensais) - Plano: " + obterDescricaoPlanoLiberty(codigo.split('_')[1]);
+     		   
+     	   }else if($scope.listaFormasPgtoPorto && $scope.listaFormasPgtoPorto.length > 0){
+     		  var formaPgto =  $scope.listaFormasPgtoPorto.filter(fp=> parseInt(registro.forma_pagto) == parseInt(fp.codigo_porto))[0];
      		  if(formaPgto){
      			 return formaPgto.descricao + (angular.equals(formaPgto.grupo, 'CARTAO_CREDITO_RECORRENTE') ? '  (Recorrência)' : '');
      		  }
      	  }
+    	   return "";
         }
+       
+       var obterDescricaoPlanoLiberty = function(plano){
+    	   switch (plano.toUpperCase()) {
+			case 'B1': return '<strong>Básico</strong> (Sem desconto por seguro incêndio)'; break
+			case 'C1': return '<strong>Completo</strong> (Sem desconto por seguro incêndio)'; break
+			case 'B2': return '<strong>Básico</strong> (COM desconto por seguro incêndio)'; break
+			case 'C2': return '<strong>Completo</strong> (COM desconto por seguro incêndio)'; break
+			}
+       }
+       
+       var isCodigoPlanoLiberty = function(codigo){
+    	   var codArr = codigo.split('_');
+    	   if(codArr.length > 1){
+    		   return ['B1','C1','B2','C2'].includes(codArr[1]);
+    	   }
+    	   return false;
+       }
        
 
        $scope.irParaListagem();
