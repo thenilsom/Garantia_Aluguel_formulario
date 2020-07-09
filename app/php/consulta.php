@@ -211,7 +211,7 @@ function consultarFaixaCep($request, $response){
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
-	$sql = "SELECT cidade, estado from cidades where '$cep' < cep_final and '$cep' > cep_inicial";
+	$sql = "SELECT cidade, estado from cidades where '$cep' <= cep_final and '$cep' >= cep_inicial";
 	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 	while($campo = mysql_fetch_assoc($consulta)){
