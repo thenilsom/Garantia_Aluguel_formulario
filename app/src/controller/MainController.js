@@ -245,6 +245,7 @@
 			  
             //garante a formatação do cpf
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
+            $scope.cadastro.status = '1';
 
             $http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
 				

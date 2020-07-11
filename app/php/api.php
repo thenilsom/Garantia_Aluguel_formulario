@@ -18,6 +18,7 @@ function salvar($request, $response){
     //echo json_encode($cadastro->pretendente->cpf);
 
 	$codigoCadastro = utf8_decode(trim(json_encode($cadastro->codigo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$statusCadastro = utf8_decode(trim(json_encode($cadastro->status, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 
 	//DADOS DO PRETENDENTE
 	$inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
@@ -378,6 +379,7 @@ function salvar($request, $response){
                                     solidario3_empresa_trabalho, 
                                     solidario3_data_admissao, 
                                     solidario3_conjuge_cpf, 
+                                    status,
                                     cep, 
                                     endereco, 
                                     numero, 
@@ -533,6 +535,7 @@ function salvar($request, $response){
                                    	'$solidario3_empresa_trabalho', 
                                    	'$solidario3_data_admissao', 
                                    	'$solidario3_conjuge_cpf',
+                                   	'$statusCadastro',
 								   	'$cep', 
 								   	'$endereco', 
 								   	'$numero', 
@@ -692,6 +695,7 @@ function salvar($request, $response){
 		solidario3_empresa_trabalho = '$solidario3_empresa_trabalho',
 		solidario3_data_admissao = '$solidario3_data_admissao',
 		solidario3_conjuge_cpf = '$solidario3_conjuge_cpf',
+		status = '$statusCadastro',
 		cep='$cep',
 		endereco='$endereco',
 		numero='$numero',

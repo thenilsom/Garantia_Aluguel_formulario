@@ -205,7 +205,8 @@
        $scope.gravarRegistro = function(){
         if(validarDadosRegistro('formIncluirRegistro')){
           tratarDadosRegistro()
-
+          $scope.novoReg.status = '1';
+          
           $http.post(url + 'php/gravar.php/gravarRegInquilino', $scope.novoReg).then(function(data){
            service.alertar('Registro incluido com sucesso!');
             $scope.irParaListagem();
@@ -418,7 +419,7 @@
        $scope.getDescricaoFormaPagamento = function(registro){
     	   var codigo = registro.forma_pagto;
     	   if(isCodigoPlanoLiberty(codigo)){
-     		  return service.formatarValor(registro.premio_total) +  " (mensais) - Plano: " + obterDescricaoPlanoLiberty(codigo.split('_')[1]);
+     		  return service.formatarValor(registro.premio_total) +  (" (mensais) - Plano: " + obterDescricaoPlanoLiberty(codigo.split('_')[1]));
      		   
      	   }else if($scope.listaFormasPgtoPorto && $scope.listaFormasPgtoPorto.length > 0){
      		  var formaPgto =  $scope.listaFormasPgtoPorto.filter(fp=> parseInt(registro.forma_pagto) == parseInt(fp.codigo_porto))[0];
@@ -431,10 +432,10 @@
        
        var obterDescricaoPlanoLiberty = function(plano){
     	   switch (plano.toUpperCase()) {
-			case 'B1': return '<strong>Básico</strong> (Sem desconto por seguro incêndio)'; break
-			case 'C1': return '<strong>Completo</strong> (Sem desconto por seguro incêndio)'; break
-			case 'B2': return '<strong>Básico</strong> (COM desconto por seguro incêndio)'; break
-			case 'C2': return '<strong>Completo</strong> (COM desconto por seguro incêndio)'; break
+			case 'B1': return 'Básico (Sem desconto por seguro incêndio)'; break
+			case 'C1': return 'Completo (Sem desconto por seguro incêndio)'; break
+			case 'B2': return 'Básico (COM desconto por seguro incêndio)'; break
+			case 'C2': return 'Completo (COM desconto por seguro incêndio)'; break
 			}
        }
        

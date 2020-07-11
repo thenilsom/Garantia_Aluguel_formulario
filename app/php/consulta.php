@@ -81,7 +81,7 @@ function listar($request, $response){
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
 			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
-			from fianca order by data_transm desc, hora_transm desc";
+			from fianca where status!= '0' order by data_transm desc, hora_transm desc";
 
 	$sqlPorCodigo = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
