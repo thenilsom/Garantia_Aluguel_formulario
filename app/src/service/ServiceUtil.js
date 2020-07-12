@@ -30,7 +30,8 @@ angular.module('app')
 		service.formatarValor = function(valor){
 			if(!valor) return '0,00';
 			valor = valor.substring(0, valor.length - 2) + '.' + valor.substring(valor.length - 2);
-			return $filter('currency')(valor, '');
+			var valorFormatado = $filter('currency')(valor, '');
+			return valorFormatado ? valorFormatado : valor;
 		}
 
 		service.isMobile = function(){
