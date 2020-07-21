@@ -63,6 +63,9 @@
 		      			ng-model="dadosAplice.hora" ng-tabindex="5">
 	      			</div>
 			</div>
+			
+			<div  data-ng-include="'./src/view/lista/uploadApolice.html'" data-ng-if="dadosAplice.numApolice && dadosAplice.objSeguradora"></div> 
+			
           </form>
           
         </div>

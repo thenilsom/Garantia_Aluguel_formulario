@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil',
-        function($scope, $http, service, $timeout, validador, dataUtil){
+       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil','FileUploader',
+        function($scope, $http, service, $timeout, validador, dataUtil,FileUploader){
 
     	var url = service.getUrl();
     		
@@ -227,6 +227,7 @@
     			   $scope.dadosAplice.data_contratacao = dataUtil.formatarParaDataServidor($scope.dadosAplice.data) + ' ' + $scope.dadosAplice.hora;
     		   }
     		   $http.post(url + 'php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
+    			   enviarArquivosUploadApolice();
     			   $('#modalDadosApolice').modal('hide');
     			   service.alertar('Dados da apólice atualizado com sucesso!');
     			   $scope.registro.apolice = $scope.dadosAplice.numApolice;
@@ -354,10 +355,45 @@
     			   $scope.dadosAplice.hora = array[1];
     		   }
     		   
+    		   iniciarUpload($scope.registro.codigo);
+    		   
           }, function(erro){
            service.alertarErro(erro.statusText);
           });
     		   
+       }
+       
+       /*inicia as configurações de upload*/
+       var iniciarUpload = function(codigoCadastro){
+         $scope.uploader = new FileUploader({
+           url : 'https://www.segurosja.com.br/sistema_seguros/sistemaimobiliario/api/admin/fianca/uploadApolice.php',
+           formData:[{codigo: codigoCadastro}]
+         });
+
+        /*função chamada em caso de erro no upload*/
+       $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
+         console.info('onErrorItem', fileItem, response, status, headers);
+         service.alertarErro(response);
+       };
+
+       $scope.uploader.onCompleteAll = function() {
+         service.alertar('Arquivos enviados com sucesso!');
+       };
+     } 
+       
+       /*Envia o upload dos arquivos*/
+       var enviarArquivosUploadApolice = function(){
+             $scope.uploader.queue.forEach(function(item, index){
+            var arrayName = item.file.name.split('.');
+            var seguradora = $scope.dadosAplice.codSeguradora.toLowerCase();
+             var extensao = '.' + arrayName[arrayName.length - 1];
+             if(index == 0){
+            	 item.file.name = $scope.registro.codigo + '_' + seguradora + extensao;
+             }else{
+            	 item.file.name = $scope.registro.codigo + '_' + index + '_' + seguradora + extensao;
+             }
+           });
+           $scope.uploader.uploadAll();
        }
        
        /**
