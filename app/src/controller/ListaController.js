@@ -14,12 +14,14 @@
         //obtem os parametros na url se existir
         var codigoParam = null;
         var codigoUserParam = null;
+        var isIncluirParam = false;
         
         var paramUrl = service.extraiParamUrl(location.search.slice(1));
         
         if(paramUrl){
         	codigoParam = service.decriptografar(paramUrl['var']);
         	codigoUserParam = paramUrl['codUser'];
+        	isIncluirParam = paramUrl['isIncluir'];
         }
 
      
@@ -486,4 +488,8 @@
        $scope.irParaListagem();
        listar();
        ativarRefresh();
+       
+       if(isIncluirParam === "true"){
+    	   $scope.incluirRegistro();
+       }
     }]);
