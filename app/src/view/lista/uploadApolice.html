@@ -1,12 +1,13 @@
            <div class="container">
                 <div class="row">
-
-                <div class="col-md-8">
                                   
                     <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-                    <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
-
-                    </div>
+                    <div class="form-group">
+		      			<label for="files" class="col-xs-1" style="width: 11%">Enviar apolice:</label>
+			      			<div class="col-xs-3">
+			      			<input id="files" type="file" nv-file-select="" uploader="uploader" multiple  />
+						</div>
+					</div>
 
                 </div>
             </div>
@@ -46,6 +47,7 @@
                         </tbody>
                     </table>
 
+					<!--  
                     <div>
                         <div>
                             Progresso:
@@ -54,19 +56,16 @@
                             </div>
                         </div>
                         
-                        <!--    
                         <button type="button" class="btn btn-success btn-s" ng-click="enviarArquivosUploadApolice()" ng-disabled="!uploader.getNotUploadedItems().length">
                             <span class="glyphicon glyphicon-upload"></span> Enviar todos
                         </button>
-                     	-->
-                        
+                     	
                         <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.getNotUploadedItems().length">
                             <span class="glyphicon glyphicon-trash"></span> Remover todos
                         </button>
                     </div>
-
+                    -->
+                    
                 </div>
-
             </div>
-
         </div>

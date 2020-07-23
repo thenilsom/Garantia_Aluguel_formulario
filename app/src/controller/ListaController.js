@@ -375,25 +375,24 @@
          console.info('onErrorItem', fileItem, response, status, headers);
          service.alertarErro(response);
        };
-
-       $scope.uploader.onCompleteAll = function() {
-         service.alertar('Arquivos enviados com sucesso!');
-       };
+       
      } 
        
        /*Envia o upload dos arquivos*/
        var enviarArquivosUploadApolice = function(){
-             $scope.uploader.queue.forEach(function(item, index){
-            var arrayName = item.file.name.split('.');
-            var seguradora = $scope.dadosAplice.codSeguradora.toLowerCase();
-             var extensao = '.' + arrayName[arrayName.length - 1];
-             if(index == 0){
-            	 item.file.name = $scope.registro.codigo + '_' + seguradora + extensao;
-             }else{
-            	 item.file.name = $scope.registro.codigo + '_' + index + '_' + seguradora + extensao;
-             }
-           });
-           $scope.uploader.uploadAll();
+    	   if($scope.uploader.queue.length > 0){
+    		   $scope.uploader.queue.forEach(function(item, index){
+    			   var arrayName = item.file.name.split('.');
+    			   var seguradora = $scope.dadosAplice.codSeguradora.toLowerCase();
+    			   var extensao = '.' + arrayName[arrayName.length - 1];
+    			   if(index == 0){
+    				   item.file.name = $scope.registro.codigo + '_' + seguradora + extensao;
+    			   }else{
+    				   item.file.name = $scope.registro.codigo + '_' + index + '_' + seguradora + extensao;
+    			   }
+    		   });
+    		   $scope.uploader.uploadAll();
+    	   }
        }
        
        /**
