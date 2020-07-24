@@ -372,6 +372,14 @@
            formData:[{codigo: codigoCadastro}]
          });
 
+         /*função chamada antes de fazer upload do item*/
+         $scope.uploader.onAfterAddingFile   = function(item) {
+        	if(!confirm("Já existe um arquivo de apólice no servidor. Deseja sobrescrever o arquivo existente")){
+        		item.remove();
+        		$( "#files" ).val("")
+        	}
+         };
+         
         /*função chamada em caso de erro no upload*/
        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
          console.info('onErrorItem', fileItem, response, status, headers);
