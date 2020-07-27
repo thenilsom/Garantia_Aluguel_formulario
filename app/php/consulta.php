@@ -25,8 +25,10 @@ $app->post('/fezUploadArquivos', 'fezUploadArquivos');
 $app->post('/consultarFaixaCep', 'consultarFaixaCep');
 $app->post('/consultarPorCodigoRegistro', 'consultarPorCodigoRegistro');
 $app->post('/consultarPorCodigoUsuario', 'consultarPorCodigoUsuario');
+$app->post('/obterProfissaoPorCodigo', 'obterProfissaoPorCodigo');
 $app->get('/listarSeguradoras', 'listarSeguradoras');
 $app->get('/listarFormasPgtoPorto', 'listarFormasPgtoPorto');
+
 
 
 function fezUploadArquivos($request, $response){
@@ -251,6 +253,23 @@ function consultarPorCodigoUsuario($request, $response){
     }
 
     $result = array('nome' => $nome); 
+    echo json_encode($result);
+}
+
+function obterProfissaoPorCodigo($request, $response){
+	$param = json_decode($request->getBody());
+	$codigo = trim(json_encode($param->codigo, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+	$sql = "SELECT ocupacao as descricao FROM profissao_cbo WHERE codigo_cbo = '$codigo'";
+	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+	while($campo = mysql_fetch_assoc($consulta)){
+		$nome=$campo['descricao']; 
+    }
+
+    $result = array('descricao' => $nome); 
     echo json_encode($result);
 }
 
