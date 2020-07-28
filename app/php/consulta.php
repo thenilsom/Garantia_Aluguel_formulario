@@ -25,7 +25,6 @@ $app->post('/fezUploadArquivos', 'fezUploadArquivos');
 $app->post('/consultarFaixaCep', 'consultarFaixaCep');
 $app->post('/consultarPorCodigoRegistro', 'consultarPorCodigoRegistro');
 $app->post('/consultarPorCodigoUsuario', 'consultarPorCodigoUsuario');
-$app->post('/obterProfissaoPorCodigo', 'obterProfissaoPorCodigo');
 $app->get('/listarSeguradoras', 'listarSeguradoras');
 $app->get('/listarFormasPgtoPorto', 'listarFormasPgtoPorto');
 
@@ -81,12 +80,14 @@ function listar($request, $response){
 
  	$sqlTodos = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
+			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_descricao,
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
 			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
 			from fianca where status!= '0' order by data_transm desc, hora_transm desc";
 
 	$sqlPorCodigo = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
-			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
+			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao,
+			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_descricao, 
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
 			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
 			from fianca where corretor='$codigo' and status!= '0' order by data_transm desc, hora_transm desc";
@@ -253,23 +254,6 @@ function consultarPorCodigoUsuario($request, $response){
     }
 
     $result = array('nome' => $nome); 
-    echo json_encode($result);
-}
-
-function obterProfissaoPorCodigo($request, $response){
-	$param = json_decode($request->getBody());
-	$codigo = trim(json_encode($param->codigo, JSON_UNESCAPED_UNICODE), '"');
-	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
-	mysql_set_charset('utf8',$conexao);
-	$sql = "SELECT ocupacao as descricao FROM profissao_cbo WHERE codigo_cbo = '$codigo'";
-	
-	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
-	while($campo = mysql_fetch_assoc($consulta)){
-		$nome=$campo['descricao']; 
-    }
-
-    $result = array('descricao' => $nome); 
     echo json_encode($result);
 }
 
