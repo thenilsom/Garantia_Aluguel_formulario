@@ -81,7 +81,7 @@
 			 
 			 $scope.cadastro.pretendente.nome = $scope.paramUrl.var9 ? $scope.paramUrl.var9.replace(/%20/g, ' ') : ''; //%20 são os espaços
 			 $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
-			 $scope.cadastro.pretendente.tipoInquilino = $scope.paramUrl.var11 ? $scope.paramUrl.var11 : 'F';
+			 $scope.cadastro.pretendente.tipoInquilino = ($scope.paramUrl.var11 && ['F', 'J'].includes($scope.paramUrl.var11.toUpperCase())) ? $scope.paramUrl.var11 : 'F';
 			 $scope.cadastro.imovel.nivelAcesso = $scope.paramUrl.var12 ? $scope.paramUrl.var12 : '';
 			 
 			 //se existir codigo do solicitante obtem o usuario solicitante
