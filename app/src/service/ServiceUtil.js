@@ -197,6 +197,17 @@ angular.module('app')
 	   	    	 alert('API correios fora de serviço, favor inserir manualmente');
 	            });
 	  }
+	  
+	  /**
+	   * Retorna true se o cep for valido
+	   */
+	  service.isCepValido = function(cep){
+		  if(cep){
+			  var cepNumero = cep.replace(/\.|\-/g, '');
+			  return /^[0-9]{8}$/.test(cepNumero);
+		  }
+		  return false;
+	  }
 
 	  //exibe um alerta do tipo show hide
 	  service.exibirAlertaShowHide = function(){

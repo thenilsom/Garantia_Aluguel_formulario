@@ -543,6 +543,10 @@
             	if($scope.cadastro.pessoal.solidario1.numDoc && (!$scope.cadastro.pessoal.solidario1.dataEmissao && !$scope.cadastro.pessoal.solidario1.dataValidade)){
             		$scope.errors.push("(Locatário solidário 1) Preencha ao menos uma das datas (Emissão ou Validade) a que melhor se adequar ao tipo de documento informado.");
             	}
+            	
+            	if($scope.cadastro.pessoal.solidario1.cep && !service.isCepValido($scope.cadastro.pessoal.solidario1.cep)){
+            		$scope.errors.push("Cep do locatário solidário 1 inválido.");
+            	}
             }
          
            if($scope.cadastro.pessoal.solidario2){
@@ -556,6 +560,10 @@
         	   
         	   if($scope.cadastro.pessoal.solidario2.numDoc && (!$scope.cadastro.pessoal.solidario2.dataEmissao && !$scope.cadastro.pessoal.solidario2.dataValidade)){
            		$scope.errors.push("(Locatário solidário 2) Preencha ao menos uma das datas (Emissão ou Validade) a que melhor se adequar ao tipo de documento informado.");
+           	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario2.cep && !service.isCepValido($scope.cadastro.pessoal.solidario2.cep)){
+           		$scope.errors.push("Cep do locatário solidário 2 inválido.");
            	}
            } 
             
@@ -571,6 +579,10 @@
         	   if($scope.cadastro.pessoal.solidario3.numDoc && (!$scope.cadastro.pessoal.solidario3.dataEmissao && !$scope.cadastro.pessoal.solidario3.dataValidade)){
            		$scope.errors.push("(Locatário solidário 3) Preencha ao menos uma das datas (Emissão ou Validade) a que melhor se adequar ao tipo de documento informado.");
            	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario3.cep && !service.isCepValido($scope.cadastro.pessoal.solidario3.cep)){
+           		$scope.errors.push("Cep do locatário solidário 3 inválido.");
+           	}
            }
            
            if(!$scope.cadastro.autorizaEnvioDados){
@@ -579,9 +591,16 @@
            }
            
          //se num solidarios não form maior que zero garante os objetos vazios
-           if(!$scope.cadastro.pessoal.numSolidarios > 0){
+           if($scope.cadastro.pessoal.numSolidarios == 0){
         	   $scope.cadastro.pessoal.solidario1 = {};
         	   $scope.cadastro.pessoal.solidario2 = {};
+        	   $scope.cadastro.pessoal.solidario3 = {};
+        	   
+           }else if($scope.cadastro.pessoal.numSolidarios == 1){
+        	   $scope.cadastro.pessoal.solidario2 = {};
+        	   $scope.cadastro.pessoal.solidario3 = {};
+        	   
+           }else if($scope.cadastro.pessoal.numSolidarios == 2){
         	   $scope.cadastro.pessoal.solidario3 = {};
            }
 
@@ -617,6 +636,11 @@
             if($scope.cadastro.imovel.cnpjEmpresaConstituida && !validador.validarCNPJ($scope.cadastro.imovel.cnpjEmpresaConstituida)){
                 $scope.errors.push("CNPJ empresa constituída inválido");
               }
+            
+            if($scope.cadastro.imovel.cep && !service.isCepValido($scope.cadastro.imovel.cep)){
+        		$scope.errors.push("Cep inválido.");
+        	}
+            
 
             //$scope.errors = []; //##################################################
 
