@@ -1,0 +1,19 @@
+ <div class="container detalhamento" layout-padding>
+      	
+    <div class="form-group">
+		<label>Início: </label> <span>{{registro.inicio }}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Fim: </label> <span>{{registro.fim_contrato}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Índice de Reajuste: </label> <span>{{obterIndeceReajustePorCodigo(registro.indice_reajuste)}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>Período: </label> <span>{{calcularPeriodo(registro)}}</span>
+	</div>
+</div>
+   

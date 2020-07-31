@@ -531,6 +531,7 @@
         	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
             
+           if($scope.cadastro.pessoal.possuiRendaArcarLocacao == 'S'){
             if($scope.cadastro.pessoal.solidario1){
             	if($scope.cadastro.pessoal.solidario1.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario1.cpfConjuge)){
             		$scope.errors.push("CPF conjuge locatário solidário 1 inválido.");
@@ -585,29 +586,29 @@
            	}
            }
            
-           if(!$scope.cadastro.autorizaEnvioDados){
-        	   $scope.errors.push("É necessario autorizar o envio dos dados.");
-        	   alert("É necessario autorizar o envio dos dados.");
-           }
-           
-         //se num solidarios não form maior que zero garante os objetos vazios
-           if($scope.cadastro.pessoal.numSolidarios == 0){
-        	   $scope.cadastro.pessoal.solidario1 = {};
-        	   $scope.cadastro.pessoal.solidario2 = {};
-        	   $scope.cadastro.pessoal.solidario3 = {};
-        	   
-           }else if($scope.cadastro.pessoal.numSolidarios == 1){
-        	   $scope.cadastro.pessoal.solidario2 = {};
-        	   $scope.cadastro.pessoal.solidario3 = {};
-        	   
-           }else if($scope.cadastro.pessoal.numSolidarios == 2){
-        	   $scope.cadastro.pessoal.solidario3 = {};
-           }
+         }else{
+        	 $scope.cadastro.pessoal.numSolidarios = 0;
+         }
+          
 
-              if($scope.errors.length == 0){
-            	  $scope.salvar();
+          if($scope.errors.length == 0){
+        	//se num solidarios não form maior que zero garante os objetos vazios
+              if($scope.cadastro.pessoal.numSolidarios == 0){
+           	   $scope.cadastro.pessoal.solidario1 = {};
+           	   $scope.cadastro.pessoal.solidario2 = {};
+           	   $scope.cadastro.pessoal.solidario3 = {};
+           	   
+              }else if($scope.cadastro.pessoal.numSolidarios == 1){
+           	   $scope.cadastro.pessoal.solidario2 = {};
+           	   $scope.cadastro.pessoal.solidario3 = {};
+           	   
+              }else if($scope.cadastro.pessoal.numSolidarios == 2){
+           	   $scope.cadastro.pessoal.solidario3 = {};
               }
+              
+        	  //$scope.salvar();
           }
+      }
 
           /*valida os dados profissionaiss*/
           $scope.validarDadosProfissionais = function(form){

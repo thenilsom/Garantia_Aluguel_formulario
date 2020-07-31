@@ -7,12 +7,19 @@
 	padding-right: 10px;
 }
 
+.texto-azul{
+	color: #007bff;
+	font-weight: 600;
+}
+
 </style>
 <div class="row row-center">
 	<div class="col-sm-10 col-center">
 		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
 			<div class="panel-heading">
-				<h2 class="panel-title"><strong>Código SJ: {{registro.codigo}}-{{registro.fantasia}}</strong></h2>
+				<h2 class="panel-title" data-ng-class="{'texto-azul' : (registro.data_contratacao && registro.data_contratacao !== '0000-00-00 00:00:00')}">
+				<strong>Código SJ: {{registro.codigo}} {{registro.inquilino}} - {{registro.fantasia}}</strong>
+				</h2>
 			</div>
 
 	<div class="row" style="padding: 10px;">
@@ -168,7 +175,23 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href=".collapseContratacao">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseDadosProprietario">
+										Dados do Proprietário <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseDadosProprietario panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados composição de renda -->
+										<div data-ng-include="'./src/view/lista/dadosProprietarioDetalhe.html'"></div> 
+																					
+									</div>
+								</div>
+							</div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseContratacao" id="collapseContratacao">
 										Contratação <span class="caret"></span></a>
 									</h4>
 								</div>

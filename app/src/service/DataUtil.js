@@ -57,6 +57,22 @@ angular.module('app')
 		return dif > 30;
 		
 	}
+	
+	 /**
+ 	 * Retorna a diferença entre datas em dias
+ 	 */
+ 	service.difEntreDatasEmDias = function(dataInicio, dataFim){
+ 		dataInicio = formatarData(dataInicio);
+ 		dataFim = formatarData(dataFim);
+ 		var arrayDI = dataInicio.split('/');
+ 		var arrayDF = dataFim.split('/');
+		dataInicio =  new Date(arrayDI[2], parseInt(arrayDI[1]) - 1, arrayDI[0]);
+		dataFim =  new Date(arrayDF[2], parseInt(arrayDF[1]) - 1, arrayDF[0]);
+		
+ 		var diff = Math.abs(dataInicio.getTime() - dataFim.getTime());
+ 		var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+ 		return days;
+     };
 
 	return service;
 }]);

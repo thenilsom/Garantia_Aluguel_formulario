@@ -64,7 +64,11 @@
             }
 
             $timeout(function(){
-              $("#accordion a:first").trigger("click");
+            	if($scope.registro.data_contratacao && $scope.registro.data_contratacao !== '0000-00-00 00:00:00'){
+            		$('#collapseContratacao').trigger("click");
+            	}else{
+            		$("#accordion a:first").trigger("click");
+            	}
             });
 
             $scope.acao = 'detalhar'; 
@@ -490,6 +494,37 @@
     		   return ['B1','C1','B2','C2'].includes(codArr[1]);
     	   }
     	   return false;
+       }
+       
+       $scope.obterIndeceReajustePorCodigo = function(codigo){
+    	   switch (codigo) {
+		case '1': return 'IGP - M (FGV)';
+		case '2': return ' IGP - DI (FGV)';
+		case '3': return 'IPC - (FIPE)';
+		case '4': return 'IPCA - (IBGE)';
+		case '5': return ' INPC - (IBGE)';
+		case '6': return 'ICV - (DIEESE)';
+		case '7': return 'INCC';
+		case '8': return 'IPC - FGV';
+		case '9': return 'Maior Índice';
+		default: return '';
+		}
+       }
+       
+       $scope.calcularPeriodo = function(registro){
+    	   if(registro.inicio && registro.fim_contrato){
+    		   var dias = dataUtil.difEntreDatasEmDias(registro.inicio, registro.fim_contrato);
+    		   var periodoEmMeses = dias/30;
+    		   var regex = new RegExp('^-?\\d+(?:\.\\d{0,' + (0 || -1) + '})?');
+    		   var resultado = periodoEmMeses.toString().match(regex)[0];
+    		   var diasRestantes = dias - (parseInt(resultado) * 30);
+    		   var retorno = parseInt(resultado) > 1 ?  (resultado + ' Meses ') : (resultado + ' Mes ');
+    		   if(diasRestantes > 0){
+    			   retorno += 'e ';
+    			   retorno += diasRestantes > 1 ? (diasRestantes + ' dias') : (diasRestantes + ' dia');
+    		   }
+    		   return retorno;
+    	   }
        }
        
 
