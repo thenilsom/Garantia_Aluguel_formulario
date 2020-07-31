@@ -606,7 +606,7 @@
            	   $scope.cadastro.pessoal.solidario3 = {};
               }
               
-        	  //$scope.salvar();
+        	  $scope.salvar();
           }
       }
 
