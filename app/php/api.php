@@ -17,181 +17,180 @@ function salvar($request, $response){
 	$cadastro = json_decode($request->getBody());
     //echo json_encode($cadastro->pretendente->cpf);
 
-	$codigoCadastro = utf8_decode(trim(json_encode($cadastro->codigo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$statusCadastro = utf8_decode(trim(json_encode($cadastro->status, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$codigoCadastro = obterValorVariavel($cadastro->codigo);
+	$statusCadastro = obterValorVariavel($cadastro->status);
 
 	//DADOS DO PRETENDENTE
-	$inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$CPF_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$tipo_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tipoInquilino, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$data_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$tipo_DOC_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tipoDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$DOC_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$orgao_exp_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$data_exp_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$data_validade_doc_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$sexo_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$est_civil_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cpf_conjuge_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$nome_conjuge_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomeConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$data_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->dataNascimentoConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$vai_residir_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->iraResidirImovelConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$vai_compor_renda_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->iraComporRendaConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$renda_conjuge_inquilno = utf8_decode(trim(json_encode($cadastro->pretendente->rendaConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$num_dependente_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->numeroDependente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$nome_mae_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomeMae, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$nome_pai_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nomePai, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$nacionalidade_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->nacionalidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$inquilino = obterValorVariavel($cadastro->pretendente->nome);
+	$CPF_inquilino = obterValorVariavel($cadastro->pretendente->cpf);
+	$tipo_inquilino = obterValorVariavel($cadastro->pretendente->tipoInquilino);
+	$data_inquilino = obterValorVariavel($cadastro->pretendente->dataNascimento);
+	$tipo_DOC_inquilino = obterValorVariavel($cadastro->pretendente->tipoDoc);
+	$DOC_inquilino = obterValorVariavel($cadastro->pretendente->numDoc);
+	$orgao_exp_inquilino = obterValorVariavel($cadastro->pretendente->orgaoExpedidor);
+	$data_exp_inquilino = obterValorVariavel($cadastro->pretendente->dataEmissao);
+	$data_validade_doc_inquilino = obterValorVariavel($cadastro->pretendente->dataValidade); 
+	$sexo_inquilino = obterValorVariavel($cadastro->pretendente->sexo);
+	$est_civil_inquilino = obterValorVariavel($cadastro->pretendente->estadoCivil);
+	$cpf_conjuge_inquilino = obterValorVariavel($cadastro->pretendente->cpfConjuge);
+	$nome_conjuge_inquilino = obterValorVariavel($cadastro->pretendente->nomeConjuge);
+	$data_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->dataNascimentoConjuge);
+	$vai_residir_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->iraResidirImovelConjuge);
+	$vai_compor_renda_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->iraComporRendaConjuge);
+	$renda_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->rendaConjuge);
+	$num_dependente_inquilino = obterValorVariavel($cadastro->pretendente->numeroDependente);
+	$nome_mae_inquilino = obterValorVariavel($cadastro->pretendente->nomeMae);
+	$nome_pai_inquilino = obterValorVariavel($cadastro->pretendente->nomePai);
+	$nacionalidade_inquilino = obterValorVariavel($cadastro->pretendente->nacionalidade);
 	//$pais_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->paisOrigem, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$tempo_pais_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->tempoPais, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tempo_pais_inquilino = obterValorVariavel($cadastro->pretendente->tempoPais);
 	//$resp_locacao_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->responsavelLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$vai_residir_imov_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$fone_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cel_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->celular, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$fone_com_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->telefoneComercial, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$email_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->email, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$vai_residir_imov_inquilino = obterValorVariavel($cadastro->pretendente->iraResidirImovel); 
+	$fone_inquilino = obterValorVariavel($cadastro->pretendente->telefone);
+	$cel_inquilino = obterValorVariavel($cadastro->pretendente->celular);
+	$fone_com_inquilino = obterValorVariavel($cadastro->pretendente->telefoneComercial);
+	$email_inquilino = obterValorVariavel($cadastro->pretendente->email);
 
 	//DADOS DA IMOBILIARIA
-	$fantasia_corretor = utf8_decode(trim(json_encode($cadastro->imobiliaria->corretor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$CGC_imob = utf8_decode(trim(json_encode($cadastro->imobiliaria->cnpj, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$fantasia_corretor = obterValorVariavel($cadastro->imobiliaria->corretor);
+	$CGC_imob = obterValorVariavel($cadastro->imobiliaria->cnpj);
 
 	//DADOS RESIDENCIAIS ATUAIS//
-	$tempo_resid_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->tempoResidencia, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$tipo_resid_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->tipo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$nome_imobiliaria = utf8_decode(trim(json_encode($cadastro->residencia->nomeImobiliaria, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$telefone_imobiliaria = utf8_decode(trim(json_encode($cadastro->residencia->telefoneImobiliaria, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$resid_emnomede_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->emNome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$arca_com_aluguel_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->arcaAluguel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cep_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$uf_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->estado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cidade_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->cidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$endereco_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->endereco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$bairro_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->bairro, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$tempo_resid_inquilino = obterValorVariavel($cadastro->residencia->tempoResidencia);
+	$tipo_resid_inquilino = obterValorVariavel($cadastro->residencia->tipo);
+	$nome_imobiliaria = obterValorVariavel($cadastro->residencia->nomeImobiliaria);
+	$telefone_imobiliaria = obterValorVariavel($cadastro->residencia->telefoneImobiliaria);
+	$resid_emnomede_inquilino = obterValorVariavel($cadastro->residencia->emNome);
+	$arca_com_aluguel_inquilino = obterValorVariavel($cadastro->residencia->arcaAluguel);
+	$cep_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->cep);
+	$uf_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->estado);
+	$cidade_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->cidade);
+	$endereco_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->endereco);
+	$bairro_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->bairro);
 	if(json_encode($cadastro->residencia->anterior->complemento) <> "null"){$complemento_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->complemento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));}else{$complemento_anterior_inquilino="";}
-	$num_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->residencia->anterior->numero, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$num_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->numero);
 
 	//DADOS PROFISSIONAIS//
-	$empresa_trab_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->empresa, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$fone_com_2_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ramal_com_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->ramal, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	
-	$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$empresa_trab_inquilino = obterValorVariavel($cadastro->profissional->empresa);
+	$fone_com_2_inquilino = obterValorVariavel($cadastro->profissional->telefone);
+	$ramal_com_inquilino = obterValorVariavel($cadastro->profissional->ramal);
+	$profissao_inquilino = obterValorVariavel($cadastro->profissional->profissao);
 	//$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao->ocupacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	
 	//$profissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->profissao->codigo_cbo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	
-	$natureza_renda_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$data_admissao_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$salario_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->salario, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$outros_rendim_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->outrosRendimentos, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$total_rendim_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->totalRendimentos, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$empresa_anterior_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->empresaAnterior, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$endereco_com_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->enderecoComercial, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ref_bancaria_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->possuiRefBancaria, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$banco_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->banco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$agencia_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->agencia, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ccorrente_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->contaCorrente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$gerente_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->gerente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$fone_gerente_inquilino = utf8_decode(trim(json_encode($cadastro->profissional->telefoneGerente, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$natureza_renda_inquilino = obterValorVariavel($cadastro->profissional->naturezaRenda);
+	$data_admissao_inquilino = obterValorVariavel($cadastro->profissional->dataAdmissao);
+	$salario_inquilino = obterValorVariavel($cadastro->profissional->salario);
+	$outros_rendim_inquilino = obterValorVariavel($cadastro->profissional->outrosRendimentos);
+	$total_rendim_inquilino = obterValorVariavel($cadastro->profissional->totalRendimentos);
+	$empresa_anterior_inquilino = obterValorVariavel($cadastro->profissional->empresaAnterior);
+	$endereco_com_inquilino = obterValorVariavel($cadastro->profissional->enderecoComercial);
+	$ref_bancaria_inquilino = obterValorVariavel($cadastro->profissional->possuiRefBancaria);
+	$banco_inquilino = obterValorVariavel($cadastro->profissional->banco);
+	$agencia_inquilino = obterValorVariavel($cadastro->profissional->agencia);
+	$ccorrente_inquilino = obterValorVariavel($cadastro->profissional->contaCorrente);
+	$gerente_inquilino = obterValorVariavel($cadastro->profissional->gerente);
+	$fone_gerente_inquilino = obterValorVariavel($cadastro->profissional->telefoneGerente);
 
 	//DADOS IMÓVEL PRETENDIDO//
-	$ocupacao = utf8_decode(trim(json_encode($cadastro->imovel->finalidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$imovel_tipo = utf8_decode(trim(json_encode($cadastro->imovel->tipo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$imovel_tipo_descricao = utf8_decode(trim(json_encode($cadastro->imovel->imovelTipoDescricao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$motivo_locacao = utf8_decode(trim(json_encode($cadastro->imovel->motivoLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cep = utf8_decode(trim(json_encode($cadastro->imovel->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$uf = utf8_decode(trim(json_encode($cadastro->imovel->estado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cidade = utf8_decode(trim(json_encode($cadastro->imovel->cidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$endereco = utf8_decode(trim(json_encode($cadastro->imovel->endereco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$bairro = utf8_decode(trim(json_encode($cadastro->imovel->bairro, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$numero = utf8_decode(trim(json_encode($cadastro->imovel->numero, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$complemento = utf8_decode(trim(json_encode($cadastro->imovel->complemento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$aluguel = utf8_decode(trim(json_encode($cadastro->imovel->aluguel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$iptu = utf8_decode(trim(json_encode($cadastro->imovel->iptu, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$condominio = utf8_decode(trim(json_encode($cadastro->imovel->condominio, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$agua = utf8_decode(trim(json_encode($cadastro->imovel->agua, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$energia = utf8_decode(trim(json_encode($cadastro->imovel->luz, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$gas = utf8_decode(trim(json_encode($cadastro->imovel->gas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ocupacao = obterValorVariavel($cadastro->imovel->finalidade);
+	$imovel_tipo = obterValorVariavel($cadastro->imovel->tipo);
+	$imovel_tipo_descricao = obterValorVariavel($cadastro->imovel->imovelTipoDescricao);
+	$motivo_locacao = obterValorVariavel($cadastro->imovel->motivoLocacao);
+	$cep = obterValorVariavel($cadastro->imovel->cep);
+	$uf = obterValorVariavel($cadastro->imovel->estado);
+	$cidade = obterValorVariavel($cadastro->imovel->cidade);
+	$endereco = obterValorVariavel($cadastro->imovel->endereco);
+	$bairro = obterValorVariavel($cadastro->imovel->bairro);
+	$numero = obterValorVariavel($cadastro->imovel->numero);
+	$complemento = obterValorVariavel($cadastro->imovel->complemento);
+	$aluguel = obterValorVariavel($cadastro->imovel->aluguel);
+	$iptu = obterValorVariavel($cadastro->imovel->iptu);
+	$condominio = obterValorVariavel($cadastro->imovel->condominio);
+	$agua = obterValorVariavel($cadastro->imovel->agua);
+	$energia = obterValorVariavel($cadastro->imovel->luz);
+	$gas = obterValorVariavel($cadastro->imovel->gas);
 	
 	//DADOS IMÓVEL PARA CADASTRO NÃO RESIDENCIAL//
-	$empresa_constituida = utf8_decode(trim(json_encode($cadastro->imovel->locacaoEmpresaConstituida, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$cnpj_empresa_constituida = utf8_decode(trim(json_encode($cadastro->imovel->cnpjEmpresaConstituida, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ramo_atividade_empresa = utf8_decode(trim(json_encode($cadastro->imovel->ramoAtividadeEmpresa, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$franquia_empresa = utf8_decode(trim(json_encode($cadastro->imovel->trataDeFranquia, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$franqueadora_empresa = utf8_decode(trim(json_encode($cadastro->imovel->nomeFranqueadora, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$produtos_servicos_empresa = utf8_decode(trim(json_encode($cadastro->imovel->produtosFabRevPrest, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$experiencia_ramo_empresa = utf8_decode(trim(json_encode($cadastro->imovel->experienciaNoRamo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$faturam_estim_empresa = utf8_decode(trim(json_encode($cadastro->imovel->faturamentoMensalEstimado, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ret_cap_invest_empresa = utf8_decode(trim(json_encode($cadastro->imovel->prazoRetCapitalInvest, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$empresa_constituida = obterValorVariavel($cadastro->imovel->locacaoEmpresaConstituida);
+	$cnpj_empresa_constituida = obterValorVariavel($cadastro->imovel->cnpjEmpresaConstituida);
+	$ramo_atividade_empresa = obterValorVariavel($cadastro->imovel->ramoAtividadeEmpresa);
+	$franquia_empresa = obterValorVariavel($cadastro->imovel->trataDeFranquia);
+	$franqueadora_empresa = obterValorVariavel($cadastro->imovel->nomeFranqueadora);
+	$produtos_servicos_empresa = obterValorVariavel($cadastro->imovel->produtosFabRevPrest);
+	$experiencia_ramo_empresa = obterValorVariavel($cadastro->imovel->experienciaNoRamo);
+	$faturam_estim_empresa = obterValorVariavel($cadastro->imovel->faturamentoMensalEstimado);
+	$ret_cap_invest_empresa = obterValorVariavel($cadastro->imovel->prazoRetCapitalInvest);
 
 	//DADOS PESSOAIS//
-	$ref_pessoal_nome = utf8_decode(trim(json_encode($cadastro->pessoal->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ref_pessoal_fone = utf8_decode(trim(json_encode($cadastro->pessoal->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ref_pessoal_cel = utf8_decode(trim(json_encode($cadastro->pessoal->celular, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$ref_pessoal_grau_parent = utf8_decode(trim(json_encode($cadastro->pessoal->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$tem_renda_arcar_loc_inquilino = utf8_decode(trim(json_encode($cadastro->pessoal->possuiRendaArcarLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$num_solidarios = utf8_decode(trim(json_encode($cadastro->pessoal->numSolidarios, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_orgao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_data_emissao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_grau_parentesco = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_cep = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_ira_residir = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_natureza_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_empresa_trabalho = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->localTrabalhoTel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_data_admissao = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario1_conjuge_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario1->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$ref_pessoal_nome = obterValorVariavel($cadastro->pessoal->nome);
+	$ref_pessoal_fone = obterValorVariavel($cadastro->pessoal->telefone);
+	$ref_pessoal_cel = obterValorVariavel($cadastro->pessoal->celular);
+	$ref_pessoal_grau_parent = obterValorVariavel($cadastro->pessoal->grauParentesco);
+	$tem_renda_arcar_loc_inquilino = obterValorVariavel($cadastro->pessoal->possuiRendaArcarLocacao);
+	$num_solidarios = obterValorVariavel($cadastro->pessoal->numSolidarios);
+	$solidario1 = obterValorVariavel($cadastro->pessoal->solidario1->nome);
+	$solidario1_cpf = obterValorVariavel($cadastro->pessoal->solidario1->cpf);
+	$solidario1_fone = obterValorVariavel($cadastro->pessoal->solidario1->telefone);
+	$solidario1_sexo = obterValorVariavel($cadastro->pessoal->solidario1->sexo);
+	$solidario1_rg = obterValorVariavel($cadastro->pessoal->solidario1->numDoc);
+	$solidario1_renda = obterValorVariavel($cadastro->pessoal->solidario1->rendaMensalBruta);
+	$solidario1_orgao_rg = obterValorVariavel($cadastro->pessoal->solidario1->orgaoExpedidor);
+	$solidario1_data_emissao_rg = obterValorVariavel($cadastro->pessoal->solidario1->dataEmissao);
+	$solidario1_data_valid_doc = obterValorVariavel($cadastro->pessoal->solidario1->dataValidade);
+	$solidario1_estado_civil = obterValorVariavel($cadastro->pessoal->solidario1->estadoCivil);
+	$solidario1_data_nascimento = obterValorVariavel($cadastro->pessoal->solidario1->dataNascimento);
+	$solidario1_grau_parentesco = obterValorVariavel($cadastro->pessoal->solidario1->grauParentesco);
+	$solidario1_cep = obterValorVariavel($cadastro->pessoal->solidario1->cep);
+	$solidario1_ira_residir = obterValorVariavel($cadastro->pessoal->solidario1->iraResidirImovel);
+	$solidario1_natureza_renda = obterValorVariavel($cadastro->pessoal->solidario1->naturezaRenda);
+	$solidario1_empresa_trabalho = obterValorVariavel($cadastro->pessoal->solidario1->localTrabalhoTel);
+	$solidario1_data_admissao = obterValorVariavel($cadastro->pessoal->solidario1->dataAdmissao);
+	$solidario1_conjuge_cpf = obterValorVariavel($cadastro->pessoal->solidario1->cpfConjuge);
 
-	$solidario2 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_orgao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_emissao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_grau_parentesco = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_cep = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_ira_residir = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_natureza_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_empresa_trabalho = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->localTrabalhoTel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_data_admissao = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario2_conjuge_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario2->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario2 = obterValorVariavel($cadastro->pessoal->solidario2->nome);
+	$solidario2_cpf = obterValorVariavel($cadastro->pessoal->solidario2->cpf);
+	$solidario2_fone = obterValorVariavel($cadastro->pessoal->solidario2->telefone);
+	$solidario2_sexo = obterValorVariavel($cadastro->pessoal->solidario2->sexo);
+	$solidario2_rg = obterValorVariavel($cadastro->pessoal->solidario2->numDoc);
+	$solidario2_renda = obterValorVariavel($cadastro->pessoal->solidario2->rendaMensalBruta);
+	$solidario2_orgao_rg = obterValorVariavel($cadastro->pessoal->solidario2->orgaoExpedidor);
+	$solidario2_data_emissao_rg = obterValorVariavel($cadastro->pessoal->solidario2->dataEmissao);
+	$solidario2_data_valid_doc = obterValorVariavel($cadastro->pessoal->solidario2->dataValidade);
+	$solidario2_estado_civil = obterValorVariavel($cadastro->pessoal->solidario2->estadoCivil);
+	$solidario2_data_nascimento = obterValorVariavel($cadastro->pessoal->solidario2->dataNascimento);
+	$solidario2_grau_parentesco = obterValorVariavel($cadastro->pessoal->solidario2->grauParentesco);
+	$solidario2_cep = obterValorVariavel($cadastro->pessoal->solidario2->cep);
+	$solidario2_ira_residir = obterValorVariavel($cadastro->pessoal->solidario2->iraResidirImovel);
+	$solidario2_natureza_renda = obterValorVariavel($cadastro->pessoal->solidario2->naturezaRenda);
+	$solidario2_empresa_trabalho = obterValorVariavel($cadastro->pessoal->solidario2->localTrabalhoTel);
+	$solidario2_data_admissao = obterValorVariavel($cadastro->pessoal->solidario2->dataAdmissao);
+	$solidario2_conjuge_cpf = obterValorVariavel($cadastro->pessoal->solidario2->cpfConjuge);
 
-	$solidario3 = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->nome, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cpf, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_fone = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->telefone, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_sexo = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->sexo, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->numDoc, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->rendaMensalBruta, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_orgao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->orgaoExpedidor, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_data_emissao_rg = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataEmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_data_valid_doc = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataValidade, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_estado_civil = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->estadoCivil, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_data_nascimento = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataNascimento, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_grau_parentesco = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->grauParentesco, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_cep = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cep, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_ira_residir = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->iraResidirImovel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_natureza_renda = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->naturezaRenda, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_empresa_trabalho = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->localTrabalhoTel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_data_admissao = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->dataAdmissao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
-	$solidario3_conjuge_cpf = utf8_decode(trim(json_encode($cadastro->pessoal->solidario3->cpfConjuge, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solidario3 = obterValorVariavel($cadastro->pessoal->solidario3->nome);
+	$solidario3_cpf = obterValorVariavel($cadastro->pessoal->solidario3->cpf);
+	$solidario3_fone = obterValorVariavel($cadastro->pessoal->solidario3->telefone);
+	$solidario3_sexo = obterValorVariavel($cadastro->pessoal->solidario3->sexo);
+	$solidario3_rg = obterValorVariavel($cadastro->pessoal->solidario3->numDoc);
+	$solidario3_renda = obterValorVariavel($cadastro->pessoal->solidario3->rendaMensalBruta);
+	$solidario3_orgao_rg = obterValorVariavel($cadastro->pessoal->solidario3->orgaoExpedidor);
+	$solidario3_data_emissao_rg = obterValorVariavel($cadastro->pessoal->solidario3->dataEmissao);
+	$solidario3_data_valid_doc = obterValorVariavel($cadastro->pessoal->solidario3->dataValidade);
+	$solidario3_estado_civil = obterValorVariavel($cadastro->pessoal->solidario3->estadoCivil);
+	$solidario3_data_nascimento = obterValorVariavel($cadastro->pessoal->solidario3->dataNascimento);
+	$solidario3_grau_parentesco = obterValorVariavel($cadastro->pessoal->solidario3->grauParentesco);
+	$solidario3_cep = obterValorVariavel($cadastro->pessoal->solidario3->cep);
+	$solidario3_ira_residir = obterValorVariavel($cadastro->pessoal->solidario3->iraResidirImovel);
+	$solidario3_natureza_renda = obterValorVariavel($cadastro->pessoal->solidario3->naturezaRenda);
+	$solidario3_empresa_trabalho = obterValorVariavel($cadastro->pessoal->solidario3->localTrabalhoTel);
+	$solidario3_data_admissao = obterValorVariavel($cadastro->pessoal->solidario3->dataAdmissao);
+	$solidario3_conjuge_cpf = obterValorVariavel($cadastro->pessoal->solidario3->cpfConjuge);
 	
 	
 	
 	
-	$solicitante = utf8_decode(trim(json_encode($cadastro->imovel->solicitante, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	$solicitante = obterValorVariavel($cadastro->imovel->solicitante);
 	
 	if($solicitante != ""){
 		
@@ -207,11 +206,6 @@ function salvar($request, $response){
 	}
 	
 	
-
-	
-	
-	
-
     $data_cob = date("Y-m-d");
     $hora_cob = date("H:i:s");
     $seguradora = "ALL";
@@ -837,6 +831,15 @@ function salvar($request, $response){
 
     //echo $retorno_mail;
     return $registro;
+}
+
+function obterValorVariavel($variavel){
+	$valor = utf8_decode(trim(json_encode($variavel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
+	if($valor == "null"){
+		return "";
+	}else{
+		return $valor;
+	}
 }
 
 $app->run();

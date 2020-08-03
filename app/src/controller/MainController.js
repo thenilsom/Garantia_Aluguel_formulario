@@ -550,7 +550,7 @@
             	}
             }
          
-           if($scope.cadastro.pessoal.solidario2){
+           if($scope.cadastro.pessoal.numSolidarios > 1 && $scope.cadastro.pessoal.solidario2){
         	   if($scope.cadastro.pessoal.solidario2.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario2.cpfConjuge)){
         		   $scope.errors.push("CPF conjuge locatário solidário 2 inválido.");
         	   }
@@ -568,7 +568,7 @@
            	}
            } 
             
-           if($scope.cadastro.pessoal.solidario3){
+           if($scope.cadastro.pessoal.numSolidarios > 2 && $scope.cadastro.pessoal.solidario3){
         	   if($scope.cadastro.pessoal.solidario3.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario3.cpfConjuge)){
         		   $scope.errors.push("CPF conjuge locatário solidário 3 inválido.");
         	   }
