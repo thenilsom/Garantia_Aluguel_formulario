@@ -9,6 +9,7 @@
         $scope.paramUrl = service.extraiParamUrl(location.search.slice(1));
         
         var codRegistro = $("input[name='codigo']").val();
+        var codCartaOferta = $("input[name='codigo_carta_oferta']").val();
         $scope.codSeguradora = $("input[name='codigo_seguradora']").val();
         
         
@@ -347,8 +348,7 @@
 								$scope.corretoras.codMsg = 1;
 								$scope.tooseguros.codigoStatus = 4;
 								
-								
-								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise=1").then(function(data){
+								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro +"&carta_especifica=" + codCartaOferta +"&gera_analise=1").then(function(data){
 						   
 										$scope.liberty.msgValidacao  = data.data.msgValidacao;
 										$scope.liberty.codigoStatus  = data.data.codigoStatus;

@@ -23,10 +23,6 @@
 			</div>
 
 	<div class="row" style="padding: 10px;">
-	<form method="POST" action="http://www.segurosja.com.br/gerenciador/fianca/app/index.php">
-   		<input type="hidden" name="codigo" ng-value="registro.codigo">
-   		<input type="hidden" name="codigo_seguradora" value="lib">
-
 		<!-- Card Liberty -->
 		<div class="card col-sm-4">
 		  <img class="card-img-top" src="./assets/img/liberty_icone.png" alt="Card image cap" style="height: 47px">
@@ -38,11 +34,10 @@
 		    </span>
 		    <span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarDadosAnalise(registro,'liberty')"
 			data-toggle="modal" data-target="#modalDadosAnalise"></span></p>
-			
-			<button type="submit" class="btn btn-primary" formtarget="_blank"><span class="glyphicon glyphicon-repeat"></span>Reanalisar</button>
+			<button  class="btn btn-primary" data-toggle="modal" data-target="#modalReanaliseLiberty" data-ng-click="listarOpCartaOferta()">
+			<span class="glyphicon glyphicon-repeat"></span>Reanalisar</button>
 		  </div>
 		</div>
-	</form>
 	
 	<form method="POST" action="http://www.segurosja.com.br/gerenciador/fianca/app/index.php">
    		<input type="hidden" name="codigo" ng-value="registro.codigo">
@@ -242,4 +237,7 @@
      
      <!-- Inclusão do modal dados analise -->
      <div data-ng-include="'./src/view/lista/modalDadosAnalise.html'"></div> 
+     
+      <!-- Inclusão do modal reanalise liberty -->
+     <div data-ng-include="'./src/view/lista/modalReanaliseLiberty.html'"></div> 
 </div>

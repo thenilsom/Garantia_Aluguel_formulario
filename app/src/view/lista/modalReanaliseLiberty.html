@@ -1,0 +1,43 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="modalReanaliseLiberty" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Selecionar Carta Oferta</h4>
+        </div>
+        
+        <form name="formReanaliseLiberty" class="form form-horizontal" role="form" autocomplete="off"  
+       		method="POST" action="http://www.segurosja.com.br/gerenciador/fianca/app/index.php">
+        <div class="modal-body">
+       	<input type="hidden" name="codigo" ng-value="registro.codigo">
+   		<input type="hidden" name="codigo_seguradora" value="lib">
+   		<input type="hidden" name="codigo_carta_oferta" ng-value="registro.opCartaOferta.codigo">
+   		
+			<div class="form-group">
+						<label for="txtCartaOferta" class="col-xs-3 control-label label-thin">Carta Oferta:</label>
+                        <div class="col-xs-8">
+							<select id="txtCartaOferta" name="registro.opCartaOferta"
+                                    data-ng-model="registro.opCartaOferta" requerido
+                                    class="form-control form-control-small"
+                                    ng-options="c as c.descricao for c in listaOpCartas">
+							</select>
+						</div>
+					</div>
+          
+        </div>
+        <div class="modal-footer">
+        	<div class="form-group last">
+				<div class="col-md-12 text-center margem-btn-form">
+					<button type="submit" class="btn btn-success"  formtarget="_blank" onclick="$('#modalReanaliseLiberty').modal('hide')">Gravar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+        </div>
+       </form>
+        
+      </div>
+    </div>
+  </div>
+</div>

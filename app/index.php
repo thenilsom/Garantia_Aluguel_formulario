@@ -44,6 +44,9 @@
   <!-- Captura o codigo da seguradora -->
   <input name="codigo_seguradora" type="hidden" value="<?echo $_POST['codigo_seguradora'];?>" />
 
+  <!-- Captura o codigo da carta oferta -->
+  <input name="codigo_carta_oferta" type="hidden" value="<?echo $_POST['codigo_carta_oferta'];?>" />
+
   <div class="container" style = "width:86%;">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/formulario/principal.html'" ng-controller="MainController"></div> 
