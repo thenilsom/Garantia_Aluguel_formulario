@@ -347,9 +347,15 @@
          $http.post(url + 'php/consulta.php/listarOpCartas', {codigo: codigoUserParam}).then(function(data){
             $scope.listaOpCartas = [];
             if(data.data && data.data.length > 0){
-            	$scope.listaOpCartas.push({'descricao': 'Carta Desconto Especial 19-N.1234', 'codigo': data.data[0].carta_of_lib_fianca});
-            	$scope.listaOpCartas.push({'descricao': 'Carta Comissão Variável-N5678', 'codigo': data.data[0].carta_of_lib_fianca_variavel});
-            	$scope.listaOpCartas.push({'descricao': 'Carta Tombamento Cardif-N.9876', 'codigo': data.data[0].carta_of_lib_fianca_tombamento});
+            	if(data.data[0].carta_of_lib_fianca > 0)
+            		$scope.listaOpCartas.push({'descricao': 'Carta Desconto Especial 19-N.' + data.data[0].carta_of_lib_fianca, 'codigo': data.data[0].carta_of_lib_fianca});
+            	
+            	if(data.data[0].carta_of_lib_fianca_variavel > 0)
+            		$scope.listaOpCartas.push({'descricao': 'Carta Comissão Variável-N.' + data.data[0].carta_of_lib_fianca_variavel, 'codigo': data.data[0].carta_of_lib_fianca_variavel});
+            	
+            	if(data.data[0].carta_of_lib_fianca_tombamento > 0)
+            		$scope.listaOpCartas.push({'descricao': 'Carta Tombamento Cardif-N.' + data.data[0].carta_of_lib_fianca_tombamento, 'codigo': data.data[0].carta_of_lib_fianca_tombamento});
+            	
             	$scope.registro.opCartaOferta = $scope.listaOpCartas[0];
              }
             }, function(erro){
