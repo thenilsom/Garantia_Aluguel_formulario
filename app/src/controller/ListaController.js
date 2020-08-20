@@ -14,6 +14,7 @@
         //obtem os parametros na url se existir
         var codigoParam = null;
         var codigoUserParam = null;
+        var cnpjImob = null;
         var isIncluirParam = false;
         
         var paramUrl = service.extraiParamUrl(location.search.slice(1));
@@ -22,6 +23,7 @@
         	codigoParam = service.decriptografar(paramUrl['var']);
         	codigoUserParam = paramUrl['codUser'];
         	isIncluirParam = paramUrl['isIncluir'];
+        	cnpjImob = paramUrl['cnpjImob'];
         }
 
      
@@ -344,7 +346,7 @@
        
      //traz a lista de opções de cartas
        $scope.listarOpCartaOferta = function(){
-         $http.post(url + 'php/consulta.php/listarOpCartas', {codigo: codigoUserParam}).then(function(data){
+         $http.post(url + 'php/consulta.php/listarOpCartas', {cpf: cnpjImob}).then(function(data){
             $scope.listaOpCartas = [];
             if(data.data && data.data.length > 0){
             	if(data.data[0].carta_of_lib_fianca > 0)
