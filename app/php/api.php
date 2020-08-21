@@ -37,6 +37,7 @@ function salvar($request, $response){
 	$data_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->dataNascimentoConjuge);
 	$vai_residir_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->iraResidirImovelConjuge);
 	$vai_compor_renda_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->iraComporRendaConjuge);
+	$vai_compor_renda_pretendente = obterValorVariavel($cadastro->pretendente->iraComporRendaPretendente);
 	$renda_conjuge_inquilno = obterValorVariavel($cadastro->pretendente->rendaConjuge);
 	$num_dependente_inquilino = obterValorVariavel($cadastro->pretendente->numeroDependente);
 	$nome_mae_inquilino = obterValorVariavel($cadastro->pretendente->nomeMae);
@@ -262,7 +263,8 @@ function salvar($request, $response){
                                     cpf_conjuge_inquilino, 
                                     data_conjuge_inquilno, 
                                     vai_residir_conjuge_inquilno, 
-                                    vai_compor_renda_conjuge_inquilno, 
+                                    vai_compor_renda_conjuge_inquilno,
+                                    inquilino_vai_compor_renda, 
                                     renda_conjuge_inquilno,
                                     num_dependente_inquilino, 
                                     nome_mae_inquilino, 
@@ -418,6 +420,7 @@ function salvar($request, $response){
                                    	'$data_conjuge_inquilno', 
                                    	'$vai_residir_conjuge_inquilno', 
                                    	'$vai_compor_renda_conjuge_inquilno', 
+                                   	'$vai_compor_renda_pretendente',
                                    	'$renda_conjuge_inquilno',
                                    	'$num_dependente_inquilino', 
                                    	'$nome_mae_inquilino', 
@@ -578,6 +581,7 @@ function salvar($request, $response){
         data_conjuge_inquilno='$data_conjuge_inquilno',
         vai_residir_conjuge_inquilno='$vai_residir_conjuge_inquilno',
         vai_compor_renda_conjuge_inquilno='$vai_compor_renda_conjuge_inquilno',
+        inquilino_vai_compor_renda='$vai_compor_renda_pretendente',
         renda_conjuge_inquilno='$renda_conjuge_inquilno',
 		num_dependente_inquilino='$num_dependente_inquilino',
 		nome_mae_inquilino='$nome_mae_inquilino',

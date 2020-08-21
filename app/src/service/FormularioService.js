@@ -34,6 +34,7 @@ angular.module('app')
 			pretendente.dataNascimentoConjuge = dados.data_conjuge_inquilno;
 			pretendente.iraResidirImovelConjuge = dados.vai_residir_conjuge_inquilno;
 			pretendente.iraComporRendaConjuge = dados.vai_compor_renda_conjuge_inquilno;
+			pretendente.iraComporRendaPretendente = dados.inquilino_vai_compor_renda;		
 			pretendente.rendaConjuge = dados.renda_conjuge_inquilno;
 			pretendente.numeroDependente = parseInt(dados.num_dependente_inquilino);
 			pretendente.nomeMae = dados.nome_mae_inquilino;
