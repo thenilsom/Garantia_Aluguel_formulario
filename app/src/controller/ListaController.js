@@ -480,12 +480,15 @@
 
        //retorna o nome da seguradora pelo código
        $scope.getNomeSeguradora = function(registro){
-    	var seguradora = $scope.listaSeguradoras.filter(i=> i.sigla == registro.seguradora)[0];
-    	if(seguradora){
-    		return seguradora.sigla + '-' + seguradora.nome_abrev;
-    	}
+    	if($scope.listaSeguradoras){
+    		var seguradora = $scope.listaSeguradoras.filter(i=> i.sigla == registro.seguradora)[0];
+    		if(seguradora){
+    			return seguradora.sigla + '-' + seguradora.nome_abrev;
+    		}
+    	}else{
     		return '';
-       }
+    	}
+      }
        
        $scope.getDescricaoFormaPagamento = function(registro){
     	   var codigo = registro.forma_pagto;
@@ -548,6 +551,20 @@
     		   return retorno;
     	   }
        }
+       
+       /**
+		 * Retorna a descrição do estado civil
+		 */
+		$scope.getDescEstadoCivil = function(codigo){
+			switch (codigo) {
+			case "0": return "Solteiro(a)";
+			case "1": return "Casado(a)";
+			case "2": return "Divorciado(a)";
+			case "3": return "Viúvo(a)";
+			case "4": return "Separado(a)";
+			case "5": return "Companheiro(a)";
+		  }
+		}
        
 
        $scope.irParaListagem();

@@ -62,8 +62,8 @@ angular.module('app')
  	 * Retorna a diferença entre datas em dias
  	 */
  	service.difEntreDatasEmDias = function(dataInicio, dataFim){
- 		dataInicio = formatarData(dataInicio);
- 		dataFim = formatarData(dataFim);
+ 		dataInicio = service.formatarData(dataInicio);
+ 		dataFim = service.formatarData(dataFim);
  		var arrayDI = dataInicio.split('/');
  		var arrayDF = dataFim.split('/');
 		dataInicio =  new Date(arrayDI[2], parseInt(arrayDI[1]) - 1, arrayDI[0]);

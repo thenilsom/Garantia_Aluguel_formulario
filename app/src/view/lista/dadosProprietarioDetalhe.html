@@ -1,19 +1,41 @@
  <div class="container detalhamento" layout-padding>
       	
-    <div class="form-group">
-		<label>Início: </label> <span>{{registro.inicio }}</span>
+   <div class="form-group">
+		<label>Proprietário: </label> <span>{{registro.proprietario }}</span>
+		<label>Tipo Proprietário: </label> <span>{{registro.tipo_proprietario}}</span>
 	</div>
 
 	<div class="form-group">
-		<label>Fim: </label> <span>{{registro.fim_contrato}}</span>
+		<label>CPF/CNPJ: </label> <span>{{registro.CPF_proprietario}}</span>
+	</div>
+	
+	<div ng-if="registro.tipo_proprietario == 'J'">
+	<div class="form-group">
+		<label>Responsável pela Empresa: </label> <span>{{registro.resp_proprietario}}</span>
 	</div>
 	
 	<div class="form-group">
-		<label>Índice de Reajuste: </label> <span>{{obterIndeceReajustePorCodigo(registro.indice_reajuste)}}</span>
+		<label>CPF Responsável Empresa: </label> <span>{{registro.CPF_resp_proprietario}}</span>
+	</div>
 	</div>
 	
 	<div class="form-group">
-		<label>Período: </label> <span>{{calcularPeriodo(registro)}}</span>
+		<label>Data Nascimento: </label> <span>{{registro.data_proprietario}}</span>
 	</div>
+	
+	<div class="form-group">
+		<label>Estado Civil: </label> <span>{{getDescEstadoCivil(registro.est_civil_proprietario)}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>RG: </label> <span>{{registro.rg_proprietario}}</span>
+		<label>Orgão Exp: </label> <span>{{registro.orgao_exp_proprietario}}</span>
+		<label>Data Exp: </label> <span>{{registro.data_exp_proprietario}}</span>
+	</div>
+	
+	<div class="form-group">
+		<label>{{registro.tipo_proprietario == 'F' ? 'Profissão:' : 'Profissão Responsável Empresa:'}}</label> <span>{{registro.profissao_descricao}}</span>
+	</div>
+	
 </div>
    
