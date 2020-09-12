@@ -3,7 +3,7 @@
                                   
                     <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
                     <div class="form-group">
-		      			<label for="files" class="col-xs-1" style="width: 11%">Enviar apolice:</label>
+		      			<label for="files" class="col-xs-1" style="width: 11%">{{dadosAplice.fezUpload ? 'Alterar' : 'Enviar'}} apólice:</label>
 			      			<div class="col-xs-3">
 			      			<input id="files" type="file" nv-file-select="" uploader="uploader" ng-disabled="uploader.queue.length > 0" />
 						</div>

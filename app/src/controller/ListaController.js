@@ -383,12 +383,43 @@
     			   $scope.dadosAplice.hora = array[1];
     		   }
     		   
+    		   marcarSeFezUploadApolice($scope.dadosAplice);
+    		   
     		   iniciarUpload($scope.registro.codigo);
     		   
           }, function(erro){
            service.alertarErro(erro.statusText);
           });
-    		   
+       }
+       
+       /**
+        * Marca se fez upload da apolice
+        */
+       var marcarSeFezUploadApolice = function(dados){
+    	   $.ajax({
+               type: 'get',
+               url: $scope.gerarUrlUploadApolice(dados),
+               success: function (response) {
+               },error: function (response) {
+                  if(response.statusText == 'OK'){
+                	  dados.fezUpload = true;
+                  }
+               },
+               dataType: 'json',
+               global: false
+           });
+       }
+       
+       /**
+        * Gera a url de acesso a apolice
+        */
+       $scope.gerarUrlUploadApolice = function(dados){
+    	   var arquivo = 'semanexo.pdf';
+    	   if(dados && dados.codigoCadastro && dados.objSeguradora && dados.objSeguradora.sigla){
+    		   arquivo =  dados.codigoCadastro + '_' +  dados.objSeguradora.sigla.toLowerCase() + '.pdf';
+    	   }
+    	   
+    	   return "http://www.segurosja.com.br/sistema_seguros/sistemaimobiliario/api/admin/fianca/uploads/" + arquivo;
        }
        
        /*inicia as configurações de upload*/
@@ -400,10 +431,12 @@
 
          /*função chamada antes de fazer upload do item*/
          $scope.uploader.onAfterAddingFile   = function(item) {
-        	if(!confirm("Já existe um arquivo de apólice no servidor. Deseja sobrescrever o arquivo existente")){
-        		item.remove();
-        		$( "#files" ).val("")
-        	}
+        	 if($scope.dadosAplice.fezUpload){
+        		 if(!confirm("Já existe um arquivo de apólice no servidor. Deseja sobrescrever o arquivo existente")){
+        			 item.remove();
+        			 $( "#files" ).val("")
+        		 }
+        	 }
          };
          
         /*função chamada em caso de erro no upload*/
