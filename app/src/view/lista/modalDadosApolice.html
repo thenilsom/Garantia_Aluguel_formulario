@@ -65,7 +65,7 @@
 			</div>
 			
 			<!--Ver apólice-->
-                <a ng-href="{{gerarUrlUploadApolice(dadosAplice)}}" ng-if="dadosAplice.fezUpload"
+                <a ng-href="{{gerarUrlUploadApolice(dadosAplice.codigoCadastro, dadosAplice.objSeguradora.sigla)}}" ng-if="dadosAplice.fezUploadApolice"
                 	target="_blank" class="btn btn-info" role="button" style="margin-bottom: 20px;">
                 	<span class="glyphicon glyphicon-paperclip"></span>Ver apólice</a>
                 

@@ -71,6 +71,7 @@
             	}
             });
 
+            marcarSeFezUploadApolice($scope.registro, $scope.registro.codigo, $scope.registro.seguradora);
             $scope.acao = 'detalhar'; 
 
             }, function(erro){
@@ -383,7 +384,9 @@
     			   $scope.dadosAplice.hora = array[1];
     		   }
     		   
-    		   marcarSeFezUploadApolice($scope.dadosAplice);
+    		   if($scope.dadosAplice.objSeguradora && $scope.dadosAplice.objSeguradora.sigla){
+    			   marcarSeFezUploadApolice($scope.dadosAplice, $scope.dadosAplice.codigoCadastro, $scope.dadosAplice.objSeguradora.sigla);
+    		   }
     		   
     		   iniciarUpload($scope.registro.codigo);
     		   
@@ -395,14 +398,14 @@
        /**
         * Marca se fez upload da apolice
         */
-       var marcarSeFezUploadApolice = function(dados){
+       var marcarSeFezUploadApolice = function(registro, codigo, seguradora){
     	   $.ajax({
                type: 'get',
-               url: $scope.gerarUrlUploadApolice(dados),
+               url: $scope.gerarUrlUploadApolice(codigo, seguradora),
                success: function (response) {
                },error: function (response) {
-                  if(response.statusText == 'OK'){
-                	  dados.fezUpload = true;
+                  if(response.statusText == 'OK' || response.status == 200){
+                	  registro.fezUploadApolice = true;
                   }
                },
                dataType: 'json',
@@ -413,10 +416,10 @@
        /**
         * Gera a url de acesso a apolice
         */
-       $scope.gerarUrlUploadApolice = function(dados){
+       $scope.gerarUrlUploadApolice = function(codigo, seguradora){
     	   var arquivo = 'semanexo.pdf';
-    	   if(dados && dados.codigoCadastro && dados.objSeguradora && dados.objSeguradora.sigla){
-    		   arquivo =  dados.codigoCadastro + '_' +  dados.objSeguradora.sigla.toLowerCase() + '.pdf';
+    	   if(codigo && seguradora){
+    		   arquivo =  codigo + '_' +  seguradora.substr(0,3).toLowerCase() + '.pdf';
     	   }
     	   
     	   return "http://www.segurosja.com.br/sistema_seguros/sistemaimobiliario/api/admin/fianca/uploads/" + arquivo;
