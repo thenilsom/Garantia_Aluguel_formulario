@@ -60,6 +60,18 @@ div {
 			</select>
 	 </div>
 	</div>
+	
+	<div class="col-md-2">
+	<div class="form-group">
+	<label>Situação:</label>
+	      <select  data-ng-model="filtro.situacao" class="form-control form-control-small"
+	        ng-change="filtroPorSituacao()">
+				<option value="" style="font-weight: bold;">Todas as Análises</option>
+				<option value="nao_registrado">Somente Não Registradas</option>
+				<option value="contratado">Somente Contratadas</option>
+			</select>
+	</div>	
+	</div>
  </div>  
    
   <div class="row">

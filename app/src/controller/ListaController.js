@@ -25,6 +25,8 @@
         }
 
      
+       $scope.filtro = {};
+       var listaAux = [];
        $scope.listaTabela = [];
 
        /**
@@ -87,11 +89,26 @@
        $scope.filtroLista = function (input, search_param) {
     	   return !search_param || (input && input.toString().toLocaleLowerCase().includes(search_param.toLocaleLowerCase()));
     	 }
+       
+       /**
+        * Filtro de lista
+        */
+       $scope.filtroPorSituacao = function () {
+    	   if(angular.equals($scope.filtro.situacao, 'nao_registrado')){
+    		   $scope.listaTabela = listaAux.filter(r=> !r.usuario_atendente);
+    	   }else if(angular.equals($scope.filtro.situacao, 'contratado')){
+    		   $scope.listaTabela = listaAux.filter(r=>r.data_contratacao && !r.data_contratacao.startsWith('0000'));
+    		  
+    	   }else{
+    		   $scope.listaTabela = listaAux;
+    	   }
+    	 }
 
        var listar = function(){
          $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
+            listaAux = data.data;
             $scope.listaTabela.forEach(l=> l.codigo = parseInt(l.codigo));//converte codigo para inteiro pro filtro da listagem
             montarArrayImobiliarias($scope.listaTabela);
             alertarQtdRegPendenteNoTitle();
