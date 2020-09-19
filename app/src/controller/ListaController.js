@@ -589,7 +589,7 @@
 		}
        }
        
-       $scope.calcularPeriodo = function(registro){
+       $scope.calcularPeriodo = function(registro, esconderDiasNosMeses){
     	   if(registro.inicio && registro.fim_contrato){
     		   var dias = dataUtil.difEntreDatasEmDias(registro.inicio, registro.fim_contrato);
     		   var periodoEmMeses = dias/30;
@@ -597,6 +597,11 @@
     		   var resultado = periodoEmMeses.toString().match(regex)[0];
     		   var diasRestantes = dias - (parseInt(resultado) * 30);
     		   var retorno = parseInt(resultado) > 1 ?  (resultado + ' Meses ') : (resultado + ' Mes ');
+    		   
+    		   if(retorno && esconderDiasNosMeses){
+    			   return retorno;//exibe so os meses sem os dias
+    		   }
+    		   
     		   if(diasRestantes > 0){
     			   retorno += 'e ';
     			   retorno += diasRestantes > 1 ? (diasRestantes + ' dias') : (diasRestantes + ' dia');
