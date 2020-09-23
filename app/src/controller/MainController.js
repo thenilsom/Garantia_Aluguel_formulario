@@ -562,6 +562,10 @@
             	if($scope.cadastro.pessoal.solidario1.cep && !service.isCepValido($scope.cadastro.pessoal.solidario1.cep)){
             		$scope.errors.push("Cep do locatário solidário 1 inválido.");
             	}
+            	
+            	if($scope.cadastro.pessoal.solidario1.telefone && !$scope.cadastro.pessoal.solidario1.dddTelefone){
+            		$scope.errors.push("Informe o DDD do telefone no locatário solidário 1.");
+            	}
             }
          
            if($scope.cadastro.pessoal.numSolidarios > 1 && $scope.cadastro.pessoal.solidario2){
@@ -580,6 +584,10 @@
         	   if($scope.cadastro.pessoal.solidario2.cep && !service.isCepValido($scope.cadastro.pessoal.solidario2.cep)){
            		$scope.errors.push("Cep do locatário solidário 2 inválido.");
            	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario2.telefone && !$scope.cadastro.pessoal.solidario2.dddTelefone){
+           		$scope.errors.push("Informe o DDD do telefone no locatário solidário 2.");
+           	}
            } 
             
            if($scope.cadastro.pessoal.numSolidarios > 2 && $scope.cadastro.pessoal.solidario3){
@@ -597,6 +605,10 @@
         	   
         	   if($scope.cadastro.pessoal.solidario3.cep && !service.isCepValido($scope.cadastro.pessoal.solidario3.cep)){
            		$scope.errors.push("Cep do locatário solidário 3 inválido.");
+           	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario3.telefone && !$scope.cadastro.pessoal.solidario3.dddTelefone){
+           		$scope.errors.push("Informe o DDD do telefone no locatário solidário 3.");
            	}
            }
            

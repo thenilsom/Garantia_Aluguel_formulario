@@ -212,6 +212,9 @@ angular.module('app')
 			registro.residencia.telefoneImobiliaria = concatenarDDDComFone(registro.residencia.dddTelefoneImobiliaria, registro.residencia.telefoneImobiliaria);
 			registro.profissional.telefone = concatenarDDDComFone(registro.profissional.dddTelefone, registro.profissional.telefone);
 			registro.profissional.telefoneGerente = concatenarDDDComFone(registro.profissional.dddTelefoneGerente, registro.profissional.telefoneGerente);
+			registro.pessoal.solidario1.telefone = concatenarDDDComFone(registro.pessoal.solidario1.dddTelefone, registro.pessoal.solidario1.telefone);
+			registro.pessoal.solidario2.telefone = concatenarDDDComFone(registro.pessoal.solidario2.dddTelefone, registro.pessoal.solidario2.telefone);
+			registro.pessoal.solidario3.telefone = concatenarDDDComFone(registro.pessoal.solidario3.dddTelefone, registro.pessoal.solidario3.telefone);
 		}
 		
 		service.tratarDadosTelefoneParaFormulario = function(registro){
@@ -227,6 +230,12 @@ angular.module('app')
 			registro.profissional.telefone = removerDDD(registro.profissional.telefone);
 			registro.profissional.dddTelefoneGerente = separarDDD(registro.profissional.telefoneGerente);
 			registro.profissional.telefoneGerente = removerDDD(registro.profissional.telefoneGerente);
+			registro.pessoal.solidario1.dddTelefone = separarDDD(registro.pessoal.solidario1.telefone);
+			registro.pessoal.solidario1.telefone = removerDDD(registro.pessoal.solidario1.telefone);
+			registro.pessoal.solidario2.dddTelefone = separarDDD(registro.pessoal.solidario2.telefone);
+			registro.pessoal.solidario2.telefone = removerDDD(registro.pessoal.solidario2.telefone);
+			registro.pessoal.solidario3.dddTelefone = separarDDD(registro.pessoal.solidario3.telefone);
+			registro.pessoal.solidario3.telefone = removerDDD(registro.pessoal.solidario3.telefone);
 		}
 		
 		var concatenarDDDComFone = function(ddd, fone){
