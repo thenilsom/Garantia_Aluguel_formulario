@@ -153,22 +153,22 @@ diretiva.directive('mascaraTelefone', function(serviceUtil) {
 	function link(scope, el, attrs, ctrl) {
 		if(!serviceUtil.isMobile()){
 			$(el).attr('type', 'text');
-			$(el).mask("(99) 9999-9999?9").change(function (event) {  
+			$(el).mask("9999-9999?9").change(function (event) {  
 	            var target, phone, element;  
 	            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
 	            phone = target.value.replace(/\D/g, '');
 	            element = $(target);  
 	            element.unmask();  
-	            if(phone.length > 10) {  
-	                element.mask("(99) 99999-999?9");  
+	            if(phone.length > 8) {  
+	                element.mask("99999-999?9");  
 	            } else {  
-	                element.mask("(99) 9999-9999?9");  
+	                element.mask("9999-9999?9");  
 	            }  
 	        });
 
 	        el.on('focusout', function () {
 				scope.$apply(function(){
-				ctrl.$setViewValue(el.val().replace(/[^0-9]/g, '').length >= 10 ? el.val() : undefined);
+				ctrl.$setViewValue(el.val().replace(/[^0-9]/g, '').length >= 8 ? el.val() : undefined);
 			});
       	});
 	        

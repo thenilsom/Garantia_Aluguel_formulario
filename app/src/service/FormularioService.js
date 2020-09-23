@@ -13,6 +13,7 @@ angular.module('app')
 			cadastro.imovel = preencherDadosImovelPretendido(dados);
 			cadastro.pessoal = preencherDadosComposicaoRenda(dados);
 
+			service.tratarDadosTelefoneParaFormulario(cadastro);
 			return cadastro;
 		}
 
@@ -203,25 +204,72 @@ angular.module('app')
 
 			return pessoal;
 		}
+		
+		service.tratarDadosTelefoneParaSalvar = function(registro){
+			registro.pretendente.telefone = concatenarDDDComFone(registro.pretendente.dddTelefone, registro.pretendente.telefone);
+			registro.pretendente.celular = concatenarDDDComFone(registro.pretendente.dddCelular, registro.pretendente.celular);
+			registro.pretendente.telefoneComercial = concatenarDDDComFone(registro.pretendente.dddTelefoneComercial, registro.pretendente.telefoneComercial);
+			registro.residencia.telefoneImobiliaria = concatenarDDDComFone(registro.residencia.dddTelefoneImobiliaria, registro.residencia.telefoneImobiliaria);
+			registro.profissional.telefone = concatenarDDDComFone(registro.profissional.dddTelefone, registro.profissional.telefone);
+			registro.profissional.telefoneGerente = concatenarDDDComFone(registro.profissional.dddTelefoneGerente, registro.profissional.telefoneGerente);
+		}
+		
+		service.tratarDadosTelefoneParaFormulario = function(registro){
+			registro.pretendente.dddTelefone = separarDDD(registro.pretendente.telefone);
+			registro.pretendente.telefone = removerDDD(registro.pretendente.telefone);
+			registro.pretendente.dddCelular = separarDDD(registro.pretendente.celular);
+			registro.pretendente.celular = removerDDD(registro.pretendente.celular);
+			registro.pretendente.dddTelefoneComercial = separarDDD(registro.pretendente.telefoneComercial);
+			registro.pretendente.telefoneComercial = removerDDD(registro.pretendente.telefoneComercial);
+			registro.residencia.dddTelefoneImobiliaria = separarDDD(registro.residencia.telefoneImobiliaria);
+			registro.residencia.telefoneImobiliaria = removerDDD(registro.residencia.telefoneImobiliaria);
+			registro.profissional.dddTelefone = separarDDD(registro.profissional.telefone);
+			registro.profissional.telefone = removerDDD(registro.profissional.telefone);
+			registro.profissional.dddTelefoneGerente = separarDDD(registro.profissional.telefoneGerente);
+			registro.profissional.telefoneGerente = removerDDD(registro.profissional.telefoneGerente);
+		}
+		
+		var concatenarDDDComFone = function(ddd, fone){
+			if(ddd && fone){
+				return "(" + ddd + ")" + fone;
+			}
+			return "";
+		}
 
 
 		var tratarTempoResidencia = function(dados){
-			if(dados.includes("MENOS DE"))
-				return "MENOS DE 1 ANO";
-
-			if(dados.includes("DE 1"))
-				return "DE 1 A 2 ANOS";
-
-			if(dados.includes("DE 3"))
-				return "DE 3 A 4 ANOS";
-
-			if(dados.includes("DE 5"))
-				return "DE 5 A 10 ANOS";
-
-			if(dados.includes("ACIMA DE"))
-				return "ACIMA DE 10 ANOS";
+			if(dados){
+				if(dados.includes("MENOS DE"))
+					return "MENOS DE 1 ANO";
+				
+				if(dados.includes("DE 1"))
+					return "DE 1 A 2 ANOS";
+				
+				if(dados.includes("DE 3"))
+					return "DE 3 A 4 ANOS";
+				
+				if(dados.includes("DE 5"))
+					return "DE 5 A 10 ANOS";
+				
+				if(dados.includes("ACIMA DE"))
+					return "ACIMA DE 10 ANOS";
+			}
 
 			return dados;
+		}
+		
+		var separarDDD = function(fone){
+			if(fone && fone.length > 2){
+				return fone.replace('(','').replace(')','').substring(0,2);
+			}
+			return '';
+		}
+		
+		var removerDDD = function(fone){
+			if(fone && fone.length > 2){
+				return fone.replace('(','').replace(')','').substr(2).trim();
+			}
+			return '';
 		}
 
 		return service;

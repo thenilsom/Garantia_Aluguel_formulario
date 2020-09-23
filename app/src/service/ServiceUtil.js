@@ -275,7 +275,10 @@ angular.module('app')
 	}
 
 	service.gerarLinkPastaUpload = function(codigo, nome){
-		 return codigo + '_' + nome.replace(/ /g, '_');
+		if(codigo && nome){
+			return codigo + '_' + nome.replace(/ /g, '_');
+		}
+		return '';
 	}
 
 	return service;

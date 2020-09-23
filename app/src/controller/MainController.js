@@ -247,9 +247,11 @@
             //garante a formatação do cpf
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
             $scope.cadastro.status = '1';
-
+            formularioService.tratarDadosTelefoneParaSalvar($scope.cadastro);
+            
             $http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-				
+					
+            		formularioService.tratarDadosTelefoneParaFormulario($scope.cadastro);
 				    $scope.geraAnaliseLib = 0;
 					$scope.geraAnalisePor = 0;
 					$scope.geraAnaliseToo = 0;
@@ -512,6 +514,18 @@
                 && !$scope.cadastro.pretendente.telefoneComercial){
                 $scope.errors.push("Preencha ao menos um campo de telefone.");
               }
+              
+              if($scope.cadastro.pretendente.telefone && !$scope.cadastro.pretendente.dddTelefone){
+            	  $scope.errors.push("Preencha o DDD do telefone.");
+              }
+              
+              if($scope.cadastro.pretendente.celular && !$scope.cadastro.pretendente.dddCelular){
+            	  $scope.errors.push("Preencha o DDD do celular.");
+              }
+              
+              if($scope.cadastro.pretendente.telefoneComercial && !$scope.cadastro.pretendente.dddTelefoneComercial){
+            	  $scope.errors.push("Preencha o DDD do telefone comercial.");
+              }
 
               if(!validador.validarCaracteresEspeciais($scope.cadastro.pretendente.nome)){
                 $scope.errors.push("Nome do pretendente não pode conter acentos ou caracteres especiais.");
@@ -621,10 +635,30 @@
 			    }
 		    }
             
+            if($scope.cadastro.profissional.telefone && !$scope.cadastro.profissional.dddTelefone){
+             	  $scope.errors.push("Preencha o DDD do Telefone");
+               }
+            
+            if($scope.cadastro.profissional.telefoneGerente && !$scope.cadastro.profissional.dddTelefoneGerente){
+             	  $scope.errors.push("Preencha o DDD do Telefone Gerente.");
+               }
+            
             if($scope.cadastro.profissional.telefone){
             	$scope.cadastro.pretendente.telefoneComercial = $scope.cadastro.profissional.telefone;
             }
             //$scope.errors = []; //##################################################
+
+            $scope.proximoPasso();
+          }
+          
+          /*valida os dados residenciais*/
+          $scope.validarDadosResidenciais = function(form){
+        	  iniciarVariavelErro();
+             validador.validarCamposObrigatorios(form, $scope.errors);
+             
+             if($scope.cadastro.residencia.telefoneImobiliaria && !$scope.cadastro.residencia.dddTelefoneImobiliaria){
+           	  $scope.errors.push("Preencha o DDD do Telefone Imobiliária/Proprietário.");
+             }
 
             $scope.proximoPasso();
           }
