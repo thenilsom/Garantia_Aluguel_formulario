@@ -48,8 +48,11 @@ function salvar($request, $response){
 	//$resp_locacao_inquilino = utf8_decode(trim(json_encode($cadastro->pretendente->responsavelLocacao, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), '"'));
 	$vai_residir_imov_inquilino = obterValorVariavel($cadastro->pretendente->iraResidirImovel); 
 	$fone_inquilino = obterValorVariavel($cadastro->pretendente->telefone);
+	$ddd_inquilino = obterValorVariavel($cadastro->pretendente->dddTelefone);
 	$cel_inquilino = obterValorVariavel($cadastro->pretendente->celular);
+	$ddd_cel_inquilino = obterValorVariavel($cadastro->pretendente->dddCelular);
 	$fone_com_inquilino = obterValorVariavel($cadastro->pretendente->telefoneComercial);
+	$ddd_com_inquilino = obterValorVariavel($cadastro->pretendente->dddTelefoneComercial);
 	$email_inquilino = obterValorVariavel($cadastro->pretendente->email);
 
 	//DADOS DA IMOBILIARIA
@@ -61,6 +64,7 @@ function salvar($request, $response){
 	$tipo_resid_inquilino = obterValorVariavel($cadastro->residencia->tipo);
 	$nome_imobiliaria = obterValorVariavel($cadastro->residencia->nomeImobiliaria);
 	$telefone_imobiliaria = obterValorVariavel($cadastro->residencia->telefoneImobiliaria);
+	$ddd_telefone_imobiliaria = obterValorVariavel($cadastro->residencia->dddTelefoneImobiliaria);
 	$resid_emnomede_inquilino = obterValorVariavel($cadastro->residencia->emNome);
 	$arca_com_aluguel_inquilino = obterValorVariavel($cadastro->residencia->arcaAluguel);
 	$cep_anterior_inquilino = obterValorVariavel($cadastro->residencia->anterior->cep);
@@ -93,6 +97,7 @@ function salvar($request, $response){
 	$ccorrente_inquilino = obterValorVariavel($cadastro->profissional->contaCorrente);
 	$gerente_inquilino = obterValorVariavel($cadastro->profissional->gerente);
 	$fone_gerente_inquilino = obterValorVariavel($cadastro->profissional->telefoneGerente);
+	$ddd_gerente_inquilino = obterValorVariavel($cadastro->profissional->dddTelefoneGerente);
 
 	//DADOS IMÓVEL PRETENDIDO//
 	$ocupacao = obterValorVariavel($cadastro->imovel->finalidade);
@@ -134,6 +139,7 @@ function salvar($request, $response){
 	$solidario1 = obterValorVariavel($cadastro->pessoal->solidario1->nome);
 	$solidario1_cpf = obterValorVariavel($cadastro->pessoal->solidario1->cpf);
 	$solidario1_fone = obterValorVariavel($cadastro->pessoal->solidario1->telefone);
+	$solidario1_ddd = obterValorVariavel($cadastro->pessoal->solidario1->dddTelefone);
 	$solidario1_sexo = obterValorVariavel($cadastro->pessoal->solidario1->sexo);
 	$solidario1_rg = obterValorVariavel($cadastro->pessoal->solidario1->numDoc);
 	$solidario1_renda = obterValorVariavel($cadastro->pessoal->solidario1->rendaMensalBruta);
@@ -153,6 +159,7 @@ function salvar($request, $response){
 	$solidario2 = obterValorVariavel($cadastro->pessoal->solidario2->nome);
 	$solidario2_cpf = obterValorVariavel($cadastro->pessoal->solidario2->cpf);
 	$solidario2_fone = obterValorVariavel($cadastro->pessoal->solidario2->telefone);
+	$solidario2_ddd = obterValorVariavel($cadastro->pessoal->solidario2->dddTelefone);
 	$solidario2_sexo = obterValorVariavel($cadastro->pessoal->solidario2->sexo);
 	$solidario2_rg = obterValorVariavel($cadastro->pessoal->solidario2->numDoc);
 	$solidario2_renda = obterValorVariavel($cadastro->pessoal->solidario2->rendaMensalBruta);
@@ -172,6 +179,7 @@ function salvar($request, $response){
 	$solidario3 = obterValorVariavel($cadastro->pessoal->solidario3->nome);
 	$solidario3_cpf = obterValorVariavel($cadastro->pessoal->solidario3->cpf);
 	$solidario3_fone = obterValorVariavel($cadastro->pessoal->solidario3->telefone);
+	$solidario3_ddd = obterValorVariavel($cadastro->pessoal->solidario3->dddTelefone);
 	$solidario3_sexo = obterValorVariavel($cadastro->pessoal->solidario3->sexo);
 	$solidario3_rg = obterValorVariavel($cadastro->pessoal->solidario3->numDoc);
 	$solidario3_renda = obterValorVariavel($cadastro->pessoal->solidario3->rendaMensalBruta);
@@ -275,12 +283,16 @@ function salvar($request, $response){
                                     resp_locacao_inquilino, 
                                     vai_residir_imov_inquilino, 
                                     tem_renda_arcar_loc_inquilino, 
-                                    fone_inquilino, cel_inquilino, 
+                                    fone_inquilino,
+                                    ddd_inquilino, 
+                                    cel_inquilino, 
+                                    ddd_cel_inquilino,
                                     email_inquilino,
                                     tempo_resid_inquilino, 
                                     tipo_resid_inquilino, 
                                     imob_prop_atual, 
-                                    fone_imob_prop_atual, 
+                                    fone_imob_prop_atual,
+                                    ddd_imob_prop_atual, 
                                     resid_emnomede_inquilino, 
                                     arca_com_aluguel_inquilino, 
                                     cep_anterior_inquilino, 
@@ -292,6 +304,7 @@ function salvar($request, $response){
                                     num_anterior_inquilino,
                                     empresa_trab_inquilino, 
                                     fone_com_inquilino, 
+                                    ddd_com_inquilino,
                                     ramal_com_inquilino, 
                                     profissao_inquilino, 
                                     natureza_renda_inquilino, 
@@ -307,6 +320,7 @@ function salvar($request, $response){
                                     ccorrente_inquilino, 
                                     gerente_inquilino, 
                                     fone_gerente_inquilino, 
+                                    ddd_gerente_inquilino,
                                     ref_pessoal_nome, 
                                     ref_pessoal_fone, 
                                     ref_pessoal_cel, 
@@ -323,7 +337,8 @@ function salvar($request, $response){
                                     num_solidarios, 
                                     solidario1, 
                                     solidario1_cpf, 
-                                    solidario1_fone, 
+                                    solidario1_fone,
+                                    solidario1_ddd, 
                                     solidario1_sexo, 
                                     solidario1_rg, 
                                     solidario1_orgao_rg,
@@ -341,7 +356,8 @@ function salvar($request, $response){
                                     solidario1_conjuge_cpf, 
                                     solidario2, 
                                     solidario2_cpf, 
-                                    solidario2_fone, 
+                                    solidario2_fone,
+                                    solidario2_ddd, 
                                     solidario2_sexo, 
                                     solidario2_rg, 
                                     solidario2_orgao_rg,
@@ -360,6 +376,7 @@ function salvar($request, $response){
                                     solidario3, 
                                     solidario3_cpf, 
                                     solidario3_fone, 
+                                    solidario3_ddd,
                                     solidario3_sexo, 
                                     solidario3_rg,
                                     solidario3_orgao_rg, 
@@ -432,12 +449,15 @@ function salvar($request, $response){
                                    	'$vai_residir_imov_inquilino', 
                                    	'$tem_renda_arcar_loc_inquilino', 
                                    	'$fone_inquilino', 
+                                   	'$ddd_inquilino',
                                    	'$cel_inquilino', 
+                                   	'$ddd_cel_inquilino',
                                    	'$email_inquilino',
 								   	'$tempo_resid_inquilino', 
 								   	'$tipo_resid_inquilino', 
 								   	'$nome_imobiliaria', 
 								   	'$telefone_imobiliaria', 
+								   	'$ddd_telefone_imobiliaria',
 								   	'$resid_emnomede_inquilino', 
 								   	'$arca_com_aluguel_inquilino', 
 								   	'$cep_anterior_inquilino', 
@@ -449,6 +469,7 @@ function salvar($request, $response){
 								   	'$num_anterior_inquilino',
                                    	'$empresa_trab_inquilino', 
                                    	'$fone_com_inquilino', 
+                                   	'$ddd_com_inquilino',
                                    	'$ramal_com_inquilino', 
                                    	'$profissao_inquilino', 
                                    	'$natureza_renda_inquilino', 
@@ -464,6 +485,7 @@ function salvar($request, $response){
                                    	'$ccorrente_inquilino', 
                                    	'$gerente_inquilino', 
                                    	'$fone_gerente_inquilino', 
+                                   	'$ddd_gerente_inquilino',
                                    	'$ref_pessoal_nome', 
                                    	'$ref_pessoal_fone', 
                                    	'$ref_pessoal_cel', 
@@ -480,7 +502,8 @@ function salvar($request, $response){
                                    	'$num_solidarios', 
                                    	'$solidario1', 
                                    	'$solidario1_cpf', 
-                                   	'$solidario1_fone', 
+                                   	'$solidario1_fone',
+                                   	'$solidario1_ddd', 
                                    	'$solidario1_sexo', 
                                    	'$solidario1_rg',
                                    	'$solidario1_orgao_rg', 
@@ -498,7 +521,8 @@ function salvar($request, $response){
                                    	'$solidario1_conjuge_cpf', 
                                    	'$solidario2', 
                                    	'$solidario2_cpf', 
-                                   	'$solidario2_fone', 
+                                   	'$solidario2_fone',
+                                   	'$solidario2_ddd', 
                                    	'$solidario2_sexo', 
                                    	'$solidario2_rg', 
                                    	'$solidario2_orgao_rg',
@@ -516,7 +540,8 @@ function salvar($request, $response){
                                    	'$solidario2_conjuge_cpf',
                                    	'$solidario3', 
                                    	'$solidario3_cpf', 
-                                   	'$solidario3_fone', 
+                                   	'$solidario3_fone',
+                                   	'$solidario3_ddd', 
                                    	'$solidario3_sexo', 
                                    	'$solidario3_rg',
                                    	'$solidario3_orgao_rg', 
@@ -593,12 +618,15 @@ function salvar($request, $response){
 		vai_residir_imov_inquilino='$vai_residir_imov_inquilino',
 		tem_renda_arcar_loc_inquilino='$tem_renda_arcar_loc_inquilino',
 		fone_inquilino='$fone_inquilino',
+		ddd_inquilino= '$ddd_inquilino',
 		cel_inquilino='$cel_inquilino',
+		ddd_cel_inquilino= '$ddd_cel_inquilino',
 		email_inquilino='$email_inquilino',
 		tempo_resid_inquilino='$tempo_resid_inquilino',
 		tipo_resid_inquilino='$tipo_resid_inquilino',
 		imob_prop_atual='$nome_imobiliaria',
 		fone_imob_prop_atual='$telefone_imobiliaria',
+		ddd_imob_prop_atual = '$ddd_telefone_imobiliaria',
 		resid_emnomede_inquilino='$resid_emnomede_inquilino',
 		arca_com_aluguel_inquilino='$arca_com_aluguel_inquilino',
 		cep_anterior_inquilino='$cep_anterior_inquilino',
@@ -610,6 +638,7 @@ function salvar($request, $response){
 		num_anterior_inquilino='$num_anterior_inquilino',
 		empresa_trab_inquilino='$empresa_trab_inquilino',
 		fone_com_inquilino='$fone_com_inquilino',
+		ddd_com_inquilino= '$ddd_com_inquilino',
 		ramal_com_inquilino='$ramal_com_inquilino',
 		profissao_inquilino='$profissao_inquilino',
 		natureza_renda_inquilino='$natureza_renda_inquilino',
@@ -625,6 +654,7 @@ function salvar($request, $response){
 		ccorrente_inquilino='$ccorrente_inquilino',
 		gerente_inquilino='$gerente_inquilino',
 		fone_gerente_inquilino='$fone_gerente_inquilino',
+		ddd_gerente_inquilino = '$ddd_gerente_inquilino',
 		ref_pessoal_nome='$ref_pessoal_nome',
 		ref_pessoal_fone='$ref_pessoal_fone',
 		ref_pessoal_cel='$ref_pessoal_cel',
@@ -642,6 +672,7 @@ function salvar($request, $response){
 		solidario1='$solidario1',
 		solidario1_cpf='$solidario1_cpf',
 		solidario1_fone='$solidario1_fone',
+		solidario1_ddd= '$solidario1_ddd',
 		solidario1_sexo='$solidario1_sexo',
 		solidario1_rg='$solidario1_rg',
 		solidario1_orgao_rg = '$solidario1_orgao_rg',
@@ -660,6 +691,7 @@ function salvar($request, $response){
 		solidario2='$solidario2',
 		solidario2_cpf='$solidario2_cpf',
 		solidario2_fone='$solidario2_fone',
+		solidario2_ddd= '$solidario2_ddd',
 		solidario2_sexo='$solidario2_sexo',
 		solidario2_rg='$solidario2_rg',
 		solidario2_orgao_rg = '$solidario2_orgao_rg',
@@ -678,6 +710,7 @@ function salvar($request, $response){
 		solidario3='$solidario3',
 		solidario3_cpf='$solidario3_cpf', 
 		solidario3_fone='$solidario3_fone',
+		solidario3_ddd= '$solidario3_ddd',
 		solidario3_sexo='$solidario3_sexo',
 		solidario3_rg='$solidario3_rg',
 		solidario3_orgao_rg = '$solidario3_orgao_rg',
@@ -753,7 +786,7 @@ function salvar($request, $response){
         <b>Data de Nascimento:</b> ".$data_inquilino." - <b>Sexo:</b> ".$sexo_inquilino." - <b>Estado Civil:</b> ".$est_civil_inquilino."<BR>
         <b>RG/Documento:</b> ".$tipo_DOC_inquilino." - <b>Órgão Expedidor:</b> ".$orgao_exp_inquilino." - <b>Data de Expedição do Documento:</b> ".$data_exp_inquilino." - <b>Validade:</b> ".$data_validade_doc_inquilino."<BR>
         <b>Responsável pela PJ:</b> ".$resp_inquilino." - <b>CPF:</b> ".$CPF_resp_inquilino."<BR>
-        <b>Telefone:</b> ".$fone_inquilino." - <b>Celular:</b> ".$cel_inquilino." - <b>E-mail:</b> ".$email_inquilino."<BR>
+        <b>Telefone:</b> ".$ddd_inquilino." ".$fone_inquilino." - <b>Celular:</b> ".$ddd_cel_inquilino." ".$cel_inquilino." - <b>E-mail:</b> ".$email_inquilino."<BR>
         </div><div align='center'><HR></div><div align='left'>
 		<b>Nome do Cônjuge:</b> ".$nome_conjuge_inquilino." - <b>Data de Nascimento do Cônjuge:</b> ".$data_conjuge_inquilno."<BR>
         <b>CPF Cônjuge:</b> ".$cpf_conjuge_inquilino." - <b>Número de Dependentes:</b> ".$num_dependente_inquilino."<BR>
@@ -762,23 +795,23 @@ function salvar($request, $response){
         </div><div align='center'><HR></div><div align='left'>
         <b>Responsável pela Locação:</b> ".$resp_locacao_inquilino." - <b>Inquilino vai residir no imóvel?</b> ".$vai_residir_imov_inquilino." - <b>Tem renda para arcar com a locação?</b> ".$tem_renda_arcar_loc_inquilino."<BR>
         <b>Tempo de residência atual:</b> ".$tempo_resid_inquilino." - <b>Tipo de Residência:</b> ".$tipo_resid_inquilino." -
-        <b>Imobiliária/Proprietário Atual:</b> ".$imob_prop_atual." - <b>Telefone:</b> ".$fone_imob_prop_atual." - <b>Residência em Nome de quem?</b> ".$resid_emnomede_inquilino."<BR>
+        <b>Imobiliária/Proprietário Atual:</b> ".$imob_prop_atual." - <b>Telefone:</b> ".$ddd_telefone_imobiliaria." ".$telefone_imobiliaria." - <b>Residência em Nome de quem?</b> ".$resid_emnomede_inquilino."<BR>
         <b>Arca com aluguel?</b> ".$arca_com_aluguel_inquilino."<b>CEP Atual:</b> ".$cep_anterior_inquilino." - <b>UF:</b> ".$uf_anterior_inquilino." - <b>Cidade:</b> ".$cidade_anterior_inquilino."<BR>
         <b>Endereço Atual:</b> ".$endereco_anterior_inquilino." - <b>Número:</b> ".$num_anterior_inquilino." - <b>Complemento:</b> ".$complemento_anterior_inquilino." - <b>Bairro:</b> ".$bairro_anterior_inquilino."<BR>
         </div><div align='center'><HR></div><div align='left'>
-        <b>Empresa que Trabalha:</b> ".$empresa_trab_inquilino." - <b>Telefone:</b> ".$fone_com_inquilino." - <b>Ramal:</b> ".$ramal_com_inquilino." - <b>Data de Admissão:</b> ".$data_admissao_inquilino." - <b>Endereço Comercial:</b> ".$endereco_com_inquilino."<BR>
+        <b>Empresa que Trabalha:</b> ".$empresa_trab_inquilino." - <b>Telefone:</b> ".$ddd_com_inquilino." ".$fone_com_inquilino." - <b>Ramal:</b> ".$ramal_com_inquilino." - <b>Data de Admissão:</b> ".$data_admissao_inquilino." - <b>Endereço Comercial:</b> ".$endereco_com_inquilino."<BR>
         <b>Profissão:</b> ".$profissao_inquilino." - <b>Natureza da Renda:</b> ".$natureza_renda_inquilino." - <b>Salário:</b> ".$salario_inquilino."<BR>
         <b>Ourtos Rendimentos:</b> ".$outros_rendim_inquilino." - <b>Total de Outros Rendimentos:</b> ".$total_rendim_inquilino."<BR>
         <b>Empresa que trabalhou Anteriormente:</b> ".$empresa_anterior_inquilino."<BR>
         </div><div align='center'><HR></div><div align='left'>
         <b>Referência Bancária:</b> ".$ref_bancaria_inquilino." - <b>Banco:</b> ".$banco_inquilino." - <b>Agência:</b> ".$agencia_inquilino." - <b>Conta Corrente:</b> ".$ccorrente_inquilino."<BR>
-        <b>Gerente da Conta:</b> ".$gerente_inquilino." - <b>Telefone:</b> ".$fone_gerente_inquilino."<BR>
+        <b>Gerente da Conta:</b> ".$gerente_inquilino." - <b>Telefone:</b> ".$ddd_gerente_inquilino." ".$fone_gerente_inquilino."<BR>
         <b>Referência Pessoal:</b> ".$ref_pessoal_nome." - <b>Telefone:</b> ".$ref_pessoal_fone." - <b>Celular:</b> ".$ref_pessoal_cel." - <b>Grau de Parentesco/Relacionamento:</b> ".$ref_pessoal_grau_parent."<BR>
         </div><div align='center'><HR></div><div align='left'>
         <b>Número de Locatários Solidários:</b> ".$num_solidarios."<BR>
-        <b>Nome do Solidário 1:</b> ".$solidario1." - <b>CPF/CNPJ:</b> ".$solidario1_cpf." - <b>Sexo:</b> ".$solidario1_sexo." - <b>RG:</b> ".$solidario1_rg." - <b>Órgão Expedidor:</b> ".$solidario1_orgao_rg." - <b>Data de Expedição:</b> ".$solidario1_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario1_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario1_estado_civil." - <b>Data Nascimento:</b> ".$solidario1_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario1_grau_parentesco." - <b>Cep:</b> ".$solidario1_cep." - <b>Irá Residir:</b> ".$solidario1_ira_residir." - <b>Natureza Renda:</b> ".$solidario1_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario1_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario1_data_admissao." - <b>CPF Conjuge:</b> ".$solidario1_conjuge_cpf." - <b>Telefone:</b> ".$solidario1_fone."<BR>
-        <b>Nome do Solidário 2:</b> ".$solidario2." - <b>CPF/CNPJ:</b> ".$solidario2_cpf." - <b>Sexo:</b> ".$solidario2_sexo." - <b>RG:</b> ".$solidario2_rg." - <b>Órgão Expedidor:</b> ".$solidario2_orgao_rg." - <b>Data de Expedição:</b> ".$solidario2_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario2_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario2_estado_civil." - <b>Data Nascimento:</b> ".$solidario2_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario2_grau_parentesco." - <b>Cep:</b> ".$solidario2_cep." - <b>Irá Residir:</b> ".$solidario2_ira_residir." - <b>Natureza Renda:</b> ".$solidario2_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario2_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario2_data_admissao." - <b>CPF Conjuge:</b> ".$solidario2_conjuge_cpf." - <b>Telefone:</b> ".$solidario2_fone."<BR>
-        <b>Nome do Solidário 3:</b> ".$solidario3." - <b>CPF/CNPJ:</b> ".$solidario3_cpf." - <b>Sexo:</b> ".$solidario3_sexo." - <b>RG:</b> ".$solidario3_rg." - <b>Órgão Expedidor:</b> ".$solidario3_orgao_rg." - <b>Data de Expedição:</b> ".$solidario3_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario3_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario3_estado_civil." - <b>Data Nascimento:</b> ".$solidario3_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario3_grau_parentesco." - <b>Cep:</b> ".$solidario3_cep." - <b>Irá Residir:</b> ".$solidario3_ira_residir." - <b>Natureza Renda:</b> ".$solidario3_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario3_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario3_data_admissao." - <b>CPF Conjuge:</b> ".$solidario3_conjuge_cpf." - <b>Telefone:</b> ".$solidario3_fone."<BR>
+        <b>Nome do Solidário 1:</b> ".$solidario1." - <b>CPF/CNPJ:</b> ".$solidario1_cpf." - <b>Sexo:</b> ".$solidario1_sexo." - <b>RG:</b> ".$solidario1_rg." - <b>Órgão Expedidor:</b> ".$solidario1_orgao_rg." - <b>Data de Expedição:</b> ".$solidario1_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario1_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario1_estado_civil." - <b>Data Nascimento:</b> ".$solidario1_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario1_grau_parentesco." - <b>Cep:</b> ".$solidario1_cep." - <b>Irá Residir:</b> ".$solidario1_ira_residir." - <b>Natureza Renda:</b> ".$solidario1_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario1_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario1_data_admissao." - <b>CPF Conjuge:</b> ".$solidario1_conjuge_cpf." - <b>Telefone:</b> ".$solidario1_ddd." ".$solidario1_fone."<BR>
+        <b>Nome do Solidário 2:</b> ".$solidario2." - <b>CPF/CNPJ:</b> ".$solidario2_cpf." - <b>Sexo:</b> ".$solidario2_sexo." - <b>RG:</b> ".$solidario2_rg." - <b>Órgão Expedidor:</b> ".$solidario2_orgao_rg." - <b>Data de Expedição:</b> ".$solidario2_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario2_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario2_estado_civil." - <b>Data Nascimento:</b> ".$solidario2_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario2_grau_parentesco." - <b>Cep:</b> ".$solidario2_cep." - <b>Irá Residir:</b> ".$solidario2_ira_residir." - <b>Natureza Renda:</b> ".$solidario2_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario2_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario2_data_admissao." - <b>CPF Conjuge:</b> ".$solidario2_conjuge_cpf." - <b>Telefone:</b> ".$solidario2_ddd." ".$solidario2_fone."<BR>
+        <b>Nome do Solidário 3:</b> ".$solidario3." - <b>CPF/CNPJ:</b> ".$solidario3_cpf." - <b>Sexo:</b> ".$solidario3_sexo." - <b>RG:</b> ".$solidario3_rg." - <b>Órgão Expedidor:</b> ".$solidario3_orgao_rg." - <b>Data de Expedição:</b> ".$solidario3_data_emissao_rg." - <b>Validade Doc:</b> ".$solidario3_data_valid_doc." - <b>Estado Civíl:</b> ".$solidario3_estado_civil." - <b>Data Nascimento:</b> ".$solidario3_data_nascimento." - <b>Grau Parentesco:</b> ".$solidario3_grau_parentesco." - <b>Cep:</b> ".$solidario3_cep." - <b>Irá Residir:</b> ".$solidario3_ira_residir." - <b>Natureza Renda:</b> ".$solidario3_natureza_renda." - <b>Empresa Local trabalho:</b> ".$solidario3_empresa_trabalho." - <b>Data Admissão:</b> ".$solidario3_data_admissao." - <b>CPF Conjuge:</b> ".$solidario3_conjuge_cpf." - <b>Telefone:</b> ".$solidario3_ddd." ".$solidario3_fone."<BR>
         </div><div align='center'><HR></div><div align='left'>
         <b>CEP do Imóvel Pretendido:</b> ".$cep." - <b>Endereço:</b> ".$endereco." - <b>Número:</b> ".$numero." - <b>Quadra:</b> ".$quadra." - <b>Lote:</b> ".$lote." - <b>Complemento:</b> ".$complemento."<BR>
         <b>Bairro:</b> ".$bairro." - <b>Cidade:</b> ".$cidade." - <b>UF:</b> ".$uf."<BR>

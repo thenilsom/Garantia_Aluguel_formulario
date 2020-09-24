@@ -13,7 +13,6 @@ angular.module('app')
 			cadastro.imovel = preencherDadosImovelPretendido(dados);
 			cadastro.pessoal = preencherDadosComposicaoRenda(dados);
 
-			service.tratarDadosTelefoneParaFormulario(cadastro);
 			return cadastro;
 		}
 
@@ -44,8 +43,11 @@ angular.module('app')
 			pretendente.tempoPais = dados.tempo_pais_inquilino;
 			pretendente.iraResidirImovel = dados.vai_residir_imov_inquilino;
 			pretendente.telefone = dados.fone_inquilino;
+			pretendente.dddTelefone = dados.ddd_inquilino;
 			pretendente.celular = dados.cel_inquilino;
+			pretendente.dddCelular = dados.ddd_cel_inquilino;
 			pretendente.telefoneComercial = dados.fone_com_inquilino;
+			pretendente.dddTelefoneComercial = dados.ddd_com_inquilino;
 			pretendente.email = dados.email_inquilino;
 
 			return pretendente;
@@ -69,7 +71,8 @@ angular.module('app')
 			residencia.arcaAluguel = dados.arca_com_aluguel_inquilino;
 			residencia.nomeImobiliaria = dados.imob_prop_atual;
 			residencia.telefoneImobiliaria = dados.fone_imob_prop_atual;
-
+			residencia.dddTelefoneImobiliaria = dados.ddd_imob_prop_atual;
+			
 			residencia.anterior.cep = dados.cep_anterior_inquilino;
 			residencia.anterior.estado = dados.uf_anterior_inquilino;
 			residencia.anterior.cidade = dados.cidade_anterior_inquilino;
@@ -92,6 +95,7 @@ angular.module('app')
 			profissional.totalRendimentos = dados.total_rendim_inquilino;
 			profissional.empresa = dados.empresa_trab_inquilino;
 			profissional.telefone = dados.fone_com_inquilino;
+			profissional.dddTelefone = dados.ddd_com_inquilino;
 			profissional.ramal = dados.ramal_com_inquilino;
 			profissional.empresaAnterior = dados.empresa_anterior_inquilino;
 			profissional.possuiRefBancaria = dados.ref_bancaria_inquilino;
@@ -100,6 +104,7 @@ angular.module('app')
 			profissional.contaCorrente = dados.ccorrente_inquilino;
 			profissional.gerente = dados.gerente_inquilino;
 			profissional.telefoneGerente = dados.fone_gerente_inquilino;
+			profissional.dddTelefoneGerente = dados.ddd_gerente_inquilino;
 
 			return profissional;
 		}
@@ -149,6 +154,7 @@ angular.module('app')
 			pessoal.solidario1.cpf = dados.solidario1_cpf;
 			pessoal.solidario1.rendaMensalBruta = dados.solidario1_renda;
 			pessoal.solidario1.telefone = dados.solidario1_fone;
+			pessoal.solidario1.dddTelefone = dados.solidario1_ddd;
 			pessoal.solidario1.sexo = dados.solidario1_sexo;
 			pessoal.solidario1.numDoc = parseInt(dados.solidario1_rg);
 			pessoal.solidario1.orgaoExpedidor = dados.solidario1_orgao_rg;
@@ -168,6 +174,7 @@ angular.module('app')
 			pessoal.solidario2.cpf = dados.solidario2_cpf;
 			pessoal.solidario2.rendaMensalBruta = dados.solidario2_renda;
 			pessoal.solidario2.telefone = dados.solidario2_fone;
+			pessoal.solidario2.dddTelefone = dados.solidario2_ddd;
 			pessoal.solidario2.sexo = dados.solidario2_sexo;
 			pessoal.solidario2.numDoc = parseInt(dados.solidario2_rg);
 			pessoal.solidario2.orgaoExpedidor = dados.solidario2_orgao_rg;
@@ -187,6 +194,7 @@ angular.module('app')
 			pessoal.solidario3.cpf = dados.solidario3_cpf;
 			pessoal.solidario3.rendaMensalBruta = dados.solidario3_renda;
 			pessoal.solidario3.telefone = dados.solidario3_fone;
+			pessoal.solidario3.dddTelefone = dados.solidario3_ddd;
 			pessoal.solidario3.sexo = dados.solidario3_sexo;
 			pessoal.solidario3.numDoc = parseInt(dados.solidario3_rg);
 			pessoal.solidario3.orgaoExpedidor = dados.solidario3_orgao_rg;
@@ -205,46 +213,6 @@ angular.module('app')
 			return pessoal;
 		}
 		
-		service.tratarDadosTelefoneParaSalvar = function(registro){
-			registro.pretendente.telefone = concatenarDDDComFone(registro.pretendente.dddTelefone, registro.pretendente.telefone);
-			registro.pretendente.celular = concatenarDDDComFone(registro.pretendente.dddCelular, registro.pretendente.celular);
-			registro.pretendente.telefoneComercial = concatenarDDDComFone(registro.pretendente.dddTelefoneComercial, registro.pretendente.telefoneComercial);
-			registro.residencia.telefoneImobiliaria = concatenarDDDComFone(registro.residencia.dddTelefoneImobiliaria, registro.residencia.telefoneImobiliaria);
-			registro.profissional.telefone = concatenarDDDComFone(registro.profissional.dddTelefone, registro.profissional.telefone);
-			registro.profissional.telefoneGerente = concatenarDDDComFone(registro.profissional.dddTelefoneGerente, registro.profissional.telefoneGerente);
-			registro.pessoal.solidario1.telefone = concatenarDDDComFone(registro.pessoal.solidario1.dddTelefone, registro.pessoal.solidario1.telefone);
-			registro.pessoal.solidario2.telefone = concatenarDDDComFone(registro.pessoal.solidario2.dddTelefone, registro.pessoal.solidario2.telefone);
-			registro.pessoal.solidario3.telefone = concatenarDDDComFone(registro.pessoal.solidario3.dddTelefone, registro.pessoal.solidario3.telefone);
-		}
-		
-		service.tratarDadosTelefoneParaFormulario = function(registro){
-			registro.pretendente.dddTelefone = separarDDD(registro.pretendente.telefone);
-			registro.pretendente.telefone = removerDDD(registro.pretendente.telefone);
-			registro.pretendente.dddCelular = separarDDD(registro.pretendente.celular);
-			registro.pretendente.celular = removerDDD(registro.pretendente.celular);
-			registro.pretendente.dddTelefoneComercial = separarDDD(registro.pretendente.telefoneComercial);
-			registro.pretendente.telefoneComercial = removerDDD(registro.pretendente.telefoneComercial);
-			registro.residencia.dddTelefoneImobiliaria = separarDDD(registro.residencia.telefoneImobiliaria);
-			registro.residencia.telefoneImobiliaria = removerDDD(registro.residencia.telefoneImobiliaria);
-			registro.profissional.dddTelefone = separarDDD(registro.profissional.telefone);
-			registro.profissional.telefone = removerDDD(registro.profissional.telefone);
-			registro.profissional.dddTelefoneGerente = separarDDD(registro.profissional.telefoneGerente);
-			registro.profissional.telefoneGerente = removerDDD(registro.profissional.telefoneGerente);
-			registro.pessoal.solidario1.dddTelefone = separarDDD(registro.pessoal.solidario1.telefone);
-			registro.pessoal.solidario1.telefone = removerDDD(registro.pessoal.solidario1.telefone);
-			registro.pessoal.solidario2.dddTelefone = separarDDD(registro.pessoal.solidario2.telefone);
-			registro.pessoal.solidario2.telefone = removerDDD(registro.pessoal.solidario2.telefone);
-			registro.pessoal.solidario3.dddTelefone = separarDDD(registro.pessoal.solidario3.telefone);
-			registro.pessoal.solidario3.telefone = removerDDD(registro.pessoal.solidario3.telefone);
-		}
-		
-		var concatenarDDDComFone = function(ddd, fone){
-			if(ddd && fone){
-				return "(" + ddd + ")" + fone;
-			}
-			return "";
-		}
-
 
 		var tratarTempoResidencia = function(dados){
 			if(dados){
@@ -267,19 +235,6 @@ angular.module('app')
 			return dados;
 		}
 		
-		var separarDDD = function(fone){
-			if(fone && fone.length > 2){
-				return fone.replace('(','').replace(')','').substring(0,2);
-			}
-			return '';
-		}
-		
-		var removerDDD = function(fone){
-			if(fone && fone.length > 2){
-				return fone.replace('(','').replace(')','').substr(2).trim();
-			}
-			return '';
-		}
 
 		return service;
 });
