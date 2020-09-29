@@ -136,6 +136,13 @@ angular.module('app')
 		return true;
 		  }
 		}
+	
+	/**
+	 * retorna true se o ddd for valido
+	 */
+	service.isDDDValido = function(ddd){
+		return ddd && ddd.length == 2;
+	}
 
 		
 	return service;

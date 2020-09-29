@@ -451,10 +451,24 @@
 
           //navega entre as abas
           $scope.navegarAbas = function(passo){
-            if($scope.isAlteracao){
-              setarPasso(passo);
-
-            }else{
+        	  iniciarVariavelErro();
+        	 switch ($scope.passo) {
+			case "1": $scope.validarDadosPretendente('formDadosPretendente');
+				break;
+			case "2": $scope.validarDadosResidenciais('formDadosResidenciais');
+				break;
+				
+			case "3": $scope.validarDadosProfissionais('formDadosProfissionais');
+				break;
+				
+			case "4": $scope.validarDadosDoImovel('formDadosImovel');
+				break;
+			}
+        	 
+        	 if($scope.errors.length > 0){
+        		 service.alertarErro('Favor corrigir os erros de validação antes de navegar para outra aba.');
+        		 
+        	 }else{
               var passoAtual = parseInt($scope.passo)
               var passoPretendido = parseInt(passo)
               if(passoAtual > passoPretendido || 
@@ -475,6 +489,7 @@
                   setarPasso(passo);
               }
             }   
+            
           }
 
           $scope.passoAnterior = function(){
@@ -513,15 +528,15 @@
                 $scope.errors.push("Preencha ao menos um campo de telefone.");
               }
               
-              if($scope.cadastro.pretendente.telefone && !$scope.cadastro.pretendente.dddTelefone){
+              if($scope.cadastro.pretendente.telefone && !validador.isDDDValido($scope.cadastro.pretendente.dddTelefone)){
             	  $scope.errors.push("Preencha o DDD do telefone.");
               }
               
-              if($scope.cadastro.pretendente.celular && !$scope.cadastro.pretendente.dddCelular){
+              if($scope.cadastro.pretendente.celular && !validador.isDDDValido($scope.cadastro.pretendente.dddCelular)){
             	  $scope.errors.push("Preencha o DDD do celular.");
               }
               
-              if($scope.cadastro.pretendente.telefoneComercial && !$scope.cadastro.pretendente.dddTelefoneComercial){
+              if($scope.cadastro.pretendente.telefoneComercial && !validador.isDDDValido($scope.cadastro.pretendente.dddTelefoneComercial)){
             	  $scope.errors.push("Preencha o DDD do telefone comercial.");
               }
 
@@ -636,11 +651,11 @@
 			    }
 		    }
             
-            if($scope.cadastro.profissional.telefone && !$scope.cadastro.profissional.dddTelefone){
+            if($scope.cadastro.profissional.telefone && !validador.isDDDValido($scope.cadastro.profissional.dddTelefone)){
              	  $scope.errors.push("Preencha o DDD do Telefone");
                }
             
-            if($scope.cadastro.profissional.telefoneGerente && !$scope.cadastro.profissional.dddTelefoneGerente){
+            if($scope.cadastro.profissional.telefoneGerente && !validador.isDDDValido($scope.cadastro.profissional.dddTelefoneGerente)){
              	  $scope.errors.push("Preencha o DDD do Telefone Gerente.");
                }
             
@@ -657,7 +672,7 @@
         	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
              
-             if($scope.cadastro.residencia.telefoneImobiliaria && !$scope.cadastro.residencia.dddTelefoneImobiliaria){
+             if($scope.cadastro.residencia.telefoneImobiliaria && !validador.isDDDValido($scope.cadastro.residencia.dddTelefoneImobiliaria)){
            	  $scope.errors.push("Preencha o DDD do Telefone Imobiliária/Proprietário.");
              }
 

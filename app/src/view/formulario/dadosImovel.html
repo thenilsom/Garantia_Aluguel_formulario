@@ -33,6 +33,7 @@
         <label for="motivoLocacao">Motivo da Locação</label>
 		
 		
+		<!-- Comentado em 28/09/2020 para não carregar com api da porto e usar dados staticos
         <select class="form-control" id="motivoLocacao" ng-tabindex="3" ng-init = "carregaCbMotivoLocacao()" ng-model="cadastro.imovel.motivoLocacao" requerido>
 
             <option ng-repeat="x in cadastro.imovel.motivoLocacaoSelect" value="{{ x.p617descricao | uppercase}}" ng-if="
@@ -49,8 +50,10 @@
 				 ) ? cadastro.imovel.finalidade == 'R' : ''
 			 
 			 ">{{ x.p617descricao }}</option>
-	
-			 <!--
+			-->
+			
+			<select class="form-control" id="motivoLocacao" ng-tabindex="3" ng-model="cadastro.imovel.motivoLocacao" requerido>
+			 <!-- Bloco estava comentado quando utiliza a api da porto-->
 			  <option value="LOCAÇÃO ADICIONAL" ng-if="cadastro.imovel.finalidade == 'R' ">Locação Adicional</option>
 			  <option value="TRANSFERÊNCIA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'R' ">Transferência de Empresa</option>
 			  <option value="PRÓXIMO AO TRABALHO" ng-if="cadastro.imovel.finalidade == 'R' ">Próximo ao Trabalho</option>
@@ -58,18 +61,18 @@
 			  <option value="PRÓXIMO A INSITUIÇÃO DE ENSINO" ng-if="cadastro.imovel.finalidade == 'R' ">Próximo a Insituição de Ensino</option>
 			  <option value="CASAMENTO" ng-if="cadastro.imovel.finalidade == 'R' ">Casamento</option>
 			  <option value="SEPARAÇÃO" ng-if="cadastro.imovel.finalidade == 'R' ">Separação</option>
-			  <option value="INDEPENDÊNCIA" ng-if="cadastro.imovel.finalidade == 'R' ">Independência</option> -->
+			  <option value="INDEPENDÊNCIA" ng-if="cadastro.imovel.finalidade == 'R' ">Independência</option> 
 			  
-			  <!--
+			  <!-- Bloco estava comentado quando utiliza a api da porto-->
 			  <option value="PARA TERCEIROS">Para Terceiros</option>
 			  <option value="FUNCIONÁRIO DA EMPRESA DO PRETENDENTE">Funcionário da Empresa do Pretendente</option>
 			  <option value="VENDA DE IMÓVEL PRÓPRIO">Venda de Imóvel Próprio</option>
-			  <option value="REDUÇÃO DE CUSTO">Redução de Custo</option>-->
+			  <option value="REDUÇÃO DE CUSTO">Redução de Custo</option>
+			  
 			  <option value="TROCA DE GARANTIA DA ATUAL LOCAÇÃO">Troca de Garantia da Atual Locação</option>
-			  <!--
-			  <option value="LOCAÇÃO EM VIGOR">Locação em Vigor</option>-->
+			  <option value="LOCAÇÃO EM VIGOR">Locação em Vigor</option>
 			  <option value="RENOVAÇÃO COM AUMENTO DE VALORES">Renovação com Aumento de Valores</option>
-			  <!--<option value="APÓLICE VENCIDA">Apólice Vencida</option>-->
+			  <option value="APÓLICE VENCIDA">Apólice Vencida</option>
 			  <option value="CANCELAMENTO DE APÓLICE TROCA DE IMÓVEL">Cancelamento de Apólice Troca de Imóvel</option>
 			  <option value="ENDOSSO DA APÓLICE">Endosso da Apólice</option>
 			  
@@ -77,8 +80,6 @@
 			  <option value="ABERTURA DE EMPRESA" ng-if="cadastro.imovel.finalidade == 'C' ">Abertura de Empresa</option>
 			  <option value="ABERTURA DE FILIAL" ng-if="cadastro.imovel.finalidade == 'C' ">Abertura de Filial</option>
 			  <option value="MUDANÇA PARA UM PONTO MELHOR" ng-if="cadastro.imovel.finalidade == 'C' ">Mudança para um Ponto Melhor</option>
-			 
-			 
 			 
         </select>
       </div>
