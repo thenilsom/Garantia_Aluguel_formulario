@@ -451,24 +451,28 @@
 
           //navega entre as abas
           $scope.navegarAbas = function(passo){
-        	  iniciarVariavelErro();
-        	 switch ($scope.passo) {
-			case "1": $scope.validarDadosPretendente('formDadosPretendente');
-				break;
-			case "2": $scope.validarDadosResidenciais('formDadosResidenciais');
-				break;
-				
-			case "3": $scope.validarDadosProfissionais('formDadosProfissionais');
-				break;
-				
-			case "4": $scope.validarDadosDoImovel('formDadosImovel');
-				break;
-			}
-        	 
-        	 if($scope.errors.length > 0){
-        		 service.alertarErro('Favor corrigir os erros de validação antes de navegar para outra aba.');
-        		 
-        	 }else{
+        	  if($scope.isAlteracao){
+        		  iniciarVariavelErro();
+        		  switch ($scope.passo) {
+        		  case "1": $scope.validarDadosPretendente('formDadosPretendente', true);
+        		  break;
+        		  case "2": $scope.validarDadosResidenciais('formDadosResidenciais', true);
+        		  break;
+        		  
+        		  case "3": $scope.validarDadosProfissionais('formDadosProfissionais', true);
+        		  break;
+        		  
+        		  case "4": $scope.validarDadosDoImovel('formDadosImovel', true);
+        		  break;
+        		  }
+        		  
+        		  if($scope.errors.length > 0){
+             		 service.alertarErro('Favor corrigir os erros de validação antes de navegar para outra aba.');
+             	 }else{
+             		 setarPasso(passo);
+             	 }
+        		  
+        	  }else{
               var passoAtual = parseInt($scope.passo)
               var passoPretendido = parseInt(passo)
               if(passoAtual > passoPretendido || 
@@ -508,7 +512,7 @@
           }
 
           /*Valida os dados do Pretendente*/
-          $scope.validarDadosPretendente = function(form){
+          $scope.validarDadosPretendente = function(form, apenasValidar){
         	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
               if(!validador.validarCpf($scope.cadastro.pretendente.cpf)){
@@ -550,7 +554,8 @@
 
               //$scope.errors = []; //##################################################
 
-              $scope.proximoPasso();
+              if(!apenasValidar)
+            	  $scope.proximoPasso();
           }
           
           /*Valida os dados Pessoais*/
@@ -641,7 +646,7 @@
       }
 
           /*valida os dados profissionaiss*/
-          $scope.validarDadosProfissionais = function(form){
+          $scope.validarDadosProfissionais = function(form, apenasValidar){
         	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
 
@@ -664,11 +669,12 @@
             }
             //$scope.errors = []; //##################################################
 
-            $scope.proximoPasso();
+            if(!apenasValidar)
+            	$scope.proximoPasso();
           }
           
           /*valida os dados residenciais*/
-          $scope.validarDadosResidenciais = function(form){
+          $scope.validarDadosResidenciais = function(form, apenasValidar){
         	  iniciarVariavelErro();
              validador.validarCamposObrigatorios(form, $scope.errors);
              
@@ -676,11 +682,12 @@
            	  $scope.errors.push("Preencha o DDD do Telefone Imobiliária/Proprietário.");
              }
 
-            $scope.proximoPasso();
+             if(!apenasValidar)
+            	 $scope.proximoPasso();
           }
 
           /*Valida os dados do imóvel*/
-          $scope.validarDadosDoImovel = function(form){
+          $scope.validarDadosDoImovel = function(form, apenasValidar){
         	  iniciarVariavelErro();
             validador.validarCamposObrigatorios(form, $scope.errors);
 
@@ -695,7 +702,8 @@
 
             //$scope.errors = []; //##################################################
 
-              $scope.proximoPasso();
+              if(!apenasValidar)
+            	  $scope.proximoPasso();
 
           }
 
