@@ -152,14 +152,14 @@ div {
           <div ng-class="{'circulo-verde' : reg.situacao_analise_liberty.toLowerCase().includes('aprovad'), 
           'circulo-vermelho' : reg.situacao_analise_liberty.toLowerCase().includes('recusad') || reg.situacao_analise_liberty.toLowerCase().includes('reprovad'), 
           'circulo-cinza' : reg.situacao_analise_liberty == ''}" 
-          class="circulo" 
+          class="circulo" data-ng-click="consultarAnaliseNasSeguradoras(reg, 'lib')"
           data-tooltip = "{{reg.processo_liberty || reg.situacao_analise_liberty ? ('<div>Análise: ' + reg.processo_liberty + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_liberty + '</div>') : ''}}"></div></td>
 
           <td class="col-sm-1">
           <div ng-class="{'circulo-verde' : reg.situacao_analise_porto.toLowerCase().includes('aprovad'), 
           'circulo-vermelho' : reg.situacao_analise_porto.toLowerCase().includes('recusad') || reg.situacao_analise_porto.toLowerCase().includes('reprovad'), 
           'circulo-cinza' : reg.situacao_analise_porto == ''}" 
-          class="circulo" 
+          class="circulo"  data-ng-click="consultarAnaliseNasSeguradoras(reg, 'por')"
           data-tooltip = "{{reg.processo_porto || reg.situacao_analise_porto ? ('<div>Análise: ' + reg.processo_porto + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_porto + '</div>') : ''}}"></div></td>
 
           <td class="col-sm-1">

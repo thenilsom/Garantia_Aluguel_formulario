@@ -126,6 +126,32 @@
        }
        
        /**
+        * Consulta a análise nas seguradoras
+        */
+       $scope.consultarAnaliseNasSeguradoras = function(registro, tipo){
+     	  var situacao = tipo == 'lib' ?  registro.situacao_analise_liberty : (tipo == 'por' ? registro.situacao_analise_porto : '');
+     	  
+     	  if(situacao && !situacao.toLocaleLowerCase().includes('aprovad') && !situacao.toLocaleLowerCase().includes('recusad') && !situacao.toLocaleLowerCase().includes('reprovad')){
+     		  if(tipo == 'por'){
+     			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+registro.codigo+"&gera_analise=0").then(function(data){
+     				 listar();
+     				 enviaEmails(registro.codigo);//envia email
+     			  }, function(erro){
+     				  service.alertarErro(erro.statusText);
+     			  });
+     			  
+     		  }else if(tipo == 'lib'){
+     			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+registro.codigo +"&gera_analise=0").then(function(data){
+     				 listar();
+     				 enviaEmails(registro.codigo);//envia email
+     			  }, function(erro){
+     				  service.alertarErro(erro.statusText);
+     			  });
+     		  }
+     	  }
+       }
+       
+       /**
         * Lista as Seguradoras
         */
        var listarSeguradoras = function(){

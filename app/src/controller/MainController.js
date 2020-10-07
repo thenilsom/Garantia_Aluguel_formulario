@@ -249,7 +249,8 @@
             $scope.cadastro.status = '1';
             
             $http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-					
+            	$scope.proximoPasso();
+            	
 				    $scope.geraAnaliseLib = 0;
 					$scope.geraAnalisePor = 0;
 					$scope.geraAnaliseToo = 0;
@@ -309,7 +310,7 @@
 															console.log(data.data);
 															
 															service.alertar('Cadastro alterado com sucesso.');
-															$scope.proximoPasso();
+															//$scope.proximoPasso();
 																	
 												  
 												}, function(erro){
@@ -331,7 +332,7 @@
 												}                                                $scope.enviaEmails($scope.codigoCadastro);
 											
 												service.alertar('Cadastro alterado com sucesso.');
-												$scope.proximoPasso();
+												//$scope.proximoPasso();
 												$scope.porto.codigoStatus  = 2;
 												console.log('COMERCIAL');
 												
@@ -347,6 +348,7 @@
 								$scope.codigoCadastro = data.data;
 								$scope.corretoras.codMsg = 1;
 								$scope.tooseguros.codigoStatus = 4;
+								iniciarUpload($scope.codigoCadastro);
 								
 								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro +"&carta_especifica=" + codCartaOferta +"&gera_analise=1").then(function(data){
 						   
@@ -375,8 +377,8 @@
 															}                                                            $scope.enviaEmails($scope.codigoCadastro);
 									
 															service.exibirAlertaCadastro();
-															iniciarUpload($scope.codigoCadastro);		
-															$scope.proximoPasso();
+															//iniciarUpload($scope.codigoCadastro);		
+															//$scope.proximoPasso();
 
 										  
 												}, function(erro){
@@ -401,9 +403,9 @@
 												console.log('COMERCIAL');
 												
 												service.exibirAlertaCadastro();
-												iniciarUpload($scope.codigoCadastro);
 												$scope.porto.codigoStatus  = 2;								
-												$scope.proximoPasso();
+												//iniciarUpload($scope.codigoCadastro);
+												//$scope.proximoPasso();
 											
 										}
 										   
