@@ -129,21 +129,38 @@
         * Consulta a análise nas seguradoras
         */
        $scope.consultarAnaliseNasSeguradoras = function(registro, tipo){
-     	  var situacao = tipo == 'lib' ?  registro.situacao_analise_liberty : (tipo == 'por' ? registro.situacao_analise_porto : '');
+    	   var situacao = '';
+    	   var cartaOferta = '';
+    	   if(tipo == 'lib'){
+    		   situacao = registro.situacao_analise_liberty;
+    		   switch (registro.carta_of_lib_fianca_padrao) {
+			case '1': cartaOferta = registro.carta_of_lib_fianca;
+				break;
+			case '2': cartaOferta = registro.carta_of_lib_fianca_variavel;
+			break;
+			case '3': cartaOferta = registro.carta_of_lib_fianca_tombamento;
+			break;
+		}
+    		   
+    	   }else if(tipo == 'por'){
+    		   situacao = registro.situacao_analise_porto;
+    	   }
      	  
      	  if(situacao && !situacao.toLocaleLowerCase().includes('aprovad') && !situacao.toLocaleLowerCase().includes('recusad') && !situacao.toLocaleLowerCase().includes('reprovad')){
      		  if(tipo == 'por'){
      			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+registro.codigo+"&gera_analise=0").then(function(data){
+     				 service.alertar('Código Status: ' + data.data.codigoStatus + ', Mensagem:' + data.data.msgValidacao);
      				 listar();
-     				 enviaEmails(registro.codigo);//envia email
+     				 //enviaEmails(registro.codigo);
      			  }, function(erro){
      				  service.alertarErro(erro.statusText);
      			  });
      			  
      		  }else if(tipo == 'lib'){
-     			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+registro.codigo +"&gera_analise=0").then(function(data){
-     				 listar();
-     				 enviaEmails(registro.codigo);//envia email
+     			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+registro.codigo + "&carta_especifica=" + cartaOferta + "&gera_analise=0").then(function(data){
+     				 service.alertar('Código Status: ' + data.data.codigoStatus + ', Mensagem:' + data.data.msgValidacao);
+     				  listar();
+     				 //enviaEmails(registro.codigo);
      			  }, function(erro){
      				  service.alertarErro(erro.statusText);
      			  });
