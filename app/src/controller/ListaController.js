@@ -151,7 +151,7 @@
      			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+registro.codigo+"&gera_analise=0").then(function(data){
      				 service.alertar('Código Status: ' + data.data.codigoStatus + ', Mensagem:' + data.data.msgValidacao);
      				 listar();
-     				 //enviaEmails(registro.codigo);
+     				 enviaEmails(registro.codigo);
      			  }, function(erro){
      				  service.alertarErro(erro.statusText);
      			  });
@@ -160,7 +160,7 @@
      			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+registro.codigo + "&carta_especifica=" + cartaOferta + "&gera_analise=0").then(function(data){
      				 service.alertar('Código Status: ' + data.data.codigoStatus + ', Mensagem:' + data.data.msgValidacao);
      				  listar();
-     				 //enviaEmails(registro.codigo);
+     				 enviaEmails(registro.codigo);
      			  }, function(erro){
      				  service.alertarErro(erro.statusText);
      			  });
