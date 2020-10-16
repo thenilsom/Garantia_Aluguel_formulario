@@ -28,6 +28,7 @@ $app->post('/consultarPorCodigoUsuario', 'consultarPorCodigoUsuario');
 $app->post('/listarOpCartas', 'listarOpCartas');
 $app->get('/listarSeguradoras', 'listarSeguradoras');
 $app->get('/listarFormasPgtoPorto', 'listarFormasPgtoPorto');
+$app->get('/listarTodasImobs', 'listarTodasImobs');
 
 
 function fezUploadArquivos($request, $response){
@@ -296,6 +297,21 @@ function listarOpCartas($request, $response){
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 	$sql = "SELECT carta_of_lib_fianca, carta_of_lib_fianca_variavel, carta_of_lib_fianca_tombamento from imobs where cpf='$cpf'";	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+
+	while($campo = mysql_fetch_assoc($consulta)){
+      $rows[] = $campo;
+    }
+
+	echo json_encode($rows);
+}
+
+
+function listarTodasImobs(){	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+	$rows = array();
+ 	$sql = "SELECT * from imobs";
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){
