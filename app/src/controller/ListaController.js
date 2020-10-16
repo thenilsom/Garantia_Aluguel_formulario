@@ -482,13 +482,13 @@
     		   arquivo =  codigo + '_' +  seguradora.substr(0,3).toLowerCase() + '.pdf';
     	   }
     	   
-    	   return "http://www.segurosja.com.br/sistema_seguros/sistemaimobiliario/api/admin/fianca/uploads/" + arquivo;
+    	   return "https://www.segurosja.com.br/gerenciador/fianca/apolices/" + arquivo;
        }
        
        /*inicia as configurações de upload*/
        var iniciarUpload = function(codigoCadastro){
          $scope.uploader = new FileUploader({
-           url : 'https://www.segurosja.com.br/sistema_seguros/sistemaimobiliario/api/admin/fianca/uploadApolice.php',
+           url : 'https://www.segurosja.com.br/gerenciador/fianca/uploadApolice.php',
            formData:[{codigo: codigoCadastro}]
          });
 

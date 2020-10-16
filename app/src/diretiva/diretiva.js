@@ -173,7 +173,8 @@ diretiva.directive('mascaraTelefone', function(serviceUtil) {
       	});
 	        
 	}else{
-		$(el).attr('type', attrs.mobile)
+		$(el).attr('type', attrs.mobile);
+		$(el).attr('maxlength', 9);
 	}
 			
 }
