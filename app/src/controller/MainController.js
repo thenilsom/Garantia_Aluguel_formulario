@@ -534,8 +534,13 @@
                 $scope.errors.push("Preencha ao menos um campo de telefone.");
               }
               
-              if($scope.cadastro.pretendente.telefone && !validador.isDDDValido($scope.cadastro.pretendente.dddTelefone)){
-            	  $scope.errors.push("Preencha o DDD do telefone.");
+              if($scope.cadastro.pretendente.telefone){
+            	  if(!validador.isDDDValido($scope.cadastro.pretendente.dddTelefone)){
+            		  $scope.errors.push("Preencha o DDD do telefone.");
+            	  }
+            	  if(service.apenasNumeros($scope.cadastro.pretendente.telefone).length > 9){
+            		  $scope.errors.push("Telefone inválido. Favor informar apenas o número sem o DDD");
+            	  }
               }
               
               if($scope.cadastro.pretendente.celular && !validador.isDDDValido($scope.cadastro.pretendente.dddCelular)){
