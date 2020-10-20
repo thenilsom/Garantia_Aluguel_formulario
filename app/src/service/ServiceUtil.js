@@ -1,6 +1,6 @@
 angular.module('app')
-.factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter','$http',
-	function($location, $anchorScroll, $mdDialog, $filter, $http){
+.factory('serviceUtil', ['$location', '$anchorScroll','$mdDialog', '$filter','$http','messageUtil',
+	function($location, $anchorScroll, $mdDialog, $filter, $http, messageUtil){
 
 		var url = '../app/';
 		//var url = 'http://www.segurosja.com.br/gerenciador/fianca/app/'; //para testes
@@ -41,12 +41,13 @@ angular.module('app')
 		}
 
 		service.alertar = function(msg){
-			$mdDialog.show(
-			    $mdDialog.alert()
-			    .title('Alerta')
-			    .textContent(msg)
-			    .ok('OK')
-			);
+			messageUtil.showAlert(msg);
+//			$mdDialog.show(
+//			    $mdDialog.alert()
+//			    .title('Alerta')
+//			    .textContent(msg)
+//			    .ok('OK')
+//			);
 			
 		}
 		
@@ -58,29 +59,33 @@ angular.module('app')
 		}
 
 		service.alertarErro = function(msg){
-			$mdDialog.show(
-			    $mdDialog.alert()
-			    .title('Erro')
-			    .textContent(msg)
-			    .ok('OK')
-			);
+			messageUtil.showError(msg);
+//			$mdDialog.show(
+//			    $mdDialog.alert()
+//			    .title('Erro')
+//			    .textContent(msg)
+//			    .ok('OK')
+//			);
 		}
 		
 		/**
 		 * Exibe um alerta de confirm
 		 */
 		service.showConfirm = function(text, callback) {
-		    var confirm = $mdDialog.confirm()
-		          .title('Confirmação')
-		          .textContent(text)
-		          .ariaLabel('Lucky day')
-		          .ok('OK')
-		          .cancel('Cancelar');
-
-		    $mdDialog.show(confirm).then(function() {
-		    	callback();
-		    }, function() {
-		    });
+			messageUtil.showConfirm(text, function(){
+				callback();
+			});
+//		    var confirm = $mdDialog.confirm()
+//		          .title('Confirmação')
+//		          .textContent(text)
+//		          .ariaLabel('Lucky day')
+//		          .ok('OK')
+//		          .cancel('Cancelar');
+//
+//		    $mdDialog.show(confirm).then(function() {
+//		    	callback();
+//		    }, function() {
+//		    });
 		  };
 
 	

@@ -16,6 +16,7 @@ $app->post('/registrarAtendimento', 'registrarAtendimento');
 $app->post('/gravarRegInquilino', 'gravarRegInquilino');
 $app->post('/gravarDadosApolice', 'gravarDadosApolice');
 $app->post('/alterarDadosAnalise', 'alterarDadosAnalise');
+$app->post('/vincularAnaliseAOutraImob', 'vincularAnaliseAOutraImob');
 
 
 function registrarAtendimento($request, $response){
@@ -102,6 +103,18 @@ function gravarRegInquilino($request, $response){
 
  	$sql = "INSERT INTO fianca(data_transm, hora_transm, seguradora, solicitante, CGC_imob, inquilino, tipo_inquilino, CPF_inquilino, corretor, status) VALUES ('$data_servidor', '$hora_servidor', 'ALL', 'Seguros Já', '$CGC_imob', '$inquilino', '$tipo_inquilino', '$cpfCnpj', '$codCorretor','$status')";
 	
+	mysql_db_query("segurosja", $sql) or die (mysql_error());
+}
+
+function vincularAnaliseAOutraImob($request, $response){
+	$param = json_decode($request->getBody());
+	$codReg = trim(json_encode($param->codReg, JSON_UNESCAPED_UNICODE), '"');
+	$CGC_imob = trim(json_encode($param->CGC_imob, JSON_UNESCAPED_UNICODE), '"');
+
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	mysql_set_charset('utf8',$conexao);
+
+	$sql = "UPDATE fianca set CGC_imob = '$CGC_imob' WHERE codigo = $codReg";
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }
 

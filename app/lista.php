@@ -68,9 +68,11 @@
 
     <script src="./src/app.js"></script>
     <script src="./src/diretiva/diretiva.js"></script>
-     <script src="./src/diretiva/filters.js"></script>
+    <script src="./src/diretiva/filters.js"></script>
     <script src="./src/service/ServiceUtil.js"></script>
-     <script src="./src/service/DataUtil.js"></script>
+    <script src="./src/service/MessageUtil.js"></script>
+    <script src="./src/message/message.min.js"></script>
+    <script src="./src/service/DataUtil.js"></script>
     <script src="./src/service/ValidaService.js"></script>
     <script src="./src/controller/MainController.js"></script>
     <script src="./src/controller/ListaController.js"></script>

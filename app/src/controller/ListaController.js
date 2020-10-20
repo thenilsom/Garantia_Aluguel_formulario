@@ -81,6 +81,25 @@
             });
 
        }
+       
+       /**
+        * Recarrega e Detalha a analise
+        */
+       var recarregarAnaliseEDetalhar = function(codReg, msg, callback){
+    	   $http.post(url + 'php/consulta.php/consultarPorCodigoRegistro', {codigo: codReg}).then(function(data){
+		   		$scope.detalhar(data.data[0]);
+		   		if(msg){
+		   			service.alertar(msg);
+		   		}
+		   		
+		   		if(callback){
+		   			callback();
+		   		}
+		   		
+           }, function(erro){
+             service.alertarErro(erro.statusText);
+           });
+       }
 
        $scope.irParaListagem = function(){
         $scope.acao = 'listar';
@@ -311,14 +330,10 @@
     		   $scope.dadosAnalise.dataAprovacao = dataUtil.formatarParaDataServidor($scope.dadosAnalise.dataAprovacao);
     		   $http.post(url + 'php/gravar.php/alterarDadosAnalise', $scope.dadosAnalise).then(function(data){
     			   
-    			   $http.post(url + 'php/consulta.php/consultarPorCodigoRegistro', {codigo: $scope.dadosAnalise.codigoCadastro}).then(function(data){
-    				   		$scope.detalhar(data.data[0]);
-    				   		$('#modalDadosAnalise').modal('hide');
-    		    			 service.alertar('Dados da análise atualizado com sucesso!');
-    		    			 enviaEmails($scope.dadosAnalise.codigoCadastro);//envia email
-    		            }, function(erro){
-    		              service.alertarErro(erro.statusText);
-    		            });
+    			   recarregarAnaliseEDetalhar($scope.dadosAnalise.codigoCadastro, 'Dados da análise atualizado com sucesso!', function(){
+    				   $('#modalDadosAnalise').modal('hide');
+    				   enviaEmails($scope.dadosAnalise.codigoCadastro);//envia email
+    			   });
     			   
     		   }, function(erro){
     			   service.alertarErro(erro.statusText);
@@ -558,6 +573,35 @@
     	   
     	   $scope.primeiraOpSituacao = ['Análise cadastral aprovada', 'Aprovado - Finalizado'];
     	      
+       }
+       
+       /**
+        * Inicia a alteração da imobiliária
+        */
+       $scope.iniciarAlteracaoImob = function(){
+    	   listarCGC_Imob();
+    	   $scope.dadosVincImob = {};
+       }
+       
+       /**
+        * Vincula a análise a outra imobiliária
+        */
+       $scope.vincularAnaliseAOutraImob = function(){
+    	   if(!$scope.dadosVincImob.imob){
+    		   service.alertarErro('Informe a imobiliária a ser vinculada a análise.');
+    		   
+    	   }else{
+    		   service.showConfirm('Confirma vincular a Imobiliária: ' + $scope.dadosVincImob.imob.fantasia + ' ?' ,function(){
+    			   $http.post(url + 'php/gravar.php/vincularAnaliseAOutraImob', {codReg : $scope.registro.codigo, CGC_imob: $scope.dadosVincImob.imob.cpf}).then(function(data){    
+    				   recarregarAnaliseEDetalhar($scope.registro.codigo, 'Análise vinculada a imobiliária com sucesso!', function(){
+    					   listar();
+    					   $('#modalVincularImob').modal('hide');
+    				   });
+    			   }, function(erro){
+    				   service.alertarErro(erro.statusText);
+    			   });
+    		   });
+    	   }
        }
        
       var enviaEmails = function(codigo = '') {

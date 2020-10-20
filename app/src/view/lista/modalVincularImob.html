@@ -1,0 +1,39 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="modalVincularImob" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Vincular análise a outra imobiliária</h4>
+        </div>
+        <div class="modal-body">
+        
+       <form name="formAltImob" class="form form-horizontal" role="form" autocomplete="off">
+			
+			<div class="form-group">
+						<label for="txtImob" class="col-md-2 control-label label-thin">Imobiliária:</label>
+                        <div class="col-md-10">
+							<select id="txtImob" name="dadosVincImob.imob"
+									data-ng-options="imob.fantasia for imob in listaCGC_Imob"
+                                    data-ng-model="dadosVincImob.imob"
+                                    class="form-control form-control-small"
+                                    data-ng-tabindex='2'>
+							</select>
+						</div>
+					</div>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+        	<div class="form-group last">
+				<div class="col-md-12 text-center margem-btn-form">
+					<button type="button" class="btn btn-success" data-ng-click="vincularAnaliseAOutraImob()">Salvar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,9 @@
 			<div class="panel-heading">
 				<h2 class="panel-title" data-ng-class="{'texto-azul' : (registro.data_contratacao && registro.data_contratacao !== '0000-00-00 00:00:00')}">
 				<strong>Código SJ: {{registro.codigo}} {{registro.inquilino}} - {{registro.fantasia}}</strong>
+				<span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-left: 5px;"  data-ng-click="iniciarAlteracaoImob()" 
+					data-ng-if="!(registro.data_contratacao && registro.data_contratacao !== '0000-00-00 00:00:00')"
+					data-toggle="modal" data-target="#modalVincularImob"></span>
 				</h2>
 			</div>
 
@@ -239,6 +242,9 @@
      
      <!-- Inclusão do modal dados analise -->
      <div data-ng-include="'./src/view/lista/modalDadosAnalise.html'"></div> 
+     
+     <!-- Inclusão do modal vincular imobiliaria -->
+     <div data-ng-include="'./src/view/lista/modalVincularImob.html'"></div>
      
       <!-- Inclusão do modal reanalise liberty -->
      <div data-ng-include="'./src/view/lista/modalReanaliseLiberty.html'"></div> 
