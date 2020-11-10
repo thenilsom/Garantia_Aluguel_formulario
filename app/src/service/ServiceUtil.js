@@ -97,7 +97,7 @@ angular.module('app')
 		Move a tela parao id informado
 		*/
 		service.moveTo = function(id){
-			$location.hash(id);
+			//$location.hash(id);*comentado porque estava conflitando com o modal de alert
             $anchorScroll();
 		}
 
