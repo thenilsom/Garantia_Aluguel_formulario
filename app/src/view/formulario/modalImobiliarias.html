@@ -1,0 +1,104 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="modalSelectImob" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Vincular Imobiliária</h4>
+        </div>
+        <div class="modal-body">
+        
+       <form name="formSelectImob" class="form form-horizontal" role="form" autocomplete="off">
+       <div layout="row" layout-xs="column" layout-padding>      
+      <div class="md-block" flex-gt-sm="50" flex-xs="100">
+        <label for="cidade">Cidade</label>
+        <select class="form-control" id="cidade" ng-tabindex="1" name="filtroImob.cidade" 
+        	data-ng-change="listarImobiliariasPorCidade()"
+          ng-model="filtroImob.cidade"  focus>
+          <option value="todas">TODAS AS CIDADES</option>
+          
+          <optgroup label="ALAGOAS">  
+          <option value="MACEIÓ">MACEIÓ</option>
+          </optgroup>
+          
+          <optgroup label="BAHIA">  
+          <option value="FEIRA DE SANTANA">FEIRA DE SANTANA</option>
+          <option value="JUAZEIRO">JUAZEIRO</option>
+          <option value="LAURO DE FREITAS">LAURO DE FREITAS</option>
+          <option value="SALVADOR">SALVADOR</option>
+          <option value="VITÓRIA DA CONQUISTA">VITÓRIA DA CONQUISTA</option>
+        </optgroup>
+        
+         <optgroup label="DISTRITO FEDERAL">
+          	<option value="BRASÍLIA">BRASÍLIA</option>
+          </optgroup>
+        
+           <optgroup label="GOIÁS">
+	          <option value="ANÁPOLIS">ANÁPOLIS</option>
+	          <option value="APARECIDA DE GOIÂNIA">APARECIDA DE GOIÂNIA</option>
+          	  <option value="CATALÃO">CATALÃO</option>
+         	  <option value="GOIÂNIA">GOIÂNIA</option>
+          	  <option value="JARAGUÁ">JARAGUÁ</option>
+	          <option value="JATAÍ">JATAÍ</option>
+          	  <option value="MINEIROS">MINEIROS</option>
+	          <option value="RIO VERDE">RIO VERDE</option>
+          	  <option value="SÃO LUÍS DOS MONTES BELOS">SÃO LUÍS DOS MONTES BELOS</option>
+	          <option value="SENADOR CANEDO">SENADOR CANEDO</option>
+	          <option value="TRINDADE">TRINDADE</option>
+          	<option value="VALPARAÍSO DE GOIÁS">VALPARAÍSO DE GOIÁS</option>
+	        </optgroup>
+          
+          <optgroup label="MATO GROSSO">
+          	<option value="CAMPO VERDE">CAMPO VERDE</option>
+          <option value="CUIABÁ">CUIABÁ</option>
+          <option value="RONDONÓPOLIS">RONDONÓPOLIS</option>
+          <option value="SINOP">SINOP</option>
+          <option value="VÁRZEA GRANDE">VÁRZEA GRANDE</option>
+          </optgroup>
+        
+        <optgroup label="PARÁ"> 
+          <option value="MARABÁ">MARABÁ</option>
+        </optgroup>
+        
+        <optgroup label="PERNAMBUCO"> 
+           <option value="PETROLINA">PETROLINA</option>
+        </optgroup>
+        
+        <optgroup label="SERGIPE">  
+          <option value="ARACAJU">ARACAJU</option>
+          </optgroup>
+        
+        <optgroup label="TOCANTINS"> 
+          <option value="PALMAS">PALMAS</option>
+        </optgroup>
+        
+        </select>
+  </div>
+ </div>
+ 
+ <div layout="row" layout-xs="column" layout-padding>      
+      <div class="md-block" flex-gt-sm="50" flex-xs="100">
+        <label for="imob">Imobiliárias</label>
+        <select class="form-control" id="imob" ng-tabindex="2" name="filtroImob.imobiliaria" 
+        	data-ng-options="imob as imob.fantasia for imob in listaImobiliarias | orderBy: 'fantasia'"
+          ng-model="filtroImob.imobiliaria">
+        </select>
+  </div>
+ </div>
+	
+</form>
+          
+        </div>
+        <div class="modal-footer">
+        	<div class="form-group last">
+				<div class="col-md-12 text-center margem-btn-form">
+					<button type="button" class="btn btn-success" data-ng-click="gravarDadosAnalise()">OK</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,7 @@ $app->post('/listarOpCartas', 'listarOpCartas');
 $app->get('/listarSeguradoras', 'listarSeguradoras');
 $app->get('/listarFormasPgtoPorto', 'listarFormasPgtoPorto');
 $app->get('/listarTodasImobs', 'listarTodasImobs');
+$app->post('/consultarImobsPorCidade', 'consultarImobsPorCidade');
 
 
 function fezUploadArquivos($request, $response){
@@ -297,6 +298,31 @@ function listarOpCartas($request, $response){
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 	$sql = "SELECT carta_of_lib_fianca, carta_of_lib_fianca_variavel, carta_of_lib_fianca_tombamento from imobs where cpf='$cpf'";	
+	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
+
+	while($campo = mysql_fetch_assoc($consulta)){
+      $rows[] = $campo;
+    }
+
+	echo json_encode($rows);
+}
+
+function consultarImobsPorCidade($request, $response){
+	$param = json_decode($request->getBody());
+	$cidade = trim(json_encode($param->cidade, JSON_UNESCAPED_UNICODE), '"');
+	
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+	if($cidade == 'todas'){
+		$sql = "SELECT codigo, fantasia, razao, cpf, cidade, uf, fone FROM imobs WHERE site='1' order by fantasia asc";
+	}else{
+		$sql = "SELECT codigo, fantasia, razao, cpf, cidade, uf, fone FROM imobs WHERE site='1' and cidade='$cidade' order by fantasia asc";
+	}
+ 	
+	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){

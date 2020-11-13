@@ -4,6 +4,9 @@
         function($scope, $http, service, formularioService, validador, FileUploader){
     	   
     	  var _url = service.getUrl();
+    	  
+    	  $scope.filtroImob = {};//filtro para selecionar imobiliaria caso não seja passado um cnpj na url
+    	  //$('#modalSelectImob').modal('show') abre o modal de selecionar imobiliaria
 
         //obtem os parametros na url se existir
         $scope.paramUrl = service.extraiParamUrl(location.search.slice(1));
@@ -103,6 +106,17 @@
         		  if(data.data && data.data.nome){
         			  $scope.usuarioSolicitante = ' - Usuário ' + data.data.nome;
         		  }
+             }, function(erro){
+               service.alertarErro(erro.statusText);
+             });
+          }
+          
+          /**
+           * Obtem a lista de imobiliarias
+           */
+          $scope.listarImobiliariasPorCidade = function(){
+        	  $http.post(_url + 'php/consulta.php/consultarImobsPorCidade', {cidade: $scope.filtroImob.cidade}).then(function(data){
+        		 $scope.listaImobiliarias = data.data;
              }, function(erro){
                service.alertarErro(erro.statusText);
              });
