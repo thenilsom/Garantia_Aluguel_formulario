@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'formularioService', 'validaService', 'FileUploader', 
-        function($scope, $http, service, formularioService, validador, FileUploader){
+       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'formularioService', 'validaService', 'FileUploader', 'dataUtil',
+        function($scope, $http, service, formularioService, validador, FileUploader, dataUtil){
     	   
     	  var _url = service.getUrl();
     	  
@@ -567,6 +567,13 @@
 
               if(!validador.validarCaracteresEspeciais($scope.cadastro.pretendente.nome)){
                 $scope.errors.push("Nome do pretendente não pode conter acentos ou caracteres especiais.");
+              }
+              
+              if($scope.cadastro.pretendente.dataNascimento){
+            	 var difAnos = dataUtil.difEntreDatasEmAnos($scope.cadastro.pretendente.dataNascimento, dataUtil.getDataAtual());
+            	 if(difAnos < 16){
+            		 $scope.errors.push("Pretendente não pode ser menor que 16 anos.");
+            	 }
               }
 
               //se tiver sido informado telefone comercial seta no tel da empresa

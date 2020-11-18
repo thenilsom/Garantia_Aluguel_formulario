@@ -73,6 +73,16 @@ angular.module('app')
  		var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
  		return days;
      };
+     
+     service.difEntreDatasEmAnos = function(dataInicio, dataFim){
+  		dataInicio = service.formatarData(dataInicio);
+  		dataFim = service.formatarData(dataFim);
+  		var arrayDI = dataInicio.split('/');
+  		var arrayDF = dataFim.split('/');
+ 		dataInicio =  new Date(arrayDI[2], parseInt(arrayDI[1]) - 1, arrayDI[0]);
+ 		dataFim =  new Date(arrayDF[2], parseInt(arrayDF[1]) - 1, arrayDF[0]);
+ 		return dataFim.getFullYear() - dataInicio.getFullYear();
+      };
 
 	return service;
 }]);
