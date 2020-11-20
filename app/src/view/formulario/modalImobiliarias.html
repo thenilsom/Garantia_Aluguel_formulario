@@ -80,7 +80,7 @@
  <div layout="row" layout-xs="column" layout-padding>      
       <div class="md-block" flex-gt-sm="50" flex-xs="100">
         <label for="imob">Imobiliárias</label>
-        <select class="form-control" id="imob" ng-tabindex="2" name="filtroImob.imobiliaria" 
+        <select class="form-control" id="imob" ng-tabindex="2" name="filtroImob.imobiliaria"
         	data-ng-options="imob as imob.fantasia for imob in listaImobiliarias | orderBy: 'fantasia'"
           ng-model="filtroImob.imobiliaria">
         </select>
@@ -93,8 +93,8 @@
         <div class="modal-footer">
         	<div class="form-group last">
 				<div class="col-md-12 text-center margem-btn-form">
-					<button type="button" class="btn btn-success" data-ng-click="gravarDadosAnalise()">OK</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-success" data-ng-click="selecionarImobiliaria()">OK</button>
+					<!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>-->
 				</div>
 			</div>
         </div>

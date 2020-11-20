@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'formularioService', 'validaService', 'FileUploader', 'dataUtil',
-        function($scope, $http, service, formularioService, validador, FileUploader, dataUtil){
+       .controller('MainController', ['$scope', '$http', 'serviceUtil', 'formularioService', 'validaService', 'FileUploader', 'dataUtil','$timeout',
+        function($scope, $http, service, formularioService, validador, FileUploader, dataUtil, $timeout){
     	   
     	  var _url = service.getUrl();
     	  
@@ -11,16 +11,10 @@
         //obtem os parametros na url se existir
         $scope.paramUrl = service.extraiParamUrl(location.search.slice(1));
         
-        var codRegistro = $("input[name='codigo']").val();
+        var codRegistro = service.apenasNumeros($("input[name='codigo']").val());
         var codCartaOferta = $("input[name='codigo_carta_oferta']").val();
-        $scope.codSeguradora = $("input[name='codigo_seguradora']").val();
+        $scope.codSeguradora = service.apenasNumeros($("input[name='codigo_seguradora']").val());
         
-        
-        if(!$scope.codSeguradora && (!$scope.paramUrl || !$scope.paramUrl.var1)){
-        	service.alertarErro('Favor entrar em contato com a Imobiliária ou a corretora de seguros para liberação do formulário de análise.');
-        	
-        }else{
-        	
        
           //controla o hide/show do botão ir para topo quando chegar no fim da pagina
         $(window).scroll(function () {
@@ -66,37 +60,40 @@
 		  
           $scope.cadastro.pessoal = {tipoPessoa : 'FISICA'};
           
-          if($scope.paramUrl){
-            var cpfCnpjParam = service.formatarCpfCnpj(service.decriptografar($scope.paramUrl.var1));
-            $http.post(_url + 'php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
-            var dadosImobiliaria = service.extraiParamUrl(data.data);
-            $scope.cadastro.imobiliaria.fantasia = dadosImobiliaria.fantasia;
-            $scope.cadastro.imobiliaria.razao = dadosImobiliaria.razao;
-            $scope.cadastro.imobiliaria.corretor = dadosImobiliaria.corretor;
-            $scope.cadastro.imobiliaria.cnpj = cpfCnpjParam;
-             
-             $scope.cadastro.imovel.aluguel = service.formatarValor(service.decriptografar($scope.paramUrl.var2));
-             $scope.cadastro.imovel.condominio = service.formatarValor(service.decriptografar($scope.paramUrl.var3));
-             $scope.cadastro.imovel.iptu = service.formatarValor(service.decriptografar($scope.paramUrl.var4));
-             $scope.cadastro.imovel.agua = service.formatarValor(service.decriptografar($scope.paramUrl.var5));
-             $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar($scope.paramUrl.var6));
-             $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar($scope.paramUrl.var7));
-			 $scope.cadastro.imovel.solicitante = service.decriptografar($scope.paramUrl.var8);
-			 
-			 $scope.cadastro.pretendente.nome = $scope.paramUrl.var9 ? $scope.paramUrl.var9.replace(/%20/g, ' ') : ''; //%20 são os espaços
-			 $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
-			 $scope.cadastro.pretendente.tipoInquilino = ($scope.paramUrl.var11 && ['F', 'J'].includes($scope.paramUrl.var11.toUpperCase())) ? $scope.paramUrl.var11 : 'F';
-			 $scope.cadastro.imovel.nivelAcesso = $scope.paramUrl.var12 ? $scope.paramUrl.var12 : '';
-			 
-			 //se existir codigo do solicitante obtem o usuario solicitante
-			 if($scope.cadastro.imovel.solicitante && $scope.cadastro.imovel.nivelAcesso){
-				 obterUsuarioSolicitante($scope.cadastro.imovel.solicitante, $scope.cadastro.imovel.nivelAcesso);
-			 }
-			 
-            }, function(erro){
-              service.alertarErro(erro.statusText);
-            });
+          var carregarDadosPeloCpfCnpj = function(cnpjParamMetodo){
+                  var cpfCnpjParam = cnpjParamMetodo ? cnpjParamMetodo : service.formatarCpfCnpj(service.decriptografar($scope.paramUrl.var1));
+                  $http.post(_url + 'php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
+                  var dadosImobiliaria = service.extraiParamUrl(data.data);
+                  $scope.cadastro.imobiliaria.fantasia = dadosImobiliaria.fantasia;
+                  $scope.cadastro.imobiliaria.razao = dadosImobiliaria.razao;
+                  $scope.cadastro.imobiliaria.corretor = dadosImobiliaria.corretor;
+                  $scope.cadastro.imobiliaria.cnpj = cpfCnpjParam;
+                   
+                  if($scope.paramUrl){
+                	  $scope.cadastro.imovel.aluguel = service.formatarValor(service.decriptografar($scope.paramUrl.var2));
+                	  $scope.cadastro.imovel.condominio = service.formatarValor(service.decriptografar($scope.paramUrl.var3));
+                	  $scope.cadastro.imovel.iptu = service.formatarValor(service.decriptografar($scope.paramUrl.var4));
+                	  $scope.cadastro.imovel.agua = service.formatarValor(service.decriptografar($scope.paramUrl.var5));
+                	  $scope.cadastro.imovel.luz = service.formatarValor(service.decriptografar($scope.paramUrl.var6));
+                	  $scope.cadastro.imovel.gas = service.formatarValor(service.decriptografar($scope.paramUrl.var7));
+                	  $scope.cadastro.imovel.solicitante = service.decriptografar($scope.paramUrl.var8);
+                	  $scope.cadastro.pretendente.nome = $scope.paramUrl.var9 ? $scope.paramUrl.var9.replace(/%20/g, ' ') : ''; //%20 são os espaços
+                	  $scope.cadastro.pretendente.cpf = service.decriptografar($scope.paramUrl.var10);
+                	  $scope.cadastro.pretendente.tipoInquilino = ($scope.paramUrl.var11 && ['F', 'J'].includes($scope.paramUrl.var11.toUpperCase())) ? $scope.paramUrl.var11 : 'F';
+                	  $scope.cadastro.imovel.nivelAcesso = $scope.paramUrl.var12 ? $scope.paramUrl.var12 : '';
+                  }
+      			 
+      			 
+      			 //se existir codigo do solicitante obtem o usuario solicitante
+      			 if($scope.cadastro.imovel.solicitante && $scope.cadastro.imovel.nivelAcesso){
+      				 obterUsuarioSolicitante($scope.cadastro.imovel.solicitante, $scope.cadastro.imovel.nivelAcesso);
+      			 }
+      			 
+                  }, function(erro){
+                    service.alertarErro(erro.statusText);
+                  });
           }
+          
           
           /**
            * Obtem o Usuario solicitante
@@ -120,6 +117,16 @@
              }, function(erro){
                service.alertarErro(erro.statusText);
              });
+          }
+          
+          $scope.selecionarImobiliaria = function(){
+        	  if($scope.filtroImob.imobiliaria){
+        		  carregarDadosPeloCpfCnpj($scope.filtroImob.imobiliaria.cpf);
+        		  $('#modalSelectImob').modal('hide');
+        		  
+        	  }else{
+        		  service.alertarErro('Selecione uma imobiliaria para vincular ao cadastro.');
+        	  }
           }
           
           /*gera o link para a pasta upload*/
@@ -907,6 +914,14 @@
 		
 		if(codRegistro){//se foi passado codigo carrega o registro pelo codigo
 	    	pesquisarPorCodigoRegistro(codRegistro);
-	    }
-       }//fim do else de vericação do param1
+	    	
+	    }else if(!$scope.codSeguradora && (!$scope.paramUrl || !$scope.paramUrl.var1)){
+        	//service.alertarErro('Favor entrar em contato com a Imobiliária ou a corretora de seguros para liberação do formulário de análise.');
+	    	$timeout(function(){
+	    		$('#modalSelectImob').modal('show')
+	    	}, 500);
+	    	
+        }else{
+        	carregarDadosPeloCpfCnpj();
+        }
     }]);

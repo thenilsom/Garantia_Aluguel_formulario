@@ -122,7 +122,11 @@ angular.module('app')
          * Mantem apenas os numeros da string passada
          */
         service.apenasNumeros = function (string) {
-            return string.replace(/[^0-9]/g, '');
+        	if(string){
+        		return string.replace(/[^0-9]/g, '');
+        	}else{
+        		return string;
+        	}
         }
 
 
