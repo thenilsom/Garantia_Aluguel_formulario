@@ -35,6 +35,11 @@ div {
 	font-weight: 600;
 }
 
+.texto-cinza{
+	color: #999999;
+	font-weight: 600;
+}
+
 </style>
 
   <div class="row">
@@ -69,6 +74,7 @@ div {
 				<option value="" style="font-weight: bold;">Todas as Análises</option>
 				<option value="nao_registrado">Somente Não Registradas</option>
 				<option value="contratado">Somente Contratadas</option>
+				<option value="desistencia">Somente Desistências</option>
 			</select>
 	</div>	
 	</div>
@@ -138,7 +144,7 @@ div {
     </thead>
     <tbody>
       <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | orderBy: sortBy:sortOrder | itemsPerPage: 20" 
-      	data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00',  'texto-azul' : (reg.data_contratacao && reg.data_contratacao !== '0000-00-00 00:00:00')}">
+      	data-ng-class="{'pendente': !isDataValida(reg.data_aceite_analise),  'texto-azul' : isDataValida(reg.data_contratacao), 'texto-cinza' : isDataValida(reg.desistencia)}">
         <td class="col-sm-1">{{reg.codigo}}</td>
         <td class="col-sm-2">{{reg.inquilino}}</td>
         <td class="col-sm-1">{{reg.CPF_inquilino | cpfcnpj}}</td>

@@ -116,8 +116,11 @@
     	   if(angular.equals($scope.filtro.situacao, 'nao_registrado')){
     		   $scope.listaTabela = listaAux.filter(r=> !r.usuario_atendente);
     	   }else if(angular.equals($scope.filtro.situacao, 'contratado')){
-    		   $scope.listaTabela = listaAux.filter(r=>r.data_contratacao && !r.data_contratacao.startsWith('0000'));
+    		   $scope.listaTabela = listaAux.filter(r=>$scope.isDataValida(r.data_contratacao));
     		  
+    	   }else if(angular.equals($scope.filtro.situacao, 'desistencia')){
+    		   $scope.listaTabela = listaAux.filter(r=>$scope.isDataValida(r.desistencia));
+    		   
     	   }else{
     		   $scope.listaTabela = listaAux;
     	   }
@@ -391,6 +394,18 @@
     	   });
        }
        
+     //registra a desistencia
+       $scope.registrarDesistencia = function(){
+    	   var dataDaDesistencia = $scope.filtroDesistencia.isDesistente ? dataUtil.formatarParaDataServidor(dataUtil.getDataAtual()) : '0000-00-00';
+    	   $http.post(url + 'php/gravar.php/registrarDesistencia', {dataDesistencia : dataDaDesistencia, codigoCadastro: $scope.filtroDesistencia.codigo}).then(function(data){    
+    		   service.alertar('registrado com sucesso.');
+ 			 $('#modalRegistroDesistencia').modal('hide');
+ 			  $scope.registro.desistencia = dataDaDesistencia;
+ 		  }, function(erro){
+ 			  service.alertarErro(erro.statusText);
+ 		  });
+       }
+       
        /**
         * Devolve o codigo do usuario
         */
@@ -468,6 +483,15 @@
           }, function(erro){
            service.alertarErro(erro.statusText);
           });
+       }
+       
+       /**
+        * Exibe o modal de desistencia
+        */
+       $scope.exibirModalDesistencia = function(registro){
+    	   $scope.filtroDesistencia = {};
+    	   $scope.filtroDesistencia.isDesistente = $scope.isDataValida(registro.desistencia);
+    	   $scope.filtroDesistencia.codigo = registro.codigo;
        }
        
        /**
@@ -573,6 +597,13 @@
     	   
     	   $scope.primeiraOpSituacao = ['Análise cadastral aprovada', 'Aprovado - Finalizado'];
     	      
+       }
+       
+       /**
+        * Retorna true se a data for valida
+        */
+       $scope.isDataValida = function(data){
+    	   return dataUtil.isDataValida(data);
        }
        
        /**

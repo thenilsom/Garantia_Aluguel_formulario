@@ -17,6 +17,7 @@ $app->post('/gravarRegInquilino', 'gravarRegInquilino');
 $app->post('/gravarDadosApolice', 'gravarDadosApolice');
 $app->post('/alterarDadosAnalise', 'alterarDadosAnalise');
 $app->post('/vincularAnaliseAOutraImob', 'vincularAnaliseAOutraImob');
+$app->post('/registrarDesistencia', 'registrarDesistencia');
 
 
 function registrarAtendimento($request, $response){
@@ -31,6 +32,21 @@ function registrarAtendimento($request, $response){
 	$rows = array();
 
  	$sql = "UPDATE fianca set usuario_analise = '$codigoUsuario', data_aceite_analise = '$dataAceite' WHERE codigo=$codigoCadastro";
+	
+	mysql_db_query("segurosja", $sql) or die (mysql_error());
+}
+
+function registrarDesistencia($request, $response){
+	$param = json_decode($request->getBody());
+	$dataDesistencia = trim(json_encode($param->dataDesistencia, JSON_UNESCAPED_UNICODE), '"');
+	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
+		
+	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+
+ 	$sql = "UPDATE fianca set desistencia = '$dataDesistencia' WHERE codigo=$codigoCadastro";
 	
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }

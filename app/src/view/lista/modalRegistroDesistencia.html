@@ -1,0 +1,38 @@
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="modalRegistroDesistencia" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Registrar Desistência</h4>
+        </div>
+        <div class="modal-body">
+        
+       <form name="formRegDesistencia" class="form form-horizontal" role="form" autocomplete="off">
+       
+			<div class="form-group">
+						<label for="txtSeguradora" class="col-xs-2 control-label label-thin">Desistente:</label>
+                        <div class="col-xs-3">
+							<select id="txtSeguradora" name="filtroDesistencia.isDesistente"
+                                    data-ng-model="filtroDesistencia.isDesistente" requerido
+                                    class="form-control form-control-small"
+                                    data-ng-tabindex='3' data-ng-options="o.v as o.n for o in [{ n: 'Sim', v: true }, { n: 'Não', v: false }]">
+							</select>
+						</div>
+					</div>
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+        	<div class="form-group last">
+				<div class="col-md-12 text-center margem-btn-form">
+					<button type="button" class="btn btn-success" data-ng-click="registrarDesistencia()">Registrar</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

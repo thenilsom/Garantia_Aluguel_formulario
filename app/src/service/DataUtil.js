@@ -20,7 +20,13 @@ angular.module('app')
 
 	//retorna a data atual no padrão dd/MM/yyyy
 	service.getDataAtual = function(){
-		return service.formatarData(new Date());
+		 var data = new Date(),
+	        dia  = data.getDate().toString(),
+	        diaF = (dia.length == 1) ? '0'+dia : dia,
+	        mes  = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+	        mesF = (mes.length == 1) ? '0'+mes : mes,
+	        anoF = data.getFullYear();
+	    return diaF+"/"+mesF+"/"+anoF;
 	}
 
 	service.formatarData = function(data){
@@ -34,7 +40,7 @@ angular.module('app')
 	}
 	
 	service.isDataValida = function(data){
-		return data && !angular.equals(data, '0000-00-00');
+		return data && !data.startsWith('0000-00-00');
 	}
 		
 	//cria uma data hora. os parametros deve ser no pardrão : '2019-09-20' '20:37:37'

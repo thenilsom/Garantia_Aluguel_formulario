@@ -119,13 +119,27 @@
              });
           }
           
+          /**
+           * Seleciona a imobiliaria
+           */
           $scope.selecionarImobiliaria = function(){
-        	  if($scope.filtroImob.imobiliaria){
-        		  carregarDadosPeloCpfCnpj($scope.filtroImob.imobiliaria.cpf);
-        		  $('#modalSelectImob').modal('hide');
+        	  if($scope.filtroImob.imobNaoParceira){
+        		  if($scope.filtroImob.estado){
+        			 var cpfCnpj = service.formatarCpfCnpj(service.decriptografar(formularioService.obterCpfCnpjPeloEstado($scope.filtroImob.estado)));
+        			 carregarDadosPeloCpfCnpj(cpfCnpj);
+        			 $('#modalSelectImob').modal('hide');
+        		  }else{
+        			  service.alertarErro('Selecione uma estado.');
+        		  }
         		  
         	  }else{
-        		  service.alertarErro('Selecione uma imobiliaria para vincular ao cadastro.');
+        		  if($scope.filtroImob.imobiliaria){
+        			  carregarDadosPeloCpfCnpj($scope.filtroImob.imobiliaria.cpf);
+        			  $('#modalSelectImob').modal('hide');
+        			  
+        		  }else{
+        			  service.alertarErro('Selecione uma imobiliaria para vincular ao cadastro.');
+        		  }
         	  }
           }
           

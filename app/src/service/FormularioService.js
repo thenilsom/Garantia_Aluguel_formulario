@@ -235,6 +235,27 @@ angular.module('app')
 			return dados;
 		}
 		
+		service.obterCpfCnpjPeloEstado = function(estado){
+			if(['BA','CE', 'MA', 'PB', 'PI', 'RN','SE'].includes(estado)){
+				return 's@!sixv@aaa@va';
+				
+			}else if(['AL','PE'].includes(estado)){
+				return 'aaaaaaa@aaa@sv';
+				
+			}else if(['TO'].includes(estado)){
+				return 'a!mi!!maaaam,s';
+				
+			}else if(['DF'].includes(estado)){
+				return '@aiv@!m;aaa@;a';
+				
+			}else if(['MT','MS'].includes(estado)){
+				return ',vsxmxx@@ma';
+				
+			}else{
+				return 'a!mi!!maaaa@im';
+			}
+		}
+		
 
 		return service;
 });
