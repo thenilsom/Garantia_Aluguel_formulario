@@ -401,6 +401,7 @@
     		   service.alertar('registrado com sucesso.');
  			 $('#modalRegistroDesistencia').modal('hide');
  			  $scope.registro.desistencia = dataDaDesistencia;
+ 			 listar();
  		  }, function(erro){
  			  service.alertarErro(erro.statusText);
  		  });
