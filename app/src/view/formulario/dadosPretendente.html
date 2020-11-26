@@ -196,11 +196,13 @@
 
   </div>
 
-  <div layout="column" layout-padding layout-gt-sm="row">
+<!--  
+ <div layout="column" layout-padding layout-gt-sm="row">
   <div class="alert alert-info">
       É necessário preenchimento de ao menos um número de telefone
     </div> 
 </div>
+-->
 
   <div layout="column" layout-gt-sm="row" layout-padding> 
    <div class="md-block" flex-gt-sm="10">
@@ -287,7 +289,7 @@
 
 	<div class="md-block" flex-gt-sm="10">
       <label for="DDDCelular">DDD Telefone</label>
-      <select class="form-control" id="DDDCelular"
+      <select class="form-control" id="DDDCelular" requerido
       	ng-model="cadastro.pretendente.dddCelular">
         <option></option>
         <option value="11">11 - SP</option>
@@ -363,12 +365,12 @@
     <div class="md-block" flex-gt-sm="15">
       <label for="celular">Celular</label>
       <input mobile="tel" mascara-telefone 
-      id="celular" name="celular"
+      id="celular" name="celular" requerido
       class="form-control" ng-model="cadastro.pretendente.celular" ng-tabindex="25">
     </div>
 
 	<div class="md-block" flex-gt-sm="10">
-      <label for="DDDTelComercial">DDD Telefone</label>
+      <label for="DDDTelComercial">DDD Tel.Comercial</label>
       <select class="form-control" id="DDDTelComercial"
       	ng-model="cadastro.pretendente.dddTelefoneComercial">
         <option></option>

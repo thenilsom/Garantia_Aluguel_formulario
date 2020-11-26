@@ -565,10 +565,10 @@
                 $scope.errors.push("EMAIL inválido");
               }
 
-              if(!$scope.cadastro.pretendente.telefone && !$scope.cadastro.pretendente.celular
+              /*if(!$scope.cadastro.pretendente.telefone && !$scope.cadastro.pretendente.celular
                 && !$scope.cadastro.pretendente.telefoneComercial){
                 $scope.errors.push("Preencha ao menos um campo de telefone.");
-              }
+              }*/
               
               if($scope.cadastro.pretendente.telefone){
             	  if(!validador.isDDDValido($scope.cadastro.pretendente.dddTelefone)){
