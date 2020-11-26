@@ -64,6 +64,7 @@
                   var cpfCnpjParam = cnpjParamMetodo ? cnpjParamMetodo : service.formatarCpfCnpj(service.decriptografar($scope.paramUrl.var1));
                   $http.post(_url + 'php/consulta.php/consultarCpfCnpj', {cpfCnpj : cpfCnpjParam}).then(function(data){
                   var dadosImobiliaria = service.extraiParamUrl(data.data);
+                  $scope.cadastro.imobiliaria.codigo = dadosImobiliaria.codigo;
                   $scope.cadastro.imobiliaria.fantasia = dadosImobiliaria.fantasia;
                   $scope.cadastro.imobiliaria.razao = dadosImobiliaria.razao;
                   $scope.cadastro.imobiliaria.corretor = dadosImobiliaria.corretor;
