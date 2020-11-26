@@ -129,8 +129,8 @@
        var listar = function(){
          $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
-            $scope.listaTabela = data.data;
             listaAux = data.data;
+            $scope.filtroPorSituacao();
             $scope.listaTabela.forEach(l=> l.codigo = parseInt(l.codigo));//converte codigo para inteiro pro filtro da listagem
             montarArrayImobiliarias($scope.listaTabela);
             alertarQtdRegPendenteNoTitle();
