@@ -26,6 +26,10 @@
 		<label>CPF Cônjuge: </label> <span>{{registro.cpf_conjuge_inquilino}}</span>
 		<label>Data Nascimento Cônjuge: </label> <span>{{registro.data_conjuge_inquilno}}</span>
 	</div>
+	
+	<div class="form-group">
+		<label>Cônjuge irá compor renda: </label> <span>{{registro.vai_compor_renda_conjuge_inquilno == 'S' : 'SIM' : 'NÃO'}}</span>
+	</div>
 
 	<div class="form-group">
 		<label>Nº Dependentes: </label> <span>{{registro.num_dependente_inquilino}}</span>

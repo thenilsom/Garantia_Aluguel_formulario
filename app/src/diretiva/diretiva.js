@@ -500,9 +500,20 @@ diretiva.directive('mascaraCpfcnpj', function($filter) {
 	function link(scope, el, attrs, ngModelCtrl) {
 		var tokens = { '9' : { mascara: /(\d)$/ , caracter: /[^\d]/g } };
 
-		var cpf ='999.999.999-99',
-		cnpj    ='99.999.999\/9999-99',
-		mascara = cpf;
+		var cpf ='999.999.999-99';
+		var cnpj    ='99.999.999\/9999-99';
+		
+		//se passado parametro especifico restringe a apenas cpf ou cnpj
+		if(attrs.mascaraCpfcnpj){
+			if(attrs.mascaraCpfcnpj == 'cpf'){
+				cnpj = cpf;
+				
+			}else if(attrs.mascaraCpfcnpj == 'cnpj'){
+				cpf = cnpj;
+			}
+		}
+		
+		var mascara = cpf;
 		
 		function atualizaValor(valor){
 			

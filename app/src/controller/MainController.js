@@ -203,11 +203,17 @@
         		 $scope.filtro.cpf = '';
         		 
         	 }else{
-        		 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
-        		 $scope.isAlteracao = true;
-        		 iniciarUpload($scope.cadastro.codigo);
-             verificarSeFezUploadArquivos();
-             $scope.passo = '1';
+        		 var cadastroPreenchido = formularioService.preencherFormulario(data.data[0]);
+        		 if(!angular.equals(cadastroPreenchido.imobiliaria.cnpj, $scope.cadastro.imobiliaria.cnpj)){
+        			 service.alertar('Esse cadastro está vinculado a outra imobiliária. Contate a corretora de seguros.');
+        			 
+        		 }else{
+        			 $scope.cadastro = formularioService.preencherFormulario(data.data[0]);
+        			 $scope.isAlteracao = true;
+        			 iniciarUpload($scope.cadastro.codigo);
+        			 verificarSeFezUploadArquivos();
+        			 $scope.passo = '1';
+        		 }
         	 }
         	 
             }, function(erro){
