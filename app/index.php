@@ -47,7 +47,7 @@
   <!-- Captura o codigo da carta oferta -->
   <input name="codigo_carta_oferta" type="hidden" value="<?echo $_POST['codigo_carta_oferta'];?>" />
 
-  <div class="container" style = "width:86%;">
+  <div id="container-principal" class="container">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/formulario/principal.html'" ng-controller="MainController"></div> 
   </div>

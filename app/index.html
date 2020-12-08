@@ -44,7 +44,7 @@
   <!-- Captura o codigo da seguradora -->
   <input name="codigo_seguradora" type="hidden" value="<?echo $_POST['codigo_seguradora'];?>" />
 
-  <div class="container" style = "width:86%;">
+  <div id="container-principal" class="container">
     <!-- Inclusão da pagina do formulario -->
       <div data-ng-include="'./src/view/formulario/principal.html'" ng-controller="MainController"></div> 
   </div>

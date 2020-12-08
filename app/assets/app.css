@@ -26,6 +26,7 @@ h1 strong{
 .nav>li>a {
     background: #EEEEEE;
     color: #686367; 
+    padding: 10px 9px !important;
 }
 
 .nav-pills>li>a {
@@ -192,6 +193,10 @@ input[type="text"][upper] {
 
   .input-group span.input-group-addon{
   padding: 1px 5px;
+}
+
+#container-principal {
+    width: 90% !important;
 }
   
 }

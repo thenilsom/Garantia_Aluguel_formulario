@@ -75,6 +75,13 @@ function consultarCpfCnpj($request, $response){
 function listar($request, $response){
 	$param = json_decode($request->getBody());
 	$codigo = trim(json_encode($param->codigo, JSON_UNESCAPED_UNICODE), '"');
+	$limitarConsulta = trim(json_encode($param->limitarConsulta, JSON_UNESCAPED_UNICODE), '"');
+
+	if(!empty($limitarConsulta)){
+		$condicaoLimitar = 'AND data_transm >= DATE_SUB(NOW(), INTERVAL 365 DAY)';
+	}else{
+		$condicaoLimitar = '';
+	}
 	
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
@@ -125,7 +132,7 @@ function listar($request, $response){
 			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_descricao, 
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
 			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
-			from fianca where corretor='$codigo' and status!= '0' order by data_transm desc, hora_transm desc";
+			from fianca where corretor='$codigo' and status!= '0' $condicaoLimitar order by data_transm desc, hora_transm desc";
 	
 	$consulta = mysql_db_query("segurosja", $codigo != "null" ? $sqlPorCodigo : $sqlTodos) or die (mysql_error());
 

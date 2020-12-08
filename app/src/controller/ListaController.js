@@ -28,6 +28,7 @@
        $scope.filtro = {};
        var listaAux = [];
        $scope.listaTabela = [];
+       var limitarLista = true;
 
        /**
        * thread para ficar verificando se existe um novo atendimento,
@@ -127,7 +128,7 @@
     	 }
 
        var listar = function(){
-         $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+         $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam, limitarConsulta : limitarLista}).then(function(data){
             $(".loader").removeClass('hidden');
             listaAux = data.data;
             $scope.filtroPorSituacao();
@@ -145,6 +146,14 @@
               $(".loader").removeClass('hidden');
              // service.alertarErro(erro.statusText);
             });
+       }
+       
+       /**
+        * Recarrega a lista sem limitar a qtd de registros
+        */
+       $scope.recarregarListaSemLimitarConsulta = function(){
+    	   limitarLista = '';
+    	   listar();
        }
        
        /**
