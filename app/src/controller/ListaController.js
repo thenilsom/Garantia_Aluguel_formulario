@@ -104,6 +104,15 @@
 
        $scope.irParaListagem = function(){
         $scope.acao = 'listar';
+        voltarPaginaTabela();
+       }
+       
+       $scope.setarPaginaAtualTabela = function(page){
+    	   $scope.paginaAtualTabela = page;
+       }
+       
+       var voltarPaginaTabela = function(){
+    	   $scope.currentPage = $scope.paginaAtualTabela ? $scope.paginaAtualTabela : 1;
        }
        
        $scope.filtroLista = function (input, search_param) {

@@ -152,7 +152,7 @@ div {
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | orderBy: sortBy:sortOrder | itemsPerPage: 20" 
+      <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | orderBy: sortBy:sortOrder | itemsPerPage: 20" current-page="currentPage"
       	data-ng-class="{'pendente': !isDataValida(reg.data_aceite_analise),  'texto-azul' : isDataValida(reg.data_contratacao), 'texto-cinza' : isDataValida(reg.desistencia)}">
         <td class="col-sm-1">{{reg.codigo}}</td>
         <td class="col-sm-2">{{reg.inquilino}}</td>
@@ -196,6 +196,6 @@ div {
     </tbody>
   </table>
 
-    <dir-pagination-controls max-size="20"></dir-pagination-controls>
+    <dir-pagination-controls max-size="20" on-page-change="setarPaginaAtualTabela(newPageNumber)"></dir-pagination-controls>
     <!--Link da documentação da paginação = https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
 
