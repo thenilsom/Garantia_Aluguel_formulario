@@ -500,7 +500,7 @@
            */
           $scope.verificarGravacaoParaNavegarAba = function(passo){
         	  if($scope.isAlteracao && !$scope.isSalvarConcluido){
-        		  service.alertar('Favor concluir a alteracão antes de entrar nessa aba.');
+        		  service.alertar('Favor concluir a alteracão antes.');
         		  
         	  }else{
         		  $scope.navegarAbas(passo);
