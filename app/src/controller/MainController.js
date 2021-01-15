@@ -4,6 +4,7 @@
         function($scope, $http, service, formularioService, validador, FileUploader, dataUtil, $timeout){
     	   
     	  var _url = service.getUrl();
+    	  $scope.isSalvarConcluido = false;
     	  
     	  $scope.filtroImob = {};//filtro para selecionar imobiliaria caso não seja passado um cnpj na url
     	  //$('#modalSelectImob').modal('show') abre o modal de selecionar imobiliaria
@@ -13,7 +14,7 @@
         
         var codRegistro = service.apenasNumeros($("input[name='codigo']").val());
         var codCartaOferta = $("input[name='codigo_carta_oferta']").val();
-        $scope.codSeguradora = service.apenasNumeros($("input[name='codigo_seguradora']").val());
+        $scope.codSeguradora = $("input[name='codigo_seguradora']").val();
         
        
           //controla o hide/show do botão ir para topo quando chegar no fim da pagina
@@ -292,6 +293,7 @@
             
             $http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
             	$scope.proximoPasso();
+            	$scope.isSalvarConcluido = true;
             	
 				    $scope.geraAnaliseLib = 0;
 					$scope.geraAnalisePor = 0;
@@ -491,6 +493,18 @@
                 });
                 
               }
+          }
+          
+          /**
+           * Verifica se já foi gravado para permitir navegar a proxima aba
+           */
+          $scope.verificarGravacaoParaNavegarAba = function(passo){
+        	  if($scope.isAlteracao && !$scope.isSalvarConcluido){
+        		  service.alertar('Favor concluir a alteracão antes de entrar nessa aba.');
+        		  
+        	  }else{
+        		  $scope.navegarAbas(passo);
+        	  }
           }
 
           //navega entre as abas
