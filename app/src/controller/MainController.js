@@ -3,6 +3,7 @@
        .controller('MainController', ['$scope', '$http', 'serviceUtil', 'formularioService', 'validaService', 'FileUploader', 'dataUtil','$timeout',
         function($scope, $http, service, formularioService, validador, FileUploader, dataUtil, $timeout){
     	   
+    	  var listaCpfTeste = ['706.671.361-34', '690.190.530-00', '017.859.605-12', '974.417.621-49', '719.349.521-68', '040.431.251-94', '763.424.411-20', '028.519.488-73'];
     	  var _url = service.getUrl();
     	  $scope.isSalvarConcluido = false;
     	  
@@ -249,9 +250,27 @@
             });
         }
         //######################################################################
+        
+        $scope.salvar = function(){
+        	if(listaCpfTeste.includes(service.formatarCpfCnpj($scope.cadastro.pretendente.cpf))){
+        		$http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
+        			$scope.liberty = {codigoStatus : 2};
+        			$scope.porto = {codigoStatus : 1};
+        			$scope.tooseguros = {codigoStatus : 1};
+        			$scope.proximoPasso();
+                	$scope.isSalvarConcluido = true;
+                	
+        		}, function(erro){
+				  service.alertarErro(erro.statusText);
+				});
+        		
+        		}else{
+        			concluirGravacao();
+        		}
+        }
 
           /** Submete o formulario ao PHP*/
-          $scope.salvar = function(){
+          var concluirGravacao = function(){
 			  
 			/*
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
