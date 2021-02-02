@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil','FileUploader',
-        function($scope, $http, service, $timeout, validador, dataUtil,FileUploader){
+       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil','FileUploader','filterFilter',
+        function($scope, $http, service, $timeout, validador, dataUtil,FileUploader, filterFilter){
 
     	var url = service.getUrl();
     		
@@ -10,6 +10,7 @@
         var TEMPO_REFRESH = 60;
         $scope.contador = TEMPO_REFRESH;
         $scope.promise;
+        $scope.exibirMsgListaCompleta = true;
 
         //obtem os parametros na url se existir
         var codigoParam = null;
@@ -122,7 +123,7 @@
        /**
         * Filtro de lista
         */
-       $scope.filtroPorSituacao = function () {
+       $scope.filtrarLista = function () {
     	   if(angular.equals($scope.filtro.situacao, 'nao_registrado')){
     		   $scope.listaTabela = listaAux.filter(r=> !r.usuario_atendente);
     	   }else if(angular.equals($scope.filtro.situacao, 'contratado')){
@@ -134,13 +135,20 @@
     	   }else{
     		   $scope.listaTabela = listaAux;
     	   }
+    	   
+    	   var filtroAux = angular.copy($scope.filtro);
+    	   delete filtroAux.situacao;
+    	   if(!filtroAux.fantasia){
+    		   delete filtroAux.fantasia;
+    	   }
+    	   $scope.listaTabela = filterFilter($scope.listaTabela, filtroAux);
     	 }
 
        var listar = function(){
          $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam, limitarConsulta : limitarLista}).then(function(data){
             $(".loader").removeClass('hidden');
             listaAux = data.data;
-            $scope.filtroPorSituacao();
+            $scope.filtrarLista();
             $scope.listaTabela.forEach(l=> l.codigo = parseInt(l.codigo));//converte codigo para inteiro pro filtro da listagem
             montarArrayImobiliarias($scope.listaTabela);
             alertarQtdRegPendenteNoTitle();
@@ -161,6 +169,7 @@
         * Recarrega a lista sem limitar a qtd de registros
         */
        $scope.recarregarListaSemLimitarConsulta = function(){
+    	   $scope.exibirMsgListaCompleta = false;
     	   limitarLista = '';
     	   listar();
        }

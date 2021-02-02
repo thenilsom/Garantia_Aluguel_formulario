@@ -58,7 +58,7 @@ div {
       
   </div>
   
-  <div style = "text-align:center;margin-bottom:10px;">
+  <div style = "text-align:center;margin-bottom:10px;" data-ng-if="exibirMsgListaCompleta">
       <span style = "margin:auto;font-size:9pt;color:#990000;text-align:center;background-color:#ddd;padding:5px;margin:5px;">
       A listagem abaixo apresenta análises enviadas em até 365 dias atrás. Para localizar análises mais antigas 
       <a href ng-click="recarregarListaSemLimitarConsulta()">clique aqui</a> e obtenha a listagem completa (mais lento).</span>
@@ -68,7 +68,7 @@ div {
    <div class="col-md-4">
      <div class="form-group">
 	      <label>Imobiliária</label>
-	      <select  data-ng-model="q.fantasia" class="form-control form-control-small"
+	      <select  data-ng-model="filtro.fantasia" class="form-control form-control-small" ng-change="filtrarLista()"
 				data-ng-options = "imob for imob in listaImobiliarias">
 				<option value="" style="font-weight: bold;">TODAS</option>
 			</select>
@@ -79,7 +79,7 @@ div {
 	<div class="form-group">
 	<label>Situação:</label>
 	      <select  data-ng-model="filtro.situacao" class="form-control form-control-small"
-	        ng-change="filtroPorSituacao()">
+	        ng-change="filtrarLista()">
 				<option value="" style="font-weight: bold;">Todas as Análises</option>
 				<option value="nao_registrado">Somente Não Registradas</option>
 				<option value="contratado">Somente Contratadas</option>
@@ -96,11 +96,18 @@ div {
               <span class="input-group-addon"> <span
                 class="glyphicon glyphicon-search"></span>
               </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
-                placeholder="Digite a Pesquisa" data-ng-model="q.$">
+                placeholder="Digite a Pesquisa" data-ng-model="filtro.$" ng-change="filtrarLista()">
               </div>
          </div>     
      </div>
    </div>
+   
+   <div class="row">
+   	<div class="col-md-12" style="text-align: right;">
+   		<label>{{listaTabela.length > 1 ? (listaTabela.length + ' Registros') : (listaTabela.length + ' Registro')}}</label>
+   	</div>
+   </div>
+   
 
   <hr/>
 
