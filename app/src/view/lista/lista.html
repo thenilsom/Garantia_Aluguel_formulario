@@ -43,6 +43,10 @@ div {
 	font-style: italic;
 }
 
+ .my-class1{
+		 border:1px solid #000;padding:10px;
+   }
+
 </style>
 
   <div class="row">
@@ -51,57 +55,68 @@ div {
       </div>  
       
        <div class="col-md-12 text-right">
-       <md-button class="md-raised md-primary" ng-click="incluirRegistro()" style="margin-top: 20px;">Incluir 
+       <button class="btn btn-success" ng-click="incluirRegistro()" style="margin-top: 20px;background: #077af7;border-color: #077af7">Iniciar Análise 
         <span aria-hidden="true"></span>
-      </md-button>
+      </button>
       </div>      
       
   </div>
   
-  <div style = "text-align:center;margin-bottom:10px;" data-ng-if="exibirMsgListaCompleta">
+  <div style = "text-align:center;margin-bottom:17px; margin-top: 15px" data-ng-if="exibirMsgListaCompleta">
       <span style = "margin:auto;font-size:9pt;color:#990000;text-align:center;background-color:#ddd;padding:5px;margin:5px;">
       A listagem abaixo apresenta análises enviadas em até 365 dias atrás. Para localizar análises mais antigas 
       <a href ng-click="recarregarListaSemLimitarConsulta()">clique aqui</a> e obtenha a listagem completa (mais lento).</span>
    </div>
   
    <div class="row">
-   <div class="col-md-4">
+   <div class="col-md-12">
      <div class="form-group">
-	      <label>Imobiliária</label>
-	      <select  data-ng-model="filtro.fantasia" class="form-control form-control-small" ng-change="filtrarLista()"
-				data-ng-options = "imob for imob in listaImobiliarias">
-				<option value="" style="font-weight: bold;">TODAS</option>
-			</select>
+     
+     	<div class="row col-md-6 my-class1">
+     	<div class="row col-md-12" style = "padding-bottom:5px;margin-left: 0px;">
+	  		<strong>Critério de Filtragem:</strong>
+  		</div>
+	      <div class="col-md-7">
+		      <select  data-ng-model="filtro.fantasia" class="form-control form-control-small" ng-change="filtrarLista()"
+					data-ng-options = "imob for imob in listaImobiliarias">
+					<option value="">Pesquisar Imobiliária ...</option>
+				</select>
+			</div>
+			
+			<div class="col-md-5">
+				<select  data-ng-model="filtro.situacao" class="form-control form-control-small"
+		        ng-change="filtrarLista()">
+					<option value="" style="font-weight: bold;">Todas as Análises</option>
+					<option value="nao_registrado">Somente Não Registradas</option>
+					<option value="contratado">Somente Contratadas</option>
+					<option value="desistencia">Somente Desistências</option>
+				</select>
+			</div>
+		</div>	
+		
+		<div class="col-md-3"></div>
+			
+			<div class="col-md-3" style="padding-top: 35px;">
+				<input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
+                placeholder="Pesquisar ..." data-ng-model="filtro.$" ng-change="filtrarLista()">
+			</div>
 	 </div>
 	</div>
 	
-	<div class="col-md-2">
-	<div class="form-group">
-	<label>Situação:</label>
-	      <select  data-ng-model="filtro.situacao" class="form-control form-control-small"
-	        ng-change="filtrarLista()">
-				<option value="" style="font-weight: bold;">Todas as Análises</option>
-				<option value="nao_registrado">Somente Não Registradas</option>
-				<option value="contratado">Somente Contratadas</option>
-				<option value="desistencia">Somente Desistências</option>
-			</select>
-	</div>	
-	</div>
  </div>  
-   
-  <div class="row">
-   <div class="col-md-4">
-   	<div class="form-group">
-          <div class="input-group">
-              <span class="input-group-addon"> <span
-                class="glyphicon glyphicon-search"></span>
-              </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
-                placeholder="Digite a Pesquisa" data-ng-model="filtro.$" ng-change="filtrarLista()">
-              </div>
-         </div>     
-     </div>
-   </div>
-   
+ 
+ 
+	 <div style="margin-top: 15px;"> 
+		  <div style = "text-decoration:underline;font-weight:bold;font-size:8pt;">Legenda:</div>				  
+		  <ul style = "font-size:8pt;padding-left:18px;">
+			 <li style = "color:black;">Análises enviadas e não contratadas.</li>
+			 <li class="texto-azul">Seguro Contratados.</li>
+			 <li class="pendente">Análises não iniciadas, sem registro de analista.</li>
+			 <li class="texto-cinza">Análises marcadas como desistência.</li>
+		  </ul>
+	  </div>
+ 
+ 
    <div class="row">
    	<div class="col-md-12" style="text-align: right;">
    		<label>{{listaTabela.length > 1 ? (listaTabela.length + ' Registros') : (listaTabela.length + ' Registro')}}</label>

@@ -254,12 +254,16 @@
         $scope.salvar = function(){
         	if(listaCpfTeste.includes(service.formatarCpfCnpj($scope.cadastro.pretendente.cpf))){
         		$http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-        			$scope.liberty = {codigoStatus : 2};
-        			$scope.porto = {codigoStatus : 1};
-        			$scope.tooseguros = {codigoStatus : 1};
-        			$scope.proximoPasso();
-                	$scope.isSalvarConcluido = true;
-                	
+        			$('.loader').show();
+        			$timeout(function(){//simula um tempo que seria da consulta nas api das seguradoras
+        				$scope.liberty = {codigoStatus : 2};
+        				$scope.porto = {codigoStatus : 1};
+        				$scope.tooseguros = {codigoStatus : 1};
+        				$scope.proximoPasso();
+        				$scope.isSalvarConcluido = true;
+        				$('.loader').hide();
+        			},5000);
+        			
         		}, function(erro){
 				  service.alertarErro(erro.statusText);
 				});
