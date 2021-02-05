@@ -313,6 +313,7 @@
             //garante a formatação do cpf
             $scope.cadastro.pretendente.cpf = service.formatarCpfCnpj($scope.cadastro.pretendente.cpf);
             $scope.cadastro.status = '1';
+            $scope.cadastro.navegadorVersao = service.obterNavegador();
             
             $http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
             	$scope.proximoPasso();
@@ -657,6 +658,8 @@
              validador.validarCamposObrigatorios(form, $scope.errors);
             
            if($scope.cadastro.pessoal.possuiRendaArcarLocacao == 'S'){
+        	 var cpfsSolidarios = [];
+        	 
             if($scope.cadastro.pessoal.solidario1){
             	if($scope.cadastro.pessoal.solidario1.cpfConjuge && !validador.validarCpf($scope.cadastro.pessoal.solidario1.cpfConjuge)){
             		$scope.errors.push("CPF conjuge locatário solidário 1 inválido.");
@@ -674,6 +677,7 @@
             		$scope.errors.push("Cep do locatário solidário 1 inválido.");
             	}
             	
+            	cpfsSolidarios.push($scope.cadastro.pessoal.solidario1.cpf);
             }
          
            if($scope.cadastro.pessoal.numSolidarios > 1 && $scope.cadastro.pessoal.solidario2){
@@ -693,6 +697,8 @@
            		$scope.errors.push("Cep do locatário solidário 2 inválido.");
            	}
         	   
+        	   cpfsSolidarios.push($scope.cadastro.pessoal.solidario2.cpf);
+        	   
            } 
             
            if($scope.cadastro.pessoal.numSolidarios > 2 && $scope.cadastro.pessoal.solidario3){
@@ -711,8 +717,23 @@
         	   if($scope.cadastro.pessoal.solidario3.cep && !service.isCepValido($scope.cadastro.pessoal.solidario3.cep)){
            		$scope.errors.push("Cep do locatário solidário 3 inválido.");
            	}
-        	  
+        	   
+        	   cpfsSolidarios.push($scope.cadastro.pessoal.solidario3.cpf);
            }
+           
+           //verifica se o cpf utilizado no solidario já foi utilizado no pretendente
+           if(cpfsSolidarios.includes($scope.cadastro.pretendente.cpf)){
+        	   $scope.errors.push('O CPF ' + $scope.cadastro.pretendente.cpf + ' utilizado no locatário solidário já foi utilizado no pretendente.');
+           }
+           
+           var count = {};
+           cpfsSolidarios.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+           
+           for (var property in count){
+        	   if(count[property] > 1){
+        		   $scope.errors.push('O CPF ' + property + ' está sendo utilizado em mais de 1 locatário solidário.');
+        	   }
+        	 }
            
          }else{
         	 $scope.cadastro.pessoal.numSolidarios = 0;

@@ -19,6 +19,7 @@ function salvar($request, $response){
 
 	$codigoCadastro = obterValorVariavel($cadastro->codigo);
 	$statusCadastro = obterValorVariavel($cadastro->status);
+	$navegador_versao = obterValorVariavel($cadastro->navegadorVersao);
 
 	//DADOS DO PRETENDENTE
 	$inquilino = obterValorVariavel($cadastro->pretendente->nome);
@@ -415,6 +416,7 @@ function salvar($request, $response){
                                     pintura_ext, 
                                     danos, 
                                     multa, 
+                                    navegador_versao,
                                     corretor)
                             values ('$data_cob', 
                             		'$hora_cob', 
@@ -580,6 +582,7 @@ function salvar($request, $response){
 								   	'$pintura_ext', 
 								   	'$danos', 
 								   	'$multa',
+								   	'$navegador_versao',
 							       	'$cod_cor')";
 							       
         $sql = str_replace("null", "", $sql);
@@ -745,6 +748,7 @@ function salvar($request, $response){
 		gas='$gas',
 		iptu='$iptu',
 		energia='$energia',
+		navegador_versao = '$navegador_versao',
 		agua='$agua'
 		WHERE codigo=$codigoCadastro";
     }
