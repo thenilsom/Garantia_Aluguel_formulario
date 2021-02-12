@@ -19,20 +19,20 @@
 
     <div class="md-block" flex-gt-sm="25" ng-if="!cadastro.pretendente.tipoPessoa || cadastro.pretendente.tipoPessoa == 'F' ">
       <label for="cpf">CPF</label>
-      <input mobile="text"  mascara-cpfcnpj="cpf"  id="cpf" name="cpf" requerido
+      <input mobile="text"  mascara-cpfcnpj="cpf"  id="cpf" name="cpf" requerido valida-cpf
       class="form-control" ng-model="cadastro.pretendente.cpf" ng-tabindex="2">
     </div>
     
     <div class="md-block" flex-gt-sm="25" ng-if="cadastro.pretendente.tipoPessoa == 'J' ">
       <label for="cnpj">CNPJ</label>
-      <input mobile="text"  mascara-cpfcnpj="cnpj"  id="cnpj" name="cnpj" requerido
+      <input mobile="text"  mascara-cpfcnpj="cnpj"  id="cnpj" name="cnpj" requerido valida-cnpj
       class="form-control" ng-model="cadastro.pretendente.cpf" ng-tabindex="2">
     </div>
 
     <div flex-gt-sm="15">
       <label for="dataNascimento">Data Nascimento</label>
       <input id="dataNascimento" name="dataNascimento" class="form-control" 
-      datepicker mascara="99/99/9999" requerido
+      datepicker mascara="99/99/9999" requerido valida-data
       ng-model="cadastro.pretendente.dataNascimento" ng-tabindex="3">
     </div>
 
@@ -66,14 +66,14 @@
 
     <div flex-gt-sm="20">
       <label for="dataEmissao">Data Emissão</label>
-      <input id="dataEmissao" name="dataEmissao" requerido
+      <input id="dataEmissao" name="dataEmissao" requerido valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pretendente.dataEmissao" ng-tabindex="7">
     </div>
 
     <div flex-gt-sm="20" ng-if="cadastro.pretendente.tipoDoc !== 'RG'">
       <label for="dataValidade">Data Validade</label>
-      <input id="dataValidade" name="dataValidade" requerido
+      <input id="dataValidade" name="dataValidade" requerido valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pretendente.dataValidade" ng-tabindex="8">
     </div>
@@ -123,7 +123,7 @@
 	<div class="md-block" flex-gt-sm="10">
       <label for="cpfConjuge">CPF Cônjuge</label>
       <input mobile="number" mascara="999.999.999-99" id="cpfConjuge" name="cpfConjuge" 
-      class="form-control" ng-model="cadastro.pretendente.cpfConjuge" requerido
+      class="form-control" ng-model="cadastro.pretendente.cpfConjuge" requerido valida-cpf
       ng-tabindex="13">
     </div>
 
@@ -136,7 +136,7 @@
     <div flex-gt-sm="15">
       <label for="dataNascimentoConjuge">Data Nascimento Cônjuge</label>
       <input id="dataNascimentoConjuge" name="dataNascimentoConjuge" class="form-control" 
-      datepicker mascara="99/99/9999" requerido
+      datepicker mascara="99/99/9999" requerido valida-data
       ng-model="cadastro.pretendente.dataNascimentoConjuge" ng-tabindex="15">
     </div>
 
@@ -164,7 +164,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="rendaConjuge" name="rendaConjuge" requerido
+      <input mobile="text" mascara-monetaria id="rendaConjuge" name="rendaConjuge" requerido valida-monetario
       class="form-control" ng-model="cadastro.pretendente.rendaConjuge" ng-tabindex="18">
     </div>
 

@@ -34,7 +34,7 @@
     ng-if="cadastro.profissional.naturezaRenda == 'FUNCIONARIO PÚBLICO' || 
     cadastro.profissional.naturezaRenda == 'FUNCIONÁRIO COM REGISTRO CLT'">
       <label for="dataAdmissao">Data Admissão</label>
-      <input id="dataAdmissao" name="dataAdmissao" requerido
+      <input id="dataAdmissao" name="dataAdmissao" requerido valida-data
       datepicker mascara="99/99/9999" ng-tabindex="3"
       class="form-control" ng-model="cadastro.profissional.dataAdmissao">
     </div>
@@ -47,7 +47,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="salario" ng-tabindex="4" requerido
+      <input mobile="text" mascara-monetaria id="salario" ng-tabindex="4" requerido valida-monetario
       name="salario" class="form-control" ng-model="cadastro.profissional.salario">
     </div>
     </div>

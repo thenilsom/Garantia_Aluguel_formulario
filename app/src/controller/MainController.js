@@ -500,6 +500,15 @@
           var isPassoValidado = function(passo){
             return passosValidados.indexOf(passo) > -1;
           }
+          
+          /**
+           * Valida o itpo de entrada dos dados
+           */
+          var validarTipoDados = function(form){
+        	  if(service.isMobile()){
+        		  validador.validarTipoDados(form, $scope.errors);
+        	  }
+          }
 
           $scope.proximoPasso = function(){
             if($scope.errors.length == 0){
@@ -648,6 +657,9 @@
 
               //$scope.errors = []; //##################################################
 
+              //valida o formato do tipo de dados.
+              validarTipoDados(form);
+              
               if(!apenasValidar)
             	  $scope.proximoPasso();
           }
@@ -738,6 +750,9 @@
          }else{
         	 $scope.cadastro.pessoal.numSolidarios = 0;
          }
+           
+           //valida o formato do tipo de dados.
+           validarTipoDados(form);
           
 
           if($scope.errors.length == 0){
@@ -783,6 +798,9 @@
             }
             //$scope.errors = []; //##################################################
 
+            //valida o formato do tipo de dados.
+            validarTipoDados(form);
+            
             if(!apenasValidar)
             	$scope.proximoPasso();
           }
@@ -796,6 +814,9 @@
            	  $scope.errors.push("Preencha o DDD do Telefone Imobiliária/Proprietário.");
              }
 
+             //valida o formato do tipo de dados.
+             validarTipoDados(form);
+             
              if(!apenasValidar)
             	 $scope.proximoPasso();
           }
@@ -816,6 +837,9 @@
 
             //$scope.errors = []; //##################################################
 
+            //valida o formato do tipo de dados.
+            validarTipoDados(form);
+            
               if(!apenasValidar)
             	  $scope.proximoPasso();
 

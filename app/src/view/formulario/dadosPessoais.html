@@ -41,7 +41,7 @@
 
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf1">CPF</label>
-      <input mobile="number"  mascara="999.999.999-99"  id="cpf1" name="cpf1" requerido
+      <input mobile="number"  mascara="999.999.999-99"  id="cpf1" name="cpf1" requerido valida-cpf
       class="form-control" ng-model="cadastro.pessoal.solidario1.cpf" ng-tabindex="8">
     </div>
 
@@ -154,14 +154,14 @@
     <div flex-gt-sm="15">
       <label for="dataEmissao1">Data Emissão</label>
       <input id="dataEmissao1" name="dataEmissao1" 
-      class="form-control" datepicker mascara="99/99/9999"
+      class="form-control" datepicker mascara="99/99/9999" valida-data
       ng-model="cadastro.pessoal.solidario1.dataEmissao" ng-tabindex="13">
     </div>
     
     <div flex-gt-sm="15">
       <label for="dataValidade1">Data Validade</label>
       <input id="dataValidade1" name="dataValidade1" 
-      class="form-control" datepicker mascara="99/99/9999"
+      class="form-control" datepicker mascara="99/99/9999" valida-data
       ng-model="cadastro.pessoal.solidario1.dataValidade" ng-tabindex="14">
     </div>
   </div>
@@ -184,12 +184,12 @@
     <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pessoal.solidario1.estadoCivil == 'CASADO' || cadastro.pessoal.solidario1.estadoCivil == 'AMASIADO'">
       <label for="cpfConjuge1">CPF Cônjuge</label>
       <input mobile="number" mascara="999.999.999-99" id="cpfConjuge1" name="cpfConjuge1" 
-      class="form-control" ng-model="cadastro.pessoal.solidario1.cpfConjuge" requerido>
+      class="form-control" ng-model="cadastro.pessoal.solidario1.cpfConjuge" requerido valida-cpf>
     </div>
     
     <div flex-gt-sm="15">
       <label for="dataNascimento1">Data Nascimento</label>
-      <input id="dataNascimento1" name="dataNascimento1"  requerido
+      <input id="dataNascimento1" name="dataNascimento1"  requerido valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario1.dataNascimento" ng-tabindex="16">
     </div>
@@ -252,7 +252,7 @@
 
     <div flex-gt-sm="15" ng-if="['FUNCIONARIO PÚBLICO', 'FUNCIONÁRIO COM REGISTRO CLT', 'PROFISSIONAL LIBERAL'].includes(cadastro.pessoal.solidario1.naturezaRenda) ">
       <label for="dataAdmissao1">Data Admissão</label>
-      <input id="dataAdmissao1" name="dataAdmissao1" 
+      <input id="dataAdmissao1" name="dataAdmissao1" valida-data
       class="form-control" datepicker mascara="99/99/9999" requerido
       ng-model="cadastro.pessoal.solidario1.dataAdmissao" ng-tabindex="22">
     </div>
@@ -262,7 +262,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="rendaBruta1" name="rendaMensalBruta"  requerido
+      <input mobile="text" mascara-monetaria id="rendaBruta1" name="rendaMensalBruta"  requerido valida-monetario
       class="form-control" ng-model="cadastro.pessoal.solidario1.rendaMensalBruta" ng-tabindex="23">
     </div>
     </div>
@@ -283,7 +283,7 @@
 
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf2">CPF</label>
-      <input mobile="number"  mascara="999.999.999-99"  id="cpf2" name="cpf2" requerido
+      <input mobile="number"  mascara="999.999.999-99"  id="cpf2" name="cpf2" requerido valida-cpf
       class="form-control" ng-model="cadastro.pessoal.solidario2.cpf" ng-tabindex="25">
     </div>
 
@@ -394,14 +394,14 @@
 
     <div flex-gt-sm="15">
       <label for="dataEmissao2">Data Emissão</label>
-      <input id="dataEmissao2" name="dataEmissao2" 
+      <input id="dataEmissao2" name="dataEmissao2" valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario2.dataEmissao" ng-tabindex="29">
     </div>
     
     <div flex-gt-sm="15">
       <label for="dataValidade2">Data Validade</label>
-      <input id="dataValidade2" name="dataValidade2" 
+      <input id="dataValidade2" name="dataValidade2" valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario2.dataValidade" ng-tabindex="30">
     </div>
@@ -424,14 +424,14 @@
     
     <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pessoal.solidario2.estadoCivil == 'CASADO' || cadastro.pessoal.solidario2.estadoCivil == 'AMASIADO'">
       <label for="cpfConjuge2">CPF Cônjuge</label>
-      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge2" name="cpfConjuge2" 
+      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge2" name="cpfConjuge2" valida-cpf
       class="form-control" ng-model="cadastro.pessoal.solidario2.cpfConjuge" requerido>
     </div>
     
     <div flex-gt-sm="15">
       <label for="dataNascimento2">Data Nascimento</label>
       <input id="dataNascimento2" name="dataNascimento2" 
-      class="form-control" datepicker mascara="99/99/9999" requerido
+      class="form-control" datepicker mascara="99/99/9999" requerido valida-data
       ng-model="cadastro.pessoal.solidario2.dataNascimento" ng-tabindex="32">
     </div>
     
@@ -493,7 +493,7 @@
 
     <div flex-gt-sm="15" ng-if="['FUNCIONARIO PÚBLICO', 'FUNCIONÁRIO COM REGISTRO CLT', 'PROFISSIONAL LIBERAL'].includes(cadastro.pessoal.solidario2.naturezaRenda) ">
       <label for="dataAdmissao2">Data Admissão</label>
-      <input id="dataAdmissao2" name="dataAdmissao2" requerido
+      <input id="dataAdmissao2" name="dataAdmissao2" requerido valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario2.dataAdmissao" ng-tabindex="38">
     </div>
@@ -503,7 +503,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="rendaBruta2" name="rendaMensalBruta2" requerido
+      <input mobile="text" mascara-monetaria id="rendaBruta2" name="rendaMensalBruta2" requerido valida-monetario
       class="form-control" ng-model="cadastro.pessoal.solidario2.rendaMensalBruta" ng-tabindex="39">
     </div>
     </div>
@@ -524,7 +524,7 @@
 
     <div class="md-block" flex-gt-sm="20">
       <label for="cpf3">CPF</label>
-      <input mobile="number"  mascara="999.999.999-99"  id="cpf3" name="cpf3" requerido
+      <input mobile="number"  mascara="999.999.999-99"  id="cpf3" name="cpf3" requerido valida-cpf
       class="form-control" ng-model="cadastro.pessoal.solidario3.cpf" ng-tabindex="41">
     </div>
 
@@ -635,14 +635,14 @@
 
     <div flex-gt-sm="15">
       <label for="dataEmissao3">Data Emissão</label>
-      <input id="dataEmissao3" name="dataEmissao3"
+      <input id="dataEmissao3" name="dataEmissao3" valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario3.dataEmissao" ng-tabindex="45">
     </div>
     
     <div flex-gt-sm="15">
       <label for="dataValidade3">Data Validade</label>
-      <input id="dataValidade3" name="dataValidade3"
+      <input id="dataValidade3" name="dataValidade3" valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario3.dataValidade" ng-tabindex="46">
     </div>
@@ -665,13 +665,13 @@
     
     <div class="md-block" flex-gt-sm="15" ng-if="cadastro.pessoal.solidario3.estadoCivil == 'CASADO' || cadastro.pessoal.solidario3.estadoCivil == 'AMASIADO'">
       <label for="cpfConjuge3">CPF Cônjuge</label>
-      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge3" name="cpfConjuge3" 
+      <input mobile="number" mascara="999.999.999-99" id="cpfConjuge3" name="cpfConjuge3" valida-cpf
       class="form-control" ng-model="cadastro.pessoal.solidario3.cpfConjuge" requerido>
     </div>
     
     <div flex-gt-sm="15">
       <label for="dataNascimento3">Data Nascimento</label>
-      <input id="dataNascimento3" name="dataNascimento3" requerido
+      <input id="dataNascimento3" name="dataNascimento3" requerido valida-data
       class="form-control" datepicker mascara="99/99/9999"
       ng-model="cadastro.pessoal.solidario3.dataNascimento" ng-tabindex="48">
     </div>
@@ -743,7 +743,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="rendaBruta3" name="rendaMensalBruta3" requerido 
+      <input mobile="text" mascara-monetaria id="rendaBruta3" name="rendaMensalBruta3" requerido valida-monetario
       class="form-control" ng-model="cadastro.pessoal.solidario3.rendaMensalBruta" ng-tabindex="55">
     </div>
     </div>

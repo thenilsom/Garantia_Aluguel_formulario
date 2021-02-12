@@ -154,7 +154,7 @@
         <div class="md-block" flex-gt-sm="20" ng-if="cadastro.imovel.locacaoEmpresaConstituida == 'S'">
           <label for="cnpjEmpConst">Informar CNPJ</label>
           <input mobile="number" mascara="99.999.999/9999-99" id="cnpjEmpConst" name="cnpjEmpConst" 
-          class="form-control" ng-model="cadastro.imovel.cnpjEmpresaConstituida" requerido
+          class="form-control" ng-model="cadastro.imovel.cnpjEmpresaConstituida" requerido valida-cnpj
           ng-tabindex="5">
         </div>
 
@@ -306,7 +306,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="aluguel" ng-disabled="paramUrl.var2 > 0" name="aluguel" requerido
+      <input mobile="text" mascara-monetaria id="aluguel" ng-disabled="paramUrl.var2 > 0" name="aluguel" requerido valida-monetario
       class="form-control" ng-model="cadastro.imovel.aluguel" ng-tabindex="20">
     </div>
     </div>
@@ -316,7 +316,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="iptu" name="iptu" ng-disabled="paramUrl.var4 > 0"
+      <input mobile="text" mascara-monetaria id="iptu" name="iptu" ng-disabled="paramUrl.var4 > 0" valida-monetario
       class="form-control" ng-model="cadastro.imovel.iptu" ng-tabindex="21">
     </div>
     </div>
@@ -326,7 +326,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="condominio" name="condominio" ng-disabled="paramUrl.var3 > 0"
+      <input mobile="text" mascara-monetaria id="condominio" name="condominio" ng-disabled="paramUrl.var3 > 0" valida-monetario
       class="form-control" ng-model="cadastro.imovel.condominio" ng-tabindex="22">
     </div>
     </div>
@@ -336,7 +336,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="agua" name="agua" ng-disabled="paramUrl.var5 > 0"
+      <input mobile="text" mascara-monetaria id="agua" name="agua" ng-disabled="paramUrl.var5 > 0" valida-monetario
       class="form-control" ng-model="cadastro.imovel.agua" ng-tabindex="23">
     </div>
     </div>
@@ -346,7 +346,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="luz" name="luz" ng-disabled="paramUrl.var6 > 0"
+      <input mobile="text" mascara-monetaria id="luz" name="luz" ng-disabled="paramUrl.var6 > 0" valida-monetario
       class="form-control" ng-model="cadastro.imovel.luz" ng-tabindex="24">
     </div>
     </div>
@@ -356,7 +356,7 @@
       <div class="input-group">
       <span class="input-group-addon"
         id="basic-addon1">R$</span>
-      <input mobile="text" mascara-monetaria id="gas" name="gas" ng-disabled="paramUrl.var7 > 0"
+      <input mobile="text" mascara-monetaria id="gas" name="gas" ng-disabled="paramUrl.var7 > 0" valida-monetario
       class="form-control" ng-model="cadastro.imovel.gas" ng-tabindex="25s">
     </div>
     </div>
