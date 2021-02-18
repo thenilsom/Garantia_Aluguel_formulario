@@ -616,3 +616,24 @@ diretiva.directive('mascaraCpfcnpj', function($filter) {
 	};
 	
 });
+
+diretiva.directive('bloqueiaCaracteresEspeciais', function() {
+	return {
+
+		restrinct : 'A',
+
+		link : function(scope, element) {
+			$(element).keypress(function(e,args){
+				if (document.all){var evt=event.keyCode;} // caso seja IE
+				else{var evt = e.charCode;}	// do contrário deve ser Mozilla
+				var pattern = '^[ 0-9a-zA-Zàèìòùáéíóúâêîôûãõç\b]+$';	// criando a lista de teclas permitidas
+				var chr= String.fromCharCode(evt);	// pegando a tecla digitada
+				if(chr.match(pattern)){
+					return true;
+				}else{
+					return false;
+				}
+			});
+		}
+	};
+});

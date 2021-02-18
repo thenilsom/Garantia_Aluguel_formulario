@@ -183,7 +183,7 @@
 
       <div class="md-block" flex-gt-sm="40" ng-if="cadastro.imovel.trataDeFranquia == 'S'">
           <label for="nomeFranqueadora">Informar Nome da Franqueadora</label>
-          <input type="text" id="nomeFranqueadora" upper name="nomeFranqueadora" requerido
+          <input type="text" id="nomeFranqueadora" upper name="nomeFranqueadora" requerido bloqueia-caracteres-especiais
           maxlength="30" class="form-control" ng-model="cadastro.imovel.nomeFranqueadora" ng-tabindex="8">
         </div>
     </div>
@@ -191,13 +191,13 @@
     <div layout="column" layout-padding layout-gt-sm="row">
       <div class="md-block" flex-gt-sm="50">
           <label for="descProdFabRevPrest">Quais serão os principais produtos/serviços fabricados, revendidos ou prestados</label>
-          <input type="text" id="descProdFabRevPrest" upper name="descProdFabRevPrest" requerido maxlength="50" 
+          <input type="text" id="descProdFabRevPrest" upper name="descProdFabRevPrest" requerido maxlength="50" bloqueia-caracteres-especiais
             class="form-control" ng-model="cadastro.imovel.produtosFabRevPrest" ng-tabindex="9">
         </div>
 
         <div class="md-block" flex-gt-sm="50">
           <label for="experienciaNoRamo">Qual a sua experiência no ramo pretendido (experiência prática ou acadêmica/quanto tempo de experiência)</label>
-          <input type="text" id="experienciaNoRamo" upper name="experienciaNoRamo" requerido maxlength="60" 
+          <input type="text" id="experienciaNoRamo" upper name="experienciaNoRamo" requerido maxlength="60" bloqueia-caracteres-especiais
             class="form-control" ng-model="cadastro.imovel.experienciaNoRamo" ng-tabindex="10">
         </div>
     </div>
@@ -269,7 +269,7 @@
 
     <div class="md-block" flex-gt-sm="65">
       <label for="cidadeImovel">Cidade</label>
-      <input type="text" id="cidadeImovel" upper name="cidadeImovel" requerido
+      <input type="text" id="cidadeImovel" upper name="cidadeImovel" requerido bloqueia-caracteres-especiais
       class="form-control" ng-model="cadastro.imovel.cidade"  ng-tabindex="15">
     </div>
 </div>
@@ -277,13 +277,13 @@
 <div layout="column" layout-padding layout-gt-sm="row">
      <div class="md-block" flex-gt-sm="40">
       <label for="enderecoImovel">Endereço</label>
-      <input type="text" id="enderecoImovel" upper name="enderecoImovel" requerido
+      <input type="text" id="enderecoImovel" upper name="enderecoImovel" requerido bloqueia-caracteres-especiais
       class="form-control" ng-model="cadastro.imovel.endereco"  ng-tabindex="16">
     </div>
 
     <div class="md-block" flex-gt-sm="20">
       <label for="bairroImovel">Bairro</label>
-      <input type="text" id="bairroImovel" upper name="bairroImovel" requerido
+      <input type="text" id="bairroImovel" upper name="bairroImovel" requerido bloqueia-caracteres-especiais
       class="form-control" ng-model="cadastro.imovel.bairro"  ng-tabindex="17">
     </div>
 
@@ -295,7 +295,7 @@
 
     <div class="md-block" flex-gt-sm="30">
       <label for="complementoImovel">Complemento</label>
-      <input type="text" id="complementoImovel" upper name="complementoImovel" 
+      <input type="text" id="complementoImovel" upper name="complementoImovel" bloqueia-caracteres-especiais
       class="form-control" ng-model="cadastro.imovel.complemento" ng-tabindex="19">
     </div>
 </div>

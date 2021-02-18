@@ -647,7 +647,7 @@
               if($scope.cadastro.pretendente.dataNascimento){
             	 var difAnos = dataUtil.difEntreDatasEmAnos($scope.cadastro.pretendente.dataNascimento, dataUtil.getDataAtual());
             	 if(difAnos < 16){
-            		 $scope.errors.push("Pretendente não pode ser menor que 16 anos.");
+            		 $scope.errors.push("Pretendente menor de 16 anos não permitido. Informe outro pretendente ou corrija a data de nascimento se for o caso.");
             	 }
               }
 
@@ -689,6 +689,13 @@
             		$scope.errors.push("Cep do locatário solidário 1 inválido.");
             	}
             	
+            	if($scope.cadastro.pessoal.solidario1.dataNascimento){
+	               	 var difAnos = dataUtil.difEntreDatasEmAnos($scope.cadastro.pessoal.solidario1.dataNascimento, dataUtil.getDataAtual());
+	               	 if(difAnos < 16){
+	               		 $scope.errors.push("Solidário 1 menor de 16 anos não permitido. Informe outro solidário ou corrija a data de nascimento se for o caso.");
+	               	 }
+                 }
+            	
             	cpfsSolidarios.push($scope.cadastro.pessoal.solidario1.cpf);
             }
          
@@ -708,6 +715,13 @@
         	   if($scope.cadastro.pessoal.solidario2.cep && !service.isCepValido($scope.cadastro.pessoal.solidario2.cep)){
            		$scope.errors.push("Cep do locatário solidário 2 inválido.");
            	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario2.dataNascimento){
+	               	 var difAnos = dataUtil.difEntreDatasEmAnos($scope.cadastro.pessoal.solidario2.dataNascimento, dataUtil.getDataAtual());
+	               	 if(difAnos < 16){
+	               		 $scope.errors.push("Solidário 2 menor de 16 anos não permitido. Informe outro solidário ou corrija a data de nascimento se for o caso.");
+	               	 }
+               }
         	   
         	   cpfsSolidarios.push($scope.cadastro.pessoal.solidario2.cpf);
         	   
@@ -729,6 +743,13 @@
         	   if($scope.cadastro.pessoal.solidario3.cep && !service.isCepValido($scope.cadastro.pessoal.solidario3.cep)){
            		$scope.errors.push("Cep do locatário solidário 3 inválido.");
            	}
+        	   
+        	   if($scope.cadastro.pessoal.solidario3.dataNascimento){
+	               	 var difAnos = dataUtil.difEntreDatasEmAnos($scope.cadastro.pessoal.solidario3.dataNascimento, dataUtil.getDataAtual());
+	               	 if(difAnos < 16){
+	               		 $scope.errors.push("Solidário 3 menor de 16 anos não permitido. Informe outro solidário ou corrija a data de nascimento se for o caso.");
+	               	 }
+               }
         	   
         	   cpfsSolidarios.push($scope.cadastro.pessoal.solidario3.cpf);
            }
