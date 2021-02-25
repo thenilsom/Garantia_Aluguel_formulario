@@ -71,13 +71,13 @@ $mail->Password = 'm1181s2081_'; // Senha do servidor SMTP (senha do email usado
 // Define o remetente
 $mail->From = "cobertura@segurosja.com.br"; // Seu e-mail
 $mail->Sender = "cobertura@segurosja.com.br"; // Seu e-mail
-$mail->FromName = "Seguros Já! Apólice"; // Seu nome
+$mail->FromName = "Seguros Ja! Apolice"; // Seu nome
 $mail->AddReplyTo("cobertura@segurosja.com.br"); // Email para receber as respostas
 // Define os dados técnicos da Mensagem
 $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
 $mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
 
-$mail->AddBCC("denilson.anhanguera@gmail.com");
+//$mail->AddBCC("denilson.anhanguera@gmail.com");
 
 if(valida_email($email_imob)){$mail->AddAddress("$email_imob");}
 if($email_cor1 <> ""){$mail->AddAddress("$email_cor1");}
