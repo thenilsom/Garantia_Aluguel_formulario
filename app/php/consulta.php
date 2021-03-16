@@ -108,11 +108,12 @@ function listar($request, $response){
  			(SELECT carta_of_lib_fianca_tombamento FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as carta_of_lib_fianca_tombamento, 
  			(SELECT carta_of_lib_fianca_padrao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as carta_of_lib_fianca_padrao, 
 			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_resp_proprietario) as profissao_resp_descricao,
-			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_descricao,
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
 			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
 			from fianca where status!= '0' order by data_transm desc, hora_transm desc";
 
+	//(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_descricao,
+	//select acima foi removido porque estava conflitando com o outro que consulta na mesma tabela profissao
 	$sqlPorCodigo = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia,
 			(SELECT nome FROM clientes WHERE clientes.codigo=fianca.codigo_proprietario) as proprietario, 
             (SELECT tipo FROM clientes WHERE clientes.codigo=fianca.codigo_proprietario) as tipo_proprietario,
@@ -128,8 +129,7 @@ function listar($request, $response){
             (SELECT ppe FROM clientes WHERE clientes.codigo=fianca.codigo_proprietario) as ppe_proprietario,
             (SELECT recurso_ppe FROM clientes WHERE clientes.codigo=fianca.codigo_proprietario) as recurso_ppe_proprietario, 
 			(SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao,
-			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_resp_proprietario) as profissao_resp_descricao,
-			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_inquilino) as profissao_descricao, 
+			(SELECT ocupacao FROM profissao_cbo WHERE profissao_cbo.codigo_cbo COLLATE latin1_general_ci = fianca.profissao_resp_proprietario) as profissao_resp_descricao, 
 			(SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
 			(SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
 			from fianca where corretor='$codigo' and status!= '0' $condicaoLimitar order by data_transm desc, hora_transm desc";
