@@ -316,181 +316,194 @@
             $scope.cadastro.navegadorVersao = service.obterNavegador();
             
             $http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
-            	$scope.proximoPasso();
-            	$scope.isSalvarConcluido = true;
-            	
-				    $scope.geraAnaliseLib = 0;
-					$scope.geraAnalisePor = 0;
-					$scope.geraAnaliseToo = 0;
-             
-					if($scope.isAlteracao){
-						
-						        if($scope.codSeguradora != undefined && $scope.codSeguradora != ''){
-									
-									if($scope.codSeguradora == "lib"){
-										$scope.geraAnaliseLib = 1;
-									}
-									
-									if($scope.codSeguradora == "por"){
-										$scope.geraAnalisePor = 1;
-									}
-									
-									if($scope.codSeguradora == "too"){
-										$scope.geraAnaliseToo = 1;
-									}
-									
-								}
-						  
-								$scope.codigoCadastro = $scope.cadastro.codigo;
-								$scope.corretoras.codMsg = 1;
-								$scope.codigoStatus = 4;
-
-								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnaliseLib).then(function(data){
-													   
-										$scope.liberty.msgValidacao  = data.data.msgValidacao;
-										$scope.liberty.codigoStatus  = data.data.codigoStatus;
-										
-										console.log('LIBERTY');
-										console.log(data.data);
-									
-										if($scope.cadastro.imovel.finalidade == 'R'){
-									
-												console.log('RESIDENCIAL');
-											
-												$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnalisePor).then(function(data){
-										   
-															$scope.porto.msgValidacao  = data.data.msgValidacao;
-															$scope.porto.codigoStatus  = data.data.codigoStatus;
-										
-															if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
-																$scope.codMsg = 2;
-															}
-															
-															if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
-																$scope.corretoras.codMsg = 1;
-															}
-															
-															if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
-																$scope.corretoras.codMsg = 4;
-															}                                                            $scope.enviaEmails($scope.codigoCadastro);
-									 
-									                        console.log('PORTO');
-															console.log(data.data);
-															
-															service.alertar('Cadastro alterado com sucesso.');
-															//$scope.proximoPasso();
-																	
-												  
-												}, function(erro){
-												  service.alertarErro(erro.statusText);
-												});
-											
-										}else{
-											
-											    if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
-													$scope.codMsg = 2;
-												}
-												
-												if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
-													$scope.corretoras.codMsg = 1;
-												}
-												
-												if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
-													$scope.corretoras.codMsg = 4;
-												}                                                $scope.enviaEmails($scope.codigoCadastro);
-											
-												service.alertar('Cadastro alterado com sucesso.');
-												//$scope.proximoPasso();
-												$scope.porto.codigoStatus  = 2;
-												console.log('COMERCIAL');
-												
-										}
-										   
-								  
-								}, function(erro){
-								  service.alertarErro(erro.statusText);
-								}); 
-						
-					}else{
-						  
-								$scope.codigoCadastro = data.data;
-								$scope.corretoras.codMsg = 1;
-								$scope.tooseguros.codigoStatus = 4;
-								iniciarUpload($scope.codigoCadastro);
-								
-								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro +"&carta_especifica=" + codCartaOferta +"&gera_analise=1").then(function(data){
-						   
-										$scope.liberty.msgValidacao  = data.data.msgValidacao;
-										$scope.liberty.codigoStatus  = data.data.codigoStatus;
-										
-										if($scope.cadastro.imovel.finalidade == 'R'){
-										
-												console.log('RESIDENCIAL');
-											
-												$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise=1").then(function(data){
-								   
-															$scope.porto.msgValidacao  = data.data.msgValidacao;
-															$scope.porto.codigoStatus  = data.data.codigoStatus;
-												  
-															if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
-																$scope.corretoras.codMsg = 2;
-															}
-															
-															if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
-																$scope.corretoras.codMsg = 1;
-															}
-															
-															if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
-																$scope.corretoras.codMsg = 4;
-															}                                                            $scope.enviaEmails($scope.codigoCadastro);
-									
-															service.exibirAlertaCadastro();
-															//iniciarUpload($scope.codigoCadastro);		
-															//$scope.proximoPasso();
-
-										  
-												}, function(erro){
-												  service.alertarErro(erro.statusText);
-												});
-										
-										
-										}else{
-											
-											    if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
-													$scope.corretoras.codMsg = 2;
-												}
-												
-												if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
-													$scope.corretoras.codMsg = 1;
-												}
-												
-												if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
-													$scope.corretoras.codMsg = 4;
-												}                                                $scope.enviaEmails($scope.codigoCadastro);
-											
-												console.log('COMERCIAL');
-												
-												service.exibirAlertaCadastro();
-												$scope.porto.codigoStatus  = 2;								
-												//iniciarUpload($scope.codigoCadastro);
-												//$scope.proximoPasso();
-											
-										}
-										   
-								}, function(erro){
-								  service.alertarErro(erro.statusText);
-								}); 
-										
-					}
+            	if(service.isNumero(data.data)){
+            		$scope.proximoPasso();
+            		$scope.isSalvarConcluido = true;
+            		
+            		$scope.geraAnaliseLib = 0;
+            		$scope.geraAnalisePor = 0;
+            		$scope.geraAnaliseToo = 0;
+            		
+            		if($scope.isAlteracao){
+            			tratarPosAlteracao();
+            			
+            		}else{
+            			tratarPosInclusao(data);
+            		}
+            		
+            	}else{
+            		service.alertarErro('Erro ao salvar o formulário: ' + data.data);
+            	}
 								  
 			}, function(erro){
 			  service.alertarErro(erro.statusText);
 			});
 			
-			
 			$scope.tooseguros.codigoStatus  = 2;
+          }
+          
+          /**
+           * Trata a pos inclusão 
+           */
+          var tratarPosInclusao = function(data){
+        	  $scope.codigoCadastro = data.data;
+				$scope.corretoras.codMsg = 1;
+				$scope.tooseguros.codigoStatus = 4;
+				iniciarUpload($scope.codigoCadastro);
+				
+				$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro +"&carta_especifica=" + codCartaOferta +"&gera_analise=1").then(function(data){
+		   
+						$scope.liberty.msgValidacao  = data.data.msgValidacao;
+						$scope.liberty.codigoStatus  = data.data.codigoStatus;
+						
+						if($scope.cadastro.imovel.finalidade == 'R'){
+						
+								console.log('RESIDENCIAL');
+							
+								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise=1").then(function(data){
+				   
+											$scope.porto.msgValidacao  = data.data.msgValidacao;
+											$scope.porto.codigoStatus  = data.data.codigoStatus;
+								  
+											if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
+												$scope.corretoras.codMsg = 2;
+											}
+											
+											if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
+												$scope.corretoras.codMsg = 1;
+											}
+											
+											if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
+												$scope.corretoras.codMsg = 4;
+											}                                                            $scope.enviaEmails($scope.codigoCadastro);
+					
+											service.exibirAlertaCadastro();
+											//iniciarUpload($scope.codigoCadastro);		
+											//$scope.proximoPasso();
 
-			
+						  
+								}, function(erro){
+								  service.alertarErro(erro.statusText);
+								});
+						
+						
+						}else{
+							
+							    if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
+									$scope.corretoras.codMsg = 2;
+								}
+								
+								if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
+									$scope.corretoras.codMsg = 1;
+								}
+								
+								if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
+									$scope.corretoras.codMsg = 4;
+								}                                                $scope.enviaEmails($scope.codigoCadastro);
+							
+								console.log('COMERCIAL');
+								
+								service.exibirAlertaCadastro();
+								$scope.porto.codigoStatus  = 2;								
+								//iniciarUpload($scope.codigoCadastro);
+								//$scope.proximoPasso();
+							
+						}
+						   
+				}, function(erro){
+				  service.alertarErro(erro.statusText);
+				}); 
+          }
+          
+          /**
+           * Trata a pos alteração 
+           */
+          var tratarPosAlteracao = function(){
+        	  if($scope.codSeguradora != undefined && $scope.codSeguradora != ''){
+					
+					if($scope.codSeguradora == "lib"){
+						$scope.geraAnaliseLib = 1;
+					}
+					
+					if($scope.codSeguradora == "por"){
+						$scope.geraAnalisePor = 1;
+					}
+					
+					if($scope.codSeguradora == "too"){
+						$scope.geraAnaliseToo = 1;
+					}
+					
+				}
+		  
+				$scope.codigoCadastro = $scope.cadastro.codigo;
+				$scope.corretoras.codMsg = 1;
+				$scope.codigoStatus = 4;
+
+				$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnaliseLib).then(function(data){
+									   
+						$scope.liberty.msgValidacao  = data.data.msgValidacao;
+						$scope.liberty.codigoStatus  = data.data.codigoStatus;
+						
+						console.log('LIBERTY');
+						console.log(data.data);
+					
+						if($scope.cadastro.imovel.finalidade == 'R'){
+					
+								console.log('RESIDENCIAL');
+							
+								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnalisePor).then(function(data){
+						   
+											$scope.porto.msgValidacao  = data.data.msgValidacao;
+											$scope.porto.codigoStatus  = data.data.codigoStatus;
+						
+											if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
+												$scope.codMsg = 2;
+											}
+											
+											if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
+												$scope.corretoras.codMsg = 1;
+											}
+											
+											if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
+												$scope.corretoras.codMsg = 4;
+											}                                                            $scope.enviaEmails($scope.codigoCadastro);
+					 
+					                        console.log('PORTO');
+											console.log(data.data);
+											
+											service.alertar('Cadastro alterado com sucesso.');
+											//$scope.proximoPasso();
+													
+								  
+								}, function(erro){
+								  service.alertarErro(erro.statusText);
+								});
+							
+						}else{
+							
+							    if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 1)){
+									$scope.codMsg = 2;
+								}
+								
+								if(($scope.liberty.codigoStatus == 1) && ($scope.porto.codigoStatus == 2) || ($scope.liberty.codigoStatus == 2) && ($scope.porto.codigoStatus == 1)){
+									$scope.corretoras.codMsg = 1;
+								}
+								
+								if(($scope.liberty.codigoStatus == 3) && ($scope.porto.codigoStatus == 3)){
+									$scope.corretoras.codMsg = 4;
+								}                                                $scope.enviaEmails($scope.codigoCadastro);
+							
+								service.alertar('Cadastro alterado com sucesso.');
+								//$scope.proximoPasso();
+								$scope.porto.codigoStatus  = 2;
+								console.log('COMERCIAL');
+								
+						}
+						   
+				  
+				}, function(erro){
+				  service.alertarErro(erro.statusText);
+				}); 
           }
         
           var setarPasso = function(passo){

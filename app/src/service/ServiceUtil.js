@@ -156,6 +156,10 @@ angular.module('app')
         		return string;
         	}
         }
+        
+        service.isNumero = function(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
 
 
 		service.obterProximoPasso = function(passoAtual){
