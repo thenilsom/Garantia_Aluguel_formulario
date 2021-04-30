@@ -111,13 +111,60 @@ function gravarRegInquilino($request, $response){
 	$cpfCnpj = trim(json_encode($param->cpfInquilino, JSON_UNESCAPED_UNICODE), '"');
 	$codCorretor = trim(json_encode($param->codCorretor, JSON_UNESCAPED_UNICODE), '"');
 	$status = trim(json_encode($param->status, JSON_UNESCAPED_UNICODE), '"');
-	
+	$cep = trim(json_encode($param->cep, JSON_UNESCAPED_UNICODE), '"');
+	$endereco = trim(json_encode($param->endereco, JSON_UNESCAPED_UNICODE), '"');
+	$numero = trim(json_encode($param->numero, JSON_UNESCAPED_UNICODE), '"');
+	$quadra = trim(json_encode($param->quadra, JSON_UNESCAPED_UNICODE), '"');
+	$lote = trim(json_encode($param->lote, JSON_UNESCAPED_UNICODE), '"');
+	$complemento = trim(json_encode($param->complemento, JSON_UNESCAPED_UNICODE), '"');
+	$bairro = trim(json_encode($param->bairro, JSON_UNESCAPED_UNICODE), '"');
+	$cidade = trim(json_encode($param->cidade, JSON_UNESCAPED_UNICODE), '"');
+	$uf = trim(json_encode($param->uf, JSON_UNESCAPED_UNICODE), '"');
+		
 	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
 
- 	$sql = "INSERT INTO fianca(data_transm, hora_transm, seguradora, solicitante, CGC_imob, inquilino, tipo_inquilino, CPF_inquilino, corretor, status) VALUES ('$data_servidor', '$hora_servidor', 'ALL', 'Seguros Já', '$CGC_imob', '$inquilino', '$tipo_inquilino', '$cpfCnpj', '$codCorretor','$status')";
+ 	$sql = "INSERT INTO fianca
+ 	(data_transm, 
+ 	hora_transm, 
+ 	seguradora, 
+ 	solicitante, 
+ 	CGC_imob, 
+ 	inquilino, 
+ 	tipo_inquilino, 
+ 	CPF_inquilino, 
+ 	corretor, 
+ 	status,
+ 	cep,
+ 	endereco,
+ 	numero,
+ 	quadra,
+ 	lote,
+ 	complemento,
+ 	bairro,
+ 	cidade,
+ 	uf) VALUES 
+ 	('$data_servidor', 
+ 	'$hora_servidor', 
+ 	'ALL', 
+ 	'Seguros Já', 
+ 	'$CGC_imob', 
+ 	'$inquilino', 
+ 	'$tipo_inquilino', 
+ 	'$cpfCnpj', 
+ 	'$codCorretor',
+ 	'$status',
+ 	'$cep',
+ 	'$endereco',
+ 	'$numero',
+ 	'$quadra',
+ 	'$lote',
+ 	'$complemento',
+ 	'$bairro',
+ 	'$cidade',
+ 	'$uf')";
 	
 	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }

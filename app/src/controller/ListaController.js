@@ -268,6 +268,25 @@
          service.alertarErro(erro.statusText);
         });
        }
+       
+       $scope.pesquisarCep = function(obj){
+           //se o cep for valido efetua a consulta no webservice
+           var cep = obj.cep.replace(/\.|\-/g, '');
+           if(/^[0-9]{8}$/.test(cep)){
+             service.consultarCep(cep, function(dados){
+               if(dados !== null){
+                 obj.uf = dados.uf;
+                 obj.cidade = dados.localidade ? dados.localidade.toUpperCase() : '';
+                 obj.endereco = dados.logradouro ? dados.logradouro.toUpperCase() : '';
+                 obj.bairro = dados.bairro ? dados.bairro.toUpperCase() : '';
+                 obj.complemento = dados.complemento ? dados.complemento.toUpperCase() : '';
+                 //$scope.$apply();
+               }else{
+            	   service.alertarErro('Cep inexistente ou inválido.');
+               }
+             })
+           }
+         }
 
         var validarDadosRegistro = function(form){
              $scope.errors = [];
