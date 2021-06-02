@@ -1,7 +1,7 @@
  angular
        .module('app')
-       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil','FileUploader','filterFilter',
-        function($scope, $http, service, $timeout, validador, dataUtil,FileUploader, filterFilter){
+       .controller('ListaController', ['$scope', '$http', 'serviceUtil','$timeout', 'validaService','dataUtil','FileUploader','filterFilter','$sce',
+        function($scope, $http, service, $timeout, validador, dataUtil,FileUploader, filterFilter, $sce){
 
     	var url = service.getUrl();
     		
@@ -11,7 +11,9 @@
         $scope.contador = TEMPO_REFRESH;
         $scope.promise;
         $scope.exibirMsgListaCompleta = true;
-
+        var DIRETORIO_APOLICES = 'apolices';
+        var BASE_URL_GOOGLE = 'https://www.segurosja.com.br/gerenciador/GCP/fechamentoProducao/';
+        	
         //obtem os parametros na url se existir
         var codigoParam = null;
         var codigoUserParam = null;
@@ -46,7 +48,7 @@
         $scope.promise = $timeout(ativarRefresh, 1000);
       }
 
-       $scope.detalhar = function(registro){
+       $scope.detalhar = function(registro, naoIniciarAbaAcordion){
         $http.post(url + 'php/consulta.php/fezUploadArquivos', {pasta: $scope.gerarLinkPastaUpload(registro)}).then(function(data){ 
              $scope.registro = angular.copy(registro);
              listarSeguradoras();
@@ -67,15 +69,17 @@
             	}
             }
 
-            $timeout(function(){
-            	if($scope.registro.data_contratacao && $scope.registro.data_contratacao !== '0000-00-00 00:00:00'){
-            		$('#collapseContratacao').trigger("click");
-            	}else{
-            		$("#accordion a:first").trigger("click");
-            	}
-            });
+            if(!naoIniciarAbaAcordion){
+            	$timeout(function(){
+            		if($scope.registro.data_contratacao && $scope.registro.data_contratacao !== '0000-00-00 00:00:00'){
+            			$('#collapseContratacao').trigger("click");
+            		}else{
+            			$("#accordion a:first").trigger("click");
+            		}
+            	}, 500);
+            }
 
-            marcarSeFezUploadApolice($scope.registro, $scope.registro.codigo, $scope.registro.seguradora);
+            marcarSeFezUploadApolice($scope.registro, $scope.registro.codigo);
             $scope.acao = 'detalhar'; 
 
             }, function(erro){
@@ -89,7 +93,7 @@
         */
        var recarregarAnaliseEDetalhar = function(codReg, msg, callback){
     	   $http.post(url + 'php/consulta.php/consultarPorCodigoRegistro', {codigo: codReg}).then(function(data){
-		   		$scope.detalhar(data.data[0]);
+		   		$scope.detalhar(data.data[0], true);
 		   		if(msg){
 		   			service.alertar(msg);
 		   		}
@@ -357,21 +361,47 @@
        $scope.gravarDadosApolice = function(){
     	   if(validarDadosApolice()){
     		   $scope.dadosAplice.codSeguradora = $scope.dadosAplice.objSeguradora.sigla;
-    		   $scope.dadosAplice.objSeguradora = null;
     		   if($scope.dadosAplice.data && $scope.dadosAplice.hora){
     			   $scope.dadosAplice.data_contratacao = dataUtil.formatarParaDataServidor($scope.dadosAplice.data) + ' ' + $scope.dadosAplice.hora;
     		   }
+    		   
+    		   if($scope.dadosAplice.inicio_vigencia_apl){
+    			   $scope.dadosAplice.inicio_vigencia_apl = dataUtil.formatarParaDataServidor($scope.dadosAplice.inicio_vigencia_apl);
+    		   }
+    		   
+    		   if($scope.dadosAplice.fim_vigencia_apl){
+    			   $scope.dadosAplice.fim_vigencia_apl = dataUtil.formatarParaDataServidor($scope.dadosAplice.fim_vigencia_apl);
+    		   }
+    		   
     		   $http.post(url + 'php/gravar.php/gravarDadosApolice', $scope.dadosAplice).then(function(data){
-    			   enviarArquivosUploadApolice();
-    			   $('#modalDadosApolice').modal('hide');
-    			   service.alertar('Dados da apólice atualizado com sucesso!');
-    			   $scope.registro.apolice = $scope.dadosAplice.numApolice;
-    			   $scope.registro.seguradora = $scope.dadosAplice.codSeguradora;
+    			   enviarArquivosUploadApolice(function(){
+    				   $('#modalDadosApolice').modal('hide');
+    				   service.alertar('Dados da apólice atualizado com sucesso!');
+    				   recarregarAnaliseEDetalhar($scope.dadosAplice.codigoCadastro);
+    			   });
     		   }, function(erro){
     			   service.alertarErro(erro.statusText);
     		   });
     	   }
           }
+       
+       
+       /**
+        * Exclui os dados da apolice
+        */
+       $scope.excluirDadosApolice = function(registro){
+    	   service.showConfirm('Confirma excluir o registro ?',function(){
+    		   efetuarExclusaoApolice(registro, function(){
+    			   $http.post(url + 'php/gravar.php/removerDadosApolice', registro).then(function(data){
+    				   $('#modalDadosApolice').modal('hide');
+    				   service.alertar('Registro excluido com sucesso!');
+    				   recarregarAnaliseEDetalhar(registro.codigoCadastro);
+        		   }, function(erro){
+        			   service.alertarErro(erro.statusText);
+        		   });
+    		   });
+		   });
+       }
        
      //grava os dados da analise
        $scope.gravarDadosAnalise= function(){
@@ -512,6 +542,8 @@
     				   codigoCadastro : $scope.registro.codigo,
     				   numApolice : $scope.registro.apolice, 
     				   data : dataUtil.formatarDataServidor(data.data.data),
+    				   inicio_vigencia_apl : verificarERetornarData($scope.registro.inicio_vigencia_apl,data.data.data),
+    				   fim_vigencia_apl : verificarERetornarData($scope.registro.fim_vigencia_apl,data.data.data),
     		           hora : data.data.hora,
     				   codSeguradora : $scope.registro.seguradora};
     		   
@@ -521,15 +553,27 @@
     			   $scope.dadosAplice.hora = array[1];
     		   }
     		   
-    		   if($scope.dadosAplice.objSeguradora && $scope.dadosAplice.objSeguradora.sigla){
-    			   marcarSeFezUploadApolice($scope.dadosAplice, $scope.dadosAplice.codigoCadastro, $scope.dadosAplice.objSeguradora.sigla);
-    		   }
+    		   marcarSeFezUploadApolice($scope.dadosAplice, $scope.dadosAplice.codigoCadastro, function(){
+    			   $('#modalDadosApolice').modal('show');
+    		   });
     		   
-    		   iniciarUpload($scope.registro.codigo);
+    		   //iniciarUpload($scope.registro.codigo);
     		   
           }, function(erro){
            service.alertarErro(erro.statusText);
           });
+       }
+       
+       /**
+        * Verifica a data passada
+        */
+       var verificarERetornarData = function(dataVerificacao, dataOpcao){
+    	 if($scope.isDataValida(dataVerificacao)){
+    		 return dataUtil.formatarData(dataVerificacao);
+    		 
+    	 }else{
+    		 return dataUtil.formatarDataServidor(dataOpcao);
+    	 }
        }
        
        /**
@@ -544,8 +588,37 @@
        /**
         * Marca se fez upload da apolice
         */
-       var marcarSeFezUploadApolice = function(registro, codigo, seguradora){
-    	   $.ajax({
+       var marcarSeFezUploadApolice = function(registro, codigo, callback){
+    	   var form_data = new FormData();
+			form_data.append("directory", DIRETORIO_APOLICES);
+			
+			 $(".loader").show();
+			$.ajax({
+				url: BASE_URL_GOOGLE + 'listarArquivos.php', // point to server-side PHP script 
+				dataType: 'text', // what to expect back from the PHP script
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,
+				type: 'post',
+				success: function (response) {
+					$(".loader").hide();
+					var listFiles = service.tratarListFiles(response);
+					registro.uploadApolice = listFiles.filter(f=> f.name.startsWith(codigo))[0];
+					if(registro.uploadApolice){
+						registro.fezUploadApolice = true;
+					}
+					
+					if(callback){
+						callback();
+					}
+				},
+				error: function (response) {
+					$(".loader").hide();
+					alert('Falha ao listar os arquivos');
+				}
+			});
+    	   /*$.ajax({
                type: 'get',
                url: $scope.gerarUrlUploadApolice(codigo, seguradora),
                success: function (response) {
@@ -556,12 +629,12 @@
                },
                dataType: 'json',
                global: false
-           });
+           });*/
        }
        
        /**
         * Gera a url de acesso a apolice
-        */
+       
        $scope.gerarUrlUploadApolice = function(codigo, seguradora){
     	   var arquivo = 'semanexo.pdf';
     	   if(codigo && seguradora){
@@ -569,16 +642,16 @@
     	   }
     	   
     	   return "https://www.segurosja.com.br/gerenciador/fianca/apolices/" + arquivo;
-       }
+       } */
        
-       /*inicia as configurações de upload*/
+       /*inicia as configurações de upload
        var iniciarUpload = function(codigoCadastro){
          $scope.uploader = new FileUploader({
            url : 'https://www.segurosja.com.br/gerenciador/fianca/uploadApolice.php',
            formData:[{codigo: codigoCadastro}]
          });
 
-         /*função chamada antes de fazer upload do item*/
+         //função chamada antes de fazer upload do item
          $scope.uploader.onAfterAddingFile   = function(item) {
         	 if($scope.dadosAplice.fezUpload){
         		 if(!confirm("Já existe um arquivo de apólice no servidor. Deseja sobrescrever o arquivo existente")){
@@ -588,15 +661,107 @@
         	 }
          };
          
-        /*função chamada em caso de erro no upload*/
+        //função chamada em caso de erro no upload
        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
          console.info('onErrorItem', fileItem, response, status, headers);
          service.alertarErro(response);
        };
        
-     } 
+     }*/
        
-       /*Envia o upload dos arquivos*/
+       var enviarArquivosUploadApolice = function(callback){
+    	   if($('#btnFile1')[0].files.length > 0){
+    		   var form_data = new FormData();
+    		   var seguradora = $scope.dadosAplice.codSeguradora.toLowerCase();
+    		   var arrayName = $('#btnFile1')[0].files[0].name.split('.');
+    		   var extensao = '.' + arrayName[arrayName.length - 1];
+    		   var nameApolice = $scope.registro.codigo + '_' + seguradora + extensao;
+    		   
+    		   form_data.append("folders", DIRETORIO_APOLICES);
+    		   form_data.append("arquivos[]", document.getElementById('btnFile1').files[0], nameApolice);
+    		   
+    		   $(".loader").show();
+    		   $.ajax({
+    			   url: BASE_URL_GOOGLE + 'uploadArquivos.php', // point to server-side PHP script 
+    			   dataType: 'text', // what to expect back from the PHP script
+    			   cache: false,
+    			   contentType: false,
+    			   processData: false,
+    			   data: form_data,
+    			   type: 'post',
+    			   success: function (response) {
+    				   $(".loader").hide();
+    				   $("#file1").val("");
+    				   callback();
+    			   },
+    			   error: function (response) {
+    				   $(".loader").hide();
+    				   alert('Falha ao efetuar uploads');
+    			   }
+    		   });
+    		   
+    	   }else{
+    		   callback();
+    	   }
+    	   
+          }
+       
+       /**
+        * Confirma e exclui a apolice
+        */
+       $scope.excluirUploadApolice = function(registro){
+    	   service.showConfirm('Confirma excluir a apólice ?',function(){
+    		   efetuarExclusaoApolice(registro);
+		   });
+       }
+       
+       /**
+        * Exclui a apolice
+        */
+       var efetuarExclusaoApolice = function(registro, callback){
+    	   if(registro.uploadApolice){
+    		   var form_data = new FormData();
+    		   form_data.append("file_delete",  registro.uploadApolice.name);
+    		   form_data.append("directory_delete", DIRETORIO_APOLICES);
+    		   
+    		   $(".loader").show();
+    		   $.ajax({
+    			   url: BASE_URL_GOOGLE + 'deletarArquivo.php', // point to server-side PHP script 
+    			   dataType: 'text', // what to expect back from the PHP script
+    			   cache: false,
+    			   contentType: false,
+    			   processData: false,
+    			   data: form_data,
+    			   type: 'post',
+    			   success: function (response) {
+    				   $(".loader").hide();
+    				   registro.fezUploadApolice = false;
+    				   $scope.registro.fezUploadApolice = false;
+    				   if(callback){
+    					   callback();
+    				   }
+    			   },
+    			   error: function (response) {
+    				   $(".loader").hide();
+    				   alert('Falha ao excluir arquivo');
+    			   }
+    		   });
+    		   
+    	   }else{
+    		   if(callback){
+				   callback();
+			   }
+    	   }
+       }
+       
+       /**
+        * Baixa a apolice
+        */
+       $scope.baixarApolice = function(url){
+       	window.location = BASE_URL_GOOGLE + 'downloadArquivo.php?url_file='+url;
+       }
+       
+       /*Envia o upload dos arquivos
        var enviarArquivosUploadApolice = function(){
     	   if($scope.uploader.queue.length > 0){
     		   $scope.uploader.queue.forEach(function(item, index){
@@ -611,7 +776,7 @@
     		   });
     		   $scope.uploader.uploadAll();
     	   }
-       }
+       }*/
        
        /**
         * Inicia os dados da analise
@@ -788,6 +953,10 @@
 			case "5": return "Companheiro(a)";
 		  }
 		}
+		
+		$scope.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+          }
        
 
        $scope.irParaListagem();

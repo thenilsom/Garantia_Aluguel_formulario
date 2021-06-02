@@ -25,6 +25,20 @@ angular.module('app')
 
 	          return paramUrl;
 		}
+		
+		service.tratarListFiles = function(response){
+        	var array = [];
+        	var files = JSON.parse(response.replace(/[\u200B-\u200D\uFEFF]/g, '')).files;
+        	
+        	for (var property in files){
+        		var split = files[property].split('/');
+        		var nomeArquivo = split[split.length -1];
+        		array.push({url: files[property], 
+        						  name: nomeArquivo});
+        	}
+        	
+        	return array;
+        }
 
 		//formata o valor monetario, Ex: param = 100000 resultado 1.000,00
 		service.formatarValor = function(valor){

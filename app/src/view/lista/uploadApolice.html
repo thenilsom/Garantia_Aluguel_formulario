@@ -1,7 +1,41 @@
+<style>
+	.file {
+	  line-height: 30px;
+	  height: 30px;
+	  border: 1px solid #A7A7A7;
+	  padding: 5px;
+	  box-sizing: border-box;
+	  font-size: 15px;
+	  vertical-align: middle;
+	  width: 300px;
+	}
+	
+	.btn-upload {
+	  border: none;
+	  box-sizing: border-box;
+	  padding: 2px 10px;
+	  background-color: #4493c7;
+	  color: #FFF;
+	  height: 32px;
+	  font-size: 15px;
+	  vertical-align: middle;
+	}
+</style>
+
+<div class="container">
+ <form> 
+    	
+         <input type="file" name="arquivos[]"  class="arquivo" id="btnFile1" accept="application/pdf"
+         onchange="$('#file1').val(Array.from($(this)[0].files).map(a=>a.name).join(';'))" style="display: none;">
+		 <input type="text" name="file"  class="file" id="file1" placeholder="Arquivo" readonly="readonly">
+		 <input type="button" class="btn btn-upload" value="Apólice" onclick="$('#btnFile1').trigger('click')">
+   </form> 
+</div>
+
+<!--  
            <div class="container">
                 <div class="row">
                                   
-                    <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
                     <div class="form-group">
 		      			<label for="files" class="col-xs-1" style="width: 11%">{{dadosAplice.fezUpload ? 'Alterar' : 'Enviar'}} apólice:</label>
 			      			<div class="col-xs-3">
@@ -28,13 +62,7 @@
                             <tr ng-repeat="item in uploader.queue">
                                 <td>
                                     <strong>{{ item.file.name }}</strong>
-                                    <!-- Image preview -->
-                                    <!--auto height-->
-                                    <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
-                                    <!--auto width-->
                                     <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-                                    <!--fixed width and height -->
-                                    <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
                                 </td>
 
                                 <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
@@ -46,26 +74,7 @@
                             </tr>
                         </tbody>
                     </table>
-
-					<!--  
-                    <div>
-                        <div>
-                            Progresso:
-                            <div class="progress" style="">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-                            </div>
-                        </div>
-                        
-                        <button type="button" class="btn btn-success btn-s" ng-click="enviarArquivosUploadApolice()" ng-disabled="!uploader.getNotUploadedItems().length">
-                            <span class="glyphicon glyphicon-upload"></span> Enviar todos
-                        </button>
-                     	
-                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.getNotUploadedItems().length">
-                            <span class="glyphicon glyphicon-trash"></span> Remover todos
-                        </button>
-                    </div>
-                    -->
-                    
                 </div>
             </div>
         </div>
+        -->
