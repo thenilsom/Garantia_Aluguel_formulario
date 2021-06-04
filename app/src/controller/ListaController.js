@@ -591,6 +591,7 @@
        var marcarSeFezUploadApolice = function(registro, codigo, callback){
     	   var form_data = new FormData();
 			form_data.append("directory", DIRETORIO_APOLICES);
+			form_data.append("visibility", 'public ');
 			
 			 $(".loader").show();
 			$.ajax({

@@ -256,9 +256,9 @@
         		$http.post(_url + 'php/api.php/salvarFormulario', $scope.cadastro).then(function(data){
         			$('.loader').show();
         			$timeout(function(){//simula um tempo que seria da consulta nas api das seguradoras
-        				$scope.liberty = {codigoStatus : 2};
+        				$scope.liberty = {codigoStatus : 1};
         				$scope.porto = {codigoStatus : 1};
-        				$scope.tooseguros = {codigoStatus : 1};
+        				$scope.tooseguros = {codigoStatus : 2};
         				$scope.proximoPasso();
         				$scope.isSalvarConcluido = true;
         				$('.loader').hide();
