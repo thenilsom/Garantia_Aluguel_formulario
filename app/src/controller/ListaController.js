@@ -53,6 +53,7 @@
              $scope.registro = angular.copy(registro);
              listarSeguradoras();
              listarFormasPgtoPorto();
+            $scope.registro.fileApolice = registro.codigo + '_' + registro.seguradora.toLocaleLowerCase() + '.pdf';
             $scope.registro.fezUpload = data.data.qtd > 0;
             
           //obtem o nome do usuario da contratação pelo codigo
@@ -79,7 +80,7 @@
             	}, 500);
             }
 
-            marcarSeFezUploadApolice($scope.registro, $scope.registro.codigo);
+            marcarSeFezUploadApolice($scope.registro);
             $scope.acao = 'detalhar'; 
 
             }, function(erro){
@@ -541,6 +542,7 @@
     				   objSeguradora : $scope.listaSeguradoras.filter(i=> i.sigla == $scope.registro.seguradora)[0],
     				   codigoCadastro : $scope.registro.codigo,
     				   numApolice : $scope.registro.apolice, 
+    				   fileApolice : $scope.registro.fileApolice,
     				   data : dataUtil.formatarDataServidor(data.data.data),
     				   inicio_vigencia_apl : verificarERetornarData($scope.registro.inicio_vigencia_apl,data.data.data),
     				   fim_vigencia_apl : verificarERetornarData($scope.registro.fim_vigencia_apl,data.data.data),
@@ -553,7 +555,7 @@
     			   $scope.dadosAplice.hora = array[1];
     		   }
     		   
-    		   marcarSeFezUploadApolice($scope.dadosAplice, $scope.dadosAplice.codigoCadastro, function(){
+    		   marcarSeFezUploadApolice($scope.dadosAplice, function(){
     			   $('#modalDadosApolice').modal('show');
     		   });
     		   
@@ -588,37 +590,67 @@
        /**
         * Marca se fez upload da apolice
         */
-       var marcarSeFezUploadApolice = function(registro, codigo, callback){
+       var marcarSeFezUploadApolice = function(registro, callback){
     	   var form_data = new FormData();
-			form_data.append("directory", DIRETORIO_APOLICES);
-			form_data.append("visibility", 'public ');
+    	   
+			form_data.append("file_permission", registro.fileApolice);
+			form_data.append("directory_permission", DIRETORIO_APOLICES);
+			form_data.append("visibility_file", 'public');
 			
 			 $(".loader").show();
-			$.ajax({
-				url: BASE_URL_GOOGLE + 'listarArquivos.php', // point to server-side PHP script 
-				dataType: 'text', // what to expect back from the PHP script
-				cache: false,
-				contentType: false,
-				processData: false,
-				data: form_data,
-				type: 'post',
-				success: function (response) {
-					$(".loader").hide();
-					var listFiles = service.tratarListFiles(response);
-					registro.uploadApolice = listFiles.filter(f=> f.name.startsWith(codigo))[0];
-					if(registro.uploadApolice){
-						registro.fezUploadApolice = true;
+			 $.ajax({
+					url: BASE_URL_GOOGLE + 'obterArquivo.php', // point to server-side PHP script 
+					dataType: 'text', // what to expect back from the PHP script
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: form_data,
+					type: 'post',
+					success: function (response) {
+						$(".loader").hide();
+						var listFiles = service.montarObjetoArquivoApolice(response);
+						registro.uploadApolice = listFiles[0];
+						if(registro.uploadApolice){
+							registro.fezUploadApolice = true;
+						}
+						
+						if(callback){
+							callback();
+						}
+					},
+					error: function (response) {
+						$(".loader").hide();
+						alert('Falha ao listar os arquivos');
 					}
-					
-					if(callback){
-						callback();
-					}
-				},
-				error: function (response) {
-					$(".loader").hide();
-					alert('Falha ao listar os arquivos');
-				}
-			});
+				});
+			 
+//			$.ajax({
+//				url: BASE_URL_GOOGLE + 'listarArquivos.php', // point to server-side PHP script 
+//				dataType: 'text', // what to expect back from the PHP script
+//				cache: false,
+//				contentType: false,
+//				processData: false,
+//				data: form_data,
+//				type: 'post',
+//				success: function (response) {
+//					$(".loader").hide();
+//					var listFiles = service.tratarListFiles(response);
+//					registro.uploadApolice = listFiles.filter(f=> f.name.startsWith(codigo))[0];
+//					if(registro.uploadApolice){
+//						registro.fezUploadApolice = true;
+//					}
+//					
+//					if(callback){
+//						callback();
+//					}
+//				},
+//				error: function (response) {
+//					$(".loader").hide();
+//					alert('Falha ao listar os arquivos');
+//				}
+//			});
+			
+			
     	   /*$.ajax({
                type: 'get',
                url: $scope.gerarUrlUploadApolice(codigo, seguradora),
