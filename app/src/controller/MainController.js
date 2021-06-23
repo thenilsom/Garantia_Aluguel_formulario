@@ -105,6 +105,7 @@
         	  $http.post(_url + 'php/consulta.php/consultarPorCodigoUsuario', {codigoUser: codigo, nivel : nivelAcesso}).then(function(data){
         		  if(data.data && data.data.nome){
         			  $scope.usuarioSolicitante = ' - Usuário ' + data.data.nome;
+        			  $scope.cadastro.imovel.nomeSolicitante = data.data.nome;
         		  }
              }, function(erro){
                service.alertarErro(erro.statusText);

@@ -200,9 +200,18 @@ function salvar($request, $response){
 	
 	
 	
-	$solicitante = obterValorVariavel($cadastro->imovel->solicitante);
+	$solicitante = obterValorVariavel($cadastro->imovel->nomeSolicitante);
+
+	$usuario_upload = "HOTSITE";
+    if($solicitante != ""){
+		$usuario_upload = $solicitante;
+	}
+
+	$data_cob = date("Y-m-d");
+    $hora_cob = date("H:i:s");
+    $seguradora = "ALL";
 	
-	if($solicitante != ""){
+	/*if($solicitante != ""){
 		
 		$pdo = new PDO("mysql:host=localhost;dbname=segurosja;", "segurosja", "m1181s2081_", array());
 		$sth = $pdo->prepare("select usuarios_imobs.email from usuarios_imobs where usuarios_imobs.codigo_chavinha = $solicitante and usuarios_imobs.cgc_imob = $CGC_imob");
@@ -215,16 +224,10 @@ function salvar($request, $response){
 		$email_solicitante = "";
 	}
 	
-	
-    $data_cob = date("Y-m-d");
-    $hora_cob = date("H:i:s");
-    $seguradora = "ALL";
-    //$usuario_upload = "HOTSITE";
-	
 	$usuario_upload = "HOTSITE";
     if($email_solicitante != ""){
 		$usuario_upload = $email_solicitante;
-	}
+	}*/
 	
     //$tipo_inquilino = "F"; *esta sendo capturado nos dados do pretendente
     $resp_inquilino = "";
