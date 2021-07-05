@@ -235,7 +235,7 @@ function salvar($request, $response){
    	$cep_anterior_inquilino = str_replace(".","", $cep_anterior_inquilino);
    	$cep = str_replace(".","", $cep);
 
-    $conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+    $conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 
     $sql_imob = "select fantasia, razao, corretor, email, (select razao from corretores where corretores.codigo=imobs.corretor) AS NOME_COR, (select email from corretores where corretores.codigo=imobs.corretor) AS EMAIL_COR from imobs where cpf='$CGC_imob'";
     $consulta_imob = mysql_db_query("segurosja", $sql_imob) or die ("problema no SQL imob");

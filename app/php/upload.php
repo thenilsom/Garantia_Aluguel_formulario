@@ -6,7 +6,7 @@
 require_once("php7_mysql_shim.php");
 
 $registro = $_REQUEST['codigo'];
-$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 $sql = "select * from fianca where codigo='$registro'";
 $consulta = mysql_db_query("segurosja", $sql);
 while($campo = mysql_fetch_assoc($consulta)){

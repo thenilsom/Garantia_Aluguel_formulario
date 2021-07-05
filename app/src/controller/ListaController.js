@@ -13,6 +13,7 @@
         $scope.exibirMsgListaCompleta = true;
         var DIRETORIO_APOLICES = 'apolices';
         var BASE_URL_GOOGLE = 'https://www.segurosja.com.br/gerenciador/GCP/fechamentoProducao/';
+        var _URL_APP_GERENCIADOR = 'https://www.segurosja.com.br/gerenciador/';
         	
         //obtem os parametros na url se existir
         var codigoParam = null;
@@ -202,7 +203,7 @@
      	  
      	  if(situacao && !situacao.toLocaleLowerCase().includes('aprovad') && !situacao.toLocaleLowerCase().includes('recusad') && !situacao.toLocaleLowerCase().includes('reprovad')){
      		  if(tipo == 'por'){
-     			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+registro.codigo+"&gera_analise=0").then(function(data){
+     			  $http.get(_URL_APP_GERENCIADOR + "aplicacao_porto/api_resposta.php?codigo_fianca="+registro.codigo+"&gera_analise=0").then(function(data){
      				 service.alertar('Código Status: ' + data.data.codigoStatus + ', Mensagem:' + data.data.msgValidacao);
      				 listar();
      				 enviaEmails(registro.codigo);
@@ -211,7 +212,7 @@
      			  });
      			  
      		  }else if(tipo == 'lib'){
-     			  $http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+registro.codigo + "&carta_especifica=" + cartaOferta + "&gera_analise=0").then(function(data){
+     			  $http.get(_URL_APP_GERENCIADOR + "aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+registro.codigo + "&carta_especifica=" + cartaOferta + "&gera_analise=0").then(function(data){
      				 service.alertar('Código Status: ' + data.data.codigoStatus + ', Mensagem:' + data.data.msgValidacao);
      				  listar();
      				 enviaEmails(registro.codigo);
@@ -674,13 +675,13 @@
     		   arquivo =  codigo + '_' +  seguradora.substr(0,3).toLowerCase() + '.pdf';
     	   }
     	   
-    	   return "https://www.segurosja.com.br/gerenciador/fianca/apolices/" + arquivo;
+    	   return _URL_APP_GERENCIADOR + "fianca/apolices/" + arquivo;
        } */
        
        /*inicia as configurações de upload
        var iniciarUpload = function(codigoCadastro){
          $scope.uploader = new FileUploader({
-           url : 'https://www.segurosja.com.br/gerenciador/fianca/uploadApolice.php',
+           url : _URL_APP_GERENCIADOR + 'fianca/uploadApolice.php',
            formData:[{codigo: codigoCadastro}]
          });
 
@@ -883,7 +884,7 @@
       var enviaEmails = function(codigo = '') {
            	$.ajax({
 					type: "POST", 
-					url: "https://www.segurosja.com.br/gerenciador/fianca/app/php/email_status_propostas.php",
+					url: _URL_APP_GERENCIADOR + "fianca/app/php/email_status_propostas.php",
 					dataType: "json",           
                   data:{
                       codigo:codigo 

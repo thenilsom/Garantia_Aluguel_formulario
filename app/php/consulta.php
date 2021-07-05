@@ -28,8 +28,12 @@ $app->post('/consultarPorCodigoUsuario', 'consultarPorCodigoUsuario');
 $app->post('/listarOpCartas', 'listarOpCartas');
 $app->get('/listarSeguradoras', 'listarSeguradoras');
 $app->get('/listarFormasPgtoPorto', 'listarFormasPgtoPorto');
-$app->get('/listarTodasImobs', 'listarTodasImobs');
 $app->post('/consultarImobsPorCidade', 'consultarImobsPorCidade');
+
+//funcoes auxiliares
+$app->get('/listarTodasImobs', 'listarTodasImobs');
+$app->get('/alterarRegistro', 'alterarRegistro');
+
 
 
 function fezUploadArquivos($request, $response){
@@ -56,7 +60,7 @@ function consultarCpfCnpj($request, $response){
 	$param = json_decode($request->getBody());
 	$cnpjCpf = trim(json_encode($param->cpfCnpj, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 	
 	$sql = "SELECT codigo, fantasia, razao, corretor FROM imobs where cpf='$cnpjCpf'";
@@ -83,7 +87,7 @@ function listar($request, $response){
 		$condicaoLimitar = '';
 	}
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -147,7 +151,7 @@ function consultarPorCodigoRegistro($request, $response){
 	$param = json_decode($request->getBody());
 	$codigo = trim(json_encode($param->codigo, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -171,7 +175,7 @@ function consultarPorCpfInquilino($request, $response){
 	$param = json_decode($request->getBody());
 	$cpf = trim(json_encode($param->cpf, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -195,7 +199,7 @@ function listarCGC_Imob($request, $response){
 	$param = json_decode($request->getBody());
 	$codigCorretor = trim(json_encode($param->codCorretor, JSON_UNESCAPED_UNICODE), '"');
 
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -214,7 +218,7 @@ function listarCGC_Imob($request, $response){
 function listarSeguradoras($request, $response){	
 	$param = json_decode($request->getBody());
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -233,7 +237,7 @@ function listarSeguradoras($request, $response){
 function listarFormasPgtoPorto($request, $response){	
 	$param = json_decode($request->getBody());
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -253,7 +257,7 @@ function consultarFaixaCep($request, $response){
 	$param = json_decode($request->getBody());
 	$cep = trim(json_encode($param->cep, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$sql = "SELECT cidade, estado from cidades where '$cep' <= cep_final and '$cep' >= cep_inicial";
@@ -273,7 +277,7 @@ function consultarPorCodigoUsuario($request, $response){
 	$codigo = trim(json_encode($param->codigoUser, JSON_UNESCAPED_UNICODE), '"');
 	$nivel = trim(json_encode($param->nivel, JSON_UNESCAPED_UNICODE), '"');
 
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	if($nivel == '1'){
@@ -303,7 +307,7 @@ function listarOpCartas($request, $response){
 	$param = json_decode($request->getBody());
 	$cpf = trim(json_encode($param->cpf, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 	$sql = "SELECT carta_of_lib_fianca, carta_of_lib_fianca_variavel, carta_of_lib_fianca_tombamento from imobs where cpf='$cpf'";	
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
@@ -319,7 +323,7 @@ function consultarImobsPorCidade($request, $response){
 	$param = json_decode($request->getBody());
 	$cidade = trim(json_encode($param->cidade, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -342,10 +346,10 @@ function consultarImobsPorCidade($request, $response){
 
 
 function listarTodasImobs(){	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexão");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
 	mysql_set_charset('utf8',$conexao);
 	$rows = array();
- 	$sql = "SELECT * from imobs";
+ 	$sql = "SELECT * from imobs order by codigo desc";
 	$consulta = mysql_db_query("segurosja", $sql) or die (mysql_error());
 
 	while($campo = mysql_fetch_assoc($consulta)){
@@ -353,6 +357,15 @@ function listarTodasImobs(){
     }
 
 	echo json_encode($rows);
+}
+
+function alterarRegistro(){		
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	mysql_set_charset('utf8',$conexao);
+
+	$rows = array();
+ 	$sql = "UPDATE imobs set corretor = '0' WHERE codigo='1594'";
+	mysql_db_query("segurosja", $sql) or die (mysql_error());
 }
 
 $app->run();

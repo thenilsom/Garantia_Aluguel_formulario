@@ -27,7 +27,7 @@ function registrarAtendimento($request, $response){
 	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
 	$dataAceite = date("Y-m-d H:i:s");
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -42,7 +42,7 @@ function registrarDesistencia($request, $response){
 	$dataDesistencia = trim(json_encode($param->dataDesistencia, JSON_UNESCAPED_UNICODE), '"');
 	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
 		
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -61,7 +61,7 @@ function gravarDadosApolice($request, $response){
 	$inicio_vigencia_apl = trim(json_encode($param->inicio_vigencia_apl, JSON_UNESCAPED_UNICODE), '"');
 	$fim_vigencia_apl = trim(json_encode($param->fim_vigencia_apl, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -79,7 +79,7 @@ function gravarDadosApolice($request, $response){
 function removerDadosApolice($request, $response){
 	$param = json_decode($request->getBody());
 	$codigoCadastro = trim(json_encode($param->codigoCadastro, JSON_UNESCAPED_UNICODE), '"');
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -102,7 +102,7 @@ function alterarDadosAnalise($request, $response){
 	$situacao = trim(json_encode($param->situacao, JSON_UNESCAPED_UNICODE), '"');
 	$dataAprovacao = trim(json_encode($param->dataAprovacao, JSON_UNESCAPED_UNICODE), '"');
 	
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -147,7 +147,7 @@ function gravarRegInquilino($request, $response){
 	$cidade = trim(json_encode($param->cidade, JSON_UNESCAPED_UNICODE), '"');
 	$uf = trim(json_encode($param->uf, JSON_UNESCAPED_UNICODE), '"');
 		
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$rows = array();
@@ -200,7 +200,7 @@ function vincularAnaliseAOutraImob($request, $response){
 	$codReg = trim(json_encode($param->codReg, JSON_UNESCAPED_UNICODE), '"');
 	$CGC_imob = trim(json_encode($param->CGC_imob, JSON_UNESCAPED_UNICODE), '"');
 
-	$conexao = mysql_connect("mysql.segurosja.com.br", "segurosja", "m1181s2081_") or die ("problema na conexao");
+	$conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexao");
 	mysql_set_charset('utf8',$conexao);
 
 	$sql = "UPDATE fianca set CGC_imob = '$CGC_imob' WHERE codigo = $codReg";

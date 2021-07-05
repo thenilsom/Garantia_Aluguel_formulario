@@ -5,6 +5,7 @@
     	   
     	  var listaCpfTeste = ['706.671.361-34', '690.190.530-00', '017.859.605-12', '974.417.621-49', '719.349.521-68', '040.431.251-94', '763.424.411-20', '028.519.488-73'];
     	  var _url = service.getUrl();
+    	  var _URL_APP_GERENCIADOR = 'https://www.segurosja.com.br/gerenciador/';
     	  $scope.isSalvarConcluido = false;
     	  
     	  $scope.filtroImob = {};//filtro para selecionar imobiliaria caso não seja passado um cnpj na url
@@ -352,7 +353,7 @@
 				$scope.tooseguros.codigoStatus = 4;
 				iniciarUpload($scope.codigoCadastro);
 				
-				$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro +"&carta_especifica=" + codCartaOferta +"&gera_analise=1").then(function(data){
+				$http.get(_URL_APP_GERENCIADOR + "aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro +"&carta_especifica=" + codCartaOferta +"&gera_analise=1").then(function(data){
 		   
 						$scope.liberty.msgValidacao  = data.data.msgValidacao;
 						$scope.liberty.codigoStatus  = data.data.codigoStatus;
@@ -361,7 +362,7 @@
 						
 								console.log('RESIDENCIAL');
 							
-								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise=1").then(function(data){
+								$http.get(_URL_APP_GERENCIADOR + "aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise=1").then(function(data){
 				   
 											$scope.porto.msgValidacao  = data.data.msgValidacao;
 											$scope.porto.codigoStatus  = data.data.codigoStatus;
@@ -440,7 +441,7 @@
 				$scope.corretoras.codMsg = 1;
 				$scope.codigoStatus = 4;
 
-				$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnaliseLib).then(function(data){
+				$http.get(_URL_APP_GERENCIADOR + "aplicacao_liberty_fianca/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnaliseLib).then(function(data){
 									   
 						$scope.liberty.msgValidacao  = data.data.msgValidacao;
 						$scope.liberty.codigoStatus  = data.data.codigoStatus;
@@ -452,7 +453,7 @@
 					
 								console.log('RESIDENCIAL');
 							
-								$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnalisePor).then(function(data){
+								$http.get(_URL_APP_GERENCIADOR + "aplicacao_porto/api_resposta.php?codigo_fianca="+$scope.codigoCadastro+"&gera_analise="+$scope.geraAnalisePor).then(function(data){
 						   
 											$scope.porto.msgValidacao  = data.data.msgValidacao;
 											$scope.porto.codigoStatus  = data.data.codigoStatus;
@@ -963,7 +964,7 @@
 		  
 		  $scope.carregaCbMotivoLocacao = function(){
 			  
-				$http.get("https://www.segurosja.com.br/gerenciador/aplicacao_porto/cb_motivo_locacao.php").then(function(data){
+				$http.get(_URL_APP_GERENCIADOR + "aplicacao_porto/cb_motivo_locacao.php").then(function(data){
 							
                     $scope.cadastro.imovel.motivoLocacaoSelect = data.data.motivoLocacao;
 					
@@ -991,11 +992,11 @@
 		};
 		$scope.enviaEmails = function(codigo = '') {
 			 
-			 //return $http.get("https://www.segurosja.com.br/gerenciador/fianca/app/php/email_status_propostas.php?codigo="+codigo).then(function(results){return results.data;});
+			 //return $http.get(_URL_APP_GERENCIADOR + "fianca/app/php/email_status_propostas.php?codigo="+codigo).then(function(results){return results.data;});
 
              	$.ajax({
 					type: "POST", 
-					url: "https://www.segurosja.com.br/gerenciador/fianca/app/php/email_status_propostas.php",
+					url: _URL_APP_GERENCIADOR + "fianca/app/php/email_status_propostas.php",
 					dataType: "json",           
                     data:{
                         codigo:codigo 
@@ -1031,7 +1032,7 @@
 		    $("#profissao").select2({
 			 
 				ajax: {
-					url: "https://www.segurosja.com.br/gerenciador/fianca/app/php/cb_autocomplete_profissoes.php",
+					url: _URL_APP_GERENCIADOR + "fianca/app/php/cb_autocomplete_profissoes.php",
 					type: "post",
 					dataType: 'json',
 					data: function (params) {
