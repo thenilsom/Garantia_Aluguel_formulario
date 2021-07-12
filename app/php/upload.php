@@ -3,7 +3,7 @@
  header("Access-Control-Allow-Methods: GET,PUT,POST,DELETE");
  header("Access-Control-Allow-Headers: Content-Type, Authorization");
  
-require_once("php7_mysql_shim.php");
+//require_once("php7_mysql_shim.php");
 
 $registro = $_REQUEST['codigo'];
 $conexao = mysql_connect("localhost", "segurosja", "m1181s2081_") or die ("problema na conexão");
